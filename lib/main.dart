@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shiftend/calendar_page.dart';
 import 'package:shiftend/sample_page.dart';
 
 void main() => runApp(MyApp());
@@ -25,7 +26,7 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    SamplePage('Home'),
+    CalendarPage(),
     SamplePage('Search'),
     SamplePage('Favorite'),
   ];
