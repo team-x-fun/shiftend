@@ -45,16 +45,16 @@ class _MainState extends State<Main> {
         type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text(''),
+            icon: Icon(Icons.calendar_today),
+            title: Text('カレンダー'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text(''),
+            icon: Icon(Icons.person),
+            title: Text('メンバー'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            title: Text(''),
+            icon: Icon(Icons.settings),
+            title: Text('その他'),
           )
         ],
       ),
