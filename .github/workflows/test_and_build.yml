@@ -35,3 +35,14 @@ jobs:
       - run: flutter analyze
       - run: flutter test
       - run: flutter build apk
+      - name: Slack Notification
+        uses: homoluctus/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: "*Build and Debug Check*"
+          mention: "here"
+          mention_if: "failure"
+          channel: "#random"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          url: ${{ secrets.SLACK_WEBHOOK }}
