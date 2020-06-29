@@ -1,0 +1,26 @@
+name: Send Slack message on review requested
+on:
+  pull_request:
+    types: [review_requested]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Notification
+        uses: ry-itto/slack_notify_actions@1.0.1
+        env:
+          SLACK_ICON_URL: https://pbs.twimg.com/profile_images/1236004510679490561/cp71cFmq_400x400.jpg
+          COLOR: "#0366D6"
+          TITLE: ":art: こんるる～♪♪ レビュー依頼が来たよ!! :art: "
+          BODY: |
+            *${{ github.event.pull_request.title }}*
+
+            *Pull Request URL*
+            ${{ github.event.pull_request.html_url }}
+
+            *Reviewers*
+            ${{ join(github.event.pull_request.requested_reviewers.*.login, ', ') }}
+          SLACK_USERNAME: 鈴原るる
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_GITHUB_USER_PAIRS: ${{ secrets.SLACK_GITHUB_ID_PAIRS }}
