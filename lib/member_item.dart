@@ -9,10 +9,8 @@ class MemberItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 100,
       child: Row(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
             height: 50,
@@ -25,9 +23,11 @@ class MemberItem extends StatelessWidget {
               ),
             ),
           ),
+          Container(
+            width: 10,
+          ),
           Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(member.name),
               Text(member.role),
