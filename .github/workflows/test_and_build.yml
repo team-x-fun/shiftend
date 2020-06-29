@@ -14,7 +14,7 @@ on:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.pull_request.title, '[wip]')"
+    if: "!contains(github.event.pull_request.title, '[wip]') && !contains(github.event.pull_request.title, '[ci skip]') && !contains(github.event.pull_request.title, '[skip ci]')"
     steps:
       - run: echo "${{ github.event.pull_request.title }}"
   # This workflow contains a single job called "build"
