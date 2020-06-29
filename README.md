@@ -2,6 +2,16 @@
 
 A new Flutter application.
 
+## version
+
+```
+$ flutter --version
+Flutter 1.17.4 • channel stable • https://github.com/flutter/flutter
+Framework • revision 1ad9baa8b9 (12 days ago) • 2020-06-17 14:41:16 -0700
+Engine • revision ee76268252
+Tools • Dart 2.8.4
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
