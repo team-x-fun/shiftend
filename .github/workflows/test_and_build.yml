@@ -43,6 +43,6 @@ jobs:
           job_name: "*Build and Debug Check*"
           mention: "here"
           mention_if: "failure"
-          channel: "#random"
+          commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
           url: ${{ secrets.SLACK_WEBHOOK }}
