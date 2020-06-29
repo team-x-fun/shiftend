@@ -22,5 +22,5 @@ jobs:
             *Reviewers*
             ${{ join(github.event.pull_request.requested_reviewers.*.login, ', ') }}
           SLACK_USERNAME: 鈴原るる
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_SHIFTEND }}
           SLACK_GITHUB_USER_PAIRS: ${{ secrets.SLACK_GITHUB_ID_PAIRS }}
