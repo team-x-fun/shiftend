@@ -1,0 +1,15 @@
+# https://pub.dev/packages/pedantic_mono
+# TODO:キツめのルール↓に変更
+# include: package:pedantic_mono/analysis_options.yaml
+include: package:pedantic_mono/analysis_options_flutter_samples.yaml
+
+linter:
+  rules:
+    lines_longer_than_80_chars: false
+    omit_local_variable_types: false
+    flutter_style_todos: false
+    one_member_abstracts: false
+    avoid_function_literals_in_foreach_calls: false
+    non_constant_identifier_names: false
+    avoid_single_cascade_in_expression_statements: false
+    constant_identifier_names: false
