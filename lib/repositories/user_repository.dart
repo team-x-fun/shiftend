@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:meta/meta.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -10,7 +12,7 @@ class UserRepository {
   final FirebaseAuth auth;
   final String collectionName = 'users';
 
-  UserRepository({this.firestore, this.auth})
+  UserRepository({@required this.firestore, @required this.auth})
       : assert(firestore != null && auth != null);
 
   Future<void> create(User user) async {
