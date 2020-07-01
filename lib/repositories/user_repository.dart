@@ -6,8 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:shiftend/models/models.dart';
+import 'interfaces/user_repository_interface.dart';
 
-class UserRepository {
+class UserRepository extends UserRepositoryInterface {
   final Firestore firestore;
   final FirebaseAuth auth;
   final String collectionName = 'users';
@@ -15,6 +16,7 @@ class UserRepository {
   UserRepository({@required this.firestore, @required this.auth})
       : assert(firestore != null && auth != null);
 
+  @override
   Future<void> create(User user) async {
     final String uid = await auth.currentUser().then((user) => user.uid);
     await firestore
@@ -23,7 +25,8 @@ class UserRepository {
         .setData(user.toJson()..remove('id'));
   }
 
-  Future<void> updateUser(User user) async {
+  @override
+  Future<void> update(User user) async {
     final String uid = await auth.currentUser().then((user) => user.uid);
     await firestore
         .collection(collectionName)
@@ -31,6 +34,7 @@ class UserRepository {
         .updateData(user.toJson()..remove('id'));
   }
 
+  @override
   Future<User> getCurrentUser() async {
     final String uid = await auth.currentUser().then((user) => user.uid);
     final snapshot =
