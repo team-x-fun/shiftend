@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:shiftend/calendar_page.dart';
 
 void main() {
-  runApp(MyApp());
+  initializeDateFormatting().then((value) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: CalendarPage(),
     );
   }
 }
