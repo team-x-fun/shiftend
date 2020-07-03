@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shiftend/debug_views/debug_page.dart';
 import 'package:shiftend/sample_page.dart';
 import 'package:shiftend/member_page.dart';
 
@@ -26,8 +27,13 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [SamplePage(), MemberPage(), SamplePage()];
-  final List<String> _titles = ['カレンダー', 'メンバー', '設定'];
+  final List<Widget> _pages = [
+    SamplePage(),
+    MemberPage(),
+    SamplePage(),
+    DebugPage()
+  ];
+  final List<String> _titles = ['カレンダー', 'メンバー', '設定', 'debug'];
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +55,8 @@ class _MainState extends State<Main> {
               icon: Icon(Icons.person), title: Text('メンバー')),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), title: Text('設定')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), title: Text('debug')),
         ],
       ),
     );
