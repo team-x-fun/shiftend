@@ -15,12 +15,14 @@ Holiday _$HolidayFromJson(Map<String, dynamic> json) {
 class _$HolidayTearOff {
   const _$HolidayTearOff();
 
-  _Holiday call({String id, DateTime day, int interval, bool all}) {
+  _Holiday call(
+      {String id,
+      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      @JsonKey(name: 'n_week') int nWeek}) {
     return _Holiday(
       id: id,
-      day: day,
-      interval: interval,
-      all: all,
+      dayOfWeek: dayOfWeek,
+      nWeek: nWeek,
     );
   }
 }
@@ -30,9 +32,10 @@ const $Holiday = _$HolidayTearOff();
 
 mixin _$Holiday {
   String get id;
-  DateTime get day;
-  int get interval;
-  bool get all;
+  @JsonKey(name: 'day_of_week')
+  int get dayOfWeek;
+  @JsonKey(name: 'n_week')
+  int get nWeek;
 
   Map<String, dynamic> toJson();
   $HolidayCopyWith<Holiday> get copyWith;
@@ -41,7 +44,10 @@ mixin _$Holiday {
 abstract class $HolidayCopyWith<$Res> {
   factory $HolidayCopyWith(Holiday value, $Res Function(Holiday) then) =
       _$HolidayCopyWithImpl<$Res>;
-  $Res call({String id, DateTime day, int interval, bool all});
+  $Res call(
+      {String id,
+      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      @JsonKey(name: 'n_week') int nWeek});
 }
 
 class _$HolidayCopyWithImpl<$Res> implements $HolidayCopyWith<$Res> {
@@ -54,15 +60,13 @@ class _$HolidayCopyWithImpl<$Res> implements $HolidayCopyWith<$Res> {
   @override
   $Res call({
     Object id = freezed,
-    Object day = freezed,
-    Object interval = freezed,
-    Object all = freezed,
+    Object dayOfWeek = freezed,
+    Object nWeek = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
-      day: day == freezed ? _value.day : day as DateTime,
-      interval: interval == freezed ? _value.interval : interval as int,
-      all: all == freezed ? _value.all : all as bool,
+      dayOfWeek: dayOfWeek == freezed ? _value.dayOfWeek : dayOfWeek as int,
+      nWeek: nWeek == freezed ? _value.nWeek : nWeek as int,
     ));
   }
 }
@@ -71,7 +75,10 @@ abstract class _$HolidayCopyWith<$Res> implements $HolidayCopyWith<$Res> {
   factory _$HolidayCopyWith(_Holiday value, $Res Function(_Holiday) then) =
       __$HolidayCopyWithImpl<$Res>;
   @override
-  $Res call({String id, DateTime day, int interval, bool all});
+  $Res call(
+      {String id,
+      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      @JsonKey(name: 'n_week') int nWeek});
 }
 
 class __$HolidayCopyWithImpl<$Res> extends _$HolidayCopyWithImpl<$Res>
@@ -85,22 +92,23 @@ class __$HolidayCopyWithImpl<$Res> extends _$HolidayCopyWithImpl<$Res>
   @override
   $Res call({
     Object id = freezed,
-    Object day = freezed,
-    Object interval = freezed,
-    Object all = freezed,
+    Object dayOfWeek = freezed,
+    Object nWeek = freezed,
   }) {
     return _then(_Holiday(
       id: id == freezed ? _value.id : id as String,
-      day: day == freezed ? _value.day : day as DateTime,
-      interval: interval == freezed ? _value.interval : interval as int,
-      all: all == freezed ? _value.all : all as bool,
+      dayOfWeek: dayOfWeek == freezed ? _value.dayOfWeek : dayOfWeek as int,
+      nWeek: nWeek == freezed ? _value.nWeek : nWeek as int,
     ));
   }
 }
 
 @JsonSerializable()
 class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
-  const _$_Holiday({this.id, this.day, this.interval, this.all});
+  const _$_Holiday(
+      {this.id,
+      @JsonKey(name: 'day_of_week') this.dayOfWeek,
+      @JsonKey(name: 'n_week') this.nWeek});
 
   factory _$_Holiday.fromJson(Map<String, dynamic> json) =>
       _$_$_HolidayFromJson(json);
@@ -108,15 +116,15 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
   @override
   final String id;
   @override
-  final DateTime day;
+  @JsonKey(name: 'day_of_week')
+  final int dayOfWeek;
   @override
-  final int interval;
-  @override
-  final bool all;
+  @JsonKey(name: 'n_week')
+  final int nWeek;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Holiday(id: $id, day: $day, interval: $interval, all: $all)';
+    return 'Holiday(id: $id, dayOfWeek: $dayOfWeek, nWeek: $nWeek)';
   }
 
   @override
@@ -125,9 +133,8 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
     properties
       ..add(DiagnosticsProperty('type', 'Holiday'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('day', day))
-      ..add(DiagnosticsProperty('interval', interval))
-      ..add(DiagnosticsProperty('all', all));
+      ..add(DiagnosticsProperty('dayOfWeek', dayOfWeek))
+      ..add(DiagnosticsProperty('nWeek', nWeek));
   }
 
   @override
@@ -136,22 +143,19 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
         (other is _Holiday &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.day, day) ||
-                const DeepCollectionEquality().equals(other.day, day)) &&
-            (identical(other.interval, interval) ||
+            (identical(other.dayOfWeek, dayOfWeek) ||
                 const DeepCollectionEquality()
-                    .equals(other.interval, interval)) &&
-            (identical(other.all, all) ||
-                const DeepCollectionEquality().equals(other.all, all)));
+                    .equals(other.dayOfWeek, dayOfWeek)) &&
+            (identical(other.nWeek, nWeek) ||
+                const DeepCollectionEquality().equals(other.nWeek, nWeek)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(day) ^
-      const DeepCollectionEquality().hash(interval) ^
-      const DeepCollectionEquality().hash(all);
+      const DeepCollectionEquality().hash(dayOfWeek) ^
+      const DeepCollectionEquality().hash(nWeek);
 
   @override
   _$HolidayCopyWith<_Holiday> get copyWith =>
@@ -164,19 +168,21 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
 }
 
 abstract class _Holiday implements Holiday {
-  const factory _Holiday({String id, DateTime day, int interval, bool all}) =
-      _$_Holiday;
+  const factory _Holiday(
+      {String id,
+      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      @JsonKey(name: 'n_week') int nWeek}) = _$_Holiday;
 
   factory _Holiday.fromJson(Map<String, dynamic> json) = _$_Holiday.fromJson;
 
   @override
   String get id;
   @override
-  DateTime get day;
+  @JsonKey(name: 'day_of_week')
+  int get dayOfWeek;
   @override
-  int get interval;
-  @override
-  bool get all;
+  @JsonKey(name: 'n_week')
+  int get nWeek;
   @override
   _$HolidayCopyWith<_Holiday> get copyWith;
 }

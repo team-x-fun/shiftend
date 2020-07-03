@@ -13,7 +13,7 @@ abstract class Organization with _$Organization {
   const factory Organization({
     String id,
     @UserConverter() List<User> owners,
-    @UserConverter() List<User> users,
+    @UserConverter() List<User> members,
     @JsonKey(name: 'default_holidays')
     @HolidayConverter()
         List<Holiday> defaltHolidays,

@@ -8,9 +8,8 @@ part 'holiday.g.dart';
 abstract class Holiday with _$Holiday {
   const factory Holiday({
     String id,
-    DateTime day,
-    int interval,
-    bool all,
+    @JsonKey(name: 'day_of_week') int dayOfWeek,
+    @JsonKey(name: 'n_week') int nWeek,
   }) = _Holiday;
 
   factory Holiday.fromJson(Map<String, dynamic> json) =>

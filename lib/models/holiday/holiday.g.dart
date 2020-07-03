@@ -9,16 +9,14 @@ part of 'holiday.dart';
 _$_Holiday _$_$_HolidayFromJson(Map<String, dynamic> json) {
   return _$_Holiday(
     id: json['id'] as String,
-    day: json['day'] == null ? null : DateTime.parse(json['day'] as String),
-    interval: json['interval'] as int,
-    all: json['all'] as bool,
+    dayOfWeek: json['day_of_week'] as int,
+    nWeek: json['n_week'] as int,
   );
 }
 
 Map<String, dynamic> _$_$_HolidayToJson(_$_Holiday instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'day': instance.day?.toIso8601String(),
-      'interval': instance.interval,
-      'all': instance.all,
+      'day_of_week': instance.dayOfWeek,
+      'n_week': instance.nWeek,
     };
