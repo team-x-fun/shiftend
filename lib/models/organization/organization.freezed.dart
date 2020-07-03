@@ -17,9 +17,13 @@ class _$OrganizationTearOff {
 
   _Organization call(
       {String id,
-      @UserConverter() List<User> owners,
-      @UserConverter() List<User> users,
-      @HolidayConverter() List<Holiday> defaltHolidays}) {
+      @UserConverter()
+          List<User> owners,
+      @UserConverter()
+          List<User> users,
+      @JsonKey(name: 'default_holidays')
+      @HolidayConverter()
+          List<Holiday> defaltHolidays}) {
     return _Organization(
       id: id,
       owners: owners,
@@ -38,6 +42,7 @@ mixin _$Organization {
   List<User> get owners;
   @UserConverter()
   List<User> get users;
+  @JsonKey(name: 'default_holidays')
   @HolidayConverter()
   List<Holiday> get defaltHolidays;
 
@@ -51,9 +56,13 @@ abstract class $OrganizationCopyWith<$Res> {
       _$OrganizationCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      @UserConverter() List<User> owners,
-      @UserConverter() List<User> users,
-      @HolidayConverter() List<Holiday> defaltHolidays});
+      @UserConverter()
+          List<User> owners,
+      @UserConverter()
+          List<User> users,
+      @JsonKey(name: 'default_holidays')
+      @HolidayConverter()
+          List<Holiday> defaltHolidays});
 }
 
 class _$OrganizationCopyWithImpl<$Res> implements $OrganizationCopyWith<$Res> {
@@ -89,9 +98,13 @@ abstract class _$OrganizationCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      @UserConverter() List<User> owners,
-      @UserConverter() List<User> users,
-      @HolidayConverter() List<Holiday> defaltHolidays});
+      @UserConverter()
+          List<User> owners,
+      @UserConverter()
+          List<User> users,
+      @JsonKey(name: 'default_holidays')
+      @HolidayConverter()
+          List<Holiday> defaltHolidays});
 }
 
 class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
@@ -125,9 +138,13 @@ class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
 class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   const _$_Organization(
       {this.id,
-      @UserConverter() this.owners,
-      @UserConverter() this.users,
-      @HolidayConverter() this.defaltHolidays});
+      @UserConverter()
+          this.owners,
+      @UserConverter()
+          this.users,
+      @JsonKey(name: 'default_holidays')
+      @HolidayConverter()
+          this.defaltHolidays});
 
   factory _$_Organization.fromJson(Map<String, dynamic> json) =>
       _$_$_OrganizationFromJson(json);
@@ -141,6 +158,7 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   @UserConverter()
   final List<User> users;
   @override
+  @JsonKey(name: 'default_holidays')
   @HolidayConverter()
   final List<Holiday> defaltHolidays;
 
@@ -196,9 +214,13 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
 abstract class _Organization implements Organization {
   const factory _Organization(
       {String id,
-      @UserConverter() List<User> owners,
-      @UserConverter() List<User> users,
-      @HolidayConverter() List<Holiday> defaltHolidays}) = _$_Organization;
+      @UserConverter()
+          List<User> owners,
+      @UserConverter()
+          List<User> users,
+      @JsonKey(name: 'default_holidays')
+      @HolidayConverter()
+          List<Holiday> defaltHolidays}) = _$_Organization;
 
   factory _Organization.fromJson(Map<String, dynamic> json) =
       _$_Organization.fromJson;
@@ -212,6 +234,7 @@ abstract class _Organization implements Organization {
   @UserConverter()
   List<User> get users;
   @override
+  @JsonKey(name: 'default_holidays')
   @HolidayConverter()
   List<Holiday> get defaltHolidays;
   @override

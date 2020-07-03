@@ -14,7 +14,9 @@ abstract class Organization with _$Organization {
     String id,
     @UserConverter() List<User> owners,
     @UserConverter() List<User> users,
-    @HolidayConverter() List<Holiday> defaltHolidays,
+    @JsonKey(name: 'default_holidays')
+    @HolidayConverter()
+        List<Holiday> defaltHolidays,
   }) = _Organization;
 
   factory Organization.fromJson(Map<String, dynamic> json) =>

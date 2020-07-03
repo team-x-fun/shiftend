@@ -21,7 +21,7 @@ class _$UserTearOff {
       String name,
       String role,
       String level,
-      String iconUrl}) {
+      @JsonKey(name: 'icon_url') String iconUrl}) {
     return _User(
       id: id,
       email: email,
@@ -42,6 +42,7 @@ mixin _$User {
   String get name;
   String get role;
   String get level;
+  @JsonKey(name: 'icon_url')
   String get iconUrl;
 
   Map<String, dynamic> toJson();
@@ -57,7 +58,7 @@ abstract class $UserCopyWith<$Res> {
       String name,
       String role,
       String level,
-      String iconUrl});
+      @JsonKey(name: 'icon_url') String iconUrl});
 }
 
 class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
@@ -97,7 +98,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       String role,
       String level,
-      String iconUrl});
+      @JsonKey(name: 'icon_url') String iconUrl});
 }
 
 class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
@@ -131,7 +132,12 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User with DiagnosticableTreeMixin implements _User {
   const _$_User(
-      {this.id, this.email, this.name, this.role, this.level, this.iconUrl});
+      {this.id,
+      this.email,
+      this.name,
+      this.role,
+      this.level,
+      @JsonKey(name: 'icon_url') this.iconUrl});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -147,6 +153,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final String level;
   @override
+  @JsonKey(name: 'icon_url')
   final String iconUrl;
 
   @override
@@ -212,7 +219,7 @@ abstract class _User implements User {
       String name,
       String role,
       String level,
-      String iconUrl}) = _$_User;
+      @JsonKey(name: 'icon_url') String iconUrl}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -227,6 +234,7 @@ abstract class _User implements User {
   @override
   String get level;
   @override
+  @JsonKey(name: 'icon_url')
   String get iconUrl;
   @override
   _$UserCopyWith<_User> get copyWith;
