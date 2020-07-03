@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shiftend/calendar_page.dart';
 import 'package:shiftend/sample_page.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:shiftend/member_page.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  initializeDateFormatting().then((value) => runApp(MyApp()));
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +29,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [SamplePage(), MemberPage(), SamplePage()];
+  final List<Widget> _pages = [CalendarPage(), MemberPage(), SamplePage()];
   final List<String> _titles = ['カレンダー', 'メンバー', '設定'];
 
   @override
