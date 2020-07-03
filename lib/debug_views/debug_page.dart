@@ -7,7 +7,7 @@ import 'package:shiftend/repositories/user_repository.dart';
 import 'globals.dart' as globals;
 
 class DebugPage extends StatelessWidget {
-  UserRepository userRepo =
+  final UserRepository userRepo =
       UserRepository(auth: globals.auth, firestore: Firestore.instance);
   @override
   Widget build(BuildContext context) {
@@ -57,14 +57,14 @@ class DebugPage extends StatelessWidget {
       showDialog<dynamic>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: Text("ログイン/登録ダイアログ"),
+          title: Text('ログイン/登録ダイアログ'),
           content: Form(
             key: _formKey,
             child: Column(
               children: <Widget>[
                 TextFormField(
                   decoration: const InputDecoration(
-                    icon: const Icon(Icons.mail),
+                    icon: Icon(Icons.mail),
                     labelText: 'Email',
                   ),
                   onSaved: (String value) {
@@ -74,12 +74,13 @@ class DebugPage extends StatelessWidget {
                     if (value.isEmpty) {
                       return 'Emailは必須入力項目です．';
                     }
+                    return null;
                   },
                 ),
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
-                    icon: const Icon(Icons.vpn_key),
+                    icon: Icon(Icons.vpn_key),
                     labelText: 'Password',
                   ),
                   onSaved: (String value) {
@@ -92,6 +93,7 @@ class DebugPage extends StatelessWidget {
                     if (value.length < 6) {
                       return 'Passwordは6桁以上です．';
                     }
+                    return null;
                   },
                 ),
               ],
@@ -129,8 +131,8 @@ class DebugPage extends StatelessWidget {
       showDialog<dynamic>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-                title: const Text("確認ダイアログ"),
-                content: Text(globals.firebaseUser.email + "でログインしています"),
+                title: const Text('確認ダイアログ'),
+                content: Text(globals.firebaseUser.email + 'でログインしています'),
                 actions: <Widget>[
                   FlatButton(
                     child: const Text('キャンセル'),
@@ -186,6 +188,6 @@ class DebugPage extends StatelessWidget {
   Future _updateUser(BuildContext context) async {
     User user = await userRepo.getCurrentUser();
     user = user.copyWith(name: 'updated', role: 'updated');
-    userRepo.update(user);
+    await userRepo.update(user);
   }
 }
