@@ -12,8 +12,8 @@ part 'organization.g.dart';
 abstract class Organization with _$Organization {
   const factory Organization({
     String id,
-    @UserConverter() List<User> owners,
-    @UserConverter() List<User> members,
+    @JsonKey(name: 'owner_ids') List<String> ownerIds,
+    @JsonKey(name: 'member_ids') List<String> memberIds,
     @JsonKey(name: 'default_holidays')
     @HolidayConverter()
         List<Holiday> defaltHolidays,
