@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shiftend/models/converter/holiday_converter.dart';
 
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/converter/converter.dart';
@@ -13,6 +14,7 @@ abstract class Organization with _$Organization {
     String id,
     @UserConverter() List<User> owners,
     @UserConverter() List<User> users,
+    @HolidayConverter() List<Holiday> defaltHolidays,
   }) = _Organization;
 
   factory Organization.fromJson(Map<String, dynamic> json) =>

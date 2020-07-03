@@ -18,11 +18,13 @@ class _$OrganizationTearOff {
   _Organization call(
       {String id,
       @UserConverter() List<User> owners,
-      @UserConverter() List<User> users}) {
+      @UserConverter() List<User> users,
+      @HolidayConverter() List<Holiday> defaltHolidays}) {
     return _Organization(
       id: id,
       owners: owners,
       users: users,
+      defaltHolidays: defaltHolidays,
     );
   }
 }
@@ -36,6 +38,8 @@ mixin _$Organization {
   List<User> get owners;
   @UserConverter()
   List<User> get users;
+  @HolidayConverter()
+  List<Holiday> get defaltHolidays;
 
   Map<String, dynamic> toJson();
   $OrganizationCopyWith<Organization> get copyWith;
@@ -48,7 +52,8 @@ abstract class $OrganizationCopyWith<$Res> {
   $Res call(
       {String id,
       @UserConverter() List<User> owners,
-      @UserConverter() List<User> users});
+      @UserConverter() List<User> users,
+      @HolidayConverter() List<Holiday> defaltHolidays});
 }
 
 class _$OrganizationCopyWithImpl<$Res> implements $OrganizationCopyWith<$Res> {
@@ -63,11 +68,15 @@ class _$OrganizationCopyWithImpl<$Res> implements $OrganizationCopyWith<$Res> {
     Object id = freezed,
     Object owners = freezed,
     Object users = freezed,
+    Object defaltHolidays = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       owners: owners == freezed ? _value.owners : owners as List<User>,
       users: users == freezed ? _value.users : users as List<User>,
+      defaltHolidays: defaltHolidays == freezed
+          ? _value.defaltHolidays
+          : defaltHolidays as List<Holiday>,
     ));
   }
 }
@@ -81,7 +90,8 @@ abstract class _$OrganizationCopyWith<$Res>
   $Res call(
       {String id,
       @UserConverter() List<User> owners,
-      @UserConverter() List<User> users});
+      @UserConverter() List<User> users,
+      @HolidayConverter() List<Holiday> defaltHolidays});
 }
 
 class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
@@ -98,11 +108,15 @@ class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
     Object id = freezed,
     Object owners = freezed,
     Object users = freezed,
+    Object defaltHolidays = freezed,
   }) {
     return _then(_Organization(
       id: id == freezed ? _value.id : id as String,
       owners: owners == freezed ? _value.owners : owners as List<User>,
       users: users == freezed ? _value.users : users as List<User>,
+      defaltHolidays: defaltHolidays == freezed
+          ? _value.defaltHolidays
+          : defaltHolidays as List<Holiday>,
     ));
   }
 }
@@ -110,7 +124,10 @@ class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   const _$_Organization(
-      {this.id, @UserConverter() this.owners, @UserConverter() this.users});
+      {this.id,
+      @UserConverter() this.owners,
+      @UserConverter() this.users,
+      @HolidayConverter() this.defaltHolidays});
 
   factory _$_Organization.fromJson(Map<String, dynamic> json) =>
       _$_$_OrganizationFromJson(json);
@@ -123,10 +140,13 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   @override
   @UserConverter()
   final List<User> users;
+  @override
+  @HolidayConverter()
+  final List<Holiday> defaltHolidays;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Organization(id: $id, owners: $owners, users: $users)';
+    return 'Organization(id: $id, owners: $owners, users: $users, defaltHolidays: $defaltHolidays)';
   }
 
   @override
@@ -136,7 +156,8 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
       ..add(DiagnosticsProperty('type', 'Organization'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('owners', owners))
-      ..add(DiagnosticsProperty('users', users));
+      ..add(DiagnosticsProperty('users', users))
+      ..add(DiagnosticsProperty('defaltHolidays', defaltHolidays));
   }
 
   @override
@@ -148,7 +169,10 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
             (identical(other.owners, owners) ||
                 const DeepCollectionEquality().equals(other.owners, owners)) &&
             (identical(other.users, users) ||
-                const DeepCollectionEquality().equals(other.users, users)));
+                const DeepCollectionEquality().equals(other.users, users)) &&
+            (identical(other.defaltHolidays, defaltHolidays) ||
+                const DeepCollectionEquality()
+                    .equals(other.defaltHolidays, defaltHolidays)));
   }
 
   @override
@@ -156,7 +180,8 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(owners) ^
-      const DeepCollectionEquality().hash(users);
+      const DeepCollectionEquality().hash(users) ^
+      const DeepCollectionEquality().hash(defaltHolidays);
 
   @override
   _$OrganizationCopyWith<_Organization> get copyWith =>
@@ -172,7 +197,8 @@ abstract class _Organization implements Organization {
   const factory _Organization(
       {String id,
       @UserConverter() List<User> owners,
-      @UserConverter() List<User> users}) = _$_Organization;
+      @UserConverter() List<User> users,
+      @HolidayConverter() List<Holiday> defaltHolidays}) = _$_Organization;
 
   factory _Organization.fromJson(Map<String, dynamic> json) =
       _$_Organization.fromJson;
@@ -185,6 +211,9 @@ abstract class _Organization implements Organization {
   @override
   @UserConverter()
   List<User> get users;
+  @override
+  @HolidayConverter()
+  List<Holiday> get defaltHolidays;
   @override
   _$OrganizationCopyWith<_Organization> get copyWith;
 }
