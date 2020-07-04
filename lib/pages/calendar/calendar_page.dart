@@ -7,10 +7,12 @@ class CalendarPage extends StatefulWidget {
   _CalendarPageState createState() => _CalendarPageState();
 }
 
+// TODO: あとでfreezed+StateNotifierを使ってStatelessWidgetにする
 class _CalendarPageState extends State<CalendarPage>
     with TickerProviderStateMixin {
+  // TODO: あとでMap<DateTime, List<User>>に変える
   Map<DateTime, List<String>> _attendees;
-  List<String> _selectedEvents;
+  List<String> _selectedAttendees;
   AnimationController _animationController;
   CalendarController _calendarController;
   DateTime _selectedDate = DateTime.now();
@@ -21,8 +23,11 @@ class _CalendarPageState extends State<CalendarPage>
     final _selectedDay = DateTime.now();
     _attendees = {
       DateTime.parse('2020-07-03'): ['UserA', 'UserB', 'UserC'],
+      DateTime.parse('2020-07-10'): ['UserA', 'UserB', 'UserC'],
+      DateTime.parse('2020-07-20'): ['UserA'],
+      DateTime.parse('2020-07-22'): ['UserA', 'UserB'],
     };
-    _selectedEvents = _attendees[_selectedDay] ?? [];
+    _selectedAttendees = _attendees[_selectedDay] ?? [];
     _calendarController = CalendarController();
 
     _animationController = AnimationController(
@@ -39,11 +44,11 @@ class _CalendarPageState extends State<CalendarPage>
     super.dispose();
   }
 
-  void _onDaySelected(DateTime day, List<String> events) {
+  void _onDaySelected(DateTime day, List<String> attendees) {
     print('CALLBACK: _onDaySelected');
     setState(() {
       _selectedDate = day;
-      _selectedEvents = events;
+      _selectedAttendees = attendees;
     });
   }
 
@@ -69,6 +74,7 @@ class _CalendarPageState extends State<CalendarPage>
             child: Container(
               color: Colors.grey[300],
               child: Text(
+                  // TODO: 曜日がただの数字だから後で曜日コンバーター的なの作って変換するようにする
                   '${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日（${_selectedDate.weekday}）'),
             ),
           ),
@@ -80,6 +86,7 @@ class _CalendarPageState extends State<CalendarPage>
     );
   }
 
+  // TODO: この辺もStatelessにしたときにファイルわける
   Widget _buildTableCalendar() {
     return TableCalendar(
       locale: 'ja_JP',
@@ -90,7 +97,6 @@ class _CalendarPageState extends State<CalendarPage>
       startingDayOfWeek: StartingDayOfWeek.sunday,
       availableGestures: AvailableGestures.all,
       calendarStyle: CalendarStyle(
-        selectedStyle: TextStyle().copyWith(color: Colors.amberAccent),
         outsideDaysVisible: true,
         weekdayStyle: TextStyle().copyWith(color: Colors.black),
       ),
@@ -109,7 +115,6 @@ class _CalendarPageState extends State<CalendarPage>
             // 日付選択されたときのレイアウト
             child: Container(
               decoration: BoxDecoration(
-//                color: Colors.red,
                 shape: BoxShape.circle,
                 color: (date.year == DateTime.now().year &&
                         date.month == DateTime.now().month &&
@@ -152,22 +157,22 @@ class _CalendarPageState extends State<CalendarPage>
             ),
           );
         },
-        markersBuilder: (context, date, events, holidays) {
+        markersBuilder: (context, date, attendees, holidays) {
           final children = <Widget>[];
-          if (events.isNotEmpty) {
+          if (attendees.isNotEmpty) {
             children.add(
               Positioned(
                 right: 1,
                 bottom: 1,
-                child: _buildEventsMarker(date, events),
+                child: _buildAttendeesMarker(date, attendees),
               ),
             );
           }
           return children;
         },
       ),
-      onDaySelected: (date, events) {
-        _onDaySelected(date, events.cast<String>());
+      onDaySelected: (date, attendees) {
+        _onDaySelected(date, attendees.cast<String>());
         _animationController.forward(from: 0.0);
       },
       onVisibleDaysChanged: _onVisibleDaysChanged,
@@ -175,11 +180,12 @@ class _CalendarPageState extends State<CalendarPage>
     );
   }
 
-  Widget _buildEventsMarker(DateTime date, List events) {
+  Widget _buildAttendeesMarker(DateTime date, List attendees) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
-        shape: BoxShape.rectangle, color: Colors.pink,
+        shape: BoxShape.rectangle,
+        color: Colors.pink,
 //        color: _calendarController.isSelected(date)
 //            ? Colors.brown[500]
 //            : _calendarController.isToday(date)
@@ -190,7 +196,7 @@ class _CalendarPageState extends State<CalendarPage>
       height: 16.0,
       child: Center(
         child: Text(
-          '${events.length}',
+          '${attendees.length}',
           style: TextStyle().copyWith(
             color: Colors.white,
             fontSize: 12.0,
@@ -202,9 +208,9 @@ class _CalendarPageState extends State<CalendarPage>
 
   Widget _buildAttendanceList() {
     return ListView(
-      children: _selectedEvents
+      children: _selectedAttendees
           .map(
-            (event) => Container(
+            (attendee) => Container(
               decoration: BoxDecoration(
                 border: Border.all(width: 0.8),
                 borderRadius: BorderRadius.circular(12.0),
@@ -212,8 +218,8 @@ class _CalendarPageState extends State<CalendarPage>
               margin:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
               child: ListTile(
-                title: Text(event.toString()),
-                onTap: () => print('$event tapped!'),
+                title: Text(attendee.toString()),
+                onTap: () => print('$attendee tapped!'),
               ),
             ),
           )
