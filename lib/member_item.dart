@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:shiftend/member.dart';
+
+import 'models/user/user.dart';
 
 class MemberItem extends StatelessWidget {
-  const MemberItem({this.member});
+  const MemberItem({this.user});
 
-  final Member member;
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MemberItem extends StatelessWidget {
               shape: BoxShape.circle,
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: NetworkImage(member.iconUrl),
+                image: NetworkImage(user.iconUrl),
               ),
             ),
           ),
@@ -29,11 +30,11 @@ class MemberItem extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(member.name),
-              Text(member.role),
+              Text(user.name),
+              Text(user.role),
             ],
           ),
-          Text(member.level),
+          Text(user.level),
         ],
       ),
     );

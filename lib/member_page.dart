@@ -8,16 +8,23 @@ import 'package:shiftend/models/models.dart';
 class MemberPage extends StatelessWidget {
   final UserRepositoryInterface userRepository = UserRepositoryMock();
   @override
-  Widget build(BuildContext context) async {
-    List<User> _users = await userRepository.getUsers(); 
-    // asyncとawatは別関数で管理する必要がある？
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        //itemCount: _mockData.length,
-        itemBuilder: (context, int index) {
-          return MemberItem(member: _users[index]);
-        },
-      ),
-    );
+        body: FutureBuilder(
+      future: userRepository.getUsers(),
+      builder: (context, AsyncSnapshot<List<User>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.none &&
+            snapshot.hasData == null) {
+          // 非同期処理でまだデータが何も入ってきていない．
+          return Container();
+        }
+        return ListView.builder(
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, index) {
+            return MemberItem(user: snapshot.data[index]);
+          },
+        );
+      },
+    ));
   }
 }
