@@ -28,7 +28,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
             'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
         name: '松山 航',
         role: 'バイトリーダ',
-        level: '100'),
+        level: '50'),
   ];
   User currentUser = User(
       id: 'test_user',
