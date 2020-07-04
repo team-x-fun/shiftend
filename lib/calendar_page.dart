@@ -13,7 +13,7 @@ class _CalendarPageState extends State<CalendarPage>
   List<String> _selectedEvents;
   AnimationController _animationController;
   CalendarController _calendarController;
-  final DateTime _selectedDate = DateTime.now();
+  DateTime _selectedDate = DateTime.now();
 
   @override
   void initState() {
@@ -42,6 +42,7 @@ class _CalendarPageState extends State<CalendarPage>
   void _onDaySelected(DateTime day, List<String> events) {
     print('CALLBACK: _onDaySelected');
     setState(() {
+      _selectedDate = day;
       _selectedEvents = events;
     });
   }
