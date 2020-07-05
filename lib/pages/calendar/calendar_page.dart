@@ -97,7 +97,7 @@ class _CalendarPageState extends State<CalendarPage>
       initialCalendarFormat: CalendarFormat.month,
       formatAnimation: FormatAnimation.slide,
       startingDayOfWeek: StartingDayOfWeek.sunday,
-      availableGestures: AvailableGestures.horizontalSwipe,
+      availableGestures: AvailableGestures.all,
       calendarStyle: CalendarStyle(
         outsideDaysVisible: true,
         outsideWeekendStyle: TextStyle().copyWith(color: Colors.black),
