@@ -65,23 +65,25 @@ class _CalendarPageState extends State<CalendarPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          _buildTableCalendar(),
-          ConstrainedBox(
-            constraints: BoxConstraints.expand(height: 20),
-            child: Container(
-              color: Colors.grey[300],
-              child: Text(
-                  // TODO: 曜日がただの数字だから後で曜日コンバーター的なの作って変換するようにする
-                  '${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日（${_selectedDate.weekday}）'),
+      body: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            _buildTableCalendar(),
+            ConstrainedBox(
+              constraints: BoxConstraints.expand(height: 20),
+              child: Container(
+                color: Colors.grey[300],
+                child: Text(
+                    // TODO: 曜日がただの数字だから後で曜日コンバーター的なの作って変換するようにする
+                    '${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日（${_selectedDate.weekday}）'),
+              ),
             ),
-          ),
-          Expanded(
-            child: _buildAttendanceList(),
-          ),
-        ],
+            Expanded(
+              child: _buildAttendanceList(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -98,10 +100,13 @@ class _CalendarPageState extends State<CalendarPage>
       availableGestures: AvailableGestures.all,
       calendarStyle: CalendarStyle(
         outsideDaysVisible: true,
+        outsideWeekendStyle: TextStyle().copyWith(color: Colors.black),
         weekdayStyle: TextStyle().copyWith(color: Colors.black),
+        weekendStyle: TextStyle().copyWith(color: Colors.black),
       ),
       daysOfWeekStyle: DaysOfWeekStyle(
         weekdayStyle: TextStyle().copyWith(color: Colors.black),
+        weekendStyle: TextStyle().copyWith(color: Colors.black),
       ),
       headerStyle: HeaderStyle(
         centerHeaderTitle: true,
