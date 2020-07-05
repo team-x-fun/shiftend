@@ -17,7 +17,6 @@ class SettingHeaderItem extends StatelessWidget {
           headerTitle,
           style: TextStyle(
             fontSize: 15,
-//            fontWeight: FontWeight.bold,
           ),
         ),
       ),

@@ -24,9 +24,7 @@ class SettingAccountItem extends StatelessWidget {
             ),
           ),
         ),
-        title: Text(
-          nameLabel,
-        ),
+        title: Text(nameLabel),
         subtitle: Text(mailLabel),
       ),
     );
