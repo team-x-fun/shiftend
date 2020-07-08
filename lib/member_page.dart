@@ -13,8 +13,7 @@ class MemberPage extends StatelessWidget {
         body: FutureBuilder(
       future: userRepository.getUsers(),
       builder: (context, AsyncSnapshot<List<User>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null) {
+        if (snapshot.hasData) {
           // 非同期処理でまだデータが何も入ってきていない．
           return Container();
         }
