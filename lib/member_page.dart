@@ -14,15 +14,15 @@ class MemberPage extends StatelessWidget {
       future: userRepository.getUsers(),
       builder: (context, AsyncSnapshot<List<User>> snapshot) {
         if (snapshot.hasData) {
-          // 非同期処理でまだデータが何も入ってきていない．
-          return Container();
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index) {
+              return MemberItem(user: snapshot.data[index]);
+            },
+          );
+        }else{
+          return Center(child:CircularProgressIndicator());
         }
-        return ListView.builder(
-          itemCount: snapshot.data.length,
-          itemBuilder: (context, index) {
-            return MemberItem(user: snapshot.data[index]);
-          },
-        );
       },
     ));
   }
