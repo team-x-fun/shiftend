@@ -4,7 +4,6 @@ import 'package:shiftend/debug_views/debug_page.dart';
 import 'package:shiftend/sample_page.dart';
 import 'package:shiftend/member_page.dart';
 import 'package:shiftend/pages/calendar/calendar_page.dart';
-import 'package:shiftend/sample_page.dart';
 
 void main() {
   initializeDateFormatting().then((value) => runApp(MyApp()));
@@ -31,7 +30,12 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [CalendarPage(), MemberPage(), SamplePage(), DebugPage(),];
+  final List<Widget> _pages = [
+    CalendarPage(),
+    MemberPage(),
+    SamplePage(),
+    DebugPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
