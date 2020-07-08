@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:shiftend/debug_views/debug_page.dart';
+import 'package:shiftend/sample_page.dart';
 import 'package:shiftend/member_page.dart';
 import 'package:shiftend/pages/calendar/calendar_page.dart';
 import 'package:shiftend/sample_page.dart';
@@ -29,7 +31,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [CalendarPage(), MemberPage(), SamplePage()];
+  final List<Widget> _pages = [CalendarPage(), MemberPage(), SamplePage(), DebugPage(),];
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,8 @@ class _MainState extends State<Main> {
               icon: Icon(Icons.person), title: Text('メンバー')),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), title: Text('設定')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), title: Text('debug')),
         ],
       ),
     );

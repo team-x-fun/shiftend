@@ -41,4 +41,11 @@ class UserRepository extends UserRepositoryInterface {
         await firestore.collection(collectionName).document(uid).get();
     return User.fromJson(snapshot.data);
   }
+
+  @override
+  Future<List<User>> getUsers() async {
+    // TODO: implement getUsers
+    
+    throw UnimplementedError();
+  }
 }

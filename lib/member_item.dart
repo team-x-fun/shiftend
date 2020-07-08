@@ -1,41 +1,74 @@
 import 'package:flutter/cupertino.dart';
-import 'package:shiftend/member.dart';
+import 'package:flutter/material.dart';
+
+import 'models/user/user.dart';
 
 class MemberItem extends StatelessWidget {
-  const MemberItem({this.member});
+  const MemberItem({this.user});
 
-  final Member member;
+  final User user;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      child: Row(
-        children: <Widget>[
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: NetworkImage(member.iconUrl),
+    // return Container(
+    //   height: 100,
+    //   child: Row(
+    //     children: <Widget>[
+    //       Container(
+    //         height: 50,
+    //         width: 50,
+    //         decoration: BoxDecoration(
+    //           shape: BoxShape.circle,
+    //           image: DecorationImage(
+    //             fit: BoxFit.fill,
+    //             image: NetworkImage(user.iconUrl),
+    //           ),
+    //         ),
+    //       ),
+    //       Container(
+    //         width: 10,
+    //       ),
+    //       Column(
+    //         mainAxisAlignment: MainAxisAlignment.center,
+    //         children: [
+    //           Text(user.name),
+    //           Text(user.role),
+    //         ],
+    //       ),
+    //       Text(user.level),
+    //     ],
+    //   ),
+    // );
+    return Column(
+      children: <Widget>[
+        Divider(
+          height: 8.0,
+        ),
+        ListTile(
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(user.iconUrl),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                user.name,
               ),
-            ),
-          ),
-          Container(
-            width: 10,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(member.name),
-              Text(member.role),
+              Text(
+                'Lv.' + user.level,
+                style: TextStyle(color: Colors.grey, fontSize:14.0),
+              )
             ],
           ),
-          Text(member.level),
-        ],
-      ),
+          subtitle: Container(
+            //padding: const EdgeInsets.only(top: 5.0),
+            child: Text(
+              user.role,
+              style: TextStyle(color: Colors.grey, fontSize: 15.0),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
