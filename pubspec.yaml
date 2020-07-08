@@ -33,6 +33,8 @@ dependencies:
   firebase_analytics: ^5.0.15
   firebase_auth: ^0.16.1
 
+  table_calendar: ^2.2.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
