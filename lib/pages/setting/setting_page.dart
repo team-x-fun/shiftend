@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shiftend/setting/setting_account_item.dart';
-import 'package:shiftend/setting/setting_header_item.dart';
-import 'package:shiftend/setting/setting_list_item.dart';
+import 'package:shiftend/pages/setting/setting_account_item.dart';
+import 'package:shiftend/pages/setting/setting_header_item.dart';
+import 'package:shiftend/pages/setting/setting_list_item.dart';
 
 class SettingPage extends StatelessWidget {
   @override
