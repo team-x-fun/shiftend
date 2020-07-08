@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shiftend/debug_views/debug_page.dart';
-import 'package:shiftend/sample_page.dart';
 import 'package:shiftend/member_page.dart';
 import 'package:shiftend/pages/calendar/calendar_page.dart';
+import 'package:shiftend/pages/setting/setting_page.dart';
 
 void main() {
   initializeDateFormatting().then((value) => runApp(MyApp()));
@@ -33,7 +33,7 @@ class _MainState extends State<Main> {
   final List<Widget> _pages = [
     CalendarPage(),
     MemberPage(),
-    SamplePage(),
+    SettingPage(),
     DebugPage(),
   ];
 
