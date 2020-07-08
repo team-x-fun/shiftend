@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:shiftend/debug_views/debug_page.dart';
 import 'package:shiftend/sample_page.dart';
 import 'package:shiftend/member_page.dart';
+import 'package:shiftend/pages/calendar/calendar_page.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  initializeDateFormatting().then((value) => runApp(MyApp()));
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,19 +31,15 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    SamplePage(),
+    CalendarPage(),
     MemberPage(),
     SamplePage(),
-    DebugPage()
+    DebugPage(),
   ];
-  final List<String> _titles = ['カレンダー', 'メンバー', '設定', 'debug'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_titles[_currentIndex]),
-      ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Colors.black,
