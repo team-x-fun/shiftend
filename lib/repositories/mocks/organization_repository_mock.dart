@@ -32,7 +32,7 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
         return org;
       }
     }
-    throw Exception("not found organization");
+    throw Exception('not found organization');
   }
 
   @override

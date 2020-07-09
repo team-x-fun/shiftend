@@ -146,8 +146,6 @@ class OrganizationDialog {
   }
 
   static void showOrgsGetDialog(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    String id;
     showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(

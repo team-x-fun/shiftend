@@ -154,7 +154,7 @@ class UserDialog {
   static Future showUpdateDialog(BuildContext context) async {
     User user = await userRepo.getCurrentUser();
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    showDialog<dynamic>(
+    await showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text('更新ダイアログ'),
