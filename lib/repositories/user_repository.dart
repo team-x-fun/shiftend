@@ -22,7 +22,7 @@ class UserRepository extends UserRepositoryInterface {
     await firestore
         .collection(collectionName)
         .document(uid)
-        .setData(user.toJson()..remove('id'));
+        .setData(user.toJson());
   }
 
   @override
@@ -31,7 +31,7 @@ class UserRepository extends UserRepositoryInterface {
     await firestore
         .collection(collectionName)
         .document(uid)
-        .updateData(user.toJson()..remove('id'));
+        .updateData(user.toJson());
   }
 
   @override
@@ -39,7 +39,8 @@ class UserRepository extends UserRepositoryInterface {
     final String uid = await auth.currentUser().then((user) => user.uid);
     final snapshot =
         await firestore.collection(collectionName).document(uid).get();
-    return User.fromJson(snapshot.data);
+    final user = User.fromJson(snapshot.data);
+    return user.copyWith(id: uid);
   }
 
   @override

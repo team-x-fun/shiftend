@@ -40,7 +40,7 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
   Future<List<Organization>> getOrganizations(String ownerId) async {
     List<Organization> ownedOrgs;
     for (var org in orgs) {
-      if (org.owners.contains(ownerId)) {
+      if (org.ownerIds.contains(ownerId)) {
         ownedOrgs.add(org);
       }
     }

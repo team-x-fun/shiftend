@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/organization/organization.dart';
 import 'package:shiftend/repositories/interfaces/organization_repository_interface.dart';
@@ -16,7 +15,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     await firestore
         .collection(collectionName)
         .document(org.id)
-        .setData(org.toJson()..remove('id'));
+        .setData(org.toJson());
   }
 
   @override
@@ -42,6 +41,6 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     await firestore
         .collection(collectionName)
         .document(org.id)
-        .updateData(org.toJson()..remove('id'));
+        .updateData(org.toJson());
   }
 }
