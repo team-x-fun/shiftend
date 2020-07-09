@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
+import 'package:shiftend/pages/calendar/widgets/calendar_list_widget.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_widget.dart';
 import 'package:shiftend/util/formatters.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -53,7 +53,6 @@ class _CalendarPageState extends State<CalendarPage>
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-//            _buildTableCalendar(),
             CalendarWidget(
               calendarController: _calendarController,
               animationController: _animationController,
@@ -68,39 +67,14 @@ class _CalendarPageState extends State<CalendarPage>
               ),
             ),
             Expanded(
-              child: _buildAttendanceList(
-                  Provider.of<CalendarState>(context).selectedAttendees),
+              child: CalendarListWidget(
+                attendees:
+                    Provider.of<CalendarState>(context).selectedAttendees,
+              ),
             ),
           ],
         ),
       ),
     );
-  }
-
-  Widget _buildAttendanceList(List<User> selectedAttendees) {
-    Widget child = Container(
-      color: Colors.pink,
-    );
-    if (selectedAttendees != null) {
-      child = ListView(
-        children: selectedAttendees
-            .map<Container>(
-              (attendee) => Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 0.8),
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                child: ListTile(
-                  title: Text(attendee.toString()),
-                  onTap: () => print('$attendee tapped'),
-                ),
-              ),
-            )
-            .toList(),
-      );
-    }
-    return child;
   }
 }
