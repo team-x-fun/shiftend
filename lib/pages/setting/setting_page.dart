@@ -9,7 +9,7 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[100],
         brightness: Brightness.light,
         title: const Text(
           'その他',
