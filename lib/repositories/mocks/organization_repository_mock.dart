@@ -1,6 +1,5 @@
 import 'package:shiftend/models/holiday/holiday.dart';
 import 'package:shiftend/models/organization/organization.dart';
-import 'package:shiftend/models/user/user.dart';
 import 'package:shiftend/repositories/interfaces/organization_repository_interface.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 
@@ -14,9 +13,9 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
     ], memberIds: <String>[
       _userRepo.currentUser.id
     ], defaultHolidays: <Holiday>[
-      Holiday(id: '1', dayOfWeek: 0, nWeek: 0),
-      Holiday(id: '2', dayOfWeek: 1, nWeek: 1),
-      Holiday(id: '3', dayOfWeek: 1, nWeek: 3)
+      Holiday(dayOfWeek: 0, nWeek: 0),
+      Holiday(dayOfWeek: 1, nWeek: 1),
+      Holiday(dayOfWeek: 1, nWeek: 3)
     ]));
   }
 

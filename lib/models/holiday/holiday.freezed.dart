@@ -16,11 +16,9 @@ class _$HolidayTearOff {
   const _$HolidayTearOff();
 
   _Holiday call(
-      {String id,
-      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      {@JsonKey(name: 'day_of_week') int dayOfWeek,
       @JsonKey(name: 'n_week') int nWeek}) {
     return _Holiday(
-      id: id,
       dayOfWeek: dayOfWeek,
       nWeek: nWeek,
     );
@@ -31,7 +29,6 @@ class _$HolidayTearOff {
 const $Holiday = _$HolidayTearOff();
 
 mixin _$Holiday {
-  String get id;
   @JsonKey(name: 'day_of_week')
   int get dayOfWeek;
   @JsonKey(name: 'n_week')
@@ -45,8 +42,7 @@ abstract class $HolidayCopyWith<$Res> {
   factory $HolidayCopyWith(Holiday value, $Res Function(Holiday) then) =
       _$HolidayCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      {@JsonKey(name: 'day_of_week') int dayOfWeek,
       @JsonKey(name: 'n_week') int nWeek});
 }
 
@@ -59,12 +55,10 @@ class _$HolidayCopyWithImpl<$Res> implements $HolidayCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
     Object dayOfWeek = freezed,
     Object nWeek = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
       dayOfWeek: dayOfWeek == freezed ? _value.dayOfWeek : dayOfWeek as int,
       nWeek: nWeek == freezed ? _value.nWeek : nWeek as int,
     ));
@@ -76,8 +70,7 @@ abstract class _$HolidayCopyWith<$Res> implements $HolidayCopyWith<$Res> {
       __$HolidayCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      {@JsonKey(name: 'day_of_week') int dayOfWeek,
       @JsonKey(name: 'n_week') int nWeek});
 }
 
@@ -91,12 +84,10 @@ class __$HolidayCopyWithImpl<$Res> extends _$HolidayCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
     Object dayOfWeek = freezed,
     Object nWeek = freezed,
   }) {
     return _then(_Holiday(
-      id: id == freezed ? _value.id : id as String,
       dayOfWeek: dayOfWeek == freezed ? _value.dayOfWeek : dayOfWeek as int,
       nWeek: nWeek == freezed ? _value.nWeek : nWeek as int,
     ));
@@ -106,15 +97,12 @@ class __$HolidayCopyWithImpl<$Res> extends _$HolidayCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
   const _$_Holiday(
-      {this.id,
-      @JsonKey(name: 'day_of_week') this.dayOfWeek,
+      {@JsonKey(name: 'day_of_week') this.dayOfWeek,
       @JsonKey(name: 'n_week') this.nWeek});
 
   factory _$_Holiday.fromJson(Map<String, dynamic> json) =>
       _$_$_HolidayFromJson(json);
 
-  @override
-  final String id;
   @override
   @JsonKey(name: 'day_of_week')
   final int dayOfWeek;
@@ -124,7 +112,7 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Holiday(id: $id, dayOfWeek: $dayOfWeek, nWeek: $nWeek)';
+    return 'Holiday(dayOfWeek: $dayOfWeek, nWeek: $nWeek)';
   }
 
   @override
@@ -132,7 +120,6 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Holiday'))
-      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('dayOfWeek', dayOfWeek))
       ..add(DiagnosticsProperty('nWeek', nWeek));
   }
@@ -141,8 +128,6 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Holiday &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.dayOfWeek, dayOfWeek) ||
                 const DeepCollectionEquality()
                     .equals(other.dayOfWeek, dayOfWeek)) &&
@@ -153,7 +138,6 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(dayOfWeek) ^
       const DeepCollectionEquality().hash(nWeek);
 
@@ -169,14 +153,11 @@ class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
 
 abstract class _Holiday implements Holiday {
   const factory _Holiday(
-      {String id,
-      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      {@JsonKey(name: 'day_of_week') int dayOfWeek,
       @JsonKey(name: 'n_week') int nWeek}) = _$_Holiday;
 
   factory _Holiday.fromJson(Map<String, dynamic> json) = _$_Holiday.fromJson;
 
-  @override
-  String get id;
   @override
   @JsonKey(name: 'day_of_week')
   int get dayOfWeek;
