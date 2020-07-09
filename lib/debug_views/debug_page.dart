@@ -39,7 +39,28 @@ class DebugPage extends StatelessWidget {
               print('pressed organization create');
               OrganizationDialog.showOrgCreateDialog(context);
             },
-          )
+          ),
+          FlatButton(
+            child: const Text('organization get'),
+            onPressed: () {
+              print('pressed organization get');
+              OrganizationDialog.showOrgGetDialog(context);
+            },
+          ),
+          FlatButton(
+            child: const Text('organizations get'),
+            onPressed: () {
+              print('pressed organizations get');
+              OrganizationDialog.showOrgsGetDialog(context);
+            },
+          ),
+          FlatButton(
+            child: const Text('organizations update(定休日の追加)'),
+            onPressed: () {
+              print('pressed organizations update');
+              OrganizationDialog.showOrgUpdateDialog(context);
+            },
+          ),
         ]));
   }
 }
