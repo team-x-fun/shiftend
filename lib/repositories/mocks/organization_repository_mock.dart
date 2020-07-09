@@ -13,7 +13,7 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
       _userRepo.currentUser.id
     ], memberIds: <String>[
       _userRepo.currentUser.id
-    ], defaltHolidays: <Holiday>[
+    ], defaultHolidays: <Holiday>[
       Holiday(id: '1', dayOfWeek: 0, nWeek: 0),
       Holiday(id: '2', dayOfWeek: 1, nWeek: 1),
       Holiday(id: '3', dayOfWeek: 1, nWeek: 3)
