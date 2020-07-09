@@ -5,7 +5,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
   // shifts[orgId][2020年7月][1] = shift_list
   Map<String, Map<DateTime, Map<int, List<Shift>>>> shifts = {
     'ten': {
-      DateTime.parse('2020-07-01'): {
+      DateTime(2020, 7): {
         3: <Shift>[
           Shift(
               userId: '0',
@@ -58,7 +58,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
     final year = shift.start.year;
     final month = shift.start.month;
     final day = shift.start.day;
-    final ym = DateTime.parse(year.toString() + '-' + month.toString());
+    final ym = DateTime(year, month);
     final shiftList = shifts[orgId][ym][day];
     shiftList.forEach((s) {
       if (s.userId == shift.userId) {
@@ -73,14 +73,13 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
     final year = day.year;
     final month = day.month;
     final d = day.day;
-    final ym = DateTime.parse(year.toString() + '-' + month.toString());
+    final ym = DateTime(year, month);
     shifts[orgId][ym][d].removeWhere((s) => s.userId == userId);
   }
 
   @override
   Future<Map<int, List<Shift>>> getShifts(String orgId, DateTime month) async {
-    final ym =
-        DateTime.parse(month.year.toString() + '-' + month.month.toString());
+    final ym = DateTime(month.year, month.month);
     return shifts[orgId][ym];
   }
 
