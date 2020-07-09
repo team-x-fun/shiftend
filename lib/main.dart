@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
 import 'package:shiftend/debug_views/debug_page.dart';
 import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
@@ -42,8 +43,12 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    return StateNotifierProvider<CalendarStateController, CalendarState>(
-      create: (context) => CalendarStateController(),
+    return MultiProvider(
+      providers: [
+        StateNotifierProvider<CalendarStateController, CalendarState>(
+          create: (_) => CalendarStateController(),
+        )
+      ],
       child: Scaffold(
         body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
