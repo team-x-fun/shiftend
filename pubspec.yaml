@@ -20,6 +20,13 @@ dependencies:
 
   table_calendar: ^2.2.3
 
+  # state
+  state_notifier: ^0.5.0
+  flutter_state_notifier: ^0.4.2
+  freezed_annotation:
+  provider: ^4.3.0
+
+  intl: ^0.16.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

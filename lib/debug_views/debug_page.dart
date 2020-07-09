@@ -9,32 +9,38 @@ import 'globals.dart' as globals;
 class DebugPage extends StatelessWidget {
   final UserRepository userRepo =
       UserRepository(auth: globals.auth, firestore: Firestore.instance);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(children: <Widget>[
-      FlatButton(
-        child: const Text('user load'),
-        onPressed: () {
-          print('pressed user load');
-          _getUser(context);
-        },
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            FlatButton(
+              child: const Text('user load'),
+              onPressed: () {
+                print('pressed user load');
+                _getUser(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('user login'),
+              onPressed: () {
+                print('pressed user login');
+                showBasicDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('user update'),
+              onPressed: () {
+                print('pressed user update');
+                _updateUser(context);
+              },
+            )
+          ],
+        ),
       ),
-      FlatButton(
-        child: const Text('user login'),
-        onPressed: () {
-          print('pressed user login');
-          showBasicDialog(context);
-        },
-      ),
-      FlatButton(
-        child: const Text('user update'),
-        onPressed: () {
-          print('pressed user update');
-          _updateUser(context);
-        },
-      ),
-    ]));
+    );
   }
 
   Future _getUser(BuildContext context) async {

@@ -1,5 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:shiftend/models/models.dart';
+import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
+import 'package:shiftend/pages/calendar/calendar_state.dart';
+import 'package:shiftend/util/formatters.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -7,27 +13,14 @@ class CalendarPage extends StatefulWidget {
   _CalendarPageState createState() => _CalendarPageState();
 }
 
-// TODO: あとでfreezed+StateNotifierを使ってStatelessWidgetにする
 class _CalendarPageState extends State<CalendarPage>
     with TickerProviderStateMixin {
-  // TODO: あとでMap<DateTime, List<User>>に変える
-  Map<DateTime, List<String>> _attendees;
-  List<String> _selectedAttendees;
   AnimationController _animationController;
   CalendarController _calendarController;
-  DateTime _selectedDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
-    final _selectedDay = DateTime.now();
-    _attendees = {
-      DateTime.parse('2020-07-03'): ['UserA', 'UserB', 'UserC'],
-      DateTime.parse('2020-07-10'): ['UserA', 'UserB', 'UserC'],
-      DateTime.parse('2020-07-20'): ['UserA'],
-      DateTime.parse('2020-07-22'): ['UserA', 'UserB'],
-    };
-    _selectedAttendees = _attendees[_selectedDay] ?? [];
     _calendarController = CalendarController();
 
     _animationController = AnimationController(
@@ -42,14 +35,6 @@ class _CalendarPageState extends State<CalendarPage>
     _animationController.dispose();
     _calendarController.dispose();
     super.dispose();
-  }
-
-  void _onDaySelected(DateTime day, List<String> attendees) {
-    print('CALLBACK: _onDaySelected');
-    setState(() {
-      _selectedDate = day;
-      _selectedAttendees = attendees;
-    });
   }
 
   void _onVisibleDaysChanged(
@@ -74,13 +59,14 @@ class _CalendarPageState extends State<CalendarPage>
               constraints: BoxConstraints.expand(height: 20),
               child: Container(
                 color: Colors.grey[300],
-                child: Text(
-                    // TODO: 曜日がただの数字だから後で曜日コンバーター的なの作って変換するようにする
-                    '${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日（${_selectedDate.weekday}）'),
+                child: Text(fullDateToJa(
+                    Provider.of<CalendarState>(context, listen: true)
+                        .selectedDate)),
               ),
             ),
             Expanded(
-              child: _buildAttendanceList(),
+              child: _buildAttendanceList(
+                  Provider.of<CalendarState>(context).selectedAttendees),
             ),
           ],
         ),
@@ -93,11 +79,12 @@ class _CalendarPageState extends State<CalendarPage>
     return TableCalendar(
       locale: 'ja_JP',
       calendarController: _calendarController,
-      events: _attendees,
+//      events: _attendees,
+      events: Provider.of<CalendarState>(context, listen: true).attendees,
       initialCalendarFormat: CalendarFormat.month,
       formatAnimation: FormatAnimation.slide,
       startingDayOfWeek: StartingDayOfWeek.sunday,
-      availableGestures: AvailableGestures.all,
+      availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: CalendarStyle(
         outsideDaysVisible: true,
         outsideWeekendStyle: TextStyle().copyWith(color: Colors.black),
@@ -177,7 +164,8 @@ class _CalendarPageState extends State<CalendarPage>
         },
       ),
       onDaySelected: (date, attendees) {
-        _onDaySelected(date, attendees.cast<String>());
+        Provider.of<CalendarStateController>(context, listen: false)
+            .onDaySelected(date, attendees.cast<User>());
         _animationController.forward(from: 0.0);
       },
       onVisibleDaysChanged: _onVisibleDaysChanged,
@@ -211,24 +199,30 @@ class _CalendarPageState extends State<CalendarPage>
     );
   }
 
-  Widget _buildAttendanceList() {
-    return ListView(
-      children: _selectedAttendees
-          .map(
-            (attendee) => Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 0.8),
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child: ListTile(
-                title: Text(attendee.toString()),
-                onTap: () => print('$attendee tapped!'),
-              ),
-            ),
-          )
-          .toList(),
+  Widget _buildAttendanceList(List<User> selectedAttendees) {
+    Widget child = Container(
+      color: Colors.pink,
     );
+    if (selectedAttendees != null) {
+      child = ListView(
+        children: selectedAttendees
+            .map<Container>(
+              (attendee) => Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 0.8),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                child: ListTile(
+                  title: Text(attendee.toString()),
+                  onTap: () => print('$attendee tapped'),
+                ),
+              ),
+            )
+            .toList(),
+      );
+    }
+    return child;
   }
 }
