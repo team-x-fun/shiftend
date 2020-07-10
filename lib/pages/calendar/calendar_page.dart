@@ -36,16 +36,6 @@ class _CalendarPageState extends State<CalendarPage>
     super.dispose();
   }
 
-  void _onVisibleDaysChanged(
-      DateTime first, DateTime last, CalendarFormat format) {
-    print('CALLBACK: _onVisibleDaysChanged');
-  }
-
-  void _onCalendarCreated(
-      DateTime first, DateTime last, CalendarFormat format) {
-    print('CALLBACK: _onCalendarCreated');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

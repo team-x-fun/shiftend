@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shiftend/models/models.dart';
 
 class MarkerWidget extends StatelessWidget {
   const MarkerWidget({this.date, this.attendees});
