@@ -64,6 +64,4 @@ class UserRepositoryMock extends UserRepositoryInterface {
   Future<List<User>> getUsers() async {
     return users;
   }
-
-  
 }

@@ -20,8 +20,8 @@ class MemberPage extends StatelessWidget {
               return MemberItem(user: snapshot.data[index]);
             },
           );
-        }else{
-          return Center(child:CircularProgressIndicator());
+        } else {
+          return Center(child: CircularProgressIndicator());
         }
       },
     ));

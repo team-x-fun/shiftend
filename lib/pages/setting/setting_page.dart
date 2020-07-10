@@ -12,7 +12,8 @@ class SettingPage extends StatelessWidget {
         children: <Widget>[
           // アカウント
           SettingHeaderItem('アカウント'),
-          SettingAccountItem('松山', 'hogehoge@gmail.com', 'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg'),
+          SettingAccountItem('松山', 'hogehoge@gmail.com',
+              'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg'),
 
           // お知らせ
           SettingHeaderItem('お知らせ'),
