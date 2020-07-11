@@ -55,7 +55,7 @@ class MemberItem extends StatelessWidget {
                 user.name,
               ),
               Text(
-                'Lv.' + user.level,
+                'Lv.${user.level}',
                 style: TextStyle(color: Colors.grey, fontSize: 14),
               )
             ],
