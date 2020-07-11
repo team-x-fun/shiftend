@@ -96,26 +96,27 @@ class UserDialog {
       );
     } else {
       showDialog<dynamic>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-                title: const Text('確認ダイアログ'),
-                content: Text(firebaseUser.email + 'でログインしています'),
-                actions: <Widget>[
-                  FlatButton(
-                    child: const Text('キャンセル'),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  FlatButton(
-                    child: const Text('ログアウト'),
-                    onPressed: () {
-                      auth.signOut();
-                      Navigator.pop(context);
-                    },
-                  )
-                ],
-              ));
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('確認ダイアログ'),
+          content: Text(firebaseUser.email + 'でログインしています'),
+          actions: <Widget>[
+            FlatButton(
+              child: const Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('ログアウト'),
+              onPressed: () {
+                auth.signOut();
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
+      );
     }
   }
 

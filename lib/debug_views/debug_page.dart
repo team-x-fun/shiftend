@@ -8,10 +8,11 @@ class DebugPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Debug Page'),
-        ),
-        body: Column(children: <Widget>[
+      appBar: AppBar(
+        title: const Text('Debug Page'),
+      ),
+      body: Column(
+        children: <Widget>[
           FlatButton(
             child: const Text('user load'),
             onPressed: () {
@@ -61,6 +62,8 @@ class DebugPage extends StatelessWidget {
               OrganizationDialog.showOrgUpdateDialog(context);
             },
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }

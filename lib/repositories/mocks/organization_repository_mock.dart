@@ -8,15 +8,18 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
 
   OrganizationRepositoryMock() {
     UserRepositoryMock _userRepo = UserRepositoryMock();
-    orgs.add(Organization(id: 'test_id', ownerIds: <String>[
-      _userRepo.currentUser.id
-    ], memberIds: <String>[
-      _userRepo.currentUser.id
-    ], defaultHolidays: <Holiday>[
-      Holiday(dayOfWeek: 0, nWeek: 0),
-      Holiday(dayOfWeek: 1, nWeek: 1),
-      Holiday(dayOfWeek: 1, nWeek: 3)
-    ]));
+    orgs.add(
+      Organization(
+        id: 'test_id',
+        ownerIds: <String>[_userRepo.currentUser.id],
+        memberIds: <String>[_userRepo.currentUser.id],
+        defaultHolidays: <Holiday>[
+          Holiday(dayOfWeek: 0, nWeek: 0),
+          Holiday(dayOfWeek: 1, nWeek: 1),
+          Holiday(dayOfWeek: 1, nWeek: 3)
+        ],
+      ),
+    );
   }
 
   @override
