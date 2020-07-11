@@ -25,8 +25,7 @@ class _CalendarPageState extends State<CalendarPage>
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 100),
-    );
-    _animationController.forward();
+    )..forward();
   }
 
   @override
