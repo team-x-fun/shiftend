@@ -646,8 +646,4 @@ packages:
     version: "2.2.1"
 sdks:
   dart: ">=2.7.0 <3.0.0"
-<<<<<<< HEAD
   flutter: "1.17.5"
-=======
-  flutter: ">=1.16.0 <2.0.0"
->>>>>>> introduce freezed and state notifier
