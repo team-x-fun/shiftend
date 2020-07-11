@@ -5,8 +5,8 @@ include: package:pedantic_mono/analysis_options_flutter_samples.yaml
 
 analyzer:
   exclude:
-    - "lib/models/**/*.freezed.dart"
-    - "lib/models/**/*.g.dart"
+    - "lib/**/*.freezed.dart"
+    - "lib/**/*.g.dart"
 
 linter:
   rules:
