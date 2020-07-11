@@ -5,7 +5,7 @@ import 'package:shiftend/repositories/interfaces/organization_repository_interfa
 
 class OrganizationRepository extends OrganizationRepositoryInterface {
   final Firestore firestore;
-  final String collectionName = 'organizations';
+  static const String collectionName = 'organizations';
 
   OrganizationRepository({@required this.firestore})
       : assert(firestore != null);

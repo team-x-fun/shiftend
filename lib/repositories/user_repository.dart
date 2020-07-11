@@ -11,7 +11,7 @@ import 'interfaces/user_repository_interface.dart';
 class UserRepository extends UserRepositoryInterface {
   final Firestore firestore;
   final FirebaseAuth auth;
-  final String collectionName = 'users';
+  static const String collectionName = 'users';
 
   UserRepository({@required this.firestore, @required this.auth})
       : assert(firestore != null && auth != null);
