@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingAccountItem extends StatelessWidget {
+  const SettingAccountItem(this.nameLabel, this.mailLabel, this.iconUrl);
+
   final String nameLabel;
   final String mailLabel;
   final String iconUrl;
-  const SettingAccountItem(this.nameLabel, this.mailLabel, this.iconUrl);
 
   @override
   Widget build(BuildContext context) {
