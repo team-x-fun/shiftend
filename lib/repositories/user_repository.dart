@@ -45,7 +45,7 @@ class UserRepository extends UserRepositoryInterface {
   @override
   Future<List<User>> getUsers() async {
     // TODO: implement getUsers
-    
+
     throw UnimplementedError();
   }
 }
