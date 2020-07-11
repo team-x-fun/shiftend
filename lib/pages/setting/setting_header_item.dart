@@ -15,7 +15,7 @@ class SettingHeaderItem extends StatelessWidget {
         dense: true,
         title: Text(
           headerTitle,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
           ),
         ),

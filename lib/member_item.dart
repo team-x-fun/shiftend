@@ -41,7 +41,7 @@ class MemberItem extends StatelessWidget {
     // );
     return Column(
       children: <Widget>[
-        Divider(
+        const Divider(
           height: 8.0,
         ),
         ListTile(

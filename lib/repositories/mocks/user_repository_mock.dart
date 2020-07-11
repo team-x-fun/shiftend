@@ -5,7 +5,7 @@ import 'package:shiftend/models/models.dart';
 
 class UserRepositoryMock extends UserRepositoryInterface {
   List<User> users = <User>[
-    User(
+    const User(
         id: '0',
         email: 'test@example.com',
         iconUrl:
@@ -13,7 +13,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         name: '佐藤 勇一郎',
         role: 'オーナー',
         level: '100'),
-    User(
+    const User(
         id: '1',
         email: 'test@example.com',
         iconUrl:
@@ -21,7 +21,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         name: '工藤 大輔',
         role: 'オーナー',
         level: '100'),
-    User(
+    const User(
         id: '2',
         email: 'test@example.com',
         iconUrl:
@@ -30,7 +30,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         role: 'バイトリーダ',
         level: '50'),
   ];
-  User currentUser = User(
+  User currentUser = const User(
       id: 'test_user',
       email: 'test@example.com',
       name: 'test太郎',

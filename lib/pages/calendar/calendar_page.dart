@@ -48,7 +48,7 @@ class _CalendarPageState extends State<CalendarPage>
               animationController: _animationController,
             ),
             ConstrainedBox(
-              constraints: BoxConstraints.expand(height: 20),
+              constraints: const BoxConstraints.expand(height: 20),
               child: Container(
                 color: Colors.grey[300],
                 child: Text(fullDateToJa(
