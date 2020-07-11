@@ -42,7 +42,7 @@ class MemberItem extends StatelessWidget {
     return Column(
       children: <Widget>[
         const Divider(
-          height: 8.0,
+          height: 8,
         ),
         ListTile(
           leading: CircleAvatar(
@@ -56,7 +56,7 @@ class MemberItem extends StatelessWidget {
               ),
               Text(
                 'Lv.' + user.level,
-                style: TextStyle(color: Colors.grey, fontSize: 14.0),
+                style: TextStyle(color: Colors.grey, fontSize: 14),
               )
             ],
           ),
@@ -64,7 +64,7 @@ class MemberItem extends StatelessWidget {
             //padding: const EdgeInsets.only(top: 5.0),
             child: Text(
               user.role,
-              style: TextStyle(color: Colors.grey, fontSize: 15.0),
+              style: TextStyle(color: Colors.grey, fontSize: 15),
             ),
           ),
         ),
