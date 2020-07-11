@@ -1,7 +1,5 @@
 # https://pub.dev/packages/pedantic_mono
-# TODO:キツめのルール↓に変更
-# include: package:pedantic_mono/analysis_options.yaml
-include: package:pedantic_mono/analysis_options_flutter_samples.yaml
+include: package:pedantic_mono/analysis_options.yaml
 
 analyzer:
   exclude:
