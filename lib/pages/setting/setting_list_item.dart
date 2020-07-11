@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class SettingListItem extends StatelessWidget {
   final String detailTitle;
-  SettingListItem(this.detailTitle);
+  const SettingListItem(this.detailTitle);
 
   @override
   Widget build(BuildContext context) {

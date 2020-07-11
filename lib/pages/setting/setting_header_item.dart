@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class SettingHeaderItem extends StatelessWidget {
   final String headerTitle;
-  SettingHeaderItem(this.headerTitle);
+  const SettingHeaderItem(this.headerTitle);
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ class SettingAccountItem extends StatelessWidget {
   final String nameLabel;
   final String mailLabel;
   final String iconUrl;
-  SettingAccountItem(this.nameLabel, this.mailLabel, this.iconUrl);
+  const SettingAccountItem(this.nameLabel, this.mailLabel, this.iconUrl);
 
   @override
   Widget build(BuildContext context) {
