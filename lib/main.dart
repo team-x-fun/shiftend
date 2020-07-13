@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:shiftend/debug_views/debug_page.dart';
 import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
-import 'package:shiftend/member_page.dart';
 import 'package:shiftend/pages/calendar/calendar_page.dart';
 import 'package:shiftend/pages/setting/setting_page.dart';
+import 'package:shiftend/pages/member/member_page.dart';
 
 void main() {
   initializeDateFormatting().then((value) => runApp(MyApp()));
