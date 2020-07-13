@@ -41,12 +41,12 @@ class UserRepositoryMock extends UserRepositoryInterface {
   @override
   Future<void> create(User user) async {
     users.add(user);
-    return Future.value();
+    return;
   }
 
   @override
   Future<User> getCurrentUser() async {
-    return Future.value(currentUser);
+    return currentUser;
   }
 
   @override
@@ -57,7 +57,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         return;
       }
     });
-    return Future.value();
+    return;
   }
 
   @override
