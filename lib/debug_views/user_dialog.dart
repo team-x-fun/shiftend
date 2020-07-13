@@ -11,7 +11,7 @@ class UserDialog {
         await auth.signInAnonymously();
         firebaseUser = await auth.currentUser();
       }
-    } catch (e) {
+    } on Exception {
       print('ログインに失敗しました．');
     }
   }
@@ -24,7 +24,7 @@ class UserDialog {
       showDialog<dynamic>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: Text('ログイン/登録ダイアログ'),
+          title: const Text('ログイン/登録ダイアログ'),
           content: Form(
             key: _formKey,
             child: Column(
@@ -99,7 +99,7 @@ class UserDialog {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: const Text('確認ダイアログ'),
-          content: Text(firebaseUser.email + 'でログインしています'),
+          content: Text('${firebaseUser.email}でログインしています'),
           actions: <Widget>[
             FlatButton(
               child: const Text('キャンセル'),
@@ -124,7 +124,7 @@ class UserDialog {
       BuildContext context, String email, String password) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {
+    } on Exception {
       print('ログインに失敗しました．');
     }
   }
@@ -147,7 +147,7 @@ class UserDialog {
                         'https://avatars0.githubusercontent.com/u/57802072'),
                 userRepo.create(user)
               });
-    } catch (e) {
+    } on Exception {
       print('ユーザ登録に失敗しました．');
     }
   }
@@ -158,10 +158,10 @@ class UserDialog {
     await showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text('更新ダイアログ'),
+        title: const Text('更新ダイアログ'),
         content: Column(
           children: <Widget>[
-            Text(firebaseUser.email + 'でログインしています'),
+            Text('${firebaseUser.email}でログインしています'),
             Form(
               key: _formKey,
               child: Column(

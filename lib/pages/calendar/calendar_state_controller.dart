@@ -12,14 +12,14 @@ class CalendarStateController extends StateNotifier<CalendarState>
     super.initState();
     final Map<DateTime, List<User>> _dummyAttendees = {
       DateTime.parse('2020-07-10'): [
-        User(
+        const User(
             id: '0',
             email: '',
             name: '未来太郎',
             role: 'バイトリーダー',
             level: '50',
             iconUrl: ''),
-        User(
+        const User(
             id: '1',
             email: '',
             name: '未来花子',
@@ -28,21 +28,21 @@ class CalendarStateController extends StateNotifier<CalendarState>
             iconUrl: ''),
       ],
       DateTime.parse('2020-07-20'): [
-        User(
+        const User(
             id: '0',
             email: '',
             name: '未来太郎',
             role: 'バイトリーダー',
             level: '50',
             iconUrl: ''),
-        User(
+        const User(
             id: '1',
             email: '',
             name: '未来花子',
             role: '',
             level: '50',
             iconUrl: ''),
-        User(
+        const User(
             id: '2',
             email: '',
             name: '未来次郎',
@@ -51,14 +51,14 @@ class CalendarStateController extends StateNotifier<CalendarState>
             iconUrl: ''),
       ],
       DateTime.parse('2020-07-22'): [
-        User(
+        const User(
             id: '0',
             email: '',
             name: '未来太郎',
             role: 'バイトリーダー',
             level: '50',
             iconUrl: ''),
-        User(
+        const User(
             id: '1',
             email: '',
             name: '未来花子',

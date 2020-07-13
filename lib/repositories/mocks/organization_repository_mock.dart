@@ -4,23 +4,23 @@ import 'package:shiftend/repositories/interfaces/organization_repository_interfa
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 
 class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
-  List<Organization> orgs = <Organization>[];
-
   OrganizationRepositoryMock() {
-    UserRepositoryMock _userRepo = UserRepositoryMock();
+    final UserRepositoryMock _userRepo = UserRepositoryMock();
     orgs.add(
       Organization(
         id: 'test_id',
         ownerIds: <String>[_userRepo.currentUser.id],
         memberIds: <String>[_userRepo.currentUser.id],
         defaultHolidays: <Holiday>[
-          Holiday(dayOfWeek: 0, nWeek: 0),
-          Holiday(dayOfWeek: 1, nWeek: 1),
-          Holiday(dayOfWeek: 1, nWeek: 3)
+          const Holiday(dayOfWeek: 0, nWeek: 0),
+          const Holiday(dayOfWeek: 1, nWeek: 1),
+          const Holiday(dayOfWeek: 1, nWeek: 3)
         ],
       ),
     );
   }
+
+  List<Organization> orgs = <Organization>[];
 
   @override
   Future<void> create(Organization org) async {
@@ -30,7 +30,7 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
 
   @override
   Future<Organization> getOrganization(String id) async {
-    for (var org in orgs) {
+    for (final org in orgs) {
       if (org.id == id) {
         return org;
       }
@@ -41,7 +41,7 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
   @override
   Future<List<Organization>> getOrganizations(String ownerId) async {
     List<Organization> ownedOrgs;
-    for (var org in orgs) {
+    for (final org in orgs) {
       if (org.ownerIds.contains(ownerId)) {
         ownedOrgs.add(org);
       }

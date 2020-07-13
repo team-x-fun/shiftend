@@ -20,12 +20,12 @@ class MarkerWidget extends StatelessWidget {
 //                ? Colors.brown[300]
 //                : Colors.blue[400],
       ),
-      width: 16.0,
-      height: 16.0,
+      width: 16,
+      height: 16,
       child: Center(
         child: Text(
           '${attendees.length}',
-          style: TextStyle().copyWith(color: Colors.white, fontSize: 12.0),
+          style: const TextStyle().copyWith(color: Colors.white, fontSize: 12),
         ),
       ),
     );

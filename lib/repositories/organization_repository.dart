@@ -4,11 +4,11 @@ import 'package:shiftend/models/organization/organization.dart';
 import 'package:shiftend/repositories/interfaces/organization_repository_interface.dart';
 
 class OrganizationRepository extends OrganizationRepositoryInterface {
-  final Firestore firestore;
-  static const String collectionName = 'organizations';
-
   OrganizationRepository({@required this.firestore})
       : assert(firestore != null);
+
+  final Firestore firestore;
+  static const String collectionName = 'organizations';
 
   @override
   Future<void> create(Organization org) async {

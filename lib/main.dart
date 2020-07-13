@@ -59,13 +59,13 @@ class _MainState extends State<Main> {
           type: BottomNavigationBarType.shifting,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_today), title: Text('カレンダー')),
+                icon: Icon(Icons.calendar_today), title: const Text('カレンダー')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person), title: Text('メンバー')),
+                icon: Icon(Icons.person), title: const Text('メンバー')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), title: Text('設定')),
+                icon: Icon(Icons.settings), title: const Text('設定')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), title: Text('debug')),
+                icon: Icon(Icons.settings), title: const Text('debug')),
           ],
         ),
       ),
