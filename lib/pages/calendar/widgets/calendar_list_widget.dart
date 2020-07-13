@@ -17,10 +17,9 @@ class CalendarListWidget extends StatelessWidget {
               (attendee) => Container(
                 decoration: BoxDecoration(
                   border: Border.all(width: 0.8),
-                  borderRadius: BorderRadius.circular(12.0),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: ListTile(
                   title: Text(attendee.toString()),
                   onTap: () => print('$attendee tapped'),

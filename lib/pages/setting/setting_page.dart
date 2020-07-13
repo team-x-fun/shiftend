@@ -9,7 +9,7 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           // アカウント
           SettingHeaderItem('アカウント'),
           SettingAccountItem('松山', 'hogehoge@gmail.com',

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingListItem extends StatelessWidget {
+  const SettingListItem(this.detailTitle);
+
   final String detailTitle;
-  SettingListItem(this.detailTitle);
 
   @override
   Widget build(BuildContext context) {

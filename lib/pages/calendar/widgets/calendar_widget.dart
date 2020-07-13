@@ -27,15 +27,15 @@ class CalendarWidget extends StatelessWidget {
       availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: CalendarStyle(
         outsideDaysVisible: true,
-        outsideWeekendStyle: TextStyle().copyWith(color: Colors.black),
-        weekdayStyle: TextStyle().copyWith(color: Colors.black),
-        weekendStyle: TextStyle().copyWith(color: Colors.black),
+        outsideWeekendStyle: const TextStyle().copyWith(color: Colors.black),
+        weekdayStyle: const TextStyle().copyWith(color: Colors.black),
+        weekendStyle: const TextStyle().copyWith(color: Colors.black),
       ),
       daysOfWeekStyle: DaysOfWeekStyle(
-        weekdayStyle: TextStyle().copyWith(color: Colors.black),
-        weekendStyle: TextStyle().copyWith(color: Colors.black),
+        weekdayStyle: const TextStyle().copyWith(color: Colors.black),
+        weekendStyle: const TextStyle().copyWith(color: Colors.black),
       ),
-      headerStyle: HeaderStyle(
+      headerStyle: const HeaderStyle(
         centerHeaderTitle: true,
         formatButtonVisible: false,
         formatButtonShowsNext: true,
@@ -43,7 +43,8 @@ class CalendarWidget extends StatelessWidget {
       builders: CalendarBuilders(
         selectedDayBuilder: (context, date, _) {
           return FadeTransition(
-            opacity: Tween(begin: 0.0, end: 1.0).animate(animationController),
+            opacity:
+                Tween<double>(begin: 0, end: 1).animate(animationController),
             // 日付選択されたときのレイアウト
             child: Container(
               decoration: BoxDecoration(
@@ -54,17 +55,17 @@ class CalendarWidget extends StatelessWidget {
                     ? Colors.blue
                     : Colors.white.withOpacity(1),
                 border: Border.all(
-                  width: 2.0,
+                  width: 2,
                   color: Colors.grey,
                 ),
               ),
-              margin: const EdgeInsets.all(4.0),
-              padding: const EdgeInsets.only(top: 5.0, left: 6.0),
+              margin: const EdgeInsets.all(4),
+              padding: const EdgeInsets.only(top: 5, left: 6),
               width: 100,
               height: 100,
               child: Text(
                 '${date.day}',
-                style: TextStyle().copyWith(fontSize: 16.0),
+                style: const TextStyle().copyWith(fontSize: 16),
               ),
             ),
           );
@@ -76,7 +77,7 @@ class CalendarWidget extends StatelessWidget {
               color: Colors.blue,
               shape: BoxShape.circle,
             ),
-            margin: const EdgeInsets.all(4.0),
+            margin: const EdgeInsets.all(4),
 //            padding: const EdgeInsets.only(top: 5.0, left: 6.0),
 //            color: const Color(0xFFEDFAF1),
             width: 100,
@@ -84,7 +85,7 @@ class CalendarWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 '${date.day}',
-                style: TextStyle().copyWith(fontSize: 16.0),
+                style: const TextStyle().copyWith(fontSize: 16),
               ),
             ),
           );
@@ -109,7 +110,7 @@ class CalendarWidget extends StatelessWidget {
       onDaySelected: (date, attendees) {
         Provider.of<CalendarStateController>(context, listen: false)
             .onDaySelected(date, attendees.cast<User>());
-        animationController.forward(from: 0.0);
+        animationController.forward(from: 0);
       },
     );
   }

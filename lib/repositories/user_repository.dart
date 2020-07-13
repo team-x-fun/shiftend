@@ -9,12 +9,12 @@ import 'package:shiftend/models/models.dart';
 import 'interfaces/user_repository_interface.dart';
 
 class UserRepository extends UserRepositoryInterface {
+  UserRepository({@required this.firestore, @required this.auth})
+      : assert(firestore != null && auth != null);
+
   final Firestore firestore;
   final FirebaseAuth auth;
   static const String collectionName = 'users';
-
-  UserRepository({@required this.firestore, @required this.auth})
-      : assert(firestore != null && auth != null);
 
   @override
   Future<void> create(User user) async {

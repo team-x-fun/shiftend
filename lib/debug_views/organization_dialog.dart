@@ -10,7 +10,7 @@ class OrganizationDialog {
     showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text('組織作成ダイアログ'),
+        title: const Text('組織作成ダイアログ'),
         content: Form(
           key: _formKey,
           child: Column(
@@ -61,7 +61,7 @@ class OrganizationDialog {
     showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text('組織取得ダイアログ'),
+        title: const Text('組織取得ダイアログ'),
         content: Form(
           key: _formKey,
           child: Column(
@@ -106,7 +106,7 @@ class OrganizationDialog {
     showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text('組織更新ダイアログ'),
+        title: const Text('組織更新ダイアログ'),
         content: Form(
           key: _formKey,
           child: Column(
@@ -149,11 +149,11 @@ class OrganizationDialog {
     showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text('組織取得ダイアログ'),
-        content: Text(firebaseUser.email + 'でログインしています'),
+        title: const Text('組織取得ダイアログ'),
+        content: Text('${firebaseUser.email}でログインしています'),
         actions: <Widget>[
           FlatButton(
-            child: Text(firebaseUser.email + 'の所有する組織の取得'),
+            child: Text('${firebaseUser.email}の所有する組織の取得'),
             onPressed: () {
               _getOrganizations(context);
               Navigator.pop(context);
@@ -166,20 +166,20 @@ class OrganizationDialog {
 
   static Future _createOrganization(BuildContext context, String id) async {
     Organization org;
-    User user = await userRepo.getCurrentUser();
+    final User user = await userRepo.getCurrentUser();
     try {
       org = Organization(
         id: id,
         ownerIds: <String>[user.id],
         memberIds: <String>[user.id],
         defaultHolidays: <Holiday>[
-          Holiday(dayOfWeek: 0, nWeek: 0),
-          Holiday(dayOfWeek: 1, nWeek: 1),
-          Holiday(dayOfWeek: 1, nWeek: 3)
+          const Holiday(dayOfWeek: 0, nWeek: 0),
+          const Holiday(dayOfWeek: 1, nWeek: 1),
+          const Holiday(dayOfWeek: 1, nWeek: 3)
         ],
       );
       await orgRepo.create(org);
-    } catch (e) {
+    } on Exception {
       print('組織の作成に失敗しました．');
     }
   }
@@ -189,7 +189,7 @@ class OrganizationDialog {
     try {
       org = await orgRepo.getOrganization(id);
       print(org.toJson().toString());
-    } catch (e) {
+    } on Exception {
       print('組織の取得に失敗しました．');
     }
   }
@@ -198,22 +198,22 @@ class OrganizationDialog {
     Organization org;
     try {
       org = await orgRepo.getOrganization(id);
-      var holidays = org.defaultHolidays;
-      holidays.add(Holiday(dayOfWeek: 1, nWeek: 0));
+      final holidays = org.defaultHolidays
+        ..add(const Holiday(dayOfWeek: 1, nWeek: 0));
       org = org.copyWith(defaultHolidays: holidays);
       await orgRepo.update(org);
-    } catch (e) {
+    } on Exception {
       print('組織の更新に失敗しました．');
     }
   }
 
   static Future _getOrganizations(BuildContext context) async {
     List<Organization> org;
-    User user = await userRepo.getCurrentUser();
+    final User user = await userRepo.getCurrentUser();
     try {
       org = await orgRepo.getOrganizations(user.id);
       print(org);
-    } catch (e) {
+    } on Exception {
       print('自分がオーナー組織の取得に失敗しました．');
     }
   }

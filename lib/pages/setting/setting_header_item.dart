@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingHeaderItem extends StatelessWidget {
+  const SettingHeaderItem(this.headerTitle);
+
   final String headerTitle;
-  SettingHeaderItem(this.headerTitle);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class SettingHeaderItem extends StatelessWidget {
         dense: true,
         title: Text(
           headerTitle,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
           ),
         ),
