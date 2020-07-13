@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shiftend/debug_views/shift_dialog.dart';
 import 'package:shiftend/debug_views/user_dialog.dart';
 
 import 'organization_dialog.dart';
@@ -60,6 +61,34 @@ class DebugPage extends StatelessWidget {
             onPressed: () {
               print('pressed organizations update');
               OrganizationDialog.showOrgUpdateDialog(context);
+            },
+          ),
+          FlatButton(
+            child: const Text('shift create'),
+            onPressed: () {
+              print('pressed shift create');
+              ShiftDialog.showShiftCreateDialog(context);
+            },
+          ),
+          FlatButton(
+            child: const Text('shift update'),
+            onPressed: () {
+              print('pressed shift update');
+              ShiftDialog.showShiftUpdateDialog(context);
+            },
+          ),
+          FlatButton(
+            child: const Text('shift delete'),
+            onPressed: () {
+              print('pressed shift delete');
+              ShiftDialog.showShiftDeleteDialog(context);
+            },
+          ),
+          FlatButton(
+            child: const Text('shift list get'),
+            onPressed: () {
+              print('pressed shift list get');
+              ShiftDialog.showShiftListGetDialog(context);
             },
           ),
         ],
