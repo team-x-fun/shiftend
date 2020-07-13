@@ -1,4 +1,4 @@
 export 'holiday/holiday.dart';
 export 'organization/organization.dart';
-export 'user/user.dart';
 export 'shift/shift.dart';
+export 'user/user.dart';

@@ -60,11 +60,15 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
     final day = shift.start.day;
     final ym = DateTime(year, month);
     final shiftList = shifts[orgId][ym][day];
+    bool isExist = false;
     shiftList.forEach((s) {
       if (s.userId == shift.userId) {
-        throw Exception('すでにシフト情報が存在します．');
+        isExist = true;
       }
     });
+    if (isExist) {
+      return;
+    }
     shifts[orgId][ym][day].add(shift);
   }
 
