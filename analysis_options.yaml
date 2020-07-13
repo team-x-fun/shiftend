@@ -3,6 +3,11 @@
 # include: package:pedantic_mono/analysis_options.yaml
 include: package:pedantic_mono/analysis_options_flutter_samples.yaml
 
+analyzer:
+  exclude:
+    - "lib/**/*.freezed.dart"
+    - "lib/**/*.g.dart"
+
 linter:
   rules:
     lines_longer_than_80_chars: false

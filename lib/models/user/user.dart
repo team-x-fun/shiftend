@@ -12,7 +12,7 @@ abstract class User with _$User {
     String name,
     String role,
     String level,
-    String iconUrl,
+    @JsonKey(name: 'icon_url') String iconUrl,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
