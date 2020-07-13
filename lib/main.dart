@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
 import 'package:shiftend/debug_views/debug_page.dart';
 import 'package:shiftend/pages/member/member_page.dart';
+import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
+import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/calendar/calendar_page.dart';
 import 'package:shiftend/pages/setting/setting_page.dart';
 
@@ -39,24 +43,31 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        onTap: onTapped,
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.shifting,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today), title: Text('カレンダー')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('メンバー')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text('設定')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text('debug')),
-        ],
+    return MultiProvider(
+      providers: [
+        StateNotifierProvider<CalendarStateController, CalendarState>(
+          create: (_) => CalendarStateController(),
+        )
+      ],
+      child: Scaffold(
+        body: _pages[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          fixedColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          onTap: onTapped,
+          currentIndex: _currentIndex,
+          type: BottomNavigationBarType.shifting,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_today), title: const Text('カレンダー')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person), title: const Text('メンバー')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), title: const Text('設定')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), title: const Text('debug')),
+          ],
+        ),
       ),
     );
   }
