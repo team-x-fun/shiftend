@@ -19,29 +19,29 @@ class SettingPage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: <Widget>[
+            children: const <Widget>[
               // アカウント
-              const SettingHeaderItem('アカウント'),
-              const SettingAccountItem('松山', 'hogehoge@gmail.com',
+              SettingHeaderItem('アカウント'),
+              SettingAccountItem('松山', 'hogehoge@gmail.com',
                   'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg'),
 
               // お知らせ
-              const SettingHeaderItem('お知らせ'),
-              const SettingListItem('運営からのお知らせ'),
+              SettingHeaderItem('お知らせ'),
+              SettingListItem('運営からのお知らせ'),
 
               // 設定
-              const SettingHeaderItem('設定'),
-              const SettingListItem('カレンダーの設定'),
+              SettingHeaderItem('設定'),
+              SettingListItem('カレンダーの設定'),
 
               // ヘルプ
-              const SettingHeaderItem('ヘルプ'),
-              const SettingListItem('使い方を見る'),
+              SettingHeaderItem('ヘルプ'),
+              SettingListItem('使い方を見る'),
 
               // その他
-              const SettingHeaderItem('その他'),
-              const SettingListItem('このアプリを評価する'),
-              const SettingListItem('このアプリについて'),
-              const SettingListItem('ログアウト'),
+              SettingHeaderItem('その他'),
+              SettingListItem('このアプリを評価する'),
+              SettingListItem('このアプリについて'),
+              SettingListItem('ログアウト'),
             ],
           ),
         ),
