@@ -57,16 +57,16 @@ class MemberItem extends StatelessWidget {
                         FlatButton(
                             child: Text('戻る'),
                             onPressed: () => {
-                              print('「戻る」ボタン押した'),
-                              Navigator.of(context).pop(),
-                            }),
+                                  print('「戻る」ボタン押した'),
+                                  Navigator.of(context).pop(),
+                                }),
                         FlatButton(
                             child: Text('追加'),
                             onPressed: () => {
-                              print('「追加」ボタン押した'),
-                              model.changeLevel(userLevel.text),
-                              Navigator.of(context).pop(),
-                            }),
+                                  print('「追加」ボタン押した'),
+                                  model.changeLevel(userLevel.text),
+                                  Navigator.of(context).pop(),
+                                }),
                       ],
                     );
                   },
