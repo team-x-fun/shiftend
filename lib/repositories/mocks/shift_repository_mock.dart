@@ -3,10 +3,10 @@ import 'package:shiftend/repositories/interfaces/shift_repository_interface.dart
 
 class ShiftRepositoryMock extends ShiftRepositoryInterface {
   // shifts[orgId][2020年7月][1] = shift_list
-  Map<String, Map<DateTime, Map<int, List<Shift>>>> shifts = {
+  Map<String, Map<DateTime, Map<DateTime, List<Shift>>>> shifts = {
     'ten': {
       DateTime(2020, 7): {
-        3: <Shift>[
+        DateTime(2020, 7, 3): <Shift>[
           Shift(
               userId: '0',
               start: DateTime.parse('2020-07-03 17:00'),
@@ -16,7 +16,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
               start: DateTime.parse('2020-07-03 17:00'),
               end: DateTime.parse('2020-07-04 2:00')),
         ],
-        10: <Shift>[
+        DateTime(2020, 7, 10): <Shift>[
           Shift(
               userId: '0',
               start: DateTime.parse('2020-07-10 17:00'),
@@ -26,7 +26,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
               start: DateTime.parse('2020-07-10 17:00'),
               end: DateTime.parse('2020-07-11 2:00')),
         ],
-        20: <Shift>[
+        DateTime(2020, 7, 20): <Shift>[
           Shift(
               userId: '0',
               start: DateTime.parse('2020-07-20 17:00'),
@@ -40,7 +40,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
               start: DateTime.parse('2020-07-20 18:00'),
               end: DateTime.parse('2020-07-21 0:00')),
         ],
-        22: <Shift>[
+        DateTime(2020, 7, 22): <Shift>[
           Shift(
               userId: '0',
               start: DateTime.parse('2020-07-22 17:00'),
@@ -82,7 +82,8 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
   }
 
   @override
-  Future<Map<int, List<Shift>>> getShifts(String orgId, DateTime month) async {
+  Future<Map<DateTime, List<Shift>>> getShifts(
+      String orgId, DateTime month) async {
     final ym = DateTime(month.year, month.month);
     return shifts[orgId][ym];
   }

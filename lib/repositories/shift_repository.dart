@@ -27,9 +27,10 @@ class ShiftRepository extends ShiftRepositoryInterface {
   }
 
   @override
-  Future<Map<int, List<Shift>>> getShifts(String orgId, DateTime month) async {
+  Future<Map<DateTime, List<Shift>>> getShifts(
+      String orgId, DateTime month) async {
     final shiftsRef = await _getShiftsRef(orgId, month);
-    final Map<int, List<Shift>> shifts = <int, List<Shift>>{};
+    final Map<DateTime, List<Shift>> shifts = <DateTime, List<Shift>>{};
     final DateTime count = DateTime(month.year, month.month, 1);
     for (int i = 1; i < 32; i++) {
       final list = await shiftsRef.collection(i.toString()).getDocuments().then(
@@ -37,7 +38,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
               .map((s) => Shift.fromJson(s.data))
               .toList());
       if (list.isNotEmpty) {
-        shifts[i] = list;
+        shifts[DateTime(month.year, month.month, i)] = list;
       }
       count.add(const Duration(days: 1));
       if (count.month != month.month) {
@@ -67,9 +68,8 @@ class ShiftRepository extends ShiftRepositoryInterface {
 
   Future<DocumentReference> _getShiftRef(
       String orgId, DateTime day, String userId) async {
-    final d = day.day;
     return (await _getShiftsRef(orgId, day))
-        .collection(d.toString())
+        .collection(day.day.toString())
         .document(userId);
   }
 }
