@@ -19,9 +19,9 @@ class MemberItem extends StatelessWidget {
           Consumer<MemberProvider>(builder: (context, model, child) {
             return FlatButton(
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              shape: RoundedRectangleBorder(),
+              shape: const RoundedRectangleBorder(),
               color: Colors.grey[50],
-              padding: EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0),
               onPressed: () async {
                 await showDialog<int>(
                   context: context,
@@ -31,7 +31,7 @@ class MemberItem extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      title: Text(user.name + 'さんのレベル'),
+                      title: Text('${user.name}さんのレベル'),
                       content: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
@@ -40,12 +40,12 @@ class MemberItem extends StatelessWidget {
                               controller: userLevel,
                               autofocus: true,
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'レベルの入力',
                               ),
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Level',
                             style: TextStyle(
                               fontSize: 18,
@@ -55,13 +55,13 @@ class MemberItem extends StatelessWidget {
                       ),
                       actions: <Widget>[
                         FlatButton(
-                            child: Text('戻る'),
+                            child: const Text('戻る'),
                             onPressed: () => {
                                   print('「戻る」ボタン押した'),
                                   Navigator.of(context).pop(),
                                 }),
                         FlatButton(
-                            child: Text('追加'),
+                            child: const Text('追加'),
                             onPressed: () => {
                                   print('「追加」ボタン押した'),
                                   model.changeLevel(userLevel.text),
@@ -76,7 +76,7 @@ class MemberItem extends StatelessWidget {
                 child: ListTile(
                   dense: true,
                   trailing: Text(
-                    'Lv.' + model.level,
+                    'Lv.${model.level}',
                   ),
                   leading: Container(
                     height: 50,
