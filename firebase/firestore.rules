@@ -1,16 +1,31 @@
 rules_version = '2';
 service cloud.firestore {
-  match /databases/{database}/documents {
+  function isAuthUser(auth, userId){
+    return auth != null && auth.uid == userId
+  }
 
-    // This rule allows anyone on the internet to view, edit, and delete
-    // all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // your app will lose access to your Firestore database
-    match /{document=**} {
+  function isValidUserSchema(user){
+    return user.size() == 6
+      && 'id' in user && user.id is string && user.id == request.auth.uid
+      && 'email' in user && user.email is string
+      && 'icon_url' in user && user.icon_url is string
+      && 'name' in user && user.name is string
+      && 'role' in user && user.role is string
+      && 'level' in user && user.level is string
+  }
+
+  function isValidUser(user){
+    return isValidUserSchema(user)
+  }
+
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow read: if isAuthUser(request.auth, uid);
+      allow create, update: if isAuthUser(request.auth, uid) && isValidUser(request.resource.data);
+      allow delete: if isAuthUser(request.auth, uid);
+    }
+
+    match /organizations/{document=**} {
       allow read, write: if request.time < timestamp.date(2020, 7, 30);
     }
   }
