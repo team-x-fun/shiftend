@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-//import 'package:shiftend/models/user/user.dart';
 
 class MemberProvider extends ChangeNotifier {
-//  User user;
-//  MemberProvider(this.user);
-
-//  String level = user.level;
-  String level = '0';
+  String level = 'レベル未設定';
+  bool levelInputFlag = false;
 
   void changeLevel(String userLevel) {
-    level = userLevel;
+    if (validateLevel(userLevel)) {
+      level = 'Lv.$userLevel';
+      levelInputFlag = true;
+    }
     notifyListeners();
+  }
+
+  bool validateLevel(String userLevel) {
+    // 未入力の場合
+    if (userLevel == '') {
+      return false;
+    }
+    return true;
   }
 }

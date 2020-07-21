@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:flutter/services.dart';
 import 'member_provider.dart';
 
 class MemberItem extends StatelessWidget {
@@ -33,23 +34,26 @@ class MemberItem extends StatelessWidget {
                       ),
                       title: Text('${user.name}さんのレベル'),
                       content: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           Expanded(
                             child: TextField(
-                              controller: userLevel,
                               autofocus: true,
-                              keyboardType: TextInputType.number,
+                              controller: userLevel,
                               decoration: const InputDecoration(
                                 labelText: 'レベルの入力',
                               ),
+                              inputFormatters: <TextInputFormatter>[
+                                WhitelistingTextInputFormatter.digitsOnly,
+                              ],
+                              keyboardType: TextInputType.number,
+                              maxLength: 10,
+                              maxLengthEnforced: true,
+                              maxLines: 1,
                             ),
                           ),
                           const Text(
                             'Level',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
+                            style: TextStyle(fontSize: 18),
                           ),
                         ],
                       ),
@@ -76,7 +80,9 @@ class MemberItem extends StatelessWidget {
                 child: ListTile(
                   dense: true,
                   trailing: Text(
-                    'Lv.${model.level}',
+                    '${model.level}',
+                    style: TextStyle(
+                        color: model.levelInputFlag ? Colors.black54 : Colors.grey[400]),
                   ),
                   leading: Container(
                     height: 50,
