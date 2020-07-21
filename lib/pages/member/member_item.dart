@@ -82,7 +82,9 @@ class MemberItem extends StatelessWidget {
                   trailing: Text(
                     '${model.level}',
                     style: TextStyle(
-                        color: model.levelInputFlag ? Colors.black54 : Colors.grey[400]),
+                        color: model.levelInputFlag
+                            ? Colors.black54
+                            : Colors.grey[400]),
                   ),
                   leading: Container(
                     height: 50,
