@@ -1,82 +1,49 @@
 import 'package:intl/intl.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
+import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
+import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class CalendarStateController extends StateNotifier<CalendarState>
     with LocatorMixin {
   CalendarStateController() : super(const CalendarState());
 
+  ShiftRepository get shiftRepository => read<ShiftRepository>();
+
+  ShiftRepositoryMock get shiftRepositoryMock => read<ShiftRepositoryMock>();
+  final _dateFormatter = DateFormat('yyyy-MM-dd');
+
   @override
   void initState() {
     super.initState();
-    final Map<DateTime, List<User>> _dummyAttendees = {
-      DateTime.parse('2020-07-10'): [
-        const User(
-            id: '0',
-            email: '',
-            name: '未来太郎',
-            role: 'バイトリーダー',
-            level: '50',
-            iconUrl: ''),
-        const User(
-            id: '1',
-            email: '',
-            name: '未来花子',
-            role: '',
-            level: '50',
-            iconUrl: ''),
-      ],
-      DateTime.parse('2020-07-20'): [
-        const User(
-            id: '0',
-            email: '',
-            name: '未来太郎',
-            role: 'バイトリーダー',
-            level: '50',
-            iconUrl: ''),
-        const User(
-            id: '1',
-            email: '',
-            name: '未来花子',
-            role: '',
-            level: '50',
-            iconUrl: ''),
-        const User(
-            id: '2',
-            email: '',
-            name: '未来次郎',
-            role: '',
-            level: '50',
-            iconUrl: ''),
-      ],
-      DateTime.parse('2020-07-22'): [
-        const User(
-            id: '0',
-            email: '',
-            name: '未来太郎',
-            role: 'バイトリーダー',
-            level: '50',
-            iconUrl: ''),
-        const User(
-            id: '1',
-            email: '',
-            name: '未来花子',
-            role: '',
-            level: '50',
-            iconUrl: ''),
-      ],
-    };
-    state = state.copyWith(attendees: _dummyAttendees);
+
+    fetchShiftsInitial(DateTime.now());
     state = state.copyWith(selectedDate: DateTime.now());
-    final _dateFormatter = DateFormat('yyyy-MM-dd');
-    final _formattedNow = _dateFormatter.format(state.selectedDate);
-    state = state.copyWith(
-        selectedAttendees: state.attendees[DateTime.parse(_formattedNow)]);
   }
 
-  void onDaySelected(DateTime day, List<User> attendees) {
-    state = state.copyWith(selectedDate: day);
-    state = state.copyWith(selectedAttendees: attendees);
+  // 初回のみ現在日時の月シフトを取得
+  Future<void> fetchShiftsInitial(DateTime date) async {
+    state = state.copyWith(notifierState: NotifierState.loading);
+
+    final shifts = await shiftRepository.getShifts('batchOrg1', date);
+    final formattedNow = _dateFormatter.format(state.selectedDate);
+    state = state.copyWith(shifts: shifts, notifierState: NotifierState.loaded);
+    state = state.copyWith(selectedShifts: shifts[formattedNow]);
+  }
+
+  // カレンダーで月を変えるごとに月ごとのデータを取得する
+  Future<void> fetchShiftsOfMonth(DateTime date) async {
+    // TODO: getShiftsのorgIdは今後動的に変えられるようにする．今は固定
+    final shifts = await shiftRepository.getShifts('batchOrg1', date);
+    state = state.copyWith(shifts: shifts);
+    print(shifts);
+  }
+
+  // 日付が選択されたときに下半分のシフトリストのデータを更新
+  void onDaySelected(DateTime date, List<Shift> shifts) {
+    state = state.copyWith(selectedDate: date);
+    state = state.copyWith(selectedShifts: shifts);
   }
 }
