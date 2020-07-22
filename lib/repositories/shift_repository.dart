@@ -32,17 +32,23 @@ class ShiftRepository extends ShiftRepositoryInterface {
     final shiftsRef = await _getShiftsRef(orgId, month);
     final Map<DateTime, List<Shift>> shifts = <DateTime, List<Shift>>{};
     final DateTime count = DateTime(month.year, month.month, 1);
+    final futureMaps = <DateTime, Future<List<Shift>>>{};
     for (int i = 1; i < 32; i++) {
-      final list = await shiftsRef.collection(i.toString()).getDocuments().then(
-          (thisMonthShift) => thisMonthShift.documents
+      futureMaps[DateTime(month.year, month.month, i)] = shiftsRef
+          .collection(i.toString())
+          .getDocuments()
+          .then<List<Shift>>((thisMonthShift) => thisMonthShift.documents
               .map((s) => Shift.fromJson(s.data))
               .toList());
-      if (list.isNotEmpty) {
-        shifts[DateTime(month.year, month.month, i)] = list;
-      }
       count.add(const Duration(days: 1));
       if (count.month != month.month) {
         break;
+      }
+    }
+    for (final date in futureMaps.keys) {
+      final list = await futureMaps[date];
+      if (list.isNotEmpty) {
+        shifts[date] = list;
       }
     }
     return shifts;
