@@ -13,13 +13,15 @@ class _$CalendarStateTearOff {
   const _$CalendarStateTearOff();
 
   _CalendarState call(
-      {Map<DateTime, List<User>> attendees,
+      {NotifierState notifierState = NotifierState.initial,
+      Map<DateTime, List<Shift>> shifts,
       DateTime selectedDate,
-      List<User> selectedAttendees}) {
+      List<Shift> selectedShifts}) {
     return _CalendarState(
-      attendees: attendees,
+      notifierState: notifierState,
+      shifts: shifts,
       selectedDate: selectedDate,
-      selectedAttendees: selectedAttendees,
+      selectedShifts: selectedShifts,
     );
   }
 }
@@ -28,9 +30,10 @@ class _$CalendarStateTearOff {
 const $CalendarState = _$CalendarStateTearOff();
 
 mixin _$CalendarState {
-  Map<DateTime, List<User>> get attendees;
+  NotifierState get notifierState;
+  Map<DateTime, List<Shift>> get shifts;
   DateTime get selectedDate;
-  List<User> get selectedAttendees;
+  List<Shift> get selectedShifts;
 
   $CalendarStateCopyWith<CalendarState> get copyWith;
 }
@@ -40,9 +43,10 @@ abstract class $CalendarStateCopyWith<$Res> {
           CalendarState value, $Res Function(CalendarState) then) =
       _$CalendarStateCopyWithImpl<$Res>;
   $Res call(
-      {Map<DateTime, List<User>> attendees,
+      {NotifierState notifierState,
+      Map<DateTime, List<Shift>> shifts,
       DateTime selectedDate,
-      List<User> selectedAttendees});
+      List<Shift> selectedShifts});
 }
 
 class _$CalendarStateCopyWithImpl<$Res>
@@ -55,20 +59,24 @@ class _$CalendarStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object attendees = freezed,
+    Object notifierState = freezed,
+    Object shifts = freezed,
     Object selectedDate = freezed,
-    Object selectedAttendees = freezed,
+    Object selectedShifts = freezed,
   }) {
     return _then(_value.copyWith(
-      attendees: attendees == freezed
-          ? _value.attendees
-          : attendees as Map<DateTime, List<User>>,
+      notifierState: notifierState == freezed
+          ? _value.notifierState
+          : notifierState as NotifierState,
+      shifts: shifts == freezed
+          ? _value.shifts
+          : shifts as Map<DateTime, List<Shift>>,
       selectedDate: selectedDate == freezed
           ? _value.selectedDate
           : selectedDate as DateTime,
-      selectedAttendees: selectedAttendees == freezed
-          ? _value.selectedAttendees
-          : selectedAttendees as List<User>,
+      selectedShifts: selectedShifts == freezed
+          ? _value.selectedShifts
+          : selectedShifts as List<Shift>,
     ));
   }
 }
@@ -80,9 +88,10 @@ abstract class _$CalendarStateCopyWith<$Res>
       __$CalendarStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Map<DateTime, List<User>> attendees,
+      {NotifierState notifierState,
+      Map<DateTime, List<Shift>> shifts,
       DateTime selectedDate,
-      List<User> selectedAttendees});
+      List<Shift> selectedShifts});
 }
 
 class __$CalendarStateCopyWithImpl<$Res>
@@ -97,61 +106,75 @@ class __$CalendarStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object attendees = freezed,
+    Object notifierState = freezed,
+    Object shifts = freezed,
     Object selectedDate = freezed,
-    Object selectedAttendees = freezed,
+    Object selectedShifts = freezed,
   }) {
     return _then(_CalendarState(
-      attendees: attendees == freezed
-          ? _value.attendees
-          : attendees as Map<DateTime, List<User>>,
+      notifierState: notifierState == freezed
+          ? _value.notifierState
+          : notifierState as NotifierState,
+      shifts: shifts == freezed
+          ? _value.shifts
+          : shifts as Map<DateTime, List<Shift>>,
       selectedDate: selectedDate == freezed
           ? _value.selectedDate
           : selectedDate as DateTime,
-      selectedAttendees: selectedAttendees == freezed
-          ? _value.selectedAttendees
-          : selectedAttendees as List<User>,
+      selectedShifts: selectedShifts == freezed
+          ? _value.selectedShifts
+          : selectedShifts as List<Shift>,
     ));
   }
 }
 
 class _$_CalendarState implements _CalendarState {
   const _$_CalendarState(
-      {this.attendees, this.selectedDate, this.selectedAttendees});
+      {this.notifierState = NotifierState.initial,
+      this.shifts,
+      this.selectedDate,
+      this.selectedShifts})
+      : assert(notifierState != null);
 
+  @JsonKey(defaultValue: NotifierState.initial)
   @override
-  final Map<DateTime, List<User>> attendees;
+  final NotifierState notifierState;
+  @override
+  final Map<DateTime, List<Shift>> shifts;
   @override
   final DateTime selectedDate;
   @override
-  final List<User> selectedAttendees;
+  final List<Shift> selectedShifts;
 
   @override
   String toString() {
-    return 'CalendarState(attendees: $attendees, selectedDate: $selectedDate, selectedAttendees: $selectedAttendees)';
+    return 'CalendarState(notifierState: $notifierState, shifts: $shifts, selectedDate: $selectedDate, selectedShifts: $selectedShifts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _CalendarState &&
-            (identical(other.attendees, attendees) ||
+            (identical(other.notifierState, notifierState) ||
                 const DeepCollectionEquality()
-                    .equals(other.attendees, attendees)) &&
+                    .equals(other.notifierState, notifierState)) &&
+            (identical(other.shifts, shifts) ||
+                const DeepCollectionEquality().equals(other.shifts, shifts)) &&
             (identical(other.selectedDate, selectedDate) ||
                 const DeepCollectionEquality()
                     .equals(other.selectedDate, selectedDate)) &&
-            (identical(other.selectedAttendees, selectedAttendees) ||
+            (identical(other.selectedShifts, selectedShifts) ||
                 const DeepCollectionEquality()
-                    .equals(other.selectedAttendees, selectedAttendees)));
+                    .equals(other.selectedShifts, selectedShifts)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(attendees) ^
+      const DeepCollectionEquality().hash(notifierState) ^
+      const DeepCollectionEquality().hash(shifts) ^
       const DeepCollectionEquality().hash(selectedDate) ^
-      const DeepCollectionEquality().hash(selectedAttendees);
+      const DeepCollectionEquality().hash(selectedShifts);
 
   @override
   _$CalendarStateCopyWith<_CalendarState> get copyWith =>
@@ -160,16 +183,19 @@ class _$_CalendarState implements _CalendarState {
 
 abstract class _CalendarState implements CalendarState {
   const factory _CalendarState(
-      {Map<DateTime, List<User>> attendees,
+      {NotifierState notifierState,
+      Map<DateTime, List<Shift>> shifts,
       DateTime selectedDate,
-      List<User> selectedAttendees}) = _$_CalendarState;
+      List<Shift> selectedShifts}) = _$_CalendarState;
 
   @override
-  Map<DateTime, List<User>> get attendees;
+  NotifierState get notifierState;
+  @override
+  Map<DateTime, List<Shift>> get shifts;
   @override
   DateTime get selectedDate;
   @override
-  List<User> get selectedAttendees;
+  List<Shift> get selectedShifts;
   @override
   _$CalendarStateCopyWith<_CalendarState> get copyWith;
 }

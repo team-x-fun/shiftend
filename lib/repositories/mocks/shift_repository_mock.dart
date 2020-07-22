@@ -14,7 +14,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
           Shift(
               userId: '1',
               start: DateTime.parse('2020-07-03 17:00'),
-              end: DateTime.parse('2020-07-04 2:00')),
+              end: DateTime.parse('2020-07-04 02:00')),
         ],
         DateTime(2020, 7, 10): <Shift>[
           Shift(
@@ -24,7 +24,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
           Shift(
               userId: '1',
               start: DateTime.parse('2020-07-10 17:00'),
-              end: DateTime.parse('2020-07-11 2:00')),
+              end: DateTime.parse('2020-07-11 02:00')),
         ],
         DateTime(2020, 7, 20): <Shift>[
           Shift(
@@ -34,11 +34,11 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
           Shift(
               userId: '1',
               start: DateTime.parse('2020-07-20 17:00'),
-              end: DateTime.parse('2020-07-21 2:00')),
+              end: DateTime.parse('2020-07-21 02:00')),
           Shift(
               userId: '2',
               start: DateTime.parse('2020-07-20 18:00'),
-              end: DateTime.parse('2020-07-21 0:00')),
+              end: DateTime.parse('2020-07-21 00:00')),
         ],
         DateTime(2020, 7, 22): <Shift>[
           Shift(
@@ -48,7 +48,7 @@ class ShiftRepositoryMock extends ShiftRepositoryInterface {
           Shift(
               userId: '1',
               start: DateTime.parse('2020-07-22 17:00'),
-              end: DateTime.parse('2020-07-23 2:00')),
+              end: DateTime.parse('2020-07-23 02:00')),
         ],
       }
     }
