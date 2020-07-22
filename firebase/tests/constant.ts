@@ -28,6 +28,9 @@ export const deleteApp = () =>
 export const usersRef = (db: firebase.firestore.Firestore) =>
     db.collection('users');
 
+export const orgsRef = (db: firebase.firestore.Firestore) =>
+    db.collection('organizations');
+
 export const collectUser = {
   id: 'test',
   email: 'test@example.com',
@@ -36,3 +39,42 @@ export const collectUser = {
   role: 'アルバイト',
   level: '100'
 };
+
+export const ownerUser = {
+  id: 'owner',
+  email: 'owner@example.com',
+  icon_url: 'https://example.com/owner.png',
+  name: 'テスト店長',
+  role: '店長',
+  level: '100'
+}
+
+export const memberUser = {
+  id: 'member',
+  email: 'member@example.com',
+  icon_url: 'https://example.com/member.png',
+  name: 'テストメンバー',
+  role: 'アルバイト',
+  level: '100'
+}
+
+export const collectOrganization = {
+  id: 'test_organization',
+  owner_ids: [
+    ownerUser.id,
+  ],
+  member_ids: [
+    ownerUser.id,
+    memberUser.id,
+  ],
+  default_holidays: [
+    {
+      day_of_week: 0,
+      n_week: 0,
+    },
+    {
+      day_of_week: 1,
+      n_week: 1,
+    },
+  ],
+}
