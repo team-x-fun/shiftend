@@ -13,5 +13,9 @@ final UserRepository userRepo =
     UserRepository(auth: auth, firestore: Firestore.instance);
 final OrganizationRepository orgRepo =
     OrganizationRepository(firestore: Firestore.instance);
-final ShiftRepository shiftRepo =
-    ShiftRepository(firestore: Firestore.instance);
+final ShiftRepository shiftRepo = ShiftRepository(
+    firestore: Firestore.instance,
+    collectionName: ShiftRepository.SHIFTS_COLLECTION);
+final ShiftRepository shiftReqRepo = ShiftRepository(
+    firestore: Firestore.instance,
+    collectionName: ShiftRepository.SHIFTS_REQUEST_COLLECTION);

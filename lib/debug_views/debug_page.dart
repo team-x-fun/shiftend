@@ -4,6 +4,7 @@ import 'package:shiftend/debug_views/shift_dialog.dart';
 import 'package:shiftend/debug_views/user_dialog.dart';
 
 import 'organization_dialog.dart';
+import 'shift_request_dialog.dart';
 
 class DebugPage extends StatelessWidget {
   @override
@@ -12,86 +13,116 @@ class DebugPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Debug Page'),
       ),
-      body: Column(
-        children: <Widget>[
-          FlatButton(
-            child: const Text('user load'),
-            onPressed: () {
-              print('pressed user load');
-              UserDialog.getUser(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('user login'),
-            onPressed: () {
-              print('pressed user login');
-              UserDialog.showLoginDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('user update'),
-            onPressed: () {
-              print('pressed user update');
-              UserDialog.showUpdateDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('organization create'),
-            onPressed: () {
-              print('pressed organization create');
-              OrganizationDialog.showOrgCreateDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('organization get'),
-            onPressed: () {
-              print('pressed organization get');
-              OrganizationDialog.showOrgGetDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('organizations get'),
-            onPressed: () {
-              print('pressed organizations get');
-              OrganizationDialog.showOrgsGetDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('organizations update(定休日の追加)'),
-            onPressed: () {
-              print('pressed organizations update');
-              OrganizationDialog.showOrgUpdateDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('shift create'),
-            onPressed: () {
-              print('pressed shift create');
-              ShiftDialog.showShiftCreateDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('shift update'),
-            onPressed: () {
-              print('pressed shift update');
-              ShiftDialog.showShiftUpdateDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('shift delete'),
-            onPressed: () {
-              print('pressed shift delete');
-              ShiftDialog.showShiftDeleteDialog(context);
-            },
-          ),
-          FlatButton(
-            child: const Text('shift list get'),
-            onPressed: () {
-              print('pressed shift list get');
-              ShiftDialog.showShiftListGetDialog(context);
-            },
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            FlatButton(
+              child: const Text('user load'),
+              onPressed: () {
+                print('pressed user load');
+                UserDialog.getUser(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('user login'),
+              onPressed: () {
+                print('pressed user login');
+                UserDialog.showLoginDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('user update'),
+              onPressed: () {
+                print('pressed user update');
+                UserDialog.showUpdateDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('organization create'),
+              onPressed: () {
+                print('pressed organization create');
+                OrganizationDialog.showOrgCreateDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('organization get'),
+              onPressed: () {
+                print('pressed organization get');
+                OrganizationDialog.showOrgGetDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('organizations get'),
+              onPressed: () {
+                print('pressed organizations get');
+                OrganizationDialog.showOrgsGetDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('organizations update(定休日の追加)'),
+              onPressed: () {
+                print('pressed organizations update');
+                OrganizationDialog.showOrgUpdateDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift create'),
+              onPressed: () {
+                print('pressed shift create');
+                ShiftDialog.showShiftCreateDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift update'),
+              onPressed: () {
+                print('pressed shift update');
+                ShiftDialog.showShiftUpdateDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift delete'),
+              onPressed: () {
+                print('pressed shift delete');
+                ShiftDialog.showShiftDeleteDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift list get'),
+              onPressed: () {
+                print('pressed shift list get');
+                ShiftDialog.showShiftListGetDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift request create'),
+              onPressed: () {
+                print('pressed shift request create');
+                ShiftRequestDialog.showShiftCreateDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift request update'),
+              onPressed: () {
+                print('pressed shift request update');
+                ShiftRequestDialog.showShiftUpdateDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift request delete'),
+              onPressed: () {
+                print('pressed shift delete');
+                ShiftRequestDialog.showShiftDeleteDialog(context);
+              },
+            ),
+            FlatButton(
+              child: const Text('shift request list get'),
+              onPressed: () {
+                print('pressed shift request list get');
+                ShiftRequestDialog.showShiftListGetDialog(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

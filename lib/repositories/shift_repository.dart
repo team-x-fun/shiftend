@@ -6,11 +6,17 @@ import 'package:shiftend/models/shift/shift.dart';
 import 'package:shiftend/repositories/interfaces/shift_repository_interface.dart';
 
 class ShiftRepository extends ShiftRepositoryInterface {
-  ShiftRepository({@required this.firestore}) : assert(firestore != null);
+  ShiftRepository({@required this.firestore, @required this.collectionName})
+      : assert(firestore != null),
+        assert(collectionName == SHIFTS_COLLECTION ||
+            collectionName == SHIFTS_REQUEST_COLLECTION);
 
   final Firestore firestore;
-  static const String collectionName = 'organizations';
-  static const String shiftsCollectionName = 'shifts';
+  final String orgCollectionName = 'organizations';
+  final String collectionName;
+
+  static const String SHIFTS_COLLECTION = 'shifts';
+  static const String SHIFTS_REQUEST_COLLECTION = 'shift-requests';
 
   final DateFormat formatter = DateFormat('yyyy-MM');
 
@@ -60,9 +66,9 @@ class ShiftRepository extends ShiftRepositoryInterface {
     final ym = DateTime(year, month);
     final ym_str = formatter.format(ym);
     return firestore
-        .collection(collectionName)
+        .collection(orgCollectionName)
         .document(orgId)
-        .collection(shiftsCollectionName)
+        .collection(collectionName)
         .document(ym_str);
   }
 
