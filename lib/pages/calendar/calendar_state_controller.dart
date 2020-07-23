@@ -36,7 +36,7 @@ class CalendarStateController extends StateNotifier<CalendarState>
   // カレンダーで月を変えるごとに月ごとのデータを取得する
   Future<void> fetchShiftsOfMonth(DateTime date) async {
     // TODO: getShiftsのorgIdは今後動的に変えられるようにする．今は固定
-    final shifts = await shiftRepository.getShifts('batchOrg1', date);
+    final shifts = await shiftRepository.getShifts('refOrg', date);
     state = state.copyWith(shifts: shifts);
     print(shifts);
   }
