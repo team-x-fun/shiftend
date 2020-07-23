@@ -9,8 +9,12 @@ part of 'organization.dart';
 _$_Organization _$_$_OrganizationFromJson(Map<String, dynamic> json) {
   return _$_Organization(
     id: json['id'] as String,
-    ownerIds: (json['owner_ids'] as List)?.map((e) => e as String)?.toList(),
-    memberIds: (json['member_ids'] as List)?.map((e) => e as String)?.toList(),
+    owners: (json['owners'] as List)
+        ?.map((e) => const UserConverter().fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    members: (json['members'] as List)
+        ?.map((e) => const UserConverter().fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     defaultHolidays: (json['default_holidays'] as List)
         ?.map(
             (e) => const HolidayConverter().fromJson(e as Map<String, dynamic>))
@@ -21,8 +25,8 @@ _$_Organization _$_$_OrganizationFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_OrganizationToJson(_$_Organization instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'owner_ids': instance.ownerIds,
-      'member_ids': instance.memberIds,
+      'owners': instance.owners?.map(const UserConverter().toJson)?.toList(),
+      'members': instance.members?.map(const UserConverter().toJson)?.toList(),
       'default_holidays': instance.defaultHolidays
           ?.map(const HolidayConverter().toJson)
           ?.toList(),

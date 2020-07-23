@@ -170,8 +170,8 @@ class OrganizationDialog {
     try {
       org = Organization(
         id: id,
-        ownerIds: <String>[user.id],
-        memberIds: <String>[user.id],
+        owners: <User>[user],
+        members: <User>[user],
         defaultHolidays: <Holiday>[
           const Holiday(dayOfWeek: 0, nWeek: 0),
           const Holiday(dayOfWeek: 1, nWeek: 1),

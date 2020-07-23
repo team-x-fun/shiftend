@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:meta/meta.dart';
 import 'package:shiftend/models/models.dart';
+
 import 'interfaces/user_repository_interface.dart';
 
 class UserRepository extends UserRepositoryInterface {
@@ -81,5 +80,14 @@ class UserRepository extends UserRepositoryInterface {
   @override
   Future<void> signOut() async {
     await auth.signOut();
+  }
+
+  Future<DocumentReference> getUserRef(String userId) async {
+    return firestore.collection(collectionName).document(userId);
+  }
+
+  @override
+  Future<User> fromUserRef(DocumentReference userRef) async {
+    return User.fromJson((await userRef.get()).data);
   }
 }

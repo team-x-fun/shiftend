@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shiftend/models/models.dart';
 
 abstract class UserRepositoryInterface {
@@ -8,5 +9,10 @@ abstract class UserRepositoryInterface {
   Future<void> update(User user);
   Future<User> getCurrentUser();
   Future<List<User>> getUsers();
+<<<<<<< HEAD
   Future<bool> isLogin();
+=======
+  Future<DocumentReference> getUserRef(String userId);
+  Future<User> fromUserRef(DocumentReference userRef);
+>>>>>>> ca0ec6b... feat: organizationのUserを参照型に変更
 }

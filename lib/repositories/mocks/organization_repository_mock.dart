@@ -1,4 +1,5 @@
 import 'package:shiftend/models/holiday/holiday.dart';
+import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/organization/organization.dart';
 import 'package:shiftend/repositories/interfaces/organization_repository_interface.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
@@ -9,8 +10,8 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
     orgs.add(
       Organization(
         id: 'test_id',
-        ownerIds: <String>[_userRepo.currentUser.id],
-        memberIds: <String>[_userRepo.currentUser.id],
+        owners: <User>[_userRepo.currentUser],
+        members: <User>[_userRepo.currentUser],
         defaultHolidays: <Holiday>[
           const Holiday(dayOfWeek: 0, nWeek: 0),
           const Holiday(dayOfWeek: 1, nWeek: 1),
@@ -42,9 +43,11 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
   Future<List<Organization>> getOrganizations(String ownerId) async {
     List<Organization> ownedOrgs;
     for (final org in orgs) {
-      if (org.ownerIds.contains(ownerId)) {
-        ownedOrgs.add(org);
+      final ownerIndex = org.owners.indexWhere((user) => user.id == ownerId);
+      if (ownerIndex == -1) {
+        continue;
       }
+      ownedOrgs.add(org);
     }
     return ownedOrgs;
   }

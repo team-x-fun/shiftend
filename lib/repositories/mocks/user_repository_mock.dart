@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 
 class UserRepositoryMock extends UserRepositoryInterface {
   List<User> users = <User>[
@@ -79,12 +80,20 @@ class UserRepositoryMock extends UserRepositoryInterface {
   @override
   Future<void> signIn(String email, String password) {
     // TODO: implement signIn
+  }
+
+  Future<DocumentReference> getUserRef(String userId) {
+    // TODO: implement getUserRef
     throw UnimplementedError();
   }
 
   @override
   Future<void> signOut() {
     // TODO: implement signOut
+  }
+
+  Future<User> fromUserRef(DocumentReference userRef) {
+    // TODO: implement fromUserRef
     throw UnimplementedError();
   }
 }
