@@ -5,7 +5,7 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 
 class UserRepositoryMock extends UserRepositoryInterface {
-  List<User> users = <User>[
+  final List<User> _users = <User>[
     const User(
         id: '0',
         email: 'test@example.com',
@@ -31,6 +31,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         role: 'バイトリーダ',
         level: '50'),
   ];
+  List<User> get users => _users;
   User currentUser = const User(
       id: 'test_user',
       email: 'test@example.com',
@@ -95,5 +96,10 @@ class UserRepositoryMock extends UserRepositoryInterface {
   Future<User> fromUserRef(DocumentReference userRef) {
     // TODO: implement fromUserRef
     throw UnimplementedError();
+  }
+
+  @override
+  Future<User> getUser(String userId) async {
+    return users.singleWhere((user) => user.id == userId);
   }
 }

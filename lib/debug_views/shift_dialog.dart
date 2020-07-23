@@ -8,6 +8,7 @@ class ShiftDialog {
   static void showShiftCreateDialog(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     String orgId;
+    String userId;
     Shift shift = const Shift();
     showDialog<dynamic>(
       context: context,
@@ -38,7 +39,8 @@ class ShiftDialog {
                   labelText: 'User id',
                 ),
                 onSaved: (String value) {
-                  shift = shift.copyWith(userId: value);
+                  userId = value;
+                  print(userId);
                 },
                 validator: (value) {
                   if (value.isEmpty) {
@@ -91,10 +93,14 @@ class ShiftDialog {
           ),
           FlatButton(
             child: const Text('作成'),
-            onPressed: () {
+            onPressed: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                shiftRepo.create(orgId, shift);
+                print(userId);
+                final user = await userRepo.getUser(userId);
+                shift = shift.copyWith(user: user);
+                print(shift);
+                await shiftRepo.create(orgId, shift);
                 Navigator.pop(context);
               }
             },
@@ -136,8 +142,8 @@ class ShiftDialog {
                   icon: Icon(Icons.mail),
                   labelText: 'User id',
                 ),
-                onSaved: (String value) {
-                  shift = shift.copyWith(userId: value);
+                onSaved: (String value) async {
+                  shift = shift.copyWith(user: await userRepo.getUser(value));
                 },
                 validator: (value) {
                   if (value.isEmpty) {

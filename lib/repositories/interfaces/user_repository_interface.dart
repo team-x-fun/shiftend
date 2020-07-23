@@ -8,6 +8,7 @@ abstract class UserRepositoryInterface {
   Future<void> create(User user);
   Future<void> update(User user);
   Future<User> getCurrentUser();
+  Future<User> getUser(String userId);
   Future<List<User>> getUsers();
 <<<<<<< HEAD
   Future<bool> isLogin();

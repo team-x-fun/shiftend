@@ -90,4 +90,11 @@ class UserRepository extends UserRepositoryInterface {
   Future<User> fromUserRef(DocumentReference userRef) async {
     return User.fromJson((await userRef.get()).data);
   }
+
+  @override
+  Future<User> getUser(String userId) async {
+    final snapshot =
+        await firestore.collection(collectionName).document(userId).get();
+    return User.fromJson(snapshot.data);
+  }
 }

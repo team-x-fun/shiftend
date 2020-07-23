@@ -4,11 +4,15 @@ import 'package:intl/intl.dart';
 
 import 'package:shiftend/models/shift/shift.dart';
 import 'package:shiftend/repositories/interfaces/shift_repository_interface.dart';
+import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 
 class ShiftRepository extends ShiftRepositoryInterface {
-  ShiftRepository({@required this.firestore}) : assert(firestore != null);
+  ShiftRepository({@required this.firestore, @required this.userRepo})
+      : assert(firestore != null),
+        assert(userRepo != null);
 
   final Firestore firestore;
+  final UserRepositoryInterface userRepo;
   static const String collectionName = 'organizations';
   static const String shiftsCollectionName = 'shifts';
 
@@ -16,8 +20,9 @@ class ShiftRepository extends ShiftRepositoryInterface {
 
   @override
   Future<void> create(String orgId, Shift shift) async {
-    final shiftRef = await _getShiftRef(orgId, shift.start, shift.userId);
-    await shiftRef.setData(shift.toJson());
+    final shiftRef = await _getShiftRef(orgId, shift.start, shift.user.id);
+
+    await shiftRef.setData(await _toJson(shift));
   }
 
   @override
@@ -32,14 +37,13 @@ class ShiftRepository extends ShiftRepositoryInterface {
     final shiftsRef = await _getShiftsRef(orgId, month);
     final Map<DateTime, List<Shift>> shifts = <DateTime, List<Shift>>{};
     final DateTime count = DateTime(month.year, month.month, 1);
-    final futureMaps = <DateTime, Future<List<Shift>>>{};
+    final futureMaps = <DateTime, Future<List<Future<Shift>>>>{};
     for (int i = 1; i < 32; i++) {
       futureMaps[DateTime(month.year, month.month, i)] = shiftsRef
           .collection(i.toString())
           .getDocuments()
-          .then<List<Shift>>((thisMonthShift) => thisMonthShift.documents
-              .map((s) => Shift.fromJson(s.data))
-              .toList());
+          .then<List<Future<Shift>>>((thisMonthShift) =>
+              thisMonthShift.documents.map((s) => _fromJson(s.data)).toList());
       count.add(const Duration(days: 1));
       if (count.month != month.month) {
         break;
@@ -48,7 +52,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
     for (final date in futureMaps.keys) {
       final list = await futureMaps[date];
       if (list.isNotEmpty) {
-        shifts[date] = list;
+        shifts[date] = await Future.wait(list);
       }
     }
     return shifts;
@@ -56,8 +60,8 @@ class ShiftRepository extends ShiftRepositoryInterface {
 
   @override
   Future<void> update(String orgId, Shift shift) async {
-    final shiftRef = await _getShiftRef(orgId, shift.start, shift.userId);
-    await shiftRef.updateData(shift.toJson());
+    final shiftRef = await _getShiftRef(orgId, shift.start, shift.user.id);
+    await shiftRef.updateData(await _toJson(shift));
   }
 
   Future<DocumentReference> _getShiftsRef(String orgId, DateTime day) async {
@@ -77,5 +81,19 @@ class ShiftRepository extends ShiftRepositoryInterface {
     return (await _getShiftsRef(orgId, day))
         .collection(day.day.toString())
         .document(userId);
+  }
+
+  Future<Map<String, dynamic>> _toJson(Shift shift) async {
+    final json = shift.toJson()..remove('userRef');
+    json['userRef'] = await userRepo.getUserRef(shift.user.id);
+    return json;
+  }
+
+  Future<Shift> _fromJson(Map<String, dynamic> rawJson) async {
+    final json = <String, dynamic>{...rawJson}..remove('userRef');
+    final shift = Shift.fromJson(json);
+    return shift.copyWith(
+        user: await userRepo
+            .fromUserRef(rawJson['userRef'] as DocumentReference));
   }
 }

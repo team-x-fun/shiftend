@@ -27,7 +27,7 @@ class CalendarStateController extends StateNotifier<CalendarState>
   Future<void> fetchShiftsInitial(DateTime date) async {
     state = state.copyWith(notifierState: NotifierState.loading);
 
-    final shifts = await shiftRepository.getShifts('batchOrg1', date);
+    final shifts = await shiftRepository.getShifts('refOrg', date);
     final formattedNow = _dateFormatter.format(state.selectedDate);
     state = state.copyWith(shifts: shifts, notifierState: NotifierState.loaded);
     state = state.copyWith(selectedShifts: shifts[formattedNow]);
