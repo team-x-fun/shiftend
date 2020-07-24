@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shiftend/models/models.dart';
+import 'package:shiftend/pages/login/login_state.dart';
 
 class SettingAccountItem extends StatelessWidget {
-  const SettingAccountItem(this.nameLabel, this.mailLabel, this.iconUrl);
-
-  final String nameLabel;
-  final String mailLabel;
-  final String iconUrl;
+  const SettingAccountItem();
 
   @override
   Widget build(BuildContext context) {
+    final User user =
+        Provider.of<LoginState>(context, listen: true).currentUser;
     return Container(
       child: ListTile(
         dense: true,
@@ -21,13 +22,13 @@ class SettingAccountItem extends StatelessWidget {
             shape: BoxShape.circle,
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: NetworkImage(iconUrl),
+              image: NetworkImage(user.iconUrl),
             ),
           ),
         ),
         onTap: () => print('「アカウント」を押しました。'),
-        title: Text(nameLabel),
-        subtitle: Text(mailLabel),
+        title: Text(user.name),
+        subtitle: Text(user.email),
       ),
     );
   }
