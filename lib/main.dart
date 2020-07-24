@@ -68,7 +68,8 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Provider.of<LoginState>(context, listen: true).isLogin) {
+    final bool isLogin = Provider.of<LoginState>(context, listen: true).isLogin;
+    if (!isLogin) {
       return LoginPage();
     }
     return MultiProvider(

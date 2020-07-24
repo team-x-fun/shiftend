@@ -45,7 +45,7 @@ class UserRepository extends UserRepositoryInterface {
 
   @override
   Future<bool> isLogin() async {
-    return auth.currentUser().then((user) => user == null);
+    return auth.currentUser().then((user) => user != null);
   }
 
   @override
