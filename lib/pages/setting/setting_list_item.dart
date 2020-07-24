@@ -12,7 +12,7 @@ class SettingListItem extends StatelessWidget {
       child: ListTile(
         dense: true,
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () => print('SettingListItemを押した'),
+        onTap: () => print('「$detailTitle」を押しました。'),
         title: Text(detailTitle),
       ),
     );

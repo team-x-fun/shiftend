@@ -1,0 +1,10 @@
+version: "3"
+services:
+  firestore:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    command: "firebase emulators:start --only firestore"

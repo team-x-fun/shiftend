@@ -1,13 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/debug_views/debug_page.dart';
-import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
-import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/calendar/calendar_page.dart';
+import 'package:shiftend/pages/calendar/calendar_state.dart';
+import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
 import 'package:shiftend/pages/setting/setting_page.dart';
 import 'package:shiftend/pages/member/member_page.dart';
+import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
+import 'package:shiftend/repositories/shift_repository.dart';
 
 void main() {
   initializeDateFormatting().then((value) => runApp(MyApp()));
@@ -16,13 +19,23 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Shiftend',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        Provider<ShiftRepository>.value(
+          value: ShiftRepository(firestore: Firestore.instance),
+        ),
+        Provider<ShiftRepositoryMock>.value(
+          value: ShiftRepositoryMock(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Shiftend',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: Main(),
       ),
-      home: Main(),
     );
   }
 }
@@ -46,8 +59,8 @@ class _MainState extends State<Main> {
     return MultiProvider(
       providers: [
         StateNotifierProvider<CalendarStateController, CalendarState>(
-          create: (_) => CalendarStateController(),
-        )
+          create: (context) => CalendarStateController(),
+        ),
       ],
       child: Scaffold(
         body: _pages[_currentIndex],

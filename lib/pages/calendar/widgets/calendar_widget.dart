@@ -20,13 +20,13 @@ class CalendarWidget extends StatelessWidget {
     return TableCalendar(
       locale: 'ja_JP',
       calendarController: calendarController,
-      events: Provider.of<CalendarState>(context, listen: true).attendees,
+      events: Provider.of<CalendarState>(context, listen: true).shifts,
       initialCalendarFormat: CalendarFormat.month,
       formatAnimation: FormatAnimation.slide,
       startingDayOfWeek: StartingDayOfWeek.sunday,
       availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: CalendarStyle(
-        outsideDaysVisible: true,
+        outsideDaysVisible: false,
         outsideWeekendStyle: const TextStyle().copyWith(color: Colors.black),
         weekdayStyle: const TextStyle().copyWith(color: Colors.black),
         weekendStyle: const TextStyle().copyWith(color: Colors.black),
@@ -109,8 +109,12 @@ class CalendarWidget extends StatelessWidget {
       ),
       onDaySelected: (date, attendees) {
         Provider.of<CalendarStateController>(context, listen: false)
-            .onDaySelected(date, attendees.cast<User>());
+            .onDaySelected(date, attendees.cast<Shift>());
         animationController.forward(from: 0);
+      },
+      onVisibleDaysChanged: (first, last, format) {
+        Provider.of<CalendarStateController>(context, listen: false)
+            .fetchShiftsOfMonth(last);
       },
     );
   }

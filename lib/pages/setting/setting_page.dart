@@ -7,32 +7,44 @@ import 'package:shiftend/pages/setting/setting_list_item.dart';
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: const <Widget>[
-          // アカウント
-          SettingHeaderItem('アカウント'),
-          SettingAccountItem('松山', 'hogehoge@gmail.com',
-              'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg'),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey[100],
+        brightness: Brightness.light,
+        title: const Text(
+          'その他',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: const <Widget>[
+              // アカウント
+              SettingHeaderItem('アカウント'),
+              SettingAccountItem('松山', 'hogehoge@gmail.com',
+                  'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg'),
 
-          // お知らせ
-          SettingHeaderItem('お知らせ'),
-          SettingListItem('運営からのお知らせ'),
+              // お知らせ
+              SettingHeaderItem('お知らせ'),
+              SettingListItem('運営からのお知らせ'),
 
-          // 設定
-          SettingHeaderItem('設定'),
-          SettingListItem('カレンダーの設定'),
+              // 設定
+              SettingHeaderItem('設定'),
+              SettingListItem('カレンダーの設定'),
 
-          // ヘルプ
-          SettingHeaderItem('ヘルプ'),
-          SettingListItem('使い方を見る'),
+              // ヘルプ
+              SettingHeaderItem('ヘルプ'),
+              SettingListItem('使い方を見る'),
 
-          // その他
-          SettingHeaderItem('その他'),
-          SettingListItem('このアプリを評価する'),
-          SettingListItem('このアプリについて'),
-          SettingListItem('ログアウト'),
-        ],
+              // その他
+              SettingHeaderItem('その他'),
+              SettingListItem('このアプリを評価する'),
+              SettingListItem('このアプリについて'),
+              SettingListItem('ログアウト'),
+            ],
+          ),
+        ),
       ),
     );
   }
