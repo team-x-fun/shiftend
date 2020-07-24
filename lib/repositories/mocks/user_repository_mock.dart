@@ -64,4 +64,21 @@ class UserRepositoryMock extends UserRepositoryInterface {
   Future<List<User>> getUsers() async {
     return users;
   }
+
+  @override
+  Future<bool> isLogin() async {
+    return currentUser != null;
+  }
+
+  @override
+  Future<void> register(String email, String password) {
+    // TODO: implement register
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> signIn(String email, String password) {
+    // TODO: implement signIn
+    throw UnimplementedError();
+  }
 }

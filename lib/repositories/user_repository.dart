@@ -44,9 +44,37 @@ class UserRepository extends UserRepositoryInterface {
   }
 
   @override
+  Future<bool> isLogin() async {
+    return auth.currentUser().then((user) => user == null);
+  }
+
+  @override
   Future<List<User>> getUsers() async {
     // TODO: implement getUsers
 
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> register(String email, String password) async {
+    User user;
+    await auth
+        .createUserWithEmailAndPassword(email: email.trim(), password: password)
+        .then((authResult) => {
+              user = User(
+                  id: authResult.user.uid,
+                  email: email.trim(),
+                  name: email.trim(),
+                  role: 'アルバイト',
+                  level: '100',
+                  iconUrl: 'https://avatars0.githubusercontent.com/u/57802072'),
+              create(user),
+            });
+  }
+
+  @override
+  Future<void> signIn(String email, String password) async {
+    await auth.signInWithEmailAndPassword(
+        email: email.trim(), password: password);
   }
 }
