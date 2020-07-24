@@ -81,4 +81,10 @@ class UserRepositoryMock extends UserRepositoryInterface {
     // TODO: implement signIn
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> signOut() {
+    // TODO: implement signOut
+    throw UnimplementedError();
+  }
 }

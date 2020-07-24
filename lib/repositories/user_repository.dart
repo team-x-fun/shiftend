@@ -77,4 +77,9 @@ class UserRepository extends UserRepositoryInterface {
     await auth.signInWithEmailAndPassword(
         email: email.trim(), password: password);
   }
+
+  @override
+  Future<void> signOut() async {
+    await auth.signOut();
+  }
 }

@@ -31,4 +31,9 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
     await userRepository.signIn(email, password);
     await fetchLoginState();
   }
+
+  Future<void> signOut() async {
+    await userRepository.signOut();
+    await fetchLoginState();
+  }
 }
