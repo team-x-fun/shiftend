@@ -17,17 +17,19 @@ class _$OrganizationTearOff {
 
   _Organization call(
       {String id,
-      @JsonKey(name: 'owner_ids')
-          List<String> ownerIds,
-      @JsonKey(name: 'member_ids')
-          List<String> memberIds,
+      @UserConverter()
+      @JsonKey(name: 'owners')
+          List<User> owners,
+      @UserConverter()
+      @JsonKey(name: 'members')
+          List<User> members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays}) {
     return _Organization(
       id: id,
-      ownerIds: ownerIds,
-      memberIds: memberIds,
+      owners: owners,
+      members: members,
       defaultHolidays: defaultHolidays,
     );
   }
@@ -38,10 +40,12 @@ const $Organization = _$OrganizationTearOff();
 
 mixin _$Organization {
   String get id;
-  @JsonKey(name: 'owner_ids')
-  List<String> get ownerIds;
-  @JsonKey(name: 'member_ids')
-  List<String> get memberIds;
+  @UserConverter()
+  @JsonKey(name: 'owners')
+  List<User> get owners;
+  @UserConverter()
+  @JsonKey(name: 'members')
+  List<User> get members;
   @JsonKey(name: 'default_holidays')
   @HolidayConverter()
   List<Holiday> get defaultHolidays;
@@ -56,10 +60,12 @@ abstract class $OrganizationCopyWith<$Res> {
       _$OrganizationCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      @JsonKey(name: 'owner_ids')
-          List<String> ownerIds,
-      @JsonKey(name: 'member_ids')
-          List<String> memberIds,
+      @UserConverter()
+      @JsonKey(name: 'owners')
+          List<User> owners,
+      @UserConverter()
+      @JsonKey(name: 'members')
+          List<User> members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays});
@@ -75,16 +81,14 @@ class _$OrganizationCopyWithImpl<$Res> implements $OrganizationCopyWith<$Res> {
   @override
   $Res call({
     Object id = freezed,
-    Object ownerIds = freezed,
-    Object memberIds = freezed,
+    Object owners = freezed,
+    Object members = freezed,
     Object defaultHolidays = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
-      ownerIds:
-          ownerIds == freezed ? _value.ownerIds : ownerIds as List<String>,
-      memberIds:
-          memberIds == freezed ? _value.memberIds : memberIds as List<String>,
+      owners: owners == freezed ? _value.owners : owners as List<User>,
+      members: members == freezed ? _value.members : members as List<User>,
       defaultHolidays: defaultHolidays == freezed
           ? _value.defaultHolidays
           : defaultHolidays as List<Holiday>,
@@ -100,10 +104,12 @@ abstract class _$OrganizationCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      @JsonKey(name: 'owner_ids')
-          List<String> ownerIds,
-      @JsonKey(name: 'member_ids')
-          List<String> memberIds,
+      @UserConverter()
+      @JsonKey(name: 'owners')
+          List<User> owners,
+      @UserConverter()
+      @JsonKey(name: 'members')
+          List<User> members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays});
@@ -121,16 +127,14 @@ class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
   @override
   $Res call({
     Object id = freezed,
-    Object ownerIds = freezed,
-    Object memberIds = freezed,
+    Object owners = freezed,
+    Object members = freezed,
     Object defaultHolidays = freezed,
   }) {
     return _then(_Organization(
       id: id == freezed ? _value.id : id as String,
-      ownerIds:
-          ownerIds == freezed ? _value.ownerIds : ownerIds as List<String>,
-      memberIds:
-          memberIds == freezed ? _value.memberIds : memberIds as List<String>,
+      owners: owners == freezed ? _value.owners : owners as List<User>,
+      members: members == freezed ? _value.members : members as List<User>,
       defaultHolidays: defaultHolidays == freezed
           ? _value.defaultHolidays
           : defaultHolidays as List<Holiday>,
@@ -142,10 +146,12 @@ class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
 class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   const _$_Organization(
       {this.id,
-      @JsonKey(name: 'owner_ids')
-          this.ownerIds,
-      @JsonKey(name: 'member_ids')
-          this.memberIds,
+      @UserConverter()
+      @JsonKey(name: 'owners')
+          this.owners,
+      @UserConverter()
+      @JsonKey(name: 'members')
+          this.members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           this.defaultHolidays});
@@ -156,11 +162,13 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   @override
   final String id;
   @override
-  @JsonKey(name: 'owner_ids')
-  final List<String> ownerIds;
+  @UserConverter()
+  @JsonKey(name: 'owners')
+  final List<User> owners;
   @override
-  @JsonKey(name: 'member_ids')
-  final List<String> memberIds;
+  @UserConverter()
+  @JsonKey(name: 'members')
+  final List<User> members;
   @override
   @JsonKey(name: 'default_holidays')
   @HolidayConverter()
@@ -168,7 +176,7 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Organization(id: $id, ownerIds: $ownerIds, memberIds: $memberIds, defaultHolidays: $defaultHolidays)';
+    return 'Organization(id: $id, owners: $owners, members: $members, defaultHolidays: $defaultHolidays)';
   }
 
   @override
@@ -177,8 +185,8 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
     properties
       ..add(DiagnosticsProperty('type', 'Organization'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('ownerIds', ownerIds))
-      ..add(DiagnosticsProperty('memberIds', memberIds))
+      ..add(DiagnosticsProperty('owners', owners))
+      ..add(DiagnosticsProperty('members', members))
       ..add(DiagnosticsProperty('defaultHolidays', defaultHolidays));
   }
 
@@ -188,12 +196,11 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
         (other is _Organization &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ownerIds, ownerIds) ||
+            (identical(other.owners, owners) ||
+                const DeepCollectionEquality().equals(other.owners, owners)) &&
+            (identical(other.members, members) ||
                 const DeepCollectionEquality()
-                    .equals(other.ownerIds, ownerIds)) &&
-            (identical(other.memberIds, memberIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.memberIds, memberIds)) &&
+                    .equals(other.members, members)) &&
             (identical(other.defaultHolidays, defaultHolidays) ||
                 const DeepCollectionEquality()
                     .equals(other.defaultHolidays, defaultHolidays)));
@@ -203,8 +210,8 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ownerIds) ^
-      const DeepCollectionEquality().hash(memberIds) ^
+      const DeepCollectionEquality().hash(owners) ^
+      const DeepCollectionEquality().hash(members) ^
       const DeepCollectionEquality().hash(defaultHolidays);
 
   @override
@@ -220,10 +227,12 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
 abstract class _Organization implements Organization {
   const factory _Organization(
       {String id,
-      @JsonKey(name: 'owner_ids')
-          List<String> ownerIds,
-      @JsonKey(name: 'member_ids')
-          List<String> memberIds,
+      @UserConverter()
+      @JsonKey(name: 'owners')
+          List<User> owners,
+      @UserConverter()
+      @JsonKey(name: 'members')
+          List<User> members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays}) = _$_Organization;
@@ -234,11 +243,13 @@ abstract class _Organization implements Organization {
   @override
   String get id;
   @override
-  @JsonKey(name: 'owner_ids')
-  List<String> get ownerIds;
+  @UserConverter()
+  @JsonKey(name: 'owners')
+  List<User> get owners;
   @override
-  @JsonKey(name: 'member_ids')
-  List<String> get memberIds;
+  @UserConverter()
+  @JsonKey(name: 'members')
+  List<User> get members;
   @override
   @JsonKey(name: 'default_holidays')
   @HolidayConverter()

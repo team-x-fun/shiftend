@@ -12,6 +12,6 @@ final FirebaseAuth auth = FirebaseAuth.instance;
 final UserRepository userRepo =
     UserRepository(auth: auth, firestore: Firestore.instance);
 final OrganizationRepository orgRepo =
-    OrganizationRepository(firestore: Firestore.instance);
+    OrganizationRepository(firestore: Firestore.instance, userRepo: userRepo);
 final ShiftRepository shiftRepo =
-    ShiftRepository(firestore: Firestore.instance);
+    ShiftRepository(firestore: Firestore.instance, userRepo: userRepo);

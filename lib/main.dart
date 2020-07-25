@@ -14,6 +14,7 @@ import 'package:shiftend/pages/login/login_state_controller.dart';
 import 'package:shiftend/pages/setting/setting_page.dart';
 import 'package:shiftend/pages/member/member_page.dart';
 import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
+import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:shiftend/repositories/user_repository.dart';
 
@@ -27,10 +28,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<ShiftRepository>.value(
-          value: ShiftRepository(firestore: Firestore.instance),
+          value: ShiftRepository(
+              firestore: Firestore.instance,
+              userRepo: UserRepository(
+                  firestore: Firestore.instance, auth: FirebaseAuth.instance)),
         ),
         Provider<ShiftRepositoryMock>.value(
-          value: ShiftRepositoryMock(),
+          value: ShiftRepositoryMock(userRepo: UserRepositoryMock()),
         ),
         Provider<UserRepository>.value(
           value: UserRepository(
