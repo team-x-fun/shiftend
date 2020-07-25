@@ -81,8 +81,10 @@ class UserRepositoryMock extends UserRepositoryInterface {
   @override
   Future<void> signIn(String email, String password) {
     // TODO: implement signIn
+    throw UnimplementedError();
   }
 
+  @override
   Future<DocumentReference> getUserRef(String userId) {
     // TODO: implement getUserRef
     throw UnimplementedError();
@@ -91,8 +93,10 @@ class UserRepositoryMock extends UserRepositoryInterface {
   @override
   Future<void> signOut() {
     // TODO: implement signOut
+    throw UnimplementedError();
   }
 
+  @override
   Future<User> fromUserRef(DocumentReference userRef) {
     // TODO: implement fromUserRef
     throw UnimplementedError();

@@ -10,10 +10,7 @@ abstract class UserRepositoryInterface {
   Future<User> getCurrentUser();
   Future<User> getUser(String userId);
   Future<List<User>> getUsers();
-<<<<<<< HEAD
   Future<bool> isLogin();
-=======
   Future<DocumentReference> getUserRef(String userId);
   Future<User> fromUserRef(DocumentReference userRef);
->>>>>>> ca0ec6b... feat: organizationのUserを参照型に変更
 }

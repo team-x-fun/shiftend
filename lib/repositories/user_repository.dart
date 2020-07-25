@@ -82,6 +82,7 @@ class UserRepository extends UserRepositoryInterface {
     await auth.signOut();
   }
 
+  @override
   Future<DocumentReference> getUserRef(String userId) async {
     return firestore.collection(collectionName).document(userId);
   }
