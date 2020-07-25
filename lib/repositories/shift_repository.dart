@@ -20,7 +20,8 @@ class ShiftRepository extends ShiftRepositoryInterface {
 
   @override
   Future<void> create(String orgId, Shift shift) async {
-    final shiftRef = await _getShiftRef(orgId, shift.start, shift.user.id);
+    final DocumentReference shiftRef =
+        await _getShiftRef(orgId, shift.start, shift.user.id);
 
     await shiftRef.setData(await _toJson(shift));
   }
@@ -37,7 +38,8 @@ class ShiftRepository extends ShiftRepositoryInterface {
     final shiftsRef = await _getShiftsRef(orgId, month);
     final Map<DateTime, List<Shift>> shifts = <DateTime, List<Shift>>{};
     final DateTime count = DateTime(month.year, month.month, 1);
-    final futureMaps = <DateTime, Future<List<Future<Shift>>>>{};
+    final Map<DateTime, Future<List<Future<Shift>>>> futureMaps =
+        <DateTime, Future<List<Future<Shift>>>>{};
     for (int i = 1; i < 32; i++) {
       futureMaps[DateTime(month.year, month.month, i)] = shiftsRef
           .collection(i.toString())
@@ -49,8 +51,8 @@ class ShiftRepository extends ShiftRepositoryInterface {
         break;
       }
     }
-    for (final date in futureMaps.keys) {
-      final list = await futureMaps[date];
+    for (final DateTime date in futureMaps.keys) {
+      final List<Future<Shift>> list = await futureMaps[date];
       if (list.isNotEmpty) {
         shifts[date] = await Future.wait(list);
       }
@@ -60,7 +62,8 @@ class ShiftRepository extends ShiftRepositoryInterface {
 
   @override
   Future<void> update(String orgId, Shift shift) async {
-    final shiftRef = await _getShiftRef(orgId, shift.start, shift.user.id);
+    final DocumentReference shiftRef =
+        await _getShiftRef(orgId, shift.start, shift.user.id);
     await shiftRef.updateData(await _toJson(shift));
   }
 
@@ -84,14 +87,15 @@ class ShiftRepository extends ShiftRepositoryInterface {
   }
 
   Future<Map<String, dynamic>> _toJson(Shift shift) async {
-    final json = shift.toJson()..remove('userRef');
+    final Map<String, dynamic> json = shift.toJson()..remove('userRef');
     json['userRef'] = await userRepo.getUserRef(shift.user.id);
     return json;
   }
 
   Future<Shift> _fromJson(Map<String, dynamic> rawJson) async {
-    final json = <String, dynamic>{...rawJson}..remove('userRef');
-    final shift = Shift.fromJson(json);
+    final Map<String, dynamic> json = <String, dynamic>{...rawJson}
+      ..remove('userRef');
+    final Shift shift = Shift.fromJson(json);
     return shift.copyWith(
         user: await userRepo
             .fromUserRef(rawJson['userRef'] as DocumentReference));

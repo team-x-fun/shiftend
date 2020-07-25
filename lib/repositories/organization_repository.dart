@@ -26,7 +26,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
 
   @override
   Future<Organization> getOrganization(String id) async {
-    final json =
+    final Map<String, dynamic> json =
         (await firestore.collection(collectionName).document(id).get()).data;
 
     return _fromJson(json);
@@ -52,8 +52,8 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
   }
 
   Future<List<DocumentReference>> _getUsersRef(List<User> users) async {
-    final usersRef = <DocumentReference>[];
-    for (final user in users) {
+    final List<DocumentReference> usersRef = <DocumentReference>[];
+    for (final User user in users) {
       usersRef.add(await userRepo.getUserRef(user.id));
     }
     return usersRef;
@@ -63,7 +63,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     final Map<String, dynamic> result = <String, dynamic>{...rawJson}
       ..remove('owners')
       ..remove('members');
-    final org = Organization.fromJson(result);
+    final Organization org = Organization.fromJson(result);
 
     final List<Future<User>> futureOwners =
         (rawJson['owners'].cast<DocumentReference>() as List<DocumentReference>)

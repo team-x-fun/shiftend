@@ -43,7 +43,8 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
   Future<List<Organization>> getOrganizations(String ownerId) async {
     List<Organization> ownedOrgs;
     for (final org in orgs) {
-      final ownerIndex = org.owners.indexWhere((user) => user.id == ownerId);
+      final int ownerIndex =
+          org.owners.indexWhere((user) => user.id == ownerId);
       if (ownerIndex == -1) {
         continue;
       }

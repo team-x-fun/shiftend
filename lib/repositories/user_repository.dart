@@ -93,7 +93,7 @@ class UserRepository extends UserRepositoryInterface {
 
   @override
   Future<User> getUser(String userId) async {
-    final snapshot =
+    final DocumentSnapshot snapshot =
         await firestore.collection(collectionName).document(userId).get();
     return User.fromJson(snapshot.data);
   }
