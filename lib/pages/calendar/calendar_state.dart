@@ -10,6 +10,6 @@ abstract class CalendarState with _$CalendarState {
     @Default(NotifierState.initial) NotifierState notifierState,
     Map<DateTime, List<Shift>> shifts,
     DateTime selectedDate,
-    List<Shift> selectedShifts,
+    @Default(<Shift>[]) List<Shift> selectedShifts,
   }) = _CalendarState;
 }
