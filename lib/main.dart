@@ -73,6 +73,16 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     final bool isLogin = Provider.of<LoginState>(context, listen: true).isLogin;
+    final bottomNavItems = [
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today), title: Text('カレンダー')),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.person), title: Text('メンバー')),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.settings), title: Text('設定')),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.settings), title: Text('debug')),
+    ];
     if (!isLogin) {
       return LoginPage();
     }
@@ -90,16 +100,7 @@ class _MainState extends State<Main> {
           onTap: onTapped,
           currentIndex: _currentIndex,
           type: BottomNavigationBarType.shifting,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_today), title: const Text('カレンダー')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), title: const Text('メンバー')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), title: const Text('設定')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), title: const Text('debug')),
-          ],
+          items: bottomNavItems,
         ),
       ),
     );
