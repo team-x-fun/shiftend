@@ -73,7 +73,7 @@ class CalendarWidget extends StatelessWidget {
         todayDayBuilder: (context, date, _) {
           // 今日を表すレイアウト
           return Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.blue,
               shape: BoxShape.circle,
             ),
