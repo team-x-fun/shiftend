@@ -20,9 +20,11 @@ class CalendarListWidget extends StatelessWidget {
       print('きた $shifts');
       shifts.forEach(
         (shift) {
-          listItems.add(CalendarListItemWidget(
-            shift: shift,
-          ));
+          listItems.add(
+            CalendarListItemWidget(
+              shift: shift,
+            ),
+          );
         },
       );
     }

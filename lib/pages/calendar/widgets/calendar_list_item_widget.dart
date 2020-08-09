@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/util/formatters.dart';
 
 class CalendarListItemWidget extends StatelessWidget {
   const CalendarListItemWidget({this.shift});
@@ -8,9 +9,8 @@ class CalendarListItemWidget extends StatelessWidget {
   final Shift shift;
   @override
   Widget build(BuildContext context) {
-    final String shitTime =
-        '${shift.start.hour}:${shift.start.minute.toString().padLeft(2, "0")}〜${shift.end.hour}:${shift.end.minute.toString().padLeft(2, "0")}';
-
+    final String shiftTime =
+        '${fullDateToTime(shift.start)}〜${fullDateToTime(shift.end)}';
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: ListTile(
@@ -26,7 +26,7 @@ class CalendarListItemWidget extends StatelessWidget {
           ),
         ),
         title: Text(shift.user.name),
-        subtitle: Text(shitTime),
+        subtitle: Text(shiftTime),
         onTap: () => {
           print('タップされた $shift'),
         },
