@@ -14,7 +14,7 @@ class SettingAccountItem extends StatelessWidget {
     return Container(
       child: ListTile(
         dense: true,
-        trailing: Icon(Icons.keyboard_arrow_right),
+        trailing: const Icon(Icons.keyboard_arrow_right),
         leading: Container(
           height: 50,
           width: 50,
