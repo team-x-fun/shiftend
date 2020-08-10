@@ -48,6 +48,8 @@ abstract class $ShiftCopyWith<$Res> {
       {@UserConverter() @JsonKey(name: 'user') User user,
       DateTime start,
       DateTime end});
+
+  $UserCopyWith<$Res> get user;
 }
 
 class _$ShiftCopyWithImpl<$Res> implements $ShiftCopyWith<$Res> {
@@ -69,6 +71,16 @@ class _$ShiftCopyWithImpl<$Res> implements $ShiftCopyWith<$Res> {
       end: end == freezed ? _value.end : end as DateTime,
     ));
   }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    if (_value.user == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
 }
 
 abstract class _$ShiftCopyWith<$Res> implements $ShiftCopyWith<$Res> {
@@ -79,6 +91,9 @@ abstract class _$ShiftCopyWith<$Res> implements $ShiftCopyWith<$Res> {
       {@UserConverter() @JsonKey(name: 'user') User user,
       DateTime start,
       DateTime end});
+
+  @override
+  $UserCopyWith<$Res> get user;
 }
 
 class __$ShiftCopyWithImpl<$Res> extends _$ShiftCopyWithImpl<$Res>
