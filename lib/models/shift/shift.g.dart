@@ -8,7 +8,7 @@ part of 'shift.dart';
 
 _$_Shift _$_$_ShiftFromJson(Map<String, dynamic> json) {
   return _$_Shift(
-    user: json['user'],
+    user: const UserConverter().fromJson(json['user'] as Map<String, dynamic>),
     start:
         json['start'] == null ? null : DateTime.parse(json['start'] as String),
     end: json['end'] == null ? null : DateTime.parse(json['end'] as String),
@@ -16,7 +16,7 @@ _$_Shift _$_$_ShiftFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$_$_ShiftToJson(_$_Shift instance) => <String, dynamic>{
-      'user': instance.user,
+      'user': const UserConverter().toJson(instance.user),
       'start': instance.start?.toIso8601String(),
       'end': instance.end?.toIso8601String(),
     };

@@ -11,7 +11,7 @@ class SettingListItem extends StatelessWidget {
     return Container(
       child: ListTile(
         dense: true,
-        trailing: Icon(Icons.keyboard_arrow_right),
+        trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () => print('「$detailTitle」を押しました。'),
         title: Text(detailTitle),
       ),

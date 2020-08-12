@@ -16,7 +16,7 @@ class _$CalendarStateTearOff {
       {NotifierState notifierState = NotifierState.initial,
       Map<DateTime, List<Shift>> shifts,
       DateTime selectedDate,
-      List<Shift> selectedShifts}) {
+      List<Shift> selectedShifts = const <Shift>[]}) {
     return _CalendarState(
       notifierState: notifierState,
       shifts: shifts,
@@ -133,8 +133,9 @@ class _$_CalendarState implements _CalendarState {
       {this.notifierState = NotifierState.initial,
       this.shifts,
       this.selectedDate,
-      this.selectedShifts})
-      : assert(notifierState != null);
+      this.selectedShifts = const <Shift>[]})
+      : assert(notifierState != null),
+        assert(selectedShifts != null);
 
   @JsonKey(defaultValue: NotifierState.initial)
   @override
@@ -143,6 +144,7 @@ class _$_CalendarState implements _CalendarState {
   final Map<DateTime, List<Shift>> shifts;
   @override
   final DateTime selectedDate;
+  @JsonKey(defaultValue: const <Shift>[])
   @override
   final List<Shift> selectedShifts;
 
