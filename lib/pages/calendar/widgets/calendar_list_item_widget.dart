@@ -12,7 +12,6 @@ class CalendarListItemWidget extends StatelessWidget {
     final String shiftTime =
         '${fullDateToTime(shift.start)}〜${fullDateToTime(shift.end)}';
     return Container(
-      padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: ListTile(
         leading: Container(
           height: 50,
