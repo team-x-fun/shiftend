@@ -10,7 +10,7 @@ class CalendarListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String shiftTime =
-        '${fullDateToTime(shift.start)}〜${fullDateToTime(shift.end)}';
+        '${extractTime(shift.start)}〜${extractTime(shift.end)}';
     return Container(
       child: ListTile(
         leading: Container(
