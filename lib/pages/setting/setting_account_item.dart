@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/login/login_state.dart';
+import 'package:shiftend/pages/user/user_page.dart';
 
 class SettingAccountItem extends StatelessWidget {
   const SettingAccountItem();
@@ -29,6 +30,13 @@ class SettingAccountItem extends StatelessWidget {
         onTap: () => {
           print('「アカウント」を押しました。'),
           print(user),
+          Navigator.of(context).push(
+            MaterialPageRoute<UserPage>(
+              builder: (context) {
+                return const UserPage();
+              },
+            ),
+          ),
         },
         title: Text(user.name),
         subtitle: Text(user.email),
