@@ -67,6 +67,7 @@ class _MainState extends State<Main> {
     CalendarPage(),
     MemberPage(),
     SettingPage(),
+    LoginPage(),
     DebugPage(),
   ];
 
@@ -81,10 +82,13 @@ class _MainState extends State<Main> {
       const BottomNavigationBarItem(
           icon: Icon(Icons.settings), title: Text('設定')),
       const BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle), title: Text('ログインページ')),
+      const BottomNavigationBarItem(
           icon: Icon(Icons.settings), title: Text('debug')),
     ];
     if (!isLogin) {
-      return LoginPage();
+      // TODO: ログインしていないときは，ログインページに飛ばす
+      // return LoginPage();
     }
     return MultiProvider(
       providers: [
