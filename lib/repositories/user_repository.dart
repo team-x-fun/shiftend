@@ -14,6 +14,12 @@ class UserRepository extends UserRepositoryInterface {
   final Firestore firestore;
   final FirebaseAuth auth;
   static const String collectionName = 'users';
+  final User defaultUser = const User(
+    email: '',
+    name: 'ログインされていません．',
+    iconUrl:
+        'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
+  );
 
   @override
   Future<void> create(User user) async {
@@ -35,7 +41,11 @@ class UserRepository extends UserRepositoryInterface {
 
   @override
   Future<User> getCurrentUser() async {
-    final String uid = await auth.currentUser().then((user) => user.uid);
+    final FirebaseUser currentUser = await auth.currentUser();
+    if (currentUser == null) {
+      return defaultUser;
+    }
+    final uid = currentUser.uid;
     final snapshot =
         await firestore.collection(collectionName).document(uid).get();
     final user = User.fromJson(snapshot.data);
