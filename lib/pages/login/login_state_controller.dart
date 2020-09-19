@@ -16,10 +16,7 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
 
   Future<void> fetchLoginState() async {
     state = state.copyWith(isLogin: await userRepository.isLogin());
-    if (state.isLogin) {
-      state =
-          state.copyWith(currentUser: await userRepository.getCurrentUser());
-    }
+    state = state.copyWith(currentUser: await userRepository.getCurrentUser());
   }
 
   Future<void> register(String email, String password) async {

@@ -26,7 +26,10 @@ class SettingAccountItem extends StatelessWidget {
             ),
           ),
         ),
-        onTap: () => print('「アカウント」を押しました。'),
+        onTap: () => {
+          print('「アカウント」を押しました。'),
+          print(user),
+        },
         title: Text(user.name),
         subtitle: Text(user.email),
       ),
