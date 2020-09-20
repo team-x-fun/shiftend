@@ -53,7 +53,7 @@ class SettingOrgPage extends StatelessWidget {
           onPressed: () {
             // TODO 組織からメンバーを削除する処理
           },
-          child: Text('削除'),
+          child: const Text('削除'),
         ),
       ));
     });
