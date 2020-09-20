@@ -55,12 +55,6 @@ class MyApp extends StatelessWidget {
               firestore: FirebaseFirestore.instance,
               auth: FirebaseAuth.instance),
         ),
-        // Provider<OrganizationRepository>.value(
-        //     value: OrganizationRepository(
-        //         firestore: Firestore.instance,
-        //         userRepo: UserRepository(
-        //             firestore: Firestore.instance,
-        //             auth: FirebaseAuth.instance))),
         StateNotifierProvider<LoginStateController, LoginState>(
           create: (context) => LoginStateController(),
         ),
