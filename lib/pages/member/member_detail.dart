@@ -1,9 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shiftend/pages/setting/setting_account_item.dart';
-import 'package:shiftend/pages/setting/setting_header_item.dart';
-import 'package:shiftend/pages/setting/setting_list_item.dart';
-import 'package:shiftend/pages/setting/setting_logout_item.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_provider.dart';
 
@@ -25,7 +21,6 @@ class MemberDitailPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              // アカウント
               Padding(
                 padding: const EdgeInsets.all(25),
                 child: Container(
@@ -49,7 +44,6 @@ class MemberDitailPage extends StatelessWidget {
                   '${model.level}',
                 ),
                 title: const Text('レベル'),
-                //subtitle: Text(user.role),
               ),
               ListTile(
                 dense: true,
@@ -57,11 +51,7 @@ class MemberDitailPage extends StatelessWidget {
                   '${model.tel}',
                 ),
                 title: const Text('Tel'),
-                //subtitle: Text(user.role),
               ),
-              // お知らせ
-              //const SettingHeaderItem('お知らせ'),
-              //const SettingListItem('運営からのお知らせ'),
             ],
           ),
         ),
