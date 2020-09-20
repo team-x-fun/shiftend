@@ -18,15 +18,27 @@ class UserPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Image.network(user.iconUrl),
-            Text('name: ${user.name}'),
-            Text('email: ${user.email}'),
-            Text('role: ${user.role}'),
-            Text('level: ${user.role}')
-          ],
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage(user.iconUrl),
+                  ),
+                ),
+              ),
+              Text('name: ${user.name}'),
+              Text('email: ${user.email}'),
+              Text('role: ${user.role}'),
+              Text('level: ${user.role}')
+            ],
+          ),
         ),
       ),
     );
