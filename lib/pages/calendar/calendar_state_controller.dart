@@ -2,13 +2,9 @@ import 'package:intl/intl.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
-import 'package:shiftend/pages/calendar/widgets/calendar_desired_shift_widget.dart';
-import 'package:shiftend/pages/calendar/widgets/calendar_list_widget.dart';
 import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
-
-import 'calendar_bottom_tab.dart';
 
 class CalendarStateController extends StateNotifier<CalendarState>
     with LocatorMixin {
@@ -24,7 +20,6 @@ class CalendarStateController extends StateNotifier<CalendarState>
     super.initState();
     fetchShiftsInitial(DateTime.now());
     state = state.copyWith(selectedDate: DateTime.now());
-    initCalenderBottomTabs();
   }
 
   // 初回のみ現在日時の月シフトを取得
@@ -49,13 +44,5 @@ class CalendarStateController extends StateNotifier<CalendarState>
   void onDaySelected(DateTime date, List<Shift> shifts) {
     state = state.copyWith(selectedDate: date);
     state = state.copyWith(selectedShifts: shifts);
-  }
-
-  void initCalenderBottomTabs() {
-    final tabs = [
-      CalendarBottomTab(label: '出勤情報', body: CalendarListWidget()),
-      CalendarBottomTab(label: 'あなたの出勤希望', body: CalendarDesiredShiftWidget()),
-    ];
-    state = state.copyWith(calendarBottomTabs: tabs);
   }
 }
