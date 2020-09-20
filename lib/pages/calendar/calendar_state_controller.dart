@@ -18,7 +18,6 @@ class CalendarStateController extends StateNotifier<CalendarState>
   @override
   void initState() {
     super.initState();
-
     fetchShiftsInitial(DateTime.now());
     state = state.copyWith(selectedDate: DateTime.now());
   }

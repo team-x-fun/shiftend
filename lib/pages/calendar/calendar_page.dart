@@ -3,20 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
+import 'package:shiftend/pages/calendar/widgets/calendar_desired_shift_widget.dart';
+import 'package:shiftend/pages/calendar/widgets/calendar_list_tab_widget.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_list_widget.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_widget.dart';
 import 'package:shiftend/util/formatters.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'calendar_bottom_tab.dart';
+import 'widgets/calendar_list_tab_widget.dart';
 
 class CalendarPage extends StatefulWidget {
   @override
   _CalendarPageState createState() => _CalendarPageState();
 }
 
+final tabs = [
+  CalendarBottomTab(label: '出勤情報', body: CalendarListWidget()),
+  CalendarBottomTab(label: 'あなたの出勤希望', body: CalendarDesiredShiftWidget()),
+];
+
 class _CalendarPageState extends State<CalendarPage>
     with TickerProviderStateMixin {
   AnimationController _animationController;
   CalendarController _calendarController;
+  TabController _tabController;
 
   @override
   void initState() {
@@ -27,12 +37,15 @@ class _CalendarPageState extends State<CalendarPage>
       vsync: this,
       duration: const Duration(milliseconds: 100),
     )..forward();
+
+    _tabController = TabController(vsync: this, length: tabs.length);
   }
 
   @override
   void dispose() {
     _animationController.dispose();
     _calendarController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -58,11 +71,9 @@ class _CalendarPageState extends State<CalendarPage>
                           .selectedDate)),
                 ),
               ),
-              Expanded(
-                child: CalendarListWidget(
-                  shifts: Provider.of<CalendarState>(context, listen: true)
-                      .selectedShifts,
-                ),
+              CalenderListTabWidget(
+                tabController: _tabController,
+                tabs: tabs,
               ),
             ],
           ),
