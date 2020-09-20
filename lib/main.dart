@@ -48,8 +48,7 @@ class MyApp extends StatelessWidget {
         title: 'Shiftend',
         theme: ThemeData(
           primaryColor: Colors.grey[100],
-          visualDensity: VisualDensity.
-          adaptivePlatformDensity,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Main(),
       ),
