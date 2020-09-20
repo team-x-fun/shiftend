@@ -4,6 +4,7 @@ import 'package:shiftend/pages/setting/setting_account_item.dart';
 import 'package:shiftend/pages/setting/setting_header_item.dart';
 import 'package:shiftend/pages/setting/setting_list_item.dart';
 import 'package:shiftend/pages/setting/setting_logout_item.dart';
+import 'package:shiftend/pages/setting_org/setting_org_page.dart';
 
 class SettingPage extends StatelessWidget {
   @override
@@ -27,20 +28,42 @@ class SettingPage extends StatelessWidget {
 
               // お知らせ
               const SettingHeaderItem('お知らせ'),
-              const SettingListItem('運営からのお知らせ'),
+              SettingListItem(
+                detailTitle: '運営からのお知らせ',
+                onTapItem: () {},
+              ),
 
               // 設定
               const SettingHeaderItem('設定'),
-              const SettingListItem('カレンダーの設定'),
+              SettingListItem(
+                detailTitle: 'カレンダーの設定',
+                onTapItem: () {},
+              ),
+              SettingListItem(
+                detailTitle: '組織の設定',
+                onTapItem: () {
+                  Navigator.push<SettingOrgPage>(context,
+                      MaterialPageRoute(builder: (_) => SettingOrgPage()));
+                },
+              ),
 
               // ヘルプ
               const SettingHeaderItem('ヘルプ'),
-              const SettingListItem('使い方を見る'),
+              SettingListItem(
+                detailTitle: '使い方を見る',
+                onTapItem: () {},
+              ),
 
               // その他
               const SettingHeaderItem('その他'),
-              const SettingListItem('このアプリを評価する'),
-              const SettingListItem('このアプリについて'),
+              SettingListItem(
+                detailTitle: 'このアプリを評価する',
+                onTapItem: () {},
+              ),
+              SettingListItem(
+                detailTitle: 'このアプリについて',
+                onTapItem: () {},
+              ),
               SettingLogoutItem(),
             ],
           ),

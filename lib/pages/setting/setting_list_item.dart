@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shiftend/util/typedefs.dart';
 
 class SettingListItem extends StatelessWidget {
-  const SettingListItem(this.detailTitle);
+  const SettingListItem({this.detailTitle, this.onTapItem});
 
   final String detailTitle;
+  final VoidFunction onTapItem;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class SettingListItem extends StatelessWidget {
       child: ListTile(
         dense: true,
         trailing: const Icon(Icons.keyboard_arrow_right),
-        onTap: () => print('「$detailTitle」を押しました。'),
+        onTap: onTapItem,
         title: Text(detailTitle),
       ),
     );
