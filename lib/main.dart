@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -18,8 +19,11 @@ import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:shiftend/repositories/user_repository.dart';
 
-void main() {
-  initializeDateFormatting().then((value) => runApp(MyApp()));
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await initializeDateFormatting().then((value) => runApp(MyApp()));
+  return;
 }
 
 class MyApp extends StatelessWidget {
@@ -29,16 +33,18 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<ShiftRepository>.value(
           value: ShiftRepository(
-              firestore: Firestore.instance,
+              firestore: FirebaseFirestore.instance,
               userRepo: UserRepository(
-                  firestore: Firestore.instance, auth: FirebaseAuth.instance)),
+                  firestore: FirebaseFirestore.instance,
+                  auth: FirebaseAuth.instance)),
         ),
         Provider<ShiftRepositoryMock>.value(
           value: ShiftRepositoryMock(userRepo: UserRepositoryMock()),
         ),
         Provider<UserRepository>.value(
           value: UserRepository(
-              firestore: Firestore.instance, auth: FirebaseAuth.instance),
+              firestore: FirebaseFirestore.instance,
+              auth: FirebaseAuth.instance),
         ),
         StateNotifierProvider<LoginStateController, LoginState>(
           create: (context) => LoginStateController(),

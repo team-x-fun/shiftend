@@ -12,7 +12,7 @@ T _$identity<T>(T value) => value;
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
-  _LoginState call({bool isLogin = false, User currentUser}) {
+  _LoginState call({bool isLogin = false, ShiftendUser currentUser}) {
     return _LoginState(
       isLogin: isLogin,
       currentUser: currentUser,
@@ -25,7 +25,7 @@ const $LoginState = _$LoginStateTearOff();
 
 mixin _$LoginState {
   bool get isLogin;
-  User get currentUser;
+  ShiftendUser get currentUser;
 
   $LoginStateCopyWith<LoginState> get copyWith;
 }
@@ -34,9 +34,9 @@ abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
-  $Res call({bool isLogin, User currentUser});
+  $Res call({bool isLogin, ShiftendUser currentUser});
 
-  $UserCopyWith<$Res> get currentUser;
+  $ShiftendUserCopyWith<$Res> get currentUser;
 }
 
 class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
@@ -53,17 +53,18 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       isLogin: isLogin == freezed ? _value.isLogin : isLogin as bool,
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser as ShiftendUser,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get currentUser {
+  $ShiftendUserCopyWith<$Res> get currentUser {
     if (_value.currentUser == null) {
       return null;
     }
-    return $UserCopyWith<$Res>(_value.currentUser, (value) {
+    return $ShiftendUserCopyWith<$Res>(_value.currentUser, (value) {
       return _then(_value.copyWith(currentUser: value));
     });
   }
@@ -74,10 +75,10 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
           _LoginState value, $Res Function(_LoginState) then) =
       __$LoginStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLogin, User currentUser});
+  $Res call({bool isLogin, ShiftendUser currentUser});
 
   @override
-  $UserCopyWith<$Res> get currentUser;
+  $ShiftendUserCopyWith<$Res> get currentUser;
 }
 
 class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
@@ -96,8 +97,9 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   }) {
     return _then(_LoginState(
       isLogin: isLogin == freezed ? _value.isLogin : isLogin as bool,
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser as ShiftendUser,
     ));
   }
 }
@@ -110,7 +112,7 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   @override
   final bool isLogin;
   @override
-  final User currentUser;
+  final ShiftendUser currentUser;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -150,12 +152,13 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
 }
 
 abstract class _LoginState implements LoginState {
-  const factory _LoginState({bool isLogin, User currentUser}) = _$_LoginState;
+  const factory _LoginState({bool isLogin, ShiftendUser currentUser}) =
+      _$_LoginState;
 
   @override
   bool get isLogin;
   @override
-  User get currentUser;
+  ShiftendUser get currentUser;
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith;
 }

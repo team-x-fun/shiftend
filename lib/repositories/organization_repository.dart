@@ -9,7 +9,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
       : assert(firestore != null),
         assert(userRepo != null);
 
-  final Firestore firestore;
+  final FirebaseFirestore firestore;
   final UserRepositoryInterface userRepo;
   static const String collectionName = 'organizations';
 
@@ -21,13 +21,13 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     json['owners'] = await _getUsersRef(org.owners);
     json['members'] = await _getUsersRef(org.members);
 
-    await firestore.collection(collectionName).document(org.id).setData(json);
+    await firestore.collection(collectionName).doc(org.id).set(json);
   }
 
   @override
   Future<Organization> getOrganization(String id) async {
     final Map<String, dynamic> json =
-        (await firestore.collection(collectionName).document(id).get()).data;
+        (await firestore.collection(collectionName).doc(id).get()).data();
 
     return _fromJson(json);
   }
@@ -37,23 +37,20 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     final orgs = firestore
         .collection(collectionName)
         .where('owners', arrayContains: await userRepo.getUserRef(ownerId));
-    return Future.wait((await orgs.getDocuments())
-        .documents
-        .map((DocumentSnapshot e) => _fromJson(e.data))
+    return Future.wait((await orgs.get())
+        .docs
+        .map((DocumentSnapshot e) => _fromJson(e.data()))
         .toList());
   }
 
   @override
   Future<void> update(Organization org) async {
-    await firestore
-        .collection(collectionName)
-        .document(org.id)
-        .updateData(org.toJson());
+    await firestore.collection(collectionName).doc(org.id).update(org.toJson());
   }
 
-  Future<List<DocumentReference>> _getUsersRef(List<User> users) async {
+  Future<List<DocumentReference>> _getUsersRef(List<ShiftendUser> users) async {
     final List<DocumentReference> usersRef = <DocumentReference>[];
-    for (final User user in users) {
+    for (final ShiftendUser user in users) {
       usersRef.add(await userRepo.getUserRef(user.id));
     }
     return usersRef;
@@ -65,17 +62,17 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
       ..remove('members');
     final Organization org = Organization.fromJson(result);
 
-    final List<Future<User>> futureOwners =
+    final List<Future<ShiftendUser>> futureOwners =
         (rawJson['owners'].cast<DocumentReference>() as List<DocumentReference>)
             .map(userRepo.fromUserRef)
             .toList();
-    final List<User> owners = await Future.wait(futureOwners);
+    final List<ShiftendUser> owners = await Future.wait(futureOwners);
 
-    final List<Future<User>> futureMembers = (rawJson['members']
+    final List<Future<ShiftendUser>> futureMembers = (rawJson['members']
             .cast<DocumentReference>() as List<DocumentReference>)
         .map(userRepo.fromUserRef)
         .toList();
-    final List<User> members = await Future.wait(futureMembers);
+    final List<ShiftendUser> members = await Future.wait(futureMembers);
     return org.copyWith(owners: owners, members: members);
   }
 }

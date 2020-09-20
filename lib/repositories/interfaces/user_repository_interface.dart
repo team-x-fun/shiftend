@@ -5,12 +5,12 @@ abstract class UserRepositoryInterface {
   Future<void> register(String email, String password);
   Future<void> signIn(String email, String password);
   Future<void> signOut();
-  Future<void> create(User user);
-  Future<void> update(User user);
-  Future<User> getCurrentUser();
-  Future<User> getUser(String userId);
-  Future<List<User>> getUsers();
+  Future<void> create(ShiftendUser user);
+  Future<void> update(ShiftendUser user);
+  Future<ShiftendUser> getCurrentUser();
+  Future<ShiftendUser> getUser(String userId);
+  Future<List<ShiftendUser>> getUsers();
   Future<bool> isLogin();
   Future<DocumentReference> getUserRef(String userId);
-  Future<User> fromUserRef(DocumentReference userRef);
+  Future<ShiftendUser> fromUserRef(DocumentReference userRef);
 }

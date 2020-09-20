@@ -1,28 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
 
-part of 'user.dart';
+part of 'shiftend_user.dart';
 
 // **************************************************************************
 // FreezedGenerator
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+ShiftendUser _$ShiftendUserFromJson(Map<String, dynamic> json) {
+  return _ShiftendUser.fromJson(json);
 }
 
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$ShiftendUserTearOff {
+  const _$ShiftendUserTearOff();
 
-  _User call(
+  _ShiftendUser call(
       {String id,
       String email,
       String name,
       String role,
       String level,
       @JsonKey(name: 'icon_url') String iconUrl}) {
-    return _User(
+    return _ShiftendUser(
       id: id,
       email: email,
       name: name,
@@ -34,9 +34,9 @@ class _$UserTearOff {
 }
 
 // ignore: unused_element
-const $User = _$UserTearOff();
+const $ShiftendUser = _$ShiftendUserTearOff();
 
-mixin _$User {
+mixin _$ShiftendUser {
   String get id;
   String get email;
   String get name;
@@ -46,12 +46,13 @@ mixin _$User {
   String get iconUrl;
 
   Map<String, dynamic> toJson();
-  $UserCopyWith<User> get copyWith;
+  $ShiftendUserCopyWith<ShiftendUser> get copyWith;
 }
 
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+abstract class $ShiftendUserCopyWith<$Res> {
+  factory $ShiftendUserCopyWith(
+          ShiftendUser value, $Res Function(ShiftendUser) then) =
+      _$ShiftendUserCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String email,
@@ -61,12 +62,12 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'icon_url') String iconUrl});
 }
 
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$ShiftendUserCopyWithImpl<$Res> implements $ShiftendUserCopyWith<$Res> {
+  _$ShiftendUserCopyWithImpl(this._value, this._then);
 
-  final User _value;
+  final ShiftendUser _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Res Function(ShiftendUser) _then;
 
   @override
   $Res call({
@@ -88,9 +89,11 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   }
 }
 
-abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
+abstract class _$ShiftendUserCopyWith<$Res>
+    implements $ShiftendUserCopyWith<$Res> {
+  factory _$ShiftendUserCopyWith(
+          _ShiftendUser value, $Res Function(_ShiftendUser) then) =
+      __$ShiftendUserCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
@@ -101,13 +104,14 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'icon_url') String iconUrl});
 }
 
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
-      : super(_value, (v) => _then(v as _User));
+class __$ShiftendUserCopyWithImpl<$Res> extends _$ShiftendUserCopyWithImpl<$Res>
+    implements _$ShiftendUserCopyWith<$Res> {
+  __$ShiftendUserCopyWithImpl(
+      _ShiftendUser _value, $Res Function(_ShiftendUser) _then)
+      : super(_value, (v) => _then(v as _ShiftendUser));
 
   @override
-  _User get _value => super._value as _User;
+  _ShiftendUser get _value => super._value as _ShiftendUser;
 
   @override
   $Res call({
@@ -118,7 +122,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object level = freezed,
     Object iconUrl = freezed,
   }) {
-    return _then(_User(
+    return _then(_ShiftendUser(
       id: id == freezed ? _value.id : id as String,
       email: email == freezed ? _value.email : email as String,
       name: name == freezed ? _value.name : name as String,
@@ -130,8 +134,8 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_User with DiagnosticableTreeMixin implements _User {
-  const _$_User(
+class _$_ShiftendUser with DiagnosticableTreeMixin implements _ShiftendUser {
+  const _$_ShiftendUser(
       {this.id,
       this.email,
       this.name,
@@ -139,8 +143,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       this.level,
       @JsonKey(name: 'icon_url') this.iconUrl});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  factory _$_ShiftendUser.fromJson(Map<String, dynamic> json) =>
+      _$_$_ShiftendUserFromJson(json);
 
   @override
   final String id;
@@ -158,14 +162,14 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, email: $email, name: $name, role: $role, level: $level, iconUrl: $iconUrl)';
+    return 'ShiftendUser(id: $id, email: $email, name: $name, role: $role, level: $level, iconUrl: $iconUrl)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('type', 'ShiftendUser'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('name', name))
@@ -177,7 +181,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
+        (other is _ShiftendUser &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.email, email) ||
@@ -203,25 +207,26 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(iconUrl);
 
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  _$ShiftendUserCopyWith<_ShiftendUser> get copyWith =>
+      __$ShiftendUserCopyWithImpl<_ShiftendUser>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserToJson(this);
+    return _$_$_ShiftendUserToJson(this);
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
+abstract class _ShiftendUser implements ShiftendUser {
+  const factory _ShiftendUser(
       {String id,
       String email,
       String name,
       String role,
       String level,
-      @JsonKey(name: 'icon_url') String iconUrl}) = _$_User;
+      @JsonKey(name: 'icon_url') String iconUrl}) = _$_ShiftendUser;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _ShiftendUser.fromJson(Map<String, dynamic> json) =
+      _$_ShiftendUser.fromJson;
 
   @override
   String get id;
@@ -237,5 +242,5 @@ abstract class _User implements User {
   @JsonKey(name: 'icon_url')
   String get iconUrl;
   @override
-  _$UserCopyWith<_User> get copyWith;
+  _$ShiftendUserCopyWith<_ShiftendUser> get copyWith;
 }

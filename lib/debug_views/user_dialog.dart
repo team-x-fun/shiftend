@@ -6,10 +6,10 @@ import 'globals.dart';
 class UserDialog {
   static Future getUser(BuildContext context) async {
     try {
-      firebaseUser = await auth.currentUser();
+      firebaseUser = auth.currentUser;
       if (firebaseUser == null) {
         await auth.signInAnonymously();
-        firebaseUser = await auth.currentUser();
+        firebaseUser = auth.currentUser;
       }
     } on Exception {
       print('ログインに失敗しました．');
@@ -132,12 +132,12 @@ class UserDialog {
   static Future _createUser(
       BuildContext context, String email, String password) async {
     try {
-      User user;
+      ShiftendUser user;
       await auth
           .createUserWithEmailAndPassword(
               email: email.trim(), password: password)
           .then((authResult) => {
-                user = User(
+                user = ShiftendUser(
                     id: authResult.user.uid,
                     email: email.trim(),
                     name: email.trim(),
@@ -153,7 +153,7 @@ class UserDialog {
   }
 
   static Future showUpdateDialog(BuildContext context) async {
-    User user = await userRepo.getCurrentUser();
+    ShiftendUser user = await userRepo.getCurrentUser();
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     await showDialog<dynamic>(
       context: context,

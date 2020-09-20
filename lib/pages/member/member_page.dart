@@ -20,7 +20,7 @@ class MemberPage extends StatelessWidget {
         ),
         body: FutureBuilder(
           future: userRepository.getUsers(),
-          builder: (context, AsyncSnapshot<List<User>> snapshot) {
+          builder: (context, AsyncSnapshot<List<ShiftendUser>> snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
                 itemCount: snapshot.data.length,

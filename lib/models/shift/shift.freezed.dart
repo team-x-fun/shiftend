@@ -16,7 +16,7 @@ class _$ShiftTearOff {
   const _$ShiftTearOff();
 
   _Shift call(
-      {@UserConverter() @JsonKey(name: 'user') User user,
+      {@UserConverter() @JsonKey(name: 'user') ShiftendUser user,
       DateTime start,
       DateTime end}) {
     return _Shift(
@@ -33,7 +33,7 @@ const $Shift = _$ShiftTearOff();
 mixin _$Shift {
   @UserConverter()
   @JsonKey(name: 'user')
-  User get user;
+  ShiftendUser get user;
   DateTime get start;
   DateTime get end;
 
@@ -45,11 +45,11 @@ abstract class $ShiftCopyWith<$Res> {
   factory $ShiftCopyWith(Shift value, $Res Function(Shift) then) =
       _$ShiftCopyWithImpl<$Res>;
   $Res call(
-      {@UserConverter() @JsonKey(name: 'user') User user,
+      {@UserConverter() @JsonKey(name: 'user') ShiftendUser user,
       DateTime start,
       DateTime end});
 
-  $UserCopyWith<$Res> get user;
+  $ShiftendUserCopyWith<$Res> get user;
 }
 
 class _$ShiftCopyWithImpl<$Res> implements $ShiftCopyWith<$Res> {
@@ -66,18 +66,18 @@ class _$ShiftCopyWithImpl<$Res> implements $ShiftCopyWith<$Res> {
     Object end = freezed,
   }) {
     return _then(_value.copyWith(
-      user: user == freezed ? _value.user : user as User,
+      user: user == freezed ? _value.user : user as ShiftendUser,
       start: start == freezed ? _value.start : start as DateTime,
       end: end == freezed ? _value.end : end as DateTime,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get user {
+  $ShiftendUserCopyWith<$Res> get user {
     if (_value.user == null) {
       return null;
     }
-    return $UserCopyWith<$Res>(_value.user, (value) {
+    return $ShiftendUserCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -88,12 +88,12 @@ abstract class _$ShiftCopyWith<$Res> implements $ShiftCopyWith<$Res> {
       __$ShiftCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@UserConverter() @JsonKey(name: 'user') User user,
+      {@UserConverter() @JsonKey(name: 'user') ShiftendUser user,
       DateTime start,
       DateTime end});
 
   @override
-  $UserCopyWith<$Res> get user;
+  $ShiftendUserCopyWith<$Res> get user;
 }
 
 class __$ShiftCopyWithImpl<$Res> extends _$ShiftCopyWithImpl<$Res>
@@ -111,7 +111,7 @@ class __$ShiftCopyWithImpl<$Res> extends _$ShiftCopyWithImpl<$Res>
     Object end = freezed,
   }) {
     return _then(_Shift(
-      user: user == freezed ? _value.user : user as User,
+      user: user == freezed ? _value.user : user as ShiftendUser,
       start: start == freezed ? _value.start : start as DateTime,
       end: end == freezed ? _value.end : end as DateTime,
     ));
@@ -131,7 +131,7 @@ class _$_Shift with DiagnosticableTreeMixin implements _Shift {
   @override
   @UserConverter()
   @JsonKey(name: 'user')
-  final User user;
+  final ShiftendUser user;
   @override
   final DateTime start;
   @override
@@ -183,7 +183,7 @@ class _$_Shift with DiagnosticableTreeMixin implements _Shift {
 
 abstract class _Shift implements Shift {
   const factory _Shift(
-      {@UserConverter() @JsonKey(name: 'user') User user,
+      {@UserConverter() @JsonKey(name: 'user') ShiftendUser user,
       DateTime start,
       DateTime end}) = _$_Shift;
 
@@ -192,7 +192,7 @@ abstract class _Shift implements Shift {
   @override
   @UserConverter()
   @JsonKey(name: 'user')
-  User get user;
+  ShiftendUser get user;
   @override
   DateTime get start;
   @override

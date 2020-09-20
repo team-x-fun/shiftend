@@ -166,12 +166,12 @@ class OrganizationDialog {
 
   static Future _createOrganization(BuildContext context, String id) async {
     Organization org;
-    final User user = await userRepo.getCurrentUser();
+    final ShiftendUser user = await userRepo.getCurrentUser();
     try {
       org = Organization(
         id: id,
-        owners: <User>[user],
-        members: <User>[user],
+        owners: <ShiftendUser>[user],
+        members: <ShiftendUser>[user],
         defaultHolidays: <Holiday>[
           const Holiday(dayOfWeek: 0, nWeek: 0),
           const Holiday(dayOfWeek: 1, nWeek: 1),
@@ -209,7 +209,7 @@ class OrganizationDialog {
 
   static Future _getOrganizations(BuildContext context) async {
     List<Organization> org;
-    final User user = await userRepo.getCurrentUser();
+    final ShiftendUser user = await userRepo.getCurrentUser();
     try {
       org = await orgRepo.getOrganizations(user.id);
       print(org);
