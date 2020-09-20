@@ -6,10 +6,10 @@ import 'globals.dart';
 class UserDialog {
   static Future getUser(BuildContext context) async {
     try {
-      firebaseUser = await auth.currentUser();
+      firebaseUser = auth.currentUser;
       if (firebaseUser == null) {
         await auth.signInAnonymously();
-        firebaseUser = await auth.currentUser();
+        firebaseUser = auth.currentUser;
       }
     } on Exception {
       print('ログインに失敗しました．');

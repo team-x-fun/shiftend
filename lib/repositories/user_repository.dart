@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebaseauth;
 import 'package:meta/meta.dart';
 import 'package:shiftend/models/models.dart';
 
@@ -11,8 +11,8 @@ class UserRepository extends UserRepositoryInterface {
   UserRepository({@required this.firestore, @required this.auth})
       : assert(firestore != null && auth != null);
 
-  final Firestore firestore;
-  final FirebaseAuth auth;
+  final FirebaseFirestore firestore;
+  final firebaseauth.FirebaseAuth auth;
   static const String collectionName = 'users';
   final User defaultUser = const User(
     email: '',
@@ -23,38 +23,31 @@ class UserRepository extends UserRepositoryInterface {
 
   @override
   Future<void> create(User user) async {
-    final String uid = await auth.currentUser().then((user) => user.uid);
-    await firestore
-        .collection(collectionName)
-        .document(uid)
-        .setData(user.toJson());
+    final String uid = auth.currentUser.uid;
+    await firestore.collection(collectionName).doc(uid).set(user.toJson());
   }
 
   @override
   Future<void> update(User user) async {
-    final String uid = await auth.currentUser().then((user) => user.uid);
-    await firestore
-        .collection(collectionName)
-        .document(uid)
-        .updateData(user.toJson());
+    final String uid = auth.currentUser.uid;
+    await firestore.collection(collectionName).doc(uid).update(user.toJson());
   }
 
   @override
   Future<User> getCurrentUser() async {
-    final FirebaseUser currentUser = await auth.currentUser();
+    final currentUser = auth.currentUser;
     if (currentUser == null) {
       return defaultUser;
     }
     final uid = currentUser.uid;
-    final snapshot =
-        await firestore.collection(collectionName).document(uid).get();
-    final user = User.fromJson(snapshot.data);
+    final snapshot = await firestore.collection(collectionName).doc(uid).get();
+    final user = User.fromJson(snapshot.data());
     return user.copyWith(id: uid);
   }
 
   @override
   Future<bool> isLogin() async {
-    return auth.currentUser().then((user) => user != null);
+    return auth.currentUser != null;
   }
 
   @override
@@ -94,18 +87,18 @@ class UserRepository extends UserRepositoryInterface {
 
   @override
   Future<DocumentReference> getUserRef(String userId) async {
-    return firestore.collection(collectionName).document(userId);
+    return firestore.collection(collectionName).doc(userId);
   }
 
   @override
   Future<User> fromUserRef(DocumentReference userRef) async {
-    return User.fromJson((await userRef.get()).data);
+    return User.fromJson((await userRef.get()).data());
   }
 
   @override
   Future<User> getUser(String userId) async {
     final DocumentSnapshot snapshot =
-        await firestore.collection(collectionName).document(userId).get();
-    return User.fromJson(snapshot.data);
+        await firestore.collection(collectionName).doc(userId).get();
+    return User.fromJson(snapshot.data());
   }
 }

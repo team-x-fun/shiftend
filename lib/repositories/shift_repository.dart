@@ -11,7 +11,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
       : assert(firestore != null),
         assert(userRepo != null);
 
-  final Firestore firestore;
+  final FirebaseFirestore firestore;
   final UserRepositoryInterface userRepo;
   static const String collectionName = 'organizations';
   static const String shiftsCollectionName = 'shifts';
@@ -23,7 +23,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
     final DocumentReference shiftRef =
         await _getShiftRef(orgId, shift.start, shift.user.id);
 
-    await shiftRef.setData(await _toJson(shift));
+    await shiftRef.set(await _toJson(shift));
   }
 
   @override
@@ -43,9 +43,9 @@ class ShiftRepository extends ShiftRepositoryInterface {
     for (int i = 1; i < 32; i++) {
       futureMaps[DateTime(month.year, month.month, i)] = shiftsRef
           .collection(i.toString())
-          .getDocuments()
+          .get()
           .then<List<Future<Shift>>>((thisMonthShift) =>
-              thisMonthShift.documents.map((s) => _fromJson(s.data)).toList());
+              thisMonthShift.docs.map((s) => _fromJson(s.data())).toList());
       count.add(const Duration(days: 1));
       if (count.month != month.month) {
         break;
@@ -64,7 +64,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
   Future<void> update(String orgId, Shift shift) async {
     final DocumentReference shiftRef =
         await _getShiftRef(orgId, shift.start, shift.user.id);
-    await shiftRef.updateData(await _toJson(shift));
+    await shiftRef.update(await _toJson(shift));
   }
 
   Future<DocumentReference> _getShiftsRef(String orgId, DateTime day) async {
@@ -74,16 +74,16 @@ class ShiftRepository extends ShiftRepositoryInterface {
     final ym_str = formatter.format(ym);
     return firestore
         .collection(collectionName)
-        .document(orgId)
+        .doc(orgId)
         .collection(shiftsCollectionName)
-        .document(ym_str);
+        .doc(ym_str);
   }
 
   Future<DocumentReference> _getShiftRef(
       String orgId, DateTime day, String userId) async {
     return (await _getShiftsRef(orgId, day))
         .collection(day.day.toString())
-        .document(userId);
+        .doc(userId);
   }
 
   Future<Map<String, dynamic>> _toJson(Shift shift) async {
