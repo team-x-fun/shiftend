@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<OrganizationRepository>.value(
             value: OrganizationRepository(
-                firestore: Firestore.instance,
+                firestore: FirebaseFirestore.instance,
                 userRepo: UserRepository(
-                    firestore: Firestore.instance,
+                    firestore: FirebaseFirestore.instance,
                     auth: FirebaseAuth.instance))),
         Provider<ShiftRepository>.value(
           value: ShiftRepository(
