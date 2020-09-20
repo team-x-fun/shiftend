@@ -12,10 +12,13 @@ import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
 import 'package:shiftend/pages/login/login_page.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/login/login_state_controller.dart';
-import 'package:shiftend/pages/setting/setting_page.dart';
 import 'package:shiftend/pages/member/member_page.dart';
+import 'package:shiftend/pages/setting/setting_page.dart';
+import 'package:shiftend/pages/setting_org/setting_org_state.dart';
+import 'package:shiftend/pages/setting_org/setting_org_state_controller.dart';
 import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
+import 'package:shiftend/repositories/organization_repository.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:shiftend/repositories/user_repository.dart';
 
@@ -31,6 +34,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<OrganizationRepository>.value(
+            value: OrganizationRepository(
+                firestore: Firestore.instance,
+                userRepo: UserRepository(
+                    firestore: Firestore.instance,
+                    auth: FirebaseAuth.instance))),
         Provider<ShiftRepository>.value(
           value: ShiftRepository(
               firestore: FirebaseFirestore.instance,
@@ -46,6 +55,12 @@ class MyApp extends StatelessWidget {
               firestore: FirebaseFirestore.instance,
               auth: FirebaseAuth.instance),
         ),
+        // Provider<OrganizationRepository>.value(
+        //     value: OrganizationRepository(
+        //         firestore: Firestore.instance,
+        //         userRepo: UserRepository(
+        //             firestore: Firestore.instance,
+        //             auth: FirebaseAuth.instance))),
         StateNotifierProvider<LoginStateController, LoginState>(
           create: (context) => LoginStateController(),
         ),
@@ -100,6 +115,9 @@ class _MainState extends State<Main> {
       providers: [
         StateNotifierProvider<CalendarStateController, CalendarState>(
           create: (context) => CalendarStateController(),
+        ),
+        StateNotifierProvider<SettingOrgStateController, SettingOrgState>(
+          create: (context) => SettingOrgStateController(),
         ),
       ],
       child: Scaffold(
