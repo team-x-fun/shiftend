@@ -9,7 +9,7 @@ class SettingAccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShiftendUser user =
+    final User user =
         Provider.of<LoginState>(context, listen: true).currentUser;
     return Container(
       child: ListTile(

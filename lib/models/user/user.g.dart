@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shiftend_user.dart';
+part of 'user.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ShiftendUser _$_$_ShiftendUserFromJson(Map<String, dynamic> json) {
-  return _$_ShiftendUser(
+_$_User _$_$_UserFromJson(Map<String, dynamic> json) {
+  return _$_User(
     id: json['id'] as String,
     email: json['email'] as String,
     name: json['name'] as String,
@@ -17,8 +17,7 @@ _$_ShiftendUser _$_$_ShiftendUserFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_ShiftendUserToJson(_$_ShiftendUser instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,

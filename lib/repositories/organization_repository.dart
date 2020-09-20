@@ -48,9 +48,9 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     await firestore.collection(collectionName).doc(org.id).update(org.toJson());
   }
 
-  Future<List<DocumentReference>> _getUsersRef(List<ShiftendUser> users) async {
+  Future<List<DocumentReference>> _getUsersRef(List<User> users) async {
     final List<DocumentReference> usersRef = <DocumentReference>[];
-    for (final ShiftendUser user in users) {
+    for (final User user in users) {
       usersRef.add(await userRepo.getUserRef(user.id));
     }
     return usersRef;
@@ -62,17 +62,17 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
       ..remove('members');
     final Organization org = Organization.fromJson(result);
 
-    final List<Future<ShiftendUser>> futureOwners =
+    final List<Future<User>> futureOwners =
         (rawJson['owners'].cast<DocumentReference>() as List<DocumentReference>)
             .map(userRepo.fromUserRef)
             .toList();
-    final List<ShiftendUser> owners = await Future.wait(futureOwners);
+    final List<User> owners = await Future.wait(futureOwners);
 
-    final List<Future<ShiftendUser>> futureMembers = (rawJson['members']
+    final List<Future<User>> futureMembers = (rawJson['members']
             .cast<DocumentReference>() as List<DocumentReference>)
         .map(userRepo.fromUserRef)
         .toList();
-    final List<ShiftendUser> members = await Future.wait(futureMembers);
+    final List<User> members = await Future.wait(futureMembers);
     return org.copyWith(owners: owners, members: members);
   }
 }

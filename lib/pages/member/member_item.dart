@@ -8,7 +8,7 @@ import 'member_provider.dart';
 class MemberItem extends StatelessWidget {
   const MemberItem({this.user});
 
-  final ShiftendUser user;
+  final User user;
 
   @override
   Widget build(BuildContext context) {

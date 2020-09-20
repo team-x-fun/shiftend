@@ -5,8 +5,8 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 
 class UserRepositoryMock extends UserRepositoryInterface {
-  final List<ShiftendUser> _users = <ShiftendUser>[
-    const ShiftendUser(
+  final List<User> _users = <User>[
+    const User(
         id: '0',
         email: 'test@example.com',
         iconUrl:
@@ -14,7 +14,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         name: '佐藤 勇一郎',
         role: 'オーナー',
         level: '100'),
-    const ShiftendUser(
+    const User(
         id: '1',
         email: 'test@example.com',
         iconUrl:
@@ -22,7 +22,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         name: '工藤 大輔',
         role: 'オーナー',
         level: '100'),
-    const ShiftendUser(
+    const User(
         id: '2',
         email: 'test@example.com',
         iconUrl:
@@ -31,8 +31,8 @@ class UserRepositoryMock extends UserRepositoryInterface {
         role: 'バイトリーダ',
         level: '50'),
   ];
-  List<ShiftendUser> get users => _users;
-  ShiftendUser currentUser = const ShiftendUser(
+  List<User> get users => _users;
+  User currentUser = const User(
       id: 'test_user',
       email: 'test@example.com',
       name: 'test太郎',
@@ -41,18 +41,18 @@ class UserRepositoryMock extends UserRepositoryInterface {
       iconUrl: 'https://avatars0.githubusercontent.com/u/57802072');
 
   @override
-  Future<void> create(ShiftendUser user) async {
+  Future<void> create(User user) async {
     users.add(user);
     return;
   }
 
   @override
-  Future<ShiftendUser> getCurrentUser() async {
+  Future<User> getCurrentUser() async {
     return currentUser;
   }
 
   @override
-  Future<void> update(ShiftendUser user) async {
+  Future<void> update(User user) async {
     users.asMap().forEach((key, value) {
       if (value.id == user.id) {
         users[key] = user;
@@ -63,7 +63,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
   }
 
   @override
-  Future<List<ShiftendUser>> getUsers() async {
+  Future<List<User>> getUsers() async {
     return users;
   }
 
@@ -97,13 +97,13 @@ class UserRepositoryMock extends UserRepositoryInterface {
   }
 
   @override
-  Future<ShiftendUser> fromUserRef(DocumentReference userRef) {
+  Future<User> fromUserRef(DocumentReference userRef) {
     // TODO: implement fromUserRef
     throw UnimplementedError();
   }
 
   @override
-  Future<ShiftendUser> getUser(String userId) async {
+  Future<User> getUser(String userId) async {
     return users.singleWhere((user) => user.id == userId);
   }
 }

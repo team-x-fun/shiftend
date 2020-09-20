@@ -132,12 +132,12 @@ class UserDialog {
   static Future _createUser(
       BuildContext context, String email, String password) async {
     try {
-      ShiftendUser user;
+      User user;
       await auth
           .createUserWithEmailAndPassword(
               email: email.trim(), password: password)
           .then((authResult) => {
-                user = ShiftendUser(
+                user = User(
                     id: authResult.user.uid,
                     email: email.trim(),
                     name: email.trim(),
@@ -153,7 +153,7 @@ class UserDialog {
   }
 
   static Future showUpdateDialog(BuildContext context) async {
-    ShiftendUser user = await userRepo.getCurrentUser();
+    User user = await userRepo.getCurrentUser();
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     await showDialog<dynamic>(
       context: context,

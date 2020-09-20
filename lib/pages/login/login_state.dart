@@ -7,6 +7,6 @@ part 'login_state.freezed.dart';
 abstract class LoginState with _$LoginState {
   const factory LoginState({
     @Default(false) bool isLogin,
-    ShiftendUser currentUser,
+    User currentUser,
   }) = _LoginState;
 }

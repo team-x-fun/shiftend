@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebaseauth;
 import 'package:meta/meta.dart';
 import 'package:shiftend/models/models.dart';
 
@@ -12,9 +12,9 @@ class UserRepository extends UserRepositoryInterface {
       : assert(firestore != null && auth != null);
 
   final FirebaseFirestore firestore;
-  final FirebaseAuth auth;
+  final firebaseauth.FirebaseAuth auth;
   static const String collectionName = 'users';
-  final ShiftendUser defaultUser = const ShiftendUser(
+  final User defaultUser = const User(
     email: '',
     name: 'ログインされていません．',
     iconUrl:
@@ -22,26 +22,26 @@ class UserRepository extends UserRepositoryInterface {
   );
 
   @override
-  Future<void> create(ShiftendUser user) async {
+  Future<void> create(User user) async {
     final String uid = auth.currentUser.uid;
     await firestore.collection(collectionName).doc(uid).set(user.toJson());
   }
 
   @override
-  Future<void> update(ShiftendUser user) async {
+  Future<void> update(User user) async {
     final String uid = auth.currentUser.uid;
     await firestore.collection(collectionName).doc(uid).update(user.toJson());
   }
 
   @override
-  Future<ShiftendUser> getCurrentUser() async {
-    final User currentUser = auth.currentUser;
+  Future<User> getCurrentUser() async {
+    final currentUser = auth.currentUser;
     if (currentUser == null) {
       return defaultUser;
     }
     final uid = currentUser.uid;
     final snapshot = await firestore.collection(collectionName).doc(uid).get();
-    final user = ShiftendUser.fromJson(snapshot.data());
+    final user = User.fromJson(snapshot.data());
     return user.copyWith(id: uid);
   }
 
@@ -51,7 +51,7 @@ class UserRepository extends UserRepositoryInterface {
   }
 
   @override
-  Future<List<ShiftendUser>> getUsers() async {
+  Future<List<User>> getUsers() async {
     // TODO: implement getUsers
 
     throw UnimplementedError();
@@ -59,11 +59,11 @@ class UserRepository extends UserRepositoryInterface {
 
   @override
   Future<void> register(String email, String password) async {
-    ShiftendUser user;
+    User user;
     await auth
         .createUserWithEmailAndPassword(email: email.trim(), password: password)
         .then((authResult) => {
-              user = ShiftendUser(
+              user = User(
                   id: authResult.user.uid,
                   email: email.trim(),
                   name: email.trim(),
@@ -91,14 +91,14 @@ class UserRepository extends UserRepositoryInterface {
   }
 
   @override
-  Future<ShiftendUser> fromUserRef(DocumentReference userRef) async {
-    return ShiftendUser.fromJson((await userRef.get()).data());
+  Future<User> fromUserRef(DocumentReference userRef) async {
+    return User.fromJson((await userRef.get()).data());
   }
 
   @override
-  Future<ShiftendUser> getUser(String userId) async {
+  Future<User> getUser(String userId) async {
     final DocumentSnapshot snapshot =
         await firestore.collection(collectionName).doc(userId).get();
-    return ShiftendUser.fromJson(snapshot.data());
+    return User.fromJson(snapshot.data());
   }
 }

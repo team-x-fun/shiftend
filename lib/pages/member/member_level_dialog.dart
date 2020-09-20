@@ -6,7 +6,7 @@ import 'package:shiftend/pages/member/member_provider.dart';
 class MemberLevelDialog extends StatelessWidget {
   const MemberLevelDialog(this.user, this.model);
 
-  final ShiftendUser user;
+  final User user;
   final MemberProvider model;
 
   @override

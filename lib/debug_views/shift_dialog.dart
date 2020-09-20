@@ -97,7 +97,7 @@ class ShiftDialog {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 print(userId);
-                final ShiftendUser user = await userRepo.getUser(userId);
+                final User user = await userRepo.getUser(userId);
                 shift = shift.copyWith(user: user);
                 print(shift);
                 await shiftRepo.create(orgId, shift);

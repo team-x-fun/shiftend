@@ -10,8 +10,8 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
     orgs.add(
       Organization(
         id: 'test_id',
-        owners: <ShiftendUser>[_userRepo.currentUser],
-        members: <ShiftendUser>[_userRepo.currentUser],
+        owners: <User>[_userRepo.currentUser],
+        members: <User>[_userRepo.currentUser],
         defaultHolidays: <Holiday>[
           const Holiday(dayOfWeek: 0, nWeek: 0),
           const Holiday(dayOfWeek: 1, nWeek: 1),

@@ -1,19 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shiftend/models/models.dart';
 
-class UserConverter<T>
-    implements JsonConverter<ShiftendUser, Map<String, dynamic>> {
+class UserConverter<T> implements JsonConverter<User, Map<String, dynamic>> {
   const UserConverter();
 
   @override
-  ShiftendUser fromJson(Map<String, dynamic> json) {
+  User fromJson(Map<String, dynamic> json) {
     if (json != null) {
-      return ShiftendUser.fromJson(json);
+      return User.fromJson(json);
     } else {
       return null;
     }
   }
 
   @override
-  Map<String, dynamic> toJson(ShiftendUser user) => user?.toJson();
+  Map<String, dynamic> toJson(User user) => user?.toJson();
 }
