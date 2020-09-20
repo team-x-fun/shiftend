@@ -8,12 +8,22 @@ import 'member_provider.dart';
 import 'member_detail.dart';
 
 class MemberItem extends StatelessWidget {
-  const MemberItem({this.user});
+  const MemberItem({this.user, this.model});
 
   final User user;
+  final MemberProvider model;
 
   @override
   Widget build(BuildContext context) {
+    final starsItem = <Widget>[];
+    for (var i = 0; i < model.level; i++) {
+      starsItem.add(
+        const Icon(
+          Icons.star,
+          color: Colors.yellow,
+        ),
+      );
+    }
     return ChangeNotifierProvider<MemberProvider>(
       create: (_) => MemberProvider(),
       child: Column(
@@ -38,11 +48,9 @@ class MemberItem extends StatelessWidget {
                 child: ListTile(
                   dense: true,
                   trailing: Row(
-                    mainAxisSize: MainAxisSize.min,children: [
-                    const Icon(Icons.star, color: Colors.yellow,),
-                    const Icon(Icons.star, color: Colors.yellow,),
-                    const Icon(Icons.star, color: Colors.yellow,),
-                  ],),
+                    mainAxisSize: MainAxisSize.min,
+                    children: starsItem,
+                  ),
                   // trailing: const Icon(Icons.star, color: Colors.yellow,),
                   // trailing: Text(
                   //   '${model.level.toString()}',

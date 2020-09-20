@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MemberProvider extends ChangeNotifier {
-  int level = 0; // default member level
+  int level = 1; // default member level
   String tel = '000-000-0000'; //default Telephone number
 
   void changeLevel(int userLevel){
