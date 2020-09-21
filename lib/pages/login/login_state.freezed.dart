@@ -12,10 +12,16 @@ T _$identity<T>(T value) => value;
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
-  _LoginState call({bool isLogin = false, User currentUser}) {
+  _LoginState call(
+      {bool isLogin = false,
+      User currentUser,
+      List<Organization> orgs,
+      Organization selectedOrg}) {
     return _LoginState(
       isLogin: isLogin,
       currentUser: currentUser,
+      orgs: orgs,
+      selectedOrg: selectedOrg,
     );
   }
 }
@@ -26,6 +32,8 @@ const $LoginState = _$LoginStateTearOff();
 mixin _$LoginState {
   bool get isLogin;
   User get currentUser;
+  List<Organization> get orgs;
+  Organization get selectedOrg;
 
   $LoginStateCopyWith<LoginState> get copyWith;
 }
@@ -34,9 +42,14 @@ abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
-  $Res call({bool isLogin, User currentUser});
+  $Res call(
+      {bool isLogin,
+      User currentUser,
+      List<Organization> orgs,
+      Organization selectedOrg});
 
   $UserCopyWith<$Res> get currentUser;
+  $OrganizationCopyWith<$Res> get selectedOrg;
 }
 
 class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
@@ -50,11 +63,17 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   $Res call({
     Object isLogin = freezed,
     Object currentUser = freezed,
+    Object orgs = freezed,
+    Object selectedOrg = freezed,
   }) {
     return _then(_value.copyWith(
       isLogin: isLogin == freezed ? _value.isLogin : isLogin as bool,
       currentUser:
           currentUser == freezed ? _value.currentUser : currentUser as User,
+      orgs: orgs == freezed ? _value.orgs : orgs as List<Organization>,
+      selectedOrg: selectedOrg == freezed
+          ? _value.selectedOrg
+          : selectedOrg as Organization,
     ));
   }
 
@@ -67,6 +86,16 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
       return _then(_value.copyWith(currentUser: value));
     });
   }
+
+  @override
+  $OrganizationCopyWith<$Res> get selectedOrg {
+    if (_value.selectedOrg == null) {
+      return null;
+    }
+    return $OrganizationCopyWith<$Res>(_value.selectedOrg, (value) {
+      return _then(_value.copyWith(selectedOrg: value));
+    });
+  }
 }
 
 abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
@@ -74,10 +103,16 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
           _LoginState value, $Res Function(_LoginState) then) =
       __$LoginStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLogin, User currentUser});
+  $Res call(
+      {bool isLogin,
+      User currentUser,
+      List<Organization> orgs,
+      Organization selectedOrg});
 
   @override
   $UserCopyWith<$Res> get currentUser;
+  @override
+  $OrganizationCopyWith<$Res> get selectedOrg;
 }
 
 class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
@@ -93,17 +128,24 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   $Res call({
     Object isLogin = freezed,
     Object currentUser = freezed,
+    Object orgs = freezed,
+    Object selectedOrg = freezed,
   }) {
     return _then(_LoginState(
       isLogin: isLogin == freezed ? _value.isLogin : isLogin as bool,
       currentUser:
           currentUser == freezed ? _value.currentUser : currentUser as User,
+      orgs: orgs == freezed ? _value.orgs : orgs as List<Organization>,
+      selectedOrg: selectedOrg == freezed
+          ? _value.selectedOrg
+          : selectedOrg as Organization,
     ));
   }
 }
 
 class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
-  const _$_LoginState({this.isLogin = false, this.currentUser})
+  const _$_LoginState(
+      {this.isLogin = false, this.currentUser, this.orgs, this.selectedOrg})
       : assert(isLogin != null);
 
   @JsonKey(defaultValue: false)
@@ -111,10 +153,14 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   final bool isLogin;
   @override
   final User currentUser;
+  @override
+  final List<Organization> orgs;
+  @override
+  final Organization selectedOrg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState(isLogin: $isLogin, currentUser: $currentUser)';
+    return 'LoginState(isLogin: $isLogin, currentUser: $currentUser, orgs: $orgs, selectedOrg: $selectedOrg)';
   }
 
   @override
@@ -123,7 +169,9 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
     properties
       ..add(DiagnosticsProperty('type', 'LoginState'))
       ..add(DiagnosticsProperty('isLogin', isLogin))
-      ..add(DiagnosticsProperty('currentUser', currentUser));
+      ..add(DiagnosticsProperty('currentUser', currentUser))
+      ..add(DiagnosticsProperty('orgs', orgs))
+      ..add(DiagnosticsProperty('selectedOrg', selectedOrg));
   }
 
   @override
@@ -135,14 +183,21 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
                     .equals(other.isLogin, isLogin)) &&
             (identical(other.currentUser, currentUser) ||
                 const DeepCollectionEquality()
-                    .equals(other.currentUser, currentUser)));
+                    .equals(other.currentUser, currentUser)) &&
+            (identical(other.orgs, orgs) ||
+                const DeepCollectionEquality().equals(other.orgs, orgs)) &&
+            (identical(other.selectedOrg, selectedOrg) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectedOrg, selectedOrg)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isLogin) ^
-      const DeepCollectionEquality().hash(currentUser);
+      const DeepCollectionEquality().hash(currentUser) ^
+      const DeepCollectionEquality().hash(orgs) ^
+      const DeepCollectionEquality().hash(selectedOrg);
 
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith =>
@@ -150,12 +205,20 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
 }
 
 abstract class _LoginState implements LoginState {
-  const factory _LoginState({bool isLogin, User currentUser}) = _$_LoginState;
+  const factory _LoginState(
+      {bool isLogin,
+      User currentUser,
+      List<Organization> orgs,
+      Organization selectedOrg}) = _$_LoginState;
 
   @override
   bool get isLogin;
   @override
   User get currentUser;
+  @override
+  List<Organization> get orgs;
+  @override
+  Organization get selectedOrg;
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith;
 }

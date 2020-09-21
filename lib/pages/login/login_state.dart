@@ -8,5 +8,7 @@ abstract class LoginState with _$LoginState {
   const factory LoginState({
     @Default(false) bool isLogin,
     User currentUser,
+    List<Organization> orgs,
+    Organization selectedOrg,
   }) = _LoginState;
 }

@@ -1,3 +1,5 @@
+import 'package:shiftend/models/models.dart';
+import 'package:shiftend/repositories/organization_repository.dart';
 import 'package:shiftend/repositories/user_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -7,6 +9,7 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
   LoginStateController() : super(const LoginState());
 
   UserRepository get userRepository => read<UserRepository>();
+  OrganizationRepository get orgRepository => read<OrganizationRepository>();
 
   @override
   void initState() {
@@ -15,8 +18,15 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
   }
 
   Future<void> fetchLoginState() async {
-    state = state.copyWith(isLogin: await userRepository.isLogin());
-    state = state.copyWith(currentUser: await userRepository.getCurrentUser());
+    state = state.copyWith(
+      isLogin: await userRepository.isLogin(),
+    );
+    state = state.copyWith(
+      currentUser: await userRepository.getCurrentUser(),
+    );
+    state = state.copyWith(
+      orgs: await orgRepository.getOrganizations(state.currentUser.id),
+    );
   }
 
   Future<void> register(String email, String password) async {
@@ -31,6 +41,11 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
 
   Future<void> signOut() async {
     await userRepository.signOut();
+    await fetchLoginState();
+  }
+
+  Future<void> selectOrg(Organization newOrg) async {
+    state = state.copyWith(selectedOrg: newOrg);
     await fetchLoginState();
   }
 }

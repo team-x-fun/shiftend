@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/pages/login/login_state.dart';
+import 'package:shiftend/pages/user/widgets/org_select_widget.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage();
@@ -36,7 +37,8 @@ class UserPage extends StatelessWidget {
               Text('name: ${user.name}'),
               Text('email: ${user.email}'),
               Text('role: ${user.role}'),
-              Text('level: ${user.role}')
+              Text('level: ${user.role}'),
+              OrgSelectWidget(),
             ],
           ),
         ),
