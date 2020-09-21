@@ -28,7 +28,9 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
   Future<Organization> getOrganization(String id) async {
     final Map<String, dynamic> json =
         (await firestore.collection(collectionName).doc(id).get()).data();
-
+    if (json == null) {
+      return null;
+    }
     return _fromJson(json);
   }
 

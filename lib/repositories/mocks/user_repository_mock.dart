@@ -106,4 +106,10 @@ class UserRepositoryMock extends UserRepositoryInterface {
   Future<User> getUser(String userId) async {
     return users.singleWhere((user) => user.id == userId);
   }
+
+  @override
+  Future<User> findByEmail(String email) {
+    // TODO: implement findByEmail
+    throw UnimplementedError();
+  }
 }

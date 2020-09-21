@@ -4,16 +4,26 @@ import 'package:shiftend/debug_views/shift_dialog.dart';
 import 'package:shiftend/debug_views/user_dialog.dart';
 
 import 'organization_dialog.dart';
+import 'test_data.dart';
 
 class DebugPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final testdata = TestData();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Debug Page'),
       ),
       body: Column(
         children: <Widget>[
+          FlatButton(
+            child: const Text('test data作成'),
+            onPressed: () {
+              print('pressed test data');
+              testdata.insert();
+              print('done insert test data');
+            },
+          ),
           FlatButton(
             child: const Text('user load'),
             onPressed: () {
