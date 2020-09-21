@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
+import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
 import 'package:shiftend/repositories/shift_request_repository.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
@@ -21,10 +22,13 @@ class CalendarStateController extends StateNotifier<CalendarState>
 
   UserRepository get userRepository => read<UserRepository>();
 
+  LoginState get loginState => read<LoginState>();
+
   final _dateFormatter = DateFormat('yyyy-MM-dd');
 
   @override
   void initState() {
+    print('CalenderStateController.initState');
     super.initState();
     fetchShiftsInitial(DateTime.now());
     state = state.copyWith(selectedDate: DateTime.now());
@@ -32,9 +36,15 @@ class CalendarStateController extends StateNotifier<CalendarState>
 
   // 初回のみ現在日時の月シフトを取得
   Future<void> fetchShiftsInitial(DateTime date) async {
+    print('fetchShiftsInitial');
     state = state.copyWith(notifierState: NotifierState.loading);
-
-    final shifts = await shiftRepository.getShifts('refOrg', date);
+    if (loginState.selectedOrg == null) {
+      state = state.copyWith(notifierState: NotifierState.loaded);
+      return;
+    }
+    print('fetchShiftsInitial: selectedOrg.id = ${loginState.selectedOrg.id}');
+    final shifts =
+        await shiftRepository.getShifts(loginState.selectedOrg.id, date);
     final formattedNow = _dateFormatter.format(state.selectedDate);
     state = state.copyWith(shifts: shifts, notifierState: NotifierState.loaded);
     state = state.copyWith(selectedShifts: shifts[formattedNow]);
@@ -42,8 +52,12 @@ class CalendarStateController extends StateNotifier<CalendarState>
 
   // カレンダーで月を変えるごとに月ごとのデータを取得する
   Future<void> fetchShiftsOfMonth(DateTime date) async {
-    // TODO: getShiftsのorgIdは今後動的に変えられるようにする．今は固定
-    final shifts = await shiftRepository.getShifts('refOrg', date);
+    if (loginState.selectedOrg == null) {
+      return;
+    }
+    final shifts =
+        await shiftRepository.getShifts(loginState.selectedOrg.id, date);
+    print('fetchShiftsOfMonth: selectedOrg.id = ${loginState.selectedOrg.id}');
     state = state.copyWith(shifts: shifts);
     print(shifts);
   }
@@ -55,8 +69,11 @@ class CalendarStateController extends StateNotifier<CalendarState>
   }
 
   Future<void> fetchLoggedinUserRequestedShifts(DateTime date) async {
+    if (loginState.selectedOrg == null) {
+      return;
+    }
     final requestedShifts =
-        await shiftRequestRepository.getShifts('refOrg', date);
+        await shiftRequestRepository.getShifts(loginState.selectedOrg.id, date);
     final currentUser = await userRepository.getCurrentUser();
     state = state.copyWith(
         loggedinUserRequestedShifts:

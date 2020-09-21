@@ -15,6 +15,9 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
   void initState() {
     super.initState();
     fetchLoginState();
+    if (state.selectedOrg == null && state.currentUser != null) {
+      state = state.copyWith(selectedOrg: state.orgs.first);
+    }
   }
 
   Future<void> fetchLoginState() async {
@@ -24,9 +27,11 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
     state = state.copyWith(
       currentUser: await userRepository.getCurrentUser(),
     );
-    state = state.copyWith(
-      orgs: await orgRepository.getOrganizations(state.currentUser.id),
-    );
+    if (state.currentUser != null) {
+      state = state.copyWith(
+        orgs: await orgRepository.getOrganizations(state.currentUser.id),
+      );
+    }
   }
 
   Future<void> register(String email, String password) async {
@@ -46,6 +51,7 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
 
   Future<void> selectOrg(Organization newOrg) async {
     state = state.copyWith(selectedOrg: newOrg);
+    print('selectOrg: ${state.selectedOrg}');
     await fetchLoginState();
   }
 }
