@@ -43,11 +43,18 @@ class CalendarStateController extends StateNotifier<CalendarState>
         'fetchShiftsInitial: selectedOrg.id = ${loginState.selectedOrg.id}');
     final shifts =
         await shiftRepository.getShifts(loginState.selectedOrg.id, date);
+    final requestShifts =
+        await shiftRequestRepository.getShifts('refOrg', date);
     final formattedNow = _dateFormatter.format(state.selectedDate);
-    state = state.copyWith(shifts: shifts, notifierState: NotifierState.loaded);
+    state = state.copyWith(
+        shifts: shifts,
+        requestedShifts: requestShifts,
+        notifierState: NotifierState.loaded);
     if (shifts[formattedNow] != null) {
       // 起動時，formattedNow(今日の日付)にshiftが存在しなかった場合, nullでエラーになるため回避
-      state = state.copyWith(selectedShifts: shifts[formattedNow]);
+      state = state.copyWith(
+          selectedShifts: shifts[formattedNow],
+          selectedRequestedShifts: requestShifts[formattedNow]);
     }
   }
 
@@ -65,9 +72,11 @@ class CalendarStateController extends StateNotifier<CalendarState>
   }
 
   // 日付が選択されたときに下半分のシフトリストのデータを更新
-  void onDaySelected(DateTime date, List<Shift> shifts) {
+  void onDaySelected(
+      DateTime date, List<Shift> shifts, List<Shift> requestedShifts) {
     state = state.copyWith(selectedDate: date);
-    state = state.copyWith(selectedShifts: shifts);
+    state = state.copyWith(
+        selectedShifts: shifts, selectedRequestedShifts: requestedShifts);
   }
 
   Future<void> fetchLoggedinUserRequestedShifts(DateTime date) async {

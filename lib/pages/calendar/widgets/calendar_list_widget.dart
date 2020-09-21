@@ -15,6 +15,10 @@ class CalendarListWidget extends StatelessWidget {
     final List<Widget> listItems = [];
     final shifts = context
         .select<CalendarState, List<Shift>>((state) => state.selectedShifts);
+    final shifts =
+        Provider.of<CalendarState>(context, listen: true).selectedShifts;
+    final requestedShifts =
+        Provider.of<CalendarState>(context).selectedRequestedShifts;
     if (shifts.isNotEmpty) {
       logger.info('きた $shifts');
       shifts.forEach(
@@ -34,7 +38,7 @@ class CalendarListWidget extends StatelessWidget {
         onTap: () => {
           Navigator.of(context).push(
             MaterialPageRoute<CalenderAddShiftPage>(
-              builder: (context) => CalenderAddShiftPage(shiftlist: shifts,),
+              builder: (context) => CalenderAddShiftPage(shiftlist: shifts, requestShiftlist: requestedShifts,),
             )
           )
         },

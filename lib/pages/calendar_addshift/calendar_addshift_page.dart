@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shiftend/models/shift/shift.dart';
 import 'package:shiftend/models/user/user.dart';
+import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/member/member_item.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
@@ -11,7 +13,8 @@ class CalenderAddShiftPage extends StatelessWidget {
 
   final UserRepositoryInterface userRepository = UserRepositoryMock();
   final List<Shift> shiftlist;
-  CalenderAddShiftPage({Key key, @required this.shiftlist}) : super(key: key);
+  final List<Shift> requestShiftlist;
+  CalenderAddShiftPage({Key key, @required this.shiftlist, @required this.requestShiftlist}) : super(key: key);
   final List<Widget> editedlist = [];
 
   @override
@@ -21,7 +24,10 @@ class CalenderAddShiftPage extends StatelessWidget {
       editedlist.add(CalendarAddShiftItem(user: shift.user));
     });
     editedlist.add(Text('シフト希望'));
-
+    requestShiftlist.forEach((requestedShift)
+    {
+      editedlist.add(CalendarAddShiftItem(user: requestedShift.user));
+    });
 
     return Scaffold(
         appBar: AppBar(

@@ -17,15 +17,19 @@ class _$CalendarStateTearOff {
   _CalendarState call(
       {NotifierState notifierState = NotifierState.initial,
       Map<DateTime, List<Shift>> shifts,
+      Map<DateTime, List<Shift>> requestedShifts,
       DateTime selectedDate,
       List<Shift> selectedShifts = const <Shift>[],
-      List<Shift> loggedinUserRequestedShifts = const <Shift>[]}) {
+      List<Shift> loggedinUserRequestedShifts = const <Shift>[],
+      List<Shift> selectedRequestedShifts = const <Shift>[]}) {
     return _CalendarState(
       notifierState: notifierState,
       shifts: shifts,
+      requestedShifts: requestedShifts,
       selectedDate: selectedDate,
       selectedShifts: selectedShifts,
       loggedinUserRequestedShifts: loggedinUserRequestedShifts,
+      selectedRequestedShifts: selectedRequestedShifts,
     );
   }
 }
@@ -38,9 +42,11 @@ const $CalendarState = _$CalendarStateTearOff();
 mixin _$CalendarState {
   NotifierState get notifierState;
   Map<DateTime, List<Shift>> get shifts;
+  Map<DateTime, List<Shift>> get requestedShifts;
   DateTime get selectedDate;
   List<Shift> get selectedShifts;
   List<Shift> get loggedinUserRequestedShifts;
+  List<Shift> get selectedRequestedShifts;
 
   $CalendarStateCopyWith<CalendarState> get copyWith;
 }
@@ -53,9 +59,11 @@ abstract class $CalendarStateCopyWith<$Res> {
   $Res call(
       {NotifierState notifierState,
       Map<DateTime, List<Shift>> shifts,
+      Map<DateTime, List<Shift>> requestedShifts,
       DateTime selectedDate,
       List<Shift> selectedShifts,
-      List<Shift> loggedinUserRequestedShifts});
+      List<Shift> loggedinUserRequestedShifts,
+      List<Shift> selectedRequestedShifts});
 }
 
 /// @nodoc
@@ -71,9 +79,11 @@ class _$CalendarStateCopyWithImpl<$Res>
   $Res call({
     Object notifierState = freezed,
     Object shifts = freezed,
+    Object requestedShifts = freezed,
     Object selectedDate = freezed,
     Object selectedShifts = freezed,
     Object loggedinUserRequestedShifts = freezed,
+    Object selectedRequestedShifts = freezed,
   }) {
     return _then(_value.copyWith(
       notifierState: notifierState == freezed
@@ -82,6 +92,9 @@ class _$CalendarStateCopyWithImpl<$Res>
       shifts: shifts == freezed
           ? _value.shifts
           : shifts as Map<DateTime, List<Shift>>,
+      requestedShifts: requestedShifts == freezed
+          ? _value.requestedShifts
+          : requestedShifts as Map<DateTime, List<Shift>>,
       selectedDate: selectedDate == freezed
           ? _value.selectedDate
           : selectedDate as DateTime,
@@ -91,6 +104,9 @@ class _$CalendarStateCopyWithImpl<$Res>
       loggedinUserRequestedShifts: loggedinUserRequestedShifts == freezed
           ? _value.loggedinUserRequestedShifts
           : loggedinUserRequestedShifts as List<Shift>,
+      selectedRequestedShifts: selectedRequestedShifts == freezed
+          ? _value.selectedRequestedShifts
+          : selectedRequestedShifts as List<Shift>,
     ));
   }
 }
@@ -105,9 +121,11 @@ abstract class _$CalendarStateCopyWith<$Res>
   $Res call(
       {NotifierState notifierState,
       Map<DateTime, List<Shift>> shifts,
+      Map<DateTime, List<Shift>> requestedShifts,
       DateTime selectedDate,
       List<Shift> selectedShifts,
-      List<Shift> loggedinUserRequestedShifts});
+      List<Shift> loggedinUserRequestedShifts,
+      List<Shift> selectedRequestedShifts});
 }
 
 /// @nodoc
@@ -125,9 +143,11 @@ class __$CalendarStateCopyWithImpl<$Res>
   $Res call({
     Object notifierState = freezed,
     Object shifts = freezed,
+    Object requestedShifts = freezed,
     Object selectedDate = freezed,
     Object selectedShifts = freezed,
     Object loggedinUserRequestedShifts = freezed,
+    Object selectedRequestedShifts = freezed,
   }) {
     return _then(_CalendarState(
       notifierState: notifierState == freezed
@@ -136,6 +156,9 @@ class __$CalendarStateCopyWithImpl<$Res>
       shifts: shifts == freezed
           ? _value.shifts
           : shifts as Map<DateTime, List<Shift>>,
+      requestedShifts: requestedShifts == freezed
+          ? _value.requestedShifts
+          : requestedShifts as Map<DateTime, List<Shift>>,
       selectedDate: selectedDate == freezed
           ? _value.selectedDate
           : selectedDate as DateTime,
@@ -145,6 +168,9 @@ class __$CalendarStateCopyWithImpl<$Res>
       loggedinUserRequestedShifts: loggedinUserRequestedShifts == freezed
           ? _value.loggedinUserRequestedShifts
           : loggedinUserRequestedShifts as List<Shift>,
+      selectedRequestedShifts: selectedRequestedShifts == freezed
+          ? _value.selectedRequestedShifts
+          : selectedRequestedShifts as List<Shift>,
     ));
   }
 }
@@ -154,18 +180,23 @@ class _$_CalendarState implements _CalendarState {
   const _$_CalendarState(
       {this.notifierState = NotifierState.initial,
       this.shifts,
+      this.requestedShifts,
       this.selectedDate,
       this.selectedShifts = const <Shift>[],
-      this.loggedinUserRequestedShifts = const <Shift>[]})
+      this.loggedinUserRequestedShifts = const <Shift>[],
+      this.selectedRequestedShifts = const <Shift>[]})
       : assert(notifierState != null),
         assert(selectedShifts != null),
-        assert(loggedinUserRequestedShifts != null);
+        assert(loggedinUserRequestedShifts != null),
+        assert(selectedRequestedShifts != null);
 
   @JsonKey(defaultValue: NotifierState.initial)
   @override
   final NotifierState notifierState;
   @override
   final Map<DateTime, List<Shift>> shifts;
+  @override
+  final Map<DateTime, List<Shift>> requestedShifts;
   @override
   final DateTime selectedDate;
   @JsonKey(defaultValue: const <Shift>[])
@@ -174,10 +205,13 @@ class _$_CalendarState implements _CalendarState {
   @JsonKey(defaultValue: const <Shift>[])
   @override
   final List<Shift> loggedinUserRequestedShifts;
+  @JsonKey(defaultValue: const <Shift>[])
+  @override
+  final List<Shift> selectedRequestedShifts;
 
   @override
   String toString() {
-    return 'CalendarState(notifierState: $notifierState, shifts: $shifts, selectedDate: $selectedDate, selectedShifts: $selectedShifts, loggedinUserRequestedShifts: $loggedinUserRequestedShifts)';
+    return 'CalendarState(notifierState: $notifierState, shifts: $shifts, requestedShifts: $requestedShifts, selectedDate: $selectedDate, selectedShifts: $selectedShifts, loggedinUserRequestedShifts: $loggedinUserRequestedShifts, selectedRequestedShifts: $selectedRequestedShifts)';
   }
 
   @override
@@ -189,6 +223,9 @@ class _$_CalendarState implements _CalendarState {
                     .equals(other.notifierState, notifierState)) &&
             (identical(other.shifts, shifts) ||
                 const DeepCollectionEquality().equals(other.shifts, shifts)) &&
+            (identical(other.requestedShifts, requestedShifts) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestedShifts, requestedShifts)) &&
             (identical(other.selectedDate, selectedDate) ||
                 const DeepCollectionEquality()
                     .equals(other.selectedDate, selectedDate)) &&
@@ -199,7 +236,11 @@ class _$_CalendarState implements _CalendarState {
                     loggedinUserRequestedShifts) ||
                 const DeepCollectionEquality().equals(
                     other.loggedinUserRequestedShifts,
-                    loggedinUserRequestedShifts)));
+                    loggedinUserRequestedShifts)) &&
+            (identical(
+                    other.selectedRequestedShifts, selectedRequestedShifts) ||
+                const DeepCollectionEquality().equals(
+                    other.selectedRequestedShifts, selectedRequestedShifts)));
   }
 
   @override
@@ -207,9 +248,11 @@ class _$_CalendarState implements _CalendarState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(notifierState) ^
       const DeepCollectionEquality().hash(shifts) ^
+      const DeepCollectionEquality().hash(requestedShifts) ^
       const DeepCollectionEquality().hash(selectedDate) ^
       const DeepCollectionEquality().hash(selectedShifts) ^
-      const DeepCollectionEquality().hash(loggedinUserRequestedShifts);
+      const DeepCollectionEquality().hash(loggedinUserRequestedShifts) ^
+      const DeepCollectionEquality().hash(selectedRequestedShifts);
 
   @override
   _$CalendarStateCopyWith<_CalendarState> get copyWith =>
@@ -220,20 +263,26 @@ abstract class _CalendarState implements CalendarState {
   const factory _CalendarState(
       {NotifierState notifierState,
       Map<DateTime, List<Shift>> shifts,
+      Map<DateTime, List<Shift>> requestedShifts,
       DateTime selectedDate,
       List<Shift> selectedShifts,
-      List<Shift> loggedinUserRequestedShifts}) = _$_CalendarState;
+      List<Shift> loggedinUserRequestedShifts,
+      List<Shift> selectedRequestedShifts}) = _$_CalendarState;
 
   @override
   NotifierState get notifierState;
   @override
   Map<DateTime, List<Shift>> get shifts;
   @override
+  Map<DateTime, List<Shift>> get requestedShifts;
+  @override
   DateTime get selectedDate;
   @override
   List<Shift> get selectedShifts;
   @override
   List<Shift> get loggedinUserRequestedShifts;
+  @override
+  List<Shift> get selectedRequestedShifts;
   @override
   _$CalendarStateCopyWith<_CalendarState> get copyWith;
 }
