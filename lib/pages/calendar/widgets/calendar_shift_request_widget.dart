@@ -11,7 +11,6 @@ class CalendarShiftRequestWidget extends StatelessWidget {
     final List<Widget> listItems = [];
     final List<Shift> shifts = Provider.of<CalendarState>(context, listen: true)
         .loggedinUserRequestedShifts;
-    print('request $shifts');
     if (shifts.isNotEmpty) {
       shifts.forEach(
         (shift) {

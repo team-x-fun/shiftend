@@ -53,7 +53,6 @@ class CalendarStateController extends StateNotifier<CalendarState>
   Future<void> fetchLoggedinUserRequestedShifts(DateTime date) async {
     final requestedShifts =
         await shiftRequestRepository.getShifts('refOrg', date);
-    print('controller ${requestedShifts[date]}');
 
     state = state.copyWith(
         loggedinUserRequestedShifts:
