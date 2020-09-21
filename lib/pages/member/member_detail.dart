@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_provider.dart';
+import 'widgets/level_stars_widget.dart';
 
 class MemberDitailPage extends StatelessWidget {
   const MemberDitailPage(this.user, this.model);
@@ -41,7 +44,14 @@ class MemberDitailPage extends StatelessWidget {
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${model.level}',
+                  '${user.role}',
+                ),
+                title: const Text('役職'),
+              ),
+              ListTile(
+                dense: true,
+                trailing: LevelStars(
+                  level: model.level,
                 ),
                 title: const Text('レベル'),
               ),
@@ -50,7 +60,7 @@ class MemberDitailPage extends StatelessWidget {
                 trailing: Text(
                   '${model.tel}',
                 ),
-                title: const Text('Tel'),
+                title: const Text('電話'),
               ),
             ],
           ),

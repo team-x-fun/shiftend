@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'member_detail.dart';
 import 'member_provider.dart';
+import 'widgets/level_stars_widget.dart';
 
 class MemberItem extends StatelessWidget {
   const MemberItem({this.user, this.model});
@@ -13,15 +14,6 @@ class MemberItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final starsItem = <Widget>[];
-    for (var i = 0; i < model.level; i++) {
-      starsItem.add(
-        const Icon(
-          Icons.star,
-          color: Colors.yellow,
-        ),
-      );
-    }
     return ChangeNotifierProvider<MemberProvider>(
       create: (_) => MemberProvider(),
       child: Column(
@@ -45,10 +37,7 @@ class MemberItem extends StatelessWidget {
               child: Container(
                 child: ListTile(
                   dense: true,
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: starsItem,
-                  ),
+                  trailing: LevelStars(level: model.level),
                   leading: Container(
                     height: 50,
                     width: 50,
