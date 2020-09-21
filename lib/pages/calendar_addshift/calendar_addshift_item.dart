@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_provider.dart';
+import 'package:shiftend/util/formatters.dart';
 
 class CalendarAddShiftItem extends StatelessWidget {
   CalendarAddShiftItem({this.user});
 
   final User user;
+  
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<MemberProvider>(
@@ -54,4 +56,30 @@ class CalendarAddShiftItem extends StatelessWidget {
       ),
     );
   }
+
+//  @override
+//  Widget build(BuildContext context) {
+//    final String shiftTime =
+//        '${extractTime(shift.start)}〜${extractTime(shift.end)}';
+//    return Container(
+//      child: ListTile(
+//        leading: Container(
+//          height: 50,
+//          width: 50,
+//          decoration: BoxDecoration(
+//            shape: BoxShape.circle,
+//            image: DecorationImage(
+//              fit: BoxFit.fill,
+//              image: NetworkImage(shift.user.iconUrl),
+//            ),
+//          ),
+//        ),
+//        title: Text(shift.user.name),
+//        subtitle: Text(shiftTime),
+//        onTap: () => {
+//          print('タップされた $shift'),
+//        },
+//      ),
+//    );
+//  }
 }

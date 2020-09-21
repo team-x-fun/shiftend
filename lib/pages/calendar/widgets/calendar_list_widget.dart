@@ -34,9 +34,7 @@ class CalendarListWidget extends StatelessWidget {
         onTap: () => {
           Navigator.of(context).push(
             MaterialPageRoute<CalenderAddShiftPage>(
-              builder: (context) {
-                return CalenderAddShiftPage();
-              }
+              builder: (context) => CalenderAddShiftPage(shiftlist: shifts,),
             )
           )
         },
