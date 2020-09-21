@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/repositories/organization_repository.dart';
 import 'package:shiftend/repositories/user_repository.dart';
@@ -52,6 +54,10 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
   Future<void> selectOrg(Organization newOrg) async {
     state = state.copyWith(selectedOrg: newOrg);
     print('selectOrg: ${state.selectedOrg}');
+  }
+
+  Future<void> uploadImage(File file) async {
+    await userRepository.uploadIcon(state.currentUser.id, file);
     await fetchLoginState();
   }
 }
