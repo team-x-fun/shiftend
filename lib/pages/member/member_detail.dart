@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_provider.dart';
 import 'widgets/level_stars_widget.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDitailPage extends StatelessWidget {
   const MemberDitailPage(this.user, this.model);
@@ -62,6 +63,19 @@ class MemberDitailPage extends StatelessWidget {
                 ),
                 title: const Text('電話'),
               ),
+              ListTile(),
+              SmoothStarRating(
+                  allowHalfRating: false,
+                  onRated: (v) {},
+                  starCount: 5,
+                  rating: 3,
+                  size: 40.0,
+                  isReadOnly: false,
+                  //fullRatedIconData: Icons.blur_off,
+                  //halfRatedIconData: Icons.blur_on,
+                  color: Colors.green,
+                  borderColor: Colors.green,
+                  spacing: 0.0)
             ],
           ),
         ),
