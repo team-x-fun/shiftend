@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Shiftend',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.grey[100],
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Main(),

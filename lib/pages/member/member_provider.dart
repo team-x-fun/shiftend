@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
 class MemberProvider extends ChangeNotifier {
-  String level = 'レベル未設定';
-  bool levelInputFlag = false;
+  int level = 0; // default member level
+  String tel = '000-000-0000'; //default Telephone number
 
-  void changeLevel(String userLevel) {
+  void changeLevel(int userLevel) {
     if (validateLevel(userLevel)) {
-      level = 'Lv.$userLevel';
-      levelInputFlag = true;
+      level = userLevel;
     }
     notifyListeners();
   }
 
-  bool validateLevel(String userLevel) {
-    // 未入力の場合
-    if (userLevel == '') {
+  bool validateLevel(int userLevel) {
+    if (userLevel < 0 || userLevel > 5) {
       return false;
     }
     return true;

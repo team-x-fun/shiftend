@@ -2,16 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
-import 'package:shiftend/pages/member/member_level_dialog.dart';
+import 'member_detail.dart';
 import 'member_provider.dart';
 
 class MemberItem extends StatelessWidget {
-  const MemberItem({this.user});
+  const MemberItem({this.user, this.model});
 
   final User user;
+  final MemberProvider model;
 
   @override
   Widget build(BuildContext context) {
+    final starsItem = <Widget>[];
+    for (var i = 0; i < model.level; i++) {
+      starsItem.add(
+        const Icon(
+          Icons.star,
+          color: Colors.yellow,
+        ),
+      );
+    }
     return ChangeNotifierProvider<MemberProvider>(
       create: (_) => MemberProvider(),
       child: Column(
@@ -25,21 +35,19 @@ class MemberItem extends StatelessWidget {
               onPressed: () async {
                 await showDialog<int>(
                   context: context,
-                  barrierDismissible: true,
+                  //barrierDismissible: true,
                   builder: (BuildContext context) {
-                    return MemberLevelDialog(user, model);
+                    //return MemberLevelDialog(user, model);
+                    return MemberDitailPage(user, model);
                   },
                 );
               },
               child: Container(
                 child: ListTile(
                   dense: true,
-                  trailing: Text(
-                    '${model.level}',
-                    style: TextStyle(
-                        color: model.levelInputFlag
-                            ? Colors.black54
-                            : Colors.grey[400]),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: starsItem,
                   ),
                   leading: Container(
                     height: 50,
