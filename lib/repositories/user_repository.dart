@@ -101,4 +101,14 @@ class UserRepository extends UserRepositoryInterface {
         await firestore.collection(collectionName).doc(userId).get();
     return User.fromJson(snapshot.data());
   }
+
+  @override
+  Future<User> findByEmail(String email) async {
+    final snapshot = await firestore
+        .collection(collectionName)
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .get();
+    return User.fromJson(snapshot.docs.first.data());
+  }
 }

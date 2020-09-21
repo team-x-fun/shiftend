@@ -13,4 +13,5 @@ abstract class UserRepositoryInterface {
   Future<bool> isLogin();
   Future<DocumentReference> getUserRef(String userId);
   Future<User> fromUserRef(DocumentReference userRef);
+  Future<User> findByEmail(String email);
 }
