@@ -31,17 +31,16 @@ class SettingOrgPage extends StatelessWidget {
           ),
         ),
       );
-      // ignore: cascade_invocations
-      _items.add(const Divider());
-      // ignore: cascade_invocations
-      _items.add(FlatButton(
+    });
+    _items
+      ..add(const Divider())
+      ..add(FlatButton(
         onPressed: () {
           // TODO 更新する処理
           Navigator.pop(context);
         },
         child: const Text('更新'),
       ));
-    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('組織の設定'),
