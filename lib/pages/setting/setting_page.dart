@@ -46,14 +46,14 @@ class SettingPage extends StatelessWidget {
                 detailTitle: '組織の設定',
                 onTapItem: () {
                   Navigator.push<SettingOrgPage>(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              StateNotifierProvider<SettingOrgStateController,
-                                      SettingOrgState>(
-                                  create: (context) =>
-                                      SettingOrgStateController(),
-                                  child: SettingOrgPage())));
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => StateNotifierProvider<
+                              SettingOrgStateController, SettingOrgState>(
+                          create: (context) => SettingOrgStateController(),
+                          child: SettingOrgPage()),
+                    ),
+                  );
                 },
               ),
 
