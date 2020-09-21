@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:shiftend/pages/setting/setting_account_item.dart';
 import 'package:shiftend/pages/setting/setting_header_item.dart';
 import 'package:shiftend/pages/setting/setting_list_item.dart';
 import 'package:shiftend/pages/setting/setting_logout_item.dart';
@@ -26,7 +27,7 @@ class SettingPage extends StatelessWidget {
             children: <Widget>[
               // アカウント
               const SettingHeaderItem('アカウント'),
-              // const SettingAccountItem(),
+              const SettingAccountItem(),
 
               // お知らせ
               const SettingHeaderItem('お知らせ'),
