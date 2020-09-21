@@ -110,6 +110,8 @@ class CalendarWidget extends StatelessWidget {
       onDaySelected: (date, attendees) {
         Provider.of<CalendarStateController>(context, listen: false)
             .onDaySelected(date, attendees.cast<Shift>());
+        Provider.of<CalendarStateController>(context, listen: false)
+            .fetchLoggedinUserRequestedShifts(date);
         animationController.forward(from: 0);
       },
       onVisibleDaysChanged: (first, last, format) {
