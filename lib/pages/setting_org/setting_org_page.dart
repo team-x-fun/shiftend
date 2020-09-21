@@ -31,7 +31,9 @@ class SettingOrgPage extends StatelessWidget {
           ),
         ),
       );
-      _items..add(const Divider());
+      // ignore: cascade_invocations
+      _items.add(const Divider());
+      // ignore: cascade_invocations
       _items.add(FlatButton(
         onPressed: () {
           // TODO 更新する処理
