@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:shiftend/pages/setting/announcement/announcement_page.dart';
 import 'package:shiftend/pages/setting/setting_account_item.dart';
 import 'package:shiftend/pages/setting/setting_header_item.dart';
 import 'package:shiftend/pages/setting/setting_list_item.dart';
@@ -33,7 +34,13 @@ class SettingPage extends StatelessWidget {
               const SettingHeaderItem('お知らせ'),
               SettingListItem(
                 detailTitle: '運営からのお知らせ',
-                onTapItem: () {},
+                onTapItem: () {
+                  Navigator.push<AnnouncementPage>(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              AnnouncementPage()));
+                },
               ),
 
               // 設定
