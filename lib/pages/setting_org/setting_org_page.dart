@@ -12,6 +12,13 @@ class SettingOrgPage extends StatelessWidget {
         decoration: InputDecoration(labelText: '組織名'),
       ),
     ),
+    const Divider(),
+    FlatButton(
+      child: const Text('更新'),
+      onPressed: () {
+        // TODO 更新する処理
+      },
+    )
   ];
 
   @override
@@ -32,15 +39,6 @@ class SettingOrgPage extends StatelessWidget {
         ),
       );
     });
-    _items
-      ..add(const Divider())
-      ..add(FlatButton(
-        onPressed: () {
-          // TODO 更新する処理
-          Navigator.pop(context);
-        },
-        child: const Text('更新'),
-      ));
     return Scaffold(
       appBar: AppBar(
         title: const Text('組織の設定'),
