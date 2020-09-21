@@ -11,5 +11,6 @@ abstract class CalendarState with _$CalendarState {
     Map<DateTime, List<Shift>> shifts,
     DateTime selectedDate,
     @Default(<Shift>[]) List<Shift> selectedShifts,
+    @Default(<Shift>[]) List<Shift> loggedinUserRequestedShifts,
   }) = _CalendarState;
 }

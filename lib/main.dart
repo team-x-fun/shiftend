@@ -17,6 +17,7 @@ import 'package:shiftend/pages/member/member_page.dart';
 import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
+import 'package:shiftend/repositories/shift_request_repository.dart';
 import 'package:shiftend/repositories/user_repository.dart';
 
 Future main() async {
@@ -41,6 +42,13 @@ class MyApp extends StatelessWidget {
         Provider<ShiftRepositoryMock>.value(
           value: ShiftRepositoryMock(userRepo: UserRepositoryMock()),
         ),
+        Provider<ShiftRequestRepository>.value(
+            value: ShiftRequestRepository(
+          userRepo: UserRepository(
+              firestore: FirebaseFirestore.instance,
+              auth: FirebaseAuth.instance),
+          firestore: FirebaseFirestore.instance,
+        )),
         Provider<UserRepository>.value(
           value: UserRepository(
               firestore: FirebaseFirestore.instance,

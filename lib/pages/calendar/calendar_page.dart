@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
-import 'package:shiftend/pages/calendar/widgets/calendar_desired_shift_widget.dart';
+import 'package:shiftend/pages/calendar/widgets/calendar_shift_request_widget.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_list_tab_widget.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_list_widget.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_widget.dart';
@@ -19,7 +19,7 @@ class CalendarPage extends StatefulWidget {
 
 final tabs = [
   CalendarBottomTab(label: '出勤情報', body: CalendarListWidget()),
-  CalendarBottomTab(label: 'あなたの出勤希望', body: CalendarDesiredShiftWidget()),
+  CalendarBottomTab(label: 'あなたの出勤希望', body: CalendarShiftRequestWidget()),
 ];
 
 class _CalendarPageState extends State<CalendarPage>

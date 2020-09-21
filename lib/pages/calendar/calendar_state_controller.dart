@@ -3,6 +3,7 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
+import 'package:shiftend/repositories/shift_request_repository.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -13,6 +14,9 @@ class CalendarStateController extends StateNotifier<CalendarState>
   ShiftRepository get shiftRepository => read<ShiftRepository>();
 
   ShiftRepositoryMock get shiftRepositoryMock => read<ShiftRepositoryMock>();
+
+  ShiftRequestRepository get shiftRequestRepository =>
+      read<ShiftRequestRepository>();
   final _dateFormatter = DateFormat('yyyy-MM-dd');
 
   @override
@@ -44,5 +48,15 @@ class CalendarStateController extends StateNotifier<CalendarState>
   void onDaySelected(DateTime date, List<Shift> shifts) {
     state = state.copyWith(selectedDate: date);
     state = state.copyWith(selectedShifts: shifts);
+  }
+
+  Future<void> fetchLoggedinUserRequestedShifts(DateTime date) async {
+    final requestedShifts =
+        await shiftRequestRepository.getShifts('refOrg', date);
+    print('controller ${requestedShifts[date]}');
+
+    state = state.copyWith(
+        loggedinUserRequestedShifts:
+            requestedShifts[DateTime(date.year, date.month, date.day)]);
   }
 }
