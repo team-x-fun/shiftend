@@ -9,20 +9,12 @@ class AnnouncementRepository extends AnnouncementRepositoryInterface {
   final FirebaseFirestore firestore;
 
   @override
-  List<Announcement> getAnnouncements() {
+  Future<List<Announcement>> getAnnouncements() async {
     final announcements = <Announcement>[];
-    firestore
-        .collection('announcement')
-        .get()
-        .then((announcement) => {
-              announcement.docs.map(
-                (e) {
-                  announcements.add(Announcement.fromJson(e.data()));
-                },
-              )
-            })
-        .catchError((dynamic error) {
-      debugPrint(error.toString());
+    debugPrint('aaaaaaaaaaaaaaaaaaaaaaaaa');
+    final res = await firestore.collection('announcement').get();
+    res.docs.forEach((announcement) {
+      announcements.add(Announcement.fromJson(announcement.data()));
     });
     return announcements;
   }

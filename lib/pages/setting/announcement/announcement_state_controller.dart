@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/setting/announcement/announcement_state.dart';
 import 'package:shiftend/repositories/announcement_repository.dart';
@@ -12,11 +13,18 @@ class AnnouncementStateController extends StateNotifier<AnnouncementState>
 
   @override
   void initState() {
+    getAnnouncements();
     super.initState();
   }
 
   void getAnnouncements() {
     state = state.copyWith(notifierState: NotifierState.loading);
-    state = state.copyWith();
+    announcementRepository.getAnnouncements().then((value) {
+      state = state.copyWith(
+          notifierState: NotifierState.loaded, announcements: value);
+    }).catchError((dynamic error) {
+      debugPrint(error.toString());
+      state = state.copyWith(notifierState: NotifierState.loaded);
+    });
   }
 }
