@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
-import 'package:shiftend/pages/setting_org/setting_org_state.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/repositories/organization_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shiftend/pages/setting_org/setting_org_state.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 
 class SettingOrgPage extends StatelessWidget {
   final _items = <Widget>[
