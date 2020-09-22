@@ -1,11 +1,17 @@
 name: Send Slack message on review requested
 on:
   pull_request:
-    types: [review_requested]
+    types: [ready_for_review, edited, opened, synchronize]
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.pull_request.title, '[wip]')"
+    steps:
+      - run: echo "${{ github.event.pull_request.title }}"
   build:
     runs-on: ubuntu-latest
+    needs: prepare
     steps:
       - name: Slack Notification
         uses: ry-itto/slack_notify_actions@1.0.1
