@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebaseauth;
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:meta/meta.dart';
 import 'package:shiftend/models/models.dart';
 
@@ -110,5 +112,16 @@ class UserRepository extends UserRepositoryInterface {
         .limit(1)
         .get();
     return User.fromJson(snapshot.docs.first.data());
+  }
+
+  Future<void> uploadIcon(String id, File file) async {
+    final user = getUser(id);
+    final ref = FirebaseStorage().ref().child('users').child(id).child('icon');
+    final uploadTask = ref.putFile(file);
+    final snapshot = await uploadTask.onComplete;
+    if (snapshot.error == null) {
+      await update((await user)
+          .copyWith(iconUrl: await snapshot.ref.getDownloadURL() as String));
+    }
   }
 }

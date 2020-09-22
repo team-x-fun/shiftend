@@ -18,6 +18,10 @@ dependencies:
   cloud_firestore: ^0.14.0+2
   firebase_analytics: ^5.0.15
   firebase_auth: ^0.18.0+1
+  firebase_storage:
+
+  image_picker:
+  flutter_native_image:
 
   table_calendar: ^2.2.3
 

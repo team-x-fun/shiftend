@@ -1,7 +1,13 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/user/widgets/org_select_widget.dart';
+import 'package:shiftend/pages/login/login_state_controller.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage();
@@ -23,16 +29,63 @@ class UserPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(user.iconUrl),
+              GestureDetector(
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(user.iconUrl),
+                    ),
                   ),
                 ),
+                onTap: () async {
+                  print('画像タップ');
+                  final mode = await showCupertinoModalPopup<int>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CupertinoActionSheet(
+                        message: const Text('写真をアップロードしますか？'),
+                        actions: <Widget>[
+                          CupertinoActionSheetAction(
+                            child: const Text(
+                              'カメラで撮影',
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context, 0);
+                            },
+                          ),
+                          CupertinoActionSheetAction(
+                            child: const Text(
+                              'アルバムから選択',
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context, 1);
+                            },
+                          ),
+                        ],
+                        cancelButton: CupertinoActionSheetAction(
+                          child: const Text('キャンセル'),
+                          onPressed: () {
+                            Navigator.pop(context, 2);
+                          },
+                          isDefaultAction: true,
+                        ),
+                      );
+                    },
+                  );
+                  File imageFile;
+                  if (mode == 0) {
+                    imageFile = await getImageFromDevice(ImageSource.camera);
+                  } else if (mode == 1) {
+                    imageFile = await getImageFromDevice(ImageSource.gallery);
+                  }
+                  await Provider.of<LoginStateController>(context,
+                          listen: false)
+                      .uploadImage(imageFile);
+                },
               ),
               Text('name: ${user.name}'),
               Text('email: ${user.email}'),
@@ -44,5 +97,15 @@ class UserPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<File> getImageFromDevice(ImageSource source) async {
+    final imageFile = await ImagePicker().getImage(source: source);
+    if (imageFile == null) {
+      return null;
+    }
+    final compressedFile =
+        await FlutterNativeImage.compressImage(imageFile.path, quality: 50);
+    return compressedFile;
   }
 }
