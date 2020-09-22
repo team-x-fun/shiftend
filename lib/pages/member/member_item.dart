@@ -18,7 +18,6 @@ class MemberItem extends StatelessWidget {
     return ListTile(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute<MemberDetailPage>(
-            // builder: (_) => MemberDitailPage(user, memberProvider),
             builder: (_) =>
                 MemberDetailPage(user, Provider.of<MemberProvider>(context))));
       },
