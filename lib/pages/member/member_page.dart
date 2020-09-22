@@ -28,14 +28,13 @@ class MemberPage extends StatelessWidget {
             builder: (context, AsyncSnapshot<List<User>> snapshot) {
               if (snapshot.hasData) {
                 return Consumer<MemberProvider>(
-                    builder: (context, model, child) {
+                    builder: (context, memberProvider, child) {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      // ignore: missing_required_param
                       return MemberItem(
                         user: snapshot.data[index],
-                        model: model,
+                        memberProvider: memberProvider,
                       );
                     },
                   );

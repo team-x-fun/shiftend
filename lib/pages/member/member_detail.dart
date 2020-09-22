@@ -5,10 +5,10 @@ import 'package:shiftend/pages/member/member_provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDitailPage extends StatelessWidget {
-  const MemberDitailPage(this.user, this.model);
+  const MemberDitailPage(this.user, this.memberProvider);
 
   final User user;
-  final MemberProvider model;
+  final MemberProvider memberProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +52,12 @@ class MemberDitailPage extends StatelessWidget {
                     allowHalfRating: false,
                     onRated: (v) {
                       print('rating value -> $v');
-                      if (v != model.level) {
-                        //model.level = v;
-                        model.changeLevel(v);
+                      if (v != memberProvider.level) {
+                        memberProvider.changeLevel(v);
                       }
                     },
                     starCount: 5,
-                    rating: model.level,
+                    rating: memberProvider.level,
                     size: 30,
                     isReadOnly: false,
                     color: Colors.orange,
@@ -69,7 +68,7 @@ class MemberDitailPage extends StatelessWidget {
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${model.tel}',
+                  '${memberProvider.tel}',
                 ),
                 title: const Text('電話'),
               ),

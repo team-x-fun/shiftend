@@ -7,10 +7,10 @@ import 'member_detail.dart';
 import 'member_provider.dart';
 
 class MemberItem extends StatelessWidget {
-  const MemberItem({this.user, this.model});
+  const MemberItem({this.user, this.memberProvider});
 
   final User user;
-  final MemberProvider model;
+  final MemberProvider memberProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MemberItem extends StatelessWidget {
       create: (_) => MemberProvider(),
       child: Column(
         children: <Widget>[
-          Consumer<MemberProvider>(builder: (context, model, child) {
+          Consumer<MemberProvider>(builder: (context, memberProvider, child) {
             return FlatButton(
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               shape: const RoundedRectangleBorder(),
@@ -27,10 +27,8 @@ class MemberItem extends StatelessWidget {
               onPressed: () async {
                 await showDialog<int>(
                   context: context,
-                  //barrierDismissible: true,
                   builder: (BuildContext context) {
-                    //return MemberLevelDialog(user, model);
-                    return MemberDitailPage(user, model);
+                    return MemberDitailPage(user, memberProvider);
                   },
                 );
               },
@@ -41,7 +39,7 @@ class MemberItem extends StatelessWidget {
                       allowHalfRating: false,
                       //onRated: (v) {},
                       starCount: 5,
-                      rating: model.level,
+                      rating: memberProvider.level,
                       size: 25,
                       isReadOnly: true,
                       color: Colors.orange,
