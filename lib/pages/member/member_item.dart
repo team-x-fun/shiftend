@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'member_detail.dart';
 import 'member_provider.dart';
 import 'widgets/level_stars_widget.dart';
@@ -16,44 +15,28 @@ class MemberItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Consumer<MemberProvider>(builder: (context, memberProvider, child) {
-          return FlatButton(
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            shape: const RoundedRectangleBorder(),
-            color: Colors.grey[50],
-            padding: const EdgeInsets.all(0),
-            onPressed: () async {
-              await showDialog<int>(
-                context: context,
-                builder: (BuildContext context) {
-                  return MemberDetailPage(user, memberProvider);
-                },
-              );
-            },
-            child: Container(
-              child: ListTile(
-                dense: true,
-                trailing: LevelStars(level: memberProvider.level),
-                leading: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(user.iconUrl),
-                    ),
-                  ),
-                ),
-                title: Text(user.name),
-                subtitle: Text(user.role),
-              ),
-            ),
-          );
-        }),
-      ],
+    return ListTile(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute<MemberDetailPage>(
+            // builder: (_) => MemberDitailPage(user, memberProvider),
+            builder: (_) =>
+                MemberDetailPage(user, Provider.of<MemberProvider>(context))));
+      },
+      dense: true,
+      trailing: LevelStars(level: Provider.of<MemberProvider>(context).level),
+      leading: Container(
+        height: 50,
+        width: 50,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: NetworkImage(user.iconUrl),
+          ),
+        ),
+      ),
+      title: Text(user.name),
+      subtitle: Text(user.role),
     );
   }
 }
