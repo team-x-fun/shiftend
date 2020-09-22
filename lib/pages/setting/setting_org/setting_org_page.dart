@@ -35,7 +35,6 @@ class SettingOrgPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final members =
         context.select<SettingOrgState, List<User>>((state) => state.members);
-    debugPrint('ここだよ');
     if (members.isNotEmpty) {
       _items.add(
         Container(
