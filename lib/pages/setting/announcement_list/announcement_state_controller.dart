@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shiftend/models/notifier_state.dart';
-import 'package:shiftend/pages/setting/announcement/announcement_state.dart';
+import 'package:shiftend/pages/setting/announcement_list/announcement_list_state.dart';
 import 'package:shiftend/repositories/announcement_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-class AnnouncementStateController extends StateNotifier<AnnouncementState>
-    with LocatorMixin {
-  AnnouncementStateController() : super(const AnnouncementState());
+class AnnouncementListStateController
+    extends StateNotifier<AnnouncementListState> with LocatorMixin {
+  AnnouncementListStateController() : super(const AnnouncementListState());
 
   AnnouncementRepository get announcementRepository =>
       read<AnnouncementRepository>();

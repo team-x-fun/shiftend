@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
 
-part of 'announcement_state.dart';
+part of 'announcement_list_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -9,13 +9,13 @@ part of 'announcement_state.dart';
 
 T _$identity<T>(T value) => value;
 
-class _$AnnouncementStateTearOff {
-  const _$AnnouncementStateTearOff();
+class _$AnnouncementListStateTearOff {
+  const _$AnnouncementListStateTearOff();
 
-  _AnnouncementState call(
+  _AnnouncementListState call(
       {NotifierState notifierState = NotifierState.initial,
       List<Announcement> announcements = const <Announcement>[]}) {
-    return _AnnouncementState(
+    return _AnnouncementListState(
       notifierState: notifierState,
       announcements: announcements,
     );
@@ -23,29 +23,29 @@ class _$AnnouncementStateTearOff {
 }
 
 // ignore: unused_element
-const $AnnouncementState = _$AnnouncementStateTearOff();
+const $AnnouncementListState = _$AnnouncementListStateTearOff();
 
-mixin _$AnnouncementState {
+mixin _$AnnouncementListState {
   NotifierState get notifierState;
   List<Announcement> get announcements;
 
-  $AnnouncementStateCopyWith<AnnouncementState> get copyWith;
+  $AnnouncementListStateCopyWith<AnnouncementListState> get copyWith;
 }
 
-abstract class $AnnouncementStateCopyWith<$Res> {
-  factory $AnnouncementStateCopyWith(
-          AnnouncementState value, $Res Function(AnnouncementState) then) =
-      _$AnnouncementStateCopyWithImpl<$Res>;
+abstract class $AnnouncementListStateCopyWith<$Res> {
+  factory $AnnouncementListStateCopyWith(AnnouncementListState value,
+          $Res Function(AnnouncementListState) then) =
+      _$AnnouncementListStateCopyWithImpl<$Res>;
   $Res call({NotifierState notifierState, List<Announcement> announcements});
 }
 
-class _$AnnouncementStateCopyWithImpl<$Res>
-    implements $AnnouncementStateCopyWith<$Res> {
-  _$AnnouncementStateCopyWithImpl(this._value, this._then);
+class _$AnnouncementListStateCopyWithImpl<$Res>
+    implements $AnnouncementListStateCopyWith<$Res> {
+  _$AnnouncementListStateCopyWithImpl(this._value, this._then);
 
-  final AnnouncementState _value;
+  final AnnouncementListState _value;
   // ignore: unused_field
-  final $Res Function(AnnouncementState) _then;
+  final $Res Function(AnnouncementListState) _then;
 
   @override
   $Res call({
@@ -63,31 +63,31 @@ class _$AnnouncementStateCopyWithImpl<$Res>
   }
 }
 
-abstract class _$AnnouncementStateCopyWith<$Res>
-    implements $AnnouncementStateCopyWith<$Res> {
-  factory _$AnnouncementStateCopyWith(
-          _AnnouncementState value, $Res Function(_AnnouncementState) then) =
-      __$AnnouncementStateCopyWithImpl<$Res>;
+abstract class _$AnnouncementListStateCopyWith<$Res>
+    implements $AnnouncementListStateCopyWith<$Res> {
+  factory _$AnnouncementListStateCopyWith(_AnnouncementListState value,
+          $Res Function(_AnnouncementListState) then) =
+      __$AnnouncementListStateCopyWithImpl<$Res>;
   @override
   $Res call({NotifierState notifierState, List<Announcement> announcements});
 }
 
-class __$AnnouncementStateCopyWithImpl<$Res>
-    extends _$AnnouncementStateCopyWithImpl<$Res>
-    implements _$AnnouncementStateCopyWith<$Res> {
-  __$AnnouncementStateCopyWithImpl(
-      _AnnouncementState _value, $Res Function(_AnnouncementState) _then)
-      : super(_value, (v) => _then(v as _AnnouncementState));
+class __$AnnouncementListStateCopyWithImpl<$Res>
+    extends _$AnnouncementListStateCopyWithImpl<$Res>
+    implements _$AnnouncementListStateCopyWith<$Res> {
+  __$AnnouncementListStateCopyWithImpl(_AnnouncementListState _value,
+      $Res Function(_AnnouncementListState) _then)
+      : super(_value, (v) => _then(v as _AnnouncementListState));
 
   @override
-  _AnnouncementState get _value => super._value as _AnnouncementState;
+  _AnnouncementListState get _value => super._value as _AnnouncementListState;
 
   @override
   $Res call({
     Object notifierState = freezed,
     Object announcements = freezed,
   }) {
-    return _then(_AnnouncementState(
+    return _then(_AnnouncementListState(
       notifierState: notifierState == freezed
           ? _value.notifierState
           : notifierState as NotifierState,
@@ -98,8 +98,8 @@ class __$AnnouncementStateCopyWithImpl<$Res>
   }
 }
 
-class _$_AnnouncementState implements _AnnouncementState {
-  const _$_AnnouncementState(
+class _$_AnnouncementListState implements _AnnouncementListState {
+  const _$_AnnouncementListState(
       {this.notifierState = NotifierState.initial,
       this.announcements = const <Announcement>[]})
       : assert(notifierState != null),
@@ -114,13 +114,13 @@ class _$_AnnouncementState implements _AnnouncementState {
 
   @override
   String toString() {
-    return 'AnnouncementState(notifierState: $notifierState, announcements: $announcements)';
+    return 'AnnouncementListState(notifierState: $notifierState, announcements: $announcements)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AnnouncementState &&
+        (other is _AnnouncementListState &&
             (identical(other.notifierState, notifierState) ||
                 const DeepCollectionEquality()
                     .equals(other.notifierState, notifierState)) &&
@@ -136,19 +136,20 @@ class _$_AnnouncementState implements _AnnouncementState {
       const DeepCollectionEquality().hash(announcements);
 
   @override
-  _$AnnouncementStateCopyWith<_AnnouncementState> get copyWith =>
-      __$AnnouncementStateCopyWithImpl<_AnnouncementState>(this, _$identity);
+  _$AnnouncementListStateCopyWith<_AnnouncementListState> get copyWith =>
+      __$AnnouncementListStateCopyWithImpl<_AnnouncementListState>(
+          this, _$identity);
 }
 
-abstract class _AnnouncementState implements AnnouncementState {
-  const factory _AnnouncementState(
+abstract class _AnnouncementListState implements AnnouncementListState {
+  const factory _AnnouncementListState(
       {NotifierState notifierState,
-      List<Announcement> announcements}) = _$_AnnouncementState;
+      List<Announcement> announcements}) = _$_AnnouncementListState;
 
   @override
   NotifierState get notifierState;
   @override
   List<Announcement> get announcements;
   @override
-  _$AnnouncementStateCopyWith<_AnnouncementState> get copyWith;
+  _$AnnouncementListStateCopyWith<_AnnouncementListState> get copyWith;
 }
