@@ -116,8 +116,7 @@ class UserRepository extends UserRepositoryInterface {
 
   Future<void> uploadIcon(String id, File file) async {
     final user = getUser(id);
-    const subDirectoryName = 'icons';
-    final ref = FirebaseStorage().ref().child(subDirectoryName);
+    final ref = FirebaseStorage().ref().child('users').child(id).child('icon');
     final uploadTask = ref.putFile(file);
     final snapshot = await uploadTask.onComplete;
     if (snapshot.error == null) {
