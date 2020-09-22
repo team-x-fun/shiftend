@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_provider.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-class MemberDitailPage extends StatelessWidget {
-  const MemberDitailPage(this.user, this.model);
+class MemberDetailPage extends StatelessWidget {
+  const MemberDetailPage(this.user, this.memberProvider);
 
   final User user;
-  final MemberProvider model;
+  final MemberProvider memberProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +42,37 @@ class MemberDitailPage extends StatelessWidget {
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${model.level}',
+                  '${user.role}',
                 ),
+                title: const Text('役職'),
+              ),
+              ListTile(
+                dense: true,
+                trailing: SmoothStarRating(
+                    allowHalfRating: false,
+                    onRated: (v) {
+                      print('rating value -> $v');
+                      if (v != memberProvider.level) {
+                        memberProvider.changeLevel(v);
+                      }
+                    },
+                    starCount: 5,
+                    rating: memberProvider.level,
+                    size: 30,
+                    isReadOnly: false,
+                    color: Colors.orange,
+                    borderColor: Colors.orange,
+                    spacing: 0),
                 title: const Text('レベル'),
               ),
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${model.tel}',
+                  '${memberProvider.tel}',
                 ),
-                title: const Text('Tel'),
+                title: const Text('電話'),
               ),
+              //ListTile(),
             ],
           ),
         ),

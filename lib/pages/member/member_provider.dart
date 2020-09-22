@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MemberProvider extends ChangeNotifier {
-  int level = 0; // default member level
+  double level = 3; // default member level
   String tel = '000-000-0000'; //default Telephone number
 
-  void changeLevel(int userLevel) {
+  void changeLevel(double userLevel) {
     if (validateLevel(userLevel)) {
       level = userLevel;
     }
     notifyListeners();
   }
 
-  bool validateLevel(int userLevel) {
+  bool validateLevel(double userLevel) {
     if (userLevel < 0 || userLevel > 5) {
       return false;
     }
