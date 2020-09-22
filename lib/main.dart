@@ -16,6 +16,7 @@ import 'package:shiftend/pages/member/member_page.dart';
 import 'package:shiftend/pages/setting/setting_page.dart';
 import 'package:shiftend/pages/setting_org/setting_org_state.dart';
 import 'package:shiftend/pages/setting_org/setting_org_state_controller.dart';
+import 'package:shiftend/repositories/announcement_repository.dart';
 import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 import 'package:shiftend/repositories/organization_repository.dart';
@@ -63,6 +64,9 @@ class MyApp extends StatelessWidget {
               firestore: FirebaseFirestore.instance,
               auth: FirebaseAuth.instance),
         ),
+        Provider<AnnouncementRepository>.value(
+            value:
+                AnnouncementRepository(firestore: FirebaseFirestore.instance)),
         StateNotifierProvider<LoginStateController, LoginState>(
           create: (context) => LoginStateController(),
         ),
