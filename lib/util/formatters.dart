@@ -1,3 +1,5 @@
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/date_symbols.dart';
 import 'package:intl/intl.dart';
 
 String fullDateToJa(DateTime date) {
@@ -9,4 +11,17 @@ String fullDateToJa(DateTime date) {
  */
 String extractTime(DateTime date) {
   return '${date.hour}:${date.minute.toString().padLeft(2, "0")}';
+}
+
+String toRegularHoliday(int dayOfWeekNum, int nWeekNum) {
+  final jpDateSymbols = dateTimeSymbolMap()['ja'] as DateSymbols;
+  final weekDay = jpDateSymbols.STANDALONEWEEKDAYS[dayOfWeekNum];
+  String prefix = '';
+  if (nWeekNum == 0) {
+    prefix = '毎週';
+  } else {
+    prefix = '第$nWeekNum';
+  }
+
+  return '$prefix$weekDay';
 }

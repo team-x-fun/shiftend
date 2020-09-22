@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
-import 'package:shiftend/pages/setting_org/setting_org_state.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/repositories/organization_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -16,12 +16,13 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
   @override
   void initState() {
+    state = state.copyWith(notifierState: NotifierState.loading);
     fetchOrganizationMembers();
+    fetchHolidays();
     super.initState();
   }
 
   Future<void> fetchOrganizationMembers() async {
-    state = state.copyWith(notifierState: NotifierState.loading);
     if (loginState.selectedOrg == null) {
       return;
     }
@@ -33,5 +34,16 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     }).catchError((dynamic error) {
       debugPrint(error.toString());
     });
+  }
+
+  void fetchHolidays() {
+    if (loginState.selectedOrg.id != null) {
+      organizationRepository
+          .getHolidays(loginState.selectedOrg.id)
+          .then((value) {
+        state = state.copyWith(
+            notifierState: NotifierState.loaded, holidays: value);
+      });
+    }
   }
 }

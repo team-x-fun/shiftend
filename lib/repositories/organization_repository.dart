@@ -77,4 +77,9 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     final List<User> members = await Future.wait(futureMembers);
     return org.copyWith(owners: owners, members: members);
   }
+
+  @override
+  Future<List<Holiday>> getHolidays(String id) {
+    return getOrganization(id).then((value) => value.defaultHolidays);
+  }
 }

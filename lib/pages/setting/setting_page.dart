@@ -8,9 +8,9 @@ import 'package:shiftend/pages/setting/setting_account_item.dart';
 import 'package:shiftend/pages/setting/setting_header_item.dart';
 import 'package:shiftend/pages/setting/setting_list_item.dart';
 import 'package:shiftend/pages/setting/setting_logout_item.dart';
-import 'package:shiftend/pages/setting_org/setting_org_page.dart';
-import 'package:shiftend/pages/setting_org/setting_org_state.dart';
-import 'package:shiftend/pages/setting_org/setting_org_state_controller.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_page.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
 
 class SettingPage extends StatelessWidget {
   @override
