@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'member_detail.dart';
 import 'member_provider.dart';
-import 'widgets/level_stars_widget.dart';
 
 class MemberItem extends StatelessWidget {
   const MemberItem({this.user, this.model});
@@ -37,7 +37,16 @@ class MemberItem extends StatelessWidget {
               child: Container(
                 child: ListTile(
                   dense: true,
-                  trailing: LevelStars(level: model.level),
+                  trailing: SmoothStarRating(
+                      allowHalfRating: false,
+                      //onRated: (v) {},
+                      starCount: 5,
+                      rating: model.level,
+                      size: 25,
+                      isReadOnly: true,
+                      color: Colors.orange,
+                      borderColor: Colors.orange,
+                      spacing: 0),
                   leading: Container(
                     height: 50,
                     width: 50,

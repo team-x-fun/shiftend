@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_provider.dart';
-import 'widgets/level_stars_widget.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDitailPage extends StatelessWidget {
@@ -51,9 +48,22 @@ class MemberDitailPage extends StatelessWidget {
               ),
               ListTile(
                 dense: true,
-                trailing: LevelStars(
-                  level: model.level,
-                ),
+                trailing: SmoothStarRating(
+                    allowHalfRating: false,
+                    onRated: (v) {
+                      print('rating value -> $v');
+                      if (v != model.level) {
+                        //model.level = v;
+                        model.changeLevel(v);
+                      }
+                    },
+                    starCount: 5,
+                    rating: model.level,
+                    size: 30,
+                    isReadOnly: false,
+                    color: Colors.orange,
+                    borderColor: Colors.orange,
+                    spacing: 0),
                 title: const Text('レベル'),
               ),
               ListTile(
@@ -63,19 +73,7 @@ class MemberDitailPage extends StatelessWidget {
                 ),
                 title: const Text('電話'),
               ),
-              ListTile(),
-              SmoothStarRating(
-                  allowHalfRating: false,
-                  onRated: (v) {},
-                  starCount: 5,
-                  rating: 3,
-                  size: 40.0,
-                  isReadOnly: false,
-                  //fullRatedIconData: Icons.blur_off,
-                  //halfRatedIconData: Icons.blur_on,
-                  color: Colors.green,
-                  borderColor: Colors.green,
-                  spacing: 0.0)
+              //ListTile(),
             ],
           ),
         ),
