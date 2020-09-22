@@ -75,10 +75,14 @@ class CalendarStateController extends StateNotifier<CalendarState>
     final requestedShifts =
         await shiftRequestRepository.getShifts(loginState.selectedOrg.id, date);
     final currentUser = await userRepository.getCurrentUser();
-    state = state.copyWith(
-        loggedinUserRequestedShifts:
-            requestedShifts[DateTime(date.year, date.month, date.day)]
-                .where((shift) => shift.user.id == currentUser.id)
-                .toList());
+    final today = DateTime(date.year, date.month, date.day);
+    if (requestedShifts[today] == null) {
+      state = state.copyWith(loggedinUserRequestedShifts: <Shift>[]);
+    } else {
+      state = state.copyWith(
+          loggedinUserRequestedShifts: requestedShifts[today]
+              .where((shift) => shift.user.id == currentUser.id)
+              .toList());
+    }
   }
 }
