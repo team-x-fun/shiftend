@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/util/formatters.dart';
 
 class CalendarListItemWidget extends StatelessWidget {
@@ -11,6 +13,11 @@ class CalendarListItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final String shiftTime =
         '${extractTime(shift.start)}〜${extractTime(shift.end)}';
+
+    final Color color =
+        Provider.of<LoginState>(context).currentUser.id == shift.user.id
+            ? Colors.blueGrey[100]
+            : Colors.white;
     return Container(
       child: ListTile(
         leading: Container(
@@ -30,6 +37,7 @@ class CalendarListItemWidget extends StatelessWidget {
           print('タップされた $shift'),
         },
       ),
+      color: color,
     );
   }
 }
