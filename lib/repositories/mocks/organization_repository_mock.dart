@@ -63,4 +63,9 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
     });
     return;
   }
+
+  @override
+  void getHolidays(String id) {
+    throw UnimplementedError();
+  }
 }

@@ -77,4 +77,11 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     final List<User> members = await Future.wait(futureMembers);
     return org.copyWith(owners: owners, members: members);
   }
+
+  @override
+  void getHolidays(String id) {
+    final ref = firestore.collection(collectionName).doc(id);
+    ref.get().then((value) =>
+        debugPrint(value.data().containsKey('default_holidays').toString()));
+  }
 }

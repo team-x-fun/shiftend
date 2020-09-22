@@ -6,4 +6,5 @@ abstract class OrganizationRepositoryInterface {
   Future<void> update(Organization org);
   Future<Organization> getOrganization(String id);
   Future<List<Organization>> getOrganizations(String ownerId);
+  void getHolidays(String id);
 }

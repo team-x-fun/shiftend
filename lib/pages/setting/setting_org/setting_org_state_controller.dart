@@ -17,6 +17,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   @override
   void initState() {
     fetchOrganizationMembers();
+    fetchHolidays();
     super.initState();
   }
 
@@ -33,5 +34,9 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     }).catchError((dynamic error) {
       debugPrint(error.toString());
     });
+  }
+
+  void fetchHolidays() {
+    organizationRepository.getHolidays(loginState.selectedOrg.id);
   }
 }
