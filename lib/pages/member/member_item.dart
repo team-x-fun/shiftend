@@ -5,6 +5,7 @@ import 'package:shiftend/models/models.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'member_detail.dart';
 import 'member_provider.dart';
+import 'widgets/level_stars_widget.dart';
 
 class MemberItem extends StatelessWidget {
   const MemberItem({
@@ -34,15 +35,7 @@ class MemberItem extends StatelessWidget {
             child: Container(
               child: ListTile(
                 dense: true,
-                trailing: SmoothStarRating(
-                    allowHalfRating: false,
-                    starCount: 5,
-                    rating: memberProvider.level,
-                    size: 25,
-                    isReadOnly: true,
-                    color: Colors.orange,
-                    borderColor: Colors.orange,
-                    spacing: 0),
+                trailing: LevelStars(level: memberProvider.level),
                 leading: Container(
                   height: 50,
                   width: 50,
