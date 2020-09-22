@@ -37,9 +37,13 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   void fetchHolidays() {
-    organizationRepository.getHolidays(loginState.selectedOrg.id).then((value) {
-      state =
-          state.copyWith(notifierState: NotifierState.loaded, holidays: value);
-    });
+    if (loginState.selectedOrg.id != null) {
+      organizationRepository
+          .getHolidays(loginState.selectedOrg.id)
+          .then((value) {
+        state = state.copyWith(
+            notifierState: NotifierState.loaded, holidays: value);
+      });
+    }
   }
 }
