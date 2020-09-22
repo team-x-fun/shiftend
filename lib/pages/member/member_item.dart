@@ -27,7 +27,7 @@ class MemberItem extends StatelessWidget {
               await showDialog<int>(
                 context: context,
                 builder: (BuildContext context) {
-                  return MemberDitailPage(user, memberProvider);
+                  return MemberDetailPage(user, memberProvider);
                 },
               );
             },
