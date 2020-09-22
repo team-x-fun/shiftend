@@ -122,6 +122,16 @@ jobs:
         env:
           GOOGLE_SERVICE_INFO_BASE64: ${{ secrets.GOOGLE_SERVICE_INFO_BASE64}}
         run: echo $GOOGLE_SERVICE_INFO_BASE64 | base64 --decode > ${GITHUB_WORKSPACE}/ios/Runner/GoogleService-Info.plist
+      - name: Cache CocoaPods files
+        id: cache-cocoapods
+        uses: actions/cache@preview
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+      - name: after Cache
+        run: echo "-->${{steps.cache-cocoapods.outputs.cache-hit}}<--"
       - run: flutter build ios --release --no-codesign
       - name: Slack Notification
         uses: homoluctus/slatify@master
