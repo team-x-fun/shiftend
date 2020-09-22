@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
-import 'package:shiftend/pages/member/member_provider.dart';
+import 'package:shiftend/pages/member/member_state.dart';
+import 'package:shiftend/pages/member/member_state_controller.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDetailPage extends StatelessWidget {
-  const MemberDetailPage(this.user, this.memberProvider);
+  const MemberDetailPage(this.user);
 
   final User user;
-  final MemberProvider memberProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,17 @@ class MemberDetailPage extends StatelessWidget {
                     allowHalfRating: false,
                     onRated: (v) {
                       print('rating value -> $v');
-                      if (v != memberProvider.level) {
-                        memberProvider.changeLevel(v);
+                      if (v !=
+                          Provider.of<MemberState>(context, listen: false)
+                              .level) {
+                        Provider.of<MemberStateController>(context,
+                                listen: false)
+                            .changeLevel(v);
                       }
                     },
                     starCount: 5,
-                    rating: memberProvider.level,
+                    rating:
+                        Provider.of<MemberState>(context, listen: false).level,
                     size: 30,
                     isReadOnly: false,
                     color: Colors.orange,
@@ -68,7 +74,7 @@ class MemberDetailPage extends StatelessWidget {
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${memberProvider.tel}',
+                  '${Provider.of<MemberState>(context, listen: false).tel}',
                 ),
                 title: const Text('電話'),
               ),
