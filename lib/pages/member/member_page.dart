@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:shiftend/pages/member/member_item.dart';
-import 'package:shiftend/pages/member/member_provider.dart';
+import 'package:shiftend/pages/member/member_state.dart';
+import 'package:shiftend/pages/member/member_state_controller.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 import 'package:shiftend/models/models.dart';
@@ -27,8 +28,9 @@ class MemberPage extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
-                return ChangeNotifierProvider<MemberProvider>(
-                  create: (_) => MemberProvider(),
+                return StateNotifierProvider<MemberStateController,
+                    MemberState>(
+                  create: (_) => MemberStateController(),
                   child: MemberItem(
                     user: snapshot.data[index],
                   ),
