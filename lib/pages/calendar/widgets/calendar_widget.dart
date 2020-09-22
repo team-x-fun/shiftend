@@ -26,11 +26,12 @@ class CalendarWidget extends StatelessWidget {
       startingDayOfWeek: StartingDayOfWeek.sunday,
       availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: CalendarStyle(
-        outsideDaysVisible: false,
-        outsideWeekendStyle: const TextStyle().copyWith(color: Colors.black),
-        weekdayStyle: const TextStyle().copyWith(color: Colors.black),
-        weekendStyle: const TextStyle().copyWith(color: Colors.black),
-      ),
+          outsideDaysVisible: false, // trueにすると月を切り替えたときにマーカーが表示されなくなる
+          outsideHolidayStyle: const TextStyle(decorationColor: Colors.grey),
+          weekdayStyle: const TextStyle().copyWith(color: Colors.red),
+          weekendStyle: const TextStyle().copyWith(color: Colors.red),
+          selectedStyle:
+              const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
       daysOfWeekStyle: DaysOfWeekStyle(
         weekdayStyle: const TextStyle().copyWith(color: Colors.black),
         weekendStyle: const TextStyle().copyWith(color: Colors.black),
@@ -42,50 +43,79 @@ class CalendarWidget extends StatelessWidget {
       ),
       builders: CalendarBuilders(
         selectedDayBuilder: (context, date, _) {
+          final isSaturday = date.weekday == DateTime.saturday;
+          final isSunday = date.weekday == DateTime.sunday;
+          final today = DateTime.now();
+          final isToday = today.year == date.year &&
+              today.month == date.month &&
+              today.day == date.day;
+          final dayColor = isSaturday
+              ? Colors.blueAccent
+              : isSunday ? Colors.redAccent : Colors.black;
+          final dayFontWeight = isToday ? FontWeight.bold : FontWeight.normal;
+
           return FadeTransition(
             opacity:
                 Tween<double>(begin: 0, end: 1).animate(animationController),
             // 日付選択されたときのレイアウト
             child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: (date.year == DateTime.now().year &&
-                        date.month == DateTime.now().month &&
-                        date.day == DateTime.now().day)
-                    ? Colors.blue
-                    : Colors.white.withOpacity(1),
-                border: Border.all(
-                  width: 2,
-                  color: Colors.grey,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: Colors.white.withOpacity(0),
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
                 ),
-              ),
-              margin: const EdgeInsets.all(4),
-              padding: const EdgeInsets.only(top: 5, left: 6),
-              width: 100,
-              height: 100,
-              child: Text(
-                '${date.day}',
-                style: const TextStyle().copyWith(fontSize: 16),
-              ),
-            ),
+                margin: const EdgeInsets.all(2),
+                width: 100,
+                height: 100,
+                child: Center(
+                  child: Text(
+                    '${date.day}',
+                    style: const TextStyle().copyWith(
+                      fontSize: 16,
+                      color: dayColor,
+                      fontWeight: dayFontWeight,
+                    ),
+                  ),
+                )),
           );
         },
         todayDayBuilder: (context, date, _) {
           // 今日を表すレイアウト
+          final isSaturday = date.weekday == DateTime.saturday;
+          final isSunday = date.weekday == DateTime.sunday;
+          final dayColor = isSaturday
+              ? Colors.blueAccent
+              : isSunday ? Colors.redAccent : Colors.black;
+
           return Container(
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              shape: BoxShape.circle,
-            ),
-            margin: const EdgeInsets.all(4),
-//            padding: const EdgeInsets.only(top: 5.0, left: 6.0),
-//            color: const Color(0xFFEDFAF1),
-            width: 100,
-            height: 100,
+            margin: const EdgeInsets.all(2),
             child: Center(
+              child: Text('${date.day}',
+                  style: const TextStyle()
+                      .copyWith(color: dayColor, fontWeight: FontWeight.bold)),
+            ),
+          );
+        },
+        dayBuilder: (context, date, events) {
+          final isSaturday = date.weekday == DateTime.saturday;
+          final isSunday = date.weekday == DateTime.sunday;
+          final dayColor = isSaturday
+              ? Colors.blueAccent
+              : isSunday ? Colors.redAccent : Colors.black;
+          return Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.white.withOpacity(0),
+            ),
+            margin: const EdgeInsets.all(2),
+            child: Align(
+              alignment: Alignment.center,
               child: Text(
                 '${date.day}',
-                style: const TextStyle().copyWith(fontSize: 16),
+                style: const TextStyle().copyWith(color: dayColor),
               ),
             ),
           );
@@ -95,8 +125,8 @@ class CalendarWidget extends StatelessWidget {
           if (attendees.isNotEmpty) {
             children.add(
               Positioned(
-                right: 1,
-                bottom: 1,
+                right: 4,
+                bottom: 4,
                 child: MarkerWidget(
                   date: date,
                   attendees: attendees,
