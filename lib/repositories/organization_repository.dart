@@ -79,9 +79,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
   }
 
   @override
-  void getHolidays(String id) {
-    final ref = firestore.collection(collectionName).doc(id);
-    ref.get().then((value) =>
-        debugPrint(value.data().containsKey('default_holidays').toString()));
+  Future<List<Holiday>> getHolidays(String id) {
+    return getOrganization(id).then((value) => value.defaultHolidays);
   }
 }

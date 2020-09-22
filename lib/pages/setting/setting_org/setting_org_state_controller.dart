@@ -16,13 +16,13 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
   @override
   void initState() {
+    state = state.copyWith(notifierState: NotifierState.loading);
     fetchOrganizationMembers();
     fetchHolidays();
     super.initState();
   }
 
   Future<void> fetchOrganizationMembers() async {
-    state = state.copyWith(notifierState: NotifierState.loading);
     if (loginState.selectedOrg == null) {
       return;
     }
@@ -37,6 +37,9 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   void fetchHolidays() {
-    organizationRepository.getHolidays(loginState.selectedOrg.id);
+    organizationRepository.getHolidays(loginState.selectedOrg.id).then((value) {
+      state =
+          state.copyWith(notifierState: NotifierState.loaded, holidays: value);
+    });
   }
 }

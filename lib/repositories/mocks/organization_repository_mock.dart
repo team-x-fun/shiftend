@@ -65,7 +65,8 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
   }
 
   @override
-  void getHolidays(String id) {
+  Future<List<Holiday>> getHolidays(String id) {
+    // TODO: implement getHolidays
     throw UnimplementedError();
   }
 }

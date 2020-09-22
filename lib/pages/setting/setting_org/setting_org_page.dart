@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
+import 'package:shiftend/util/formatters.dart';
 
 class SettingOrgPage extends StatelessWidget {
-  var _hasBeenCalled = false;
   final _items = <Widget>[
     Container(
       padding: const EdgeInsets.only(left: 16, top: 8),
@@ -85,6 +85,23 @@ class SettingOrgPage extends StatelessWidget {
           ),
         );
     }
+
+    final holidays = context
+        .select<SettingOrgState, List<Holiday>>((state) => state.holidays);
+    if (holidays.isNotEmpty) {
+      holidays.forEach((holiday) {
+        _items.add(ListTile(
+          title: Text(
+            toRegularHoliday(holiday.dayOfWeek, holiday.nWeek),
+          ),
+          trailing: IconButton(
+            icon: const Icon(Icons.clear),
+            onPressed: () {},
+          ),
+        ));
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('組織の設定'),
