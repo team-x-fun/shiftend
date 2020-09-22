@@ -11,8 +11,10 @@ class AnnouncementRepository extends AnnouncementRepositoryInterface {
   @override
   Future<List<Announcement>> getAnnouncements() async {
     final announcements = <Announcement>[];
-    debugPrint('aaaaaaaaaaaaaaaaaaaaaaaaa');
-    final res = await firestore.collection('announcement').get();
+    final res = await firestore
+        .collection('announcement')
+        .orderBy('created_at', descending: true)
+        .get();
     res.docs.forEach((announcement) {
       announcements.add(Announcement.fromJson(announcement.data()));
     });

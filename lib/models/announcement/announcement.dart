@@ -9,6 +9,7 @@ abstract class Announcement with _$Announcement {
     @JsonKey(name: 'title') String title,
     @JsonKey(name: 'content') String content,
     @JsonKey(name: 'image_url') String imageUrl,
+    @JsonKey(name: 'created_at') DateTime createdAt,
   }) = _Announcement;
 
   factory Announcement.fromJson(Map<String, dynamic> json) =>

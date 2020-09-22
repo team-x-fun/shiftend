@@ -17,6 +17,22 @@ class AnnouncementPage extends StatelessWidget {
           itemBuilder: (BuildContext _, int index) {
             return ListTile(
               title: Text(announcements[index].title),
+              subtitle: Text(
+                announcements[index].content,
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: announcements[index].imageUrl != ''
+                  ? Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.network(
+                        announcements[index].imageUrl,
+                        fit: BoxFit.cover,
+                      ))
+                  : Container(
+                      width: 80,
+                      height: 80,
+                    ),
               onTap: () {},
             );
           }),

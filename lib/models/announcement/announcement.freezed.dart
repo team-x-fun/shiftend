@@ -18,11 +18,13 @@ class _$AnnouncementTearOff {
   _Announcement call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'image_url') String imageUrl}) {
+      @JsonKey(name: 'image_url') String imageUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt}) {
     return _Announcement(
       title: title,
       content: content,
       imageUrl: imageUrl,
+      createdAt: createdAt,
     );
   }
 }
@@ -37,6 +39,8 @@ mixin _$Announcement {
   String get content;
   @JsonKey(name: 'image_url')
   String get imageUrl;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
 
   Map<String, dynamic> toJson();
   $AnnouncementCopyWith<Announcement> get copyWith;
@@ -49,7 +53,8 @@ abstract class $AnnouncementCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'image_url') String imageUrl});
+      @JsonKey(name: 'image_url') String imageUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
 class _$AnnouncementCopyWithImpl<$Res> implements $AnnouncementCopyWith<$Res> {
@@ -64,11 +69,14 @@ class _$AnnouncementCopyWithImpl<$Res> implements $AnnouncementCopyWith<$Res> {
     Object title = freezed,
     Object content = freezed,
     Object imageUrl = freezed,
+    Object createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed ? _value.title : title as String,
       content: content == freezed ? _value.content : content as String,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      createdAt:
+          createdAt == freezed ? _value.createdAt : createdAt as DateTime,
     ));
   }
 }
@@ -82,7 +90,8 @@ abstract class _$AnnouncementCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'image_url') String imageUrl});
+      @JsonKey(name: 'image_url') String imageUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
 class __$AnnouncementCopyWithImpl<$Res> extends _$AnnouncementCopyWithImpl<$Res>
@@ -99,11 +108,14 @@ class __$AnnouncementCopyWithImpl<$Res> extends _$AnnouncementCopyWithImpl<$Res>
     Object title = freezed,
     Object content = freezed,
     Object imageUrl = freezed,
+    Object createdAt = freezed,
   }) {
     return _then(_Announcement(
       title: title == freezed ? _value.title : title as String,
       content: content == freezed ? _value.content : content as String,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      createdAt:
+          createdAt == freezed ? _value.createdAt : createdAt as DateTime,
     ));
   }
 }
@@ -113,7 +125,8 @@ class _$_Announcement implements _Announcement {
   const _$_Announcement(
       {@JsonKey(name: 'title') this.title,
       @JsonKey(name: 'content') this.content,
-      @JsonKey(name: 'image_url') this.imageUrl});
+      @JsonKey(name: 'image_url') this.imageUrl,
+      @JsonKey(name: 'created_at') this.createdAt});
 
   factory _$_Announcement.fromJson(Map<String, dynamic> json) =>
       _$_$_AnnouncementFromJson(json);
@@ -127,10 +140,13 @@ class _$_Announcement implements _Announcement {
   @override
   @JsonKey(name: 'image_url')
   final String imageUrl;
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Announcement(title: $title, content: $content, imageUrl: $imageUrl)';
+    return 'Announcement(title: $title, content: $content, imageUrl: $imageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -144,7 +160,10 @@ class _$_Announcement implements _Announcement {
                     .equals(other.content, content)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)));
+                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -152,7 +171,8 @@ class _$_Announcement implements _Announcement {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(content) ^
-      const DeepCollectionEquality().hash(imageUrl);
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @override
   _$AnnouncementCopyWith<_Announcement> get copyWith =>
@@ -168,7 +188,8 @@ abstract class _Announcement implements Announcement {
   const factory _Announcement(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'image_url') String imageUrl}) = _$_Announcement;
+      @JsonKey(name: 'image_url') String imageUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt}) = _$_Announcement;
 
   factory _Announcement.fromJson(Map<String, dynamic> json) =
       _$_Announcement.fromJson;
@@ -182,6 +203,9 @@ abstract class _Announcement implements Announcement {
   @override
   @JsonKey(name: 'image_url')
   String get imageUrl;
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
   @override
   _$AnnouncementCopyWith<_Announcement> get copyWith;
 }
