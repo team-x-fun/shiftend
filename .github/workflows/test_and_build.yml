@@ -132,6 +132,8 @@ jobs:
             ${{ runner.os }}-pods-
       - name: after Cache
         run: echo "-->${{steps.cache-cocoapods.outputs.cache-hit}}<--"
+      - name: flutter clean
+        run: flutter clean
       - run: flutter build ios --release --no-codesign
       - name: Slack Notification
         uses: homoluctus/slatify@master
