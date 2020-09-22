@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/pages/member/member_state_controller.dart';
-import 'package:state_notifier/state_notifier.dart';
 import 'member_detail.dart';
 import 'widgets/level_stars_widget.dart';
 
