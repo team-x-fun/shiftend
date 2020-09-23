@@ -6,6 +6,7 @@ import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/pages/login/login_state.dart';
+import 'package:shiftend/pages/user/user_state_controller.dart';
 import 'package:shiftend/pages/user/widgets/org_select_widget.dart';
 import 'package:shiftend/pages/login/login_state_controller.dart';
 
@@ -94,6 +95,43 @@ class UserPage extends StatelessWidget {
               Text('role: ${user.role}'),
               Text('level: ${user.role}'),
               OrgSelectWidget(),
+              FlatButton(
+                color: Colors.blueGrey,
+                child: const Text('新しく組織を作成'),
+                onPressed: () {
+                  final textController = TextEditingController();
+                  showDialog<Widget>(
+                    context: context,
+                    builder: (BuildContext dialogContext) {
+                      return AlertDialog(
+                        title: const Text('組織の新規作成'),
+                        content: TextField(
+                          controller: textController,
+                          decoration: const InputDecoration(labelText: '組織id'),
+                        ),
+                        actions: [
+                          FlatButton(
+                            child: const Text('キャンセル'),
+                            onPressed: () {
+                              Navigator.pop(dialogContext);
+                            },
+                          ),
+                          FlatButton(
+                            child: const Text('作成'),
+                            onPressed: () {
+                              Navigator.pop(dialogContext);
+                              Provider.of<UserStateController>(context,
+                                      listen: false)
+                                  .createOrganization(
+                                      textController.text, user);
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),

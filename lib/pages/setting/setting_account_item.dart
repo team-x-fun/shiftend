@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/user/user_page.dart';
+import 'package:shiftend/pages/user/user_state.dart';
+import 'package:shiftend/pages/user/user_state_controller.dart';
 
 class SettingAccountItem extends StatelessWidget {
   const SettingAccountItem();
@@ -30,13 +33,15 @@ class SettingAccountItem extends StatelessWidget {
         onTap: () => {
           print('「アカウント」を押しました。'),
           print(user),
-          Navigator.of(context).push(
-            MaterialPageRoute<UserPage>(
-              builder: (context) {
-                return const UserPage();
-              },
+          Navigator.push<UserPage>(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) =>
+                  StateNotifierProvider<UserStateController, UserState>(
+                      create: (context) => UserStateController(),
+                      child: const UserPage()),
             ),
-          ),
+          )
         },
         title: Text(user.name),
         subtitle: Text(user.email),
