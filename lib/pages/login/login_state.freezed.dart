@@ -15,8 +15,8 @@ class _$LoginStateTearOff {
   _LoginState call(
       {bool isLogin = false,
       User currentUser,
-      List<Organization> orgs,
-      Organization selectedOrg}) {
+      List<Organization> orgs = const <Organization>[],
+      Organization selectedOrg = const Organization()}) {
     return _LoginState(
       isLogin: isLogin,
       currentUser: currentUser,
@@ -145,16 +145,23 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   const _$_LoginState(
-      {this.isLogin = false, this.currentUser, this.orgs, this.selectedOrg})
-      : assert(isLogin != null);
+      {this.isLogin = false,
+      this.currentUser,
+      this.orgs = const <Organization>[],
+      this.selectedOrg = const Organization()})
+      : assert(isLogin != null),
+        assert(orgs != null),
+        assert(selectedOrg != null);
 
   @JsonKey(defaultValue: false)
   @override
   final bool isLogin;
   @override
   final User currentUser;
+  @JsonKey(defaultValue: const <Organization>[])
   @override
   final List<Organization> orgs;
+  @JsonKey(defaultValue: const Organization())
   @override
   final Organization selectedOrg;
 

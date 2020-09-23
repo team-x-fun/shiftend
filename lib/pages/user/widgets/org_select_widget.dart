@@ -7,6 +7,13 @@ import 'package:shiftend/pages/login/login_state_controller.dart';
 class OrgSelectWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final orgs = Provider.of<LoginState>(context).orgs;
+    print('OrgSelectWidget build: orgs.length = ${orgs.length}');
+    print(
+        'OrgSelectWidget build: selectedOrg = ${Provider.of<LoginState>(context).selectedOrg}');
+    if (orgs.isEmpty) {
+      return const Center();
+    }
     return Center(
       child: DropdownButton<Organization>(
         value: Provider.of<LoginState>(context, listen: true).selectedOrg,
