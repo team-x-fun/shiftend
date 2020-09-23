@@ -42,13 +42,6 @@ class SettingAccountItem extends StatelessWidget {
                       child: const UserPage()),
             ),
           )
-          // Navigator.of(context).push(
-          //   MaterialPageRoute<UserPage>(
-          //     builder: (context) {
-          //       return const UserPage();
-          //     },
-          //   ),
-          // ),
         },
         title: Text(user.name),
         subtitle: Text(user.email),

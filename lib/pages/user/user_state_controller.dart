@@ -14,7 +14,7 @@ class UserStateController extends StateNotifier<UserState> with LocatorMixin {
 
   Future<void> createOrganization(String id, User user) async {
     state = state.copyWith(notifierState: NotifierState.loading);
-    if (user != null) {
+    if (user.id != null) {
       final org = Organization(
         id: id,
         owners: <User>[user],

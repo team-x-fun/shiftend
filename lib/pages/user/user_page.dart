@@ -118,7 +118,6 @@ class UserPage extends StatelessWidget {
                             child: const Text('作成'),
                             onPressed: () {
                               Navigator.pop(dialogContext);
-                              // TODO 組織追加
                               Provider.of<UserStateController>(context,
                                       listen: false)
                                   .createOrganization(
