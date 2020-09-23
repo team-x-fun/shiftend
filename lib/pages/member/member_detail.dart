@@ -52,18 +52,12 @@ class MemberDetailPage extends StatelessWidget {
                 trailing: SmoothStarRating(
                     allowHalfRating: false,
                     onRated: (v) {
-                      print('rating value -> $v');
-                      if (v !=
-                          Provider.of<MemberState>(context, listen: false)
-                              .level) {
-                        Provider.of<MemberStateController>(context,
-                                listen: false)
-                            .changeLevel(v);
-                      }
+                      debugPrint('rating value -> $v');
+                      Provider.of<MemberStateController>(context, listen: false)
+                          .changeLevel(v);
                     },
                     starCount: 5,
-                    rating:
-                        Provider.of<MemberState>(context, listen: false).level,
+                    rating: Provider.of<MemberState>(context).level,
                     size: 30,
                     isReadOnly: false,
                     color: Colors.orange,
