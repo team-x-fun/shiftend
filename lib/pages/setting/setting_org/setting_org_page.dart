@@ -61,9 +61,12 @@ class SettingOrgPage extends StatelessWidget {
         ),
       );
     });
+    final holidays = context
+        .select<SettingOrgState, List<Holiday>>((state) => state.holidays);
     if (context.select<SettingOrgState, NotifierState>(
-            (state) => state.notifierState) ==
-        NotifierState.loaded) {
+                (state) => state.notifierState) ==
+            NotifierState.loaded &&
+        holidays.isNotEmpty) {
       _items
         ..add(
           Container(
@@ -83,11 +86,6 @@ class SettingOrgPage extends StatelessWidget {
             },
           ),
         );
-    }
-
-    final holidays = context
-        .select<SettingOrgState, List<Holiday>>((state) => state.holidays);
-    if (holidays.isNotEmpty) {
       holidays.forEach((holiday) {
         _items.add(ListTile(
           title: Text(
