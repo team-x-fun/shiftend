@@ -24,6 +24,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
   Future<void> fetchOrganizationMembers() async {
     if (loginState.selectedOrg == null) {
+      state = state.copyWith(notifierState: NotifierState.loaded);
       return;
     }
     return organizationRepository
@@ -37,13 +38,13 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   void fetchHolidays() {
-    if (loginState.selectedOrg.id != null) {
-      organizationRepository
-          .getHolidays(loginState.selectedOrg.id)
-          .then((value) {
-        state = state.copyWith(
-            notifierState: NotifierState.loaded, holidays: value);
-      });
+    if (loginState.selectedOrg == null) {
+      state = state.copyWith(notifierState: NotifierState.loaded);
+      return;
     }
+    organizationRepository.getHolidays(loginState.selectedOrg.id).then((value) {
+      state =
+          state.copyWith(notifierState: NotifierState.loaded, holidays: value);
+    });
   }
 }
