@@ -15,6 +15,8 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<LoginState>(context, listen: true).currentUser;
+    debugPrint(
+        'UserPage#build: LoginState = ${Provider.of<LoginState>(context, listen: false)}');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[100],

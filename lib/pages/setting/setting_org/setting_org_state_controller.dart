@@ -17,16 +17,16 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   @override
   void initState() {
     state = state.copyWith(notifierState: NotifierState.loading);
-    fetchOrganizationMembers();
-    fetchHolidays();
+    if (loginState.selectedOrg.id == null) {
+      state = state.copyWith(notifierState: NotifierState.loaded);
+    } else {
+      fetchOrganizationMembers();
+      fetchHolidays();
+    }
     super.initState();
   }
 
   Future<void> fetchOrganizationMembers() async {
-    if (loginState.selectedOrg == null) {
-      state = state.copyWith(notifierState: NotifierState.loaded);
-      return;
-    }
     return organizationRepository
         .getOrganization(loginState.selectedOrg.id)
         .then((value) {
@@ -38,10 +38,6 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   void fetchHolidays() {
-    if (loginState.selectedOrg == null) {
-      state = state.copyWith(notifierState: NotifierState.loaded);
-      return;
-    }
     organizationRepository.getHolidays(loginState.selectedOrg.id).then((value) {
       state =
           state.copyWith(notifierState: NotifierState.loaded, holidays: value);

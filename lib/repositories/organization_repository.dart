@@ -62,6 +62,8 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     final Map<String, dynamic> result = <String, dynamic>{...rawJson}
       ..remove('owners')
       ..remove('members');
+    result['owners'] = <String>[];
+    result['members'] = <String>[];
     final Organization org = Organization.fromJson(result);
 
     final List<Future<User>> futureOwners =
