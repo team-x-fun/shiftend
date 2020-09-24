@@ -14,41 +14,43 @@ class SettingRegularHolidayDialog extends StatelessWidget {
     final intervalsRegularHolidays = ['毎週', '第1', '第2', '第3', '第4'];
     return AlertDialog(
       title: const Text('定休日の追加'),
-      content: Wrap(
-        children: [
-          for (int i = 0; i < 7; i++)
-            Row(
-              children: [
-                Checkbox(
-                  activeColor: Colors.blue,
-                  value: Provider.of<SettingOrgState>(context)
-                      .selectableDayOfWeeks[i],
-                  onChanged: (bool value) =>
-                      Provider.of<SettingOrgStateController>(context,
-                              listen: false)
-                          .changeSelectableDayOfWeek(value, i),
-                ),
-                Text(weekDays[i]),
-              ],
-            ),
-          const Divider(),
-          for (int i = 0; i < 5; i++)
-            Row(
-              children: [
-                Radio(
-                  activeColor: Colors.blue,
-                  value: i,
-                  groupValue: Provider.of<SettingOrgState>(context)
-                      .intervalRegularHoliday,
-                  onChanged: (Object value) =>
-                      Provider.of<SettingOrgStateController>(context,
-                              listen: false)
-                          .changeIntervalRegularHoliday(value),
-                ),
-                Text(intervalsRegularHolidays[i]),
-              ],
-            )
-        ],
+      content: SingleChildScrollView(
+        child: Wrap(
+          children: [
+            for (int i = 0; i < 7; i++)
+              Row(
+                children: [
+                  Checkbox(
+                    activeColor: Colors.blue,
+                    value: Provider.of<SettingOrgState>(context)
+                        .selectableDayOfWeeks[i],
+                    onChanged: (bool value) =>
+                        Provider.of<SettingOrgStateController>(context,
+                                listen: false)
+                            .changeSelectableDayOfWeek(value, i),
+                  ),
+                  Text(weekDays[i]),
+                ],
+              ),
+            const Divider(),
+            for (int i = 0; i < 5; i++)
+              Row(
+                children: [
+                  Radio(
+                    activeColor: Colors.blue,
+                    value: i,
+                    groupValue: Provider.of<SettingOrgState>(context)
+                        .intervalRegularHoliday,
+                    onChanged: (Object value) =>
+                        Provider.of<SettingOrgStateController>(context,
+                                listen: false)
+                            .changeIntervalRegularHoliday(value),
+                  ),
+                  Text(intervalsRegularHolidays[i]),
+                ],
+              )
+          ],
+        ),
       ),
       actions: [
         FlatButton(
