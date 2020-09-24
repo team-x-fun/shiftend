@@ -2,6 +2,22 @@
 
 A new Flutter application.
 
+## Preparations
+
+コミットに hook して，`flutter analyze`と`flutter format`を実行する準備
+
+```bash
+# 事前にpython3.8.3をインストール
+# 以下インストール例
+$ anyenv install pyenv
+$ exec $SHELL -l
+$ pyenv install 3.8.3
+$ exec $SHELL -l
+# ↑ここまで，pythonインストール
+$ pip install pre-commit
+$ pre-commit install
+```
+
 ## version
 
 ```sh
