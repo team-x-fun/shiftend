@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:shiftend/debug_views/globals.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
@@ -35,7 +34,8 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
       state = state.copyWith(
           notifierState: NotifierState.loaded, members: value.members);
     }).catchError((dynamic error) {
-      debugPrint(error.toString());
+      state = state.copyWith(notifierState: NotifierState.loaded);
+      debugPrint('fetchOrganizationMembersのエラー $error');
     });
   }
 
@@ -43,6 +43,9 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     organizationRepository.getHolidays(loginState.selectedOrg.id).then((value) {
       state =
           state.copyWith(notifierState: NotifierState.loaded, holidays: value);
+    }).catchError((dynamic error) {
+      state = state.copyWith(notifierState: NotifierState.loaded);
+      debugPrint('fetchHolidaysのエラー $error');
     });
   }
 

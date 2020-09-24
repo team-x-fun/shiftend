@@ -85,7 +85,6 @@ class SettingOrgPage extends StatelessWidget {
             leading: const Icon(Icons.add),
             title: const Text('定休日の追加'),
             onTap: () {
-              // TODO 定休日を追加するダイアログ表示
               showDialog<Widget>(
                 context: context,
                 builder: (_) => StateNotifierProvider<SettingOrgStateController,
