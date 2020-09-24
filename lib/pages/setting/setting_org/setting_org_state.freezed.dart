@@ -15,11 +15,21 @@ class _$SettingOrgStateTearOff {
   _SettingOrgState call(
       {NotifierState notifierState = NotifierState.initial,
       List<Holiday> holidays = const <Holiday>[],
-      List<User> members = const <User>[]}) {
+      List<User> members = const <User>[],
+      List<bool> selectableDayOfWeeks = const <bool>[
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]}) {
     return _SettingOrgState(
       notifierState: notifierState,
       holidays: holidays,
       members: members,
+      selectableDayOfWeeks: selectableDayOfWeeks,
     );
   }
 }
@@ -31,6 +41,7 @@ mixin _$SettingOrgState {
   NotifierState get notifierState;
   List<Holiday> get holidays;
   List<User> get members;
+  List<bool> get selectableDayOfWeeks;
 
   $SettingOrgStateCopyWith<SettingOrgState> get copyWith;
 }
@@ -42,7 +53,8 @@ abstract class $SettingOrgStateCopyWith<$Res> {
   $Res call(
       {NotifierState notifierState,
       List<Holiday> holidays,
-      List<User> members});
+      List<User> members,
+      List<bool> selectableDayOfWeeks});
 }
 
 class _$SettingOrgStateCopyWithImpl<$Res>
@@ -58,6 +70,7 @@ class _$SettingOrgStateCopyWithImpl<$Res>
     Object notifierState = freezed,
     Object holidays = freezed,
     Object members = freezed,
+    Object selectableDayOfWeeks = freezed,
   }) {
     return _then(_value.copyWith(
       notifierState: notifierState == freezed
@@ -66,6 +79,9 @@ class _$SettingOrgStateCopyWithImpl<$Res>
       holidays:
           holidays == freezed ? _value.holidays : holidays as List<Holiday>,
       members: members == freezed ? _value.members : members as List<User>,
+      selectableDayOfWeeks: selectableDayOfWeeks == freezed
+          ? _value.selectableDayOfWeeks
+          : selectableDayOfWeeks as List<bool>,
     ));
   }
 }
@@ -79,7 +95,8 @@ abstract class _$SettingOrgStateCopyWith<$Res>
   $Res call(
       {NotifierState notifierState,
       List<Holiday> holidays,
-      List<User> members});
+      List<User> members,
+      List<bool> selectableDayOfWeeks});
 }
 
 class __$SettingOrgStateCopyWithImpl<$Res>
@@ -97,6 +114,7 @@ class __$SettingOrgStateCopyWithImpl<$Res>
     Object notifierState = freezed,
     Object holidays = freezed,
     Object members = freezed,
+    Object selectableDayOfWeeks = freezed,
   }) {
     return _then(_SettingOrgState(
       notifierState: notifierState == freezed
@@ -105,6 +123,9 @@ class __$SettingOrgStateCopyWithImpl<$Res>
       holidays:
           holidays == freezed ? _value.holidays : holidays as List<Holiday>,
       members: members == freezed ? _value.members : members as List<User>,
+      selectableDayOfWeeks: selectableDayOfWeeks == freezed
+          ? _value.selectableDayOfWeeks
+          : selectableDayOfWeeks as List<bool>,
     ));
   }
 }
@@ -113,10 +134,20 @@ class _$_SettingOrgState implements _SettingOrgState {
   const _$_SettingOrgState(
       {this.notifierState = NotifierState.initial,
       this.holidays = const <Holiday>[],
-      this.members = const <User>[]})
+      this.members = const <User>[],
+      this.selectableDayOfWeeks = const <bool>[
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]})
       : assert(notifierState != null),
         assert(holidays != null),
-        assert(members != null);
+        assert(members != null),
+        assert(selectableDayOfWeeks != null);
 
   @JsonKey(defaultValue: NotifierState.initial)
   @override
@@ -127,10 +158,21 @@ class _$_SettingOrgState implements _SettingOrgState {
   @JsonKey(defaultValue: const <User>[])
   @override
   final List<User> members;
+  @JsonKey(defaultValue: const <bool>[
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ])
+  @override
+  final List<bool> selectableDayOfWeeks;
 
   @override
   String toString() {
-    return 'SettingOrgState(notifierState: $notifierState, holidays: $holidays, members: $members)';
+    return 'SettingOrgState(notifierState: $notifierState, holidays: $holidays, members: $members, selectableDayOfWeeks: $selectableDayOfWeeks)';
   }
 
   @override
@@ -144,7 +186,11 @@ class _$_SettingOrgState implements _SettingOrgState {
                 const DeepCollectionEquality()
                     .equals(other.holidays, holidays)) &&
             (identical(other.members, members) ||
-                const DeepCollectionEquality().equals(other.members, members)));
+                const DeepCollectionEquality()
+                    .equals(other.members, members)) &&
+            (identical(other.selectableDayOfWeeks, selectableDayOfWeeks) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectableDayOfWeeks, selectableDayOfWeeks)));
   }
 
   @override
@@ -152,7 +198,8 @@ class _$_SettingOrgState implements _SettingOrgState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(notifierState) ^
       const DeepCollectionEquality().hash(holidays) ^
-      const DeepCollectionEquality().hash(members);
+      const DeepCollectionEquality().hash(members) ^
+      const DeepCollectionEquality().hash(selectableDayOfWeeks);
 
   @override
   _$SettingOrgStateCopyWith<_SettingOrgState> get copyWith =>
@@ -163,7 +210,8 @@ abstract class _SettingOrgState implements SettingOrgState {
   const factory _SettingOrgState(
       {NotifierState notifierState,
       List<Holiday> holidays,
-      List<User> members}) = _$_SettingOrgState;
+      List<User> members,
+      List<bool> selectableDayOfWeeks}) = _$_SettingOrgState;
 
   @override
   NotifierState get notifierState;
@@ -171,6 +219,8 @@ abstract class _SettingOrgState implements SettingOrgState {
   List<Holiday> get holidays;
   @override
   List<User> get members;
+  @override
+  List<bool> get selectableDayOfWeeks;
   @override
   _$SettingOrgStateCopyWith<_SettingOrgState> get copyWith;
 }

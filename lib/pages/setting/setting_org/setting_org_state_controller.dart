@@ -43,4 +43,11 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
           state.copyWith(notifierState: NotifierState.loaded, holidays: value);
     });
   }
+
+  // ignore: avoid_positional_boolean_parameters
+  void changeSelectableDayOfWeek(bool value, int dayOfWeekPosition) {
+    final newValue = state.selectableDayOfWeeks.toList();
+    newValue[dayOfWeekPosition] = value;
+    state = state.copyWith(selectableDayOfWeeks: newValue);
+  }
 }
