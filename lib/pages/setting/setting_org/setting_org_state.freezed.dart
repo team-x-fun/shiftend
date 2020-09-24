@@ -24,12 +24,14 @@ class _$SettingOrgStateTearOff {
         false,
         false,
         false
-      ]}) {
+      ],
+      int intervalRegularHoliday = -1}) {
     return _SettingOrgState(
       notifierState: notifierState,
       holidays: holidays,
       members: members,
       selectableDayOfWeeks: selectableDayOfWeeks,
+      intervalRegularHoliday: intervalRegularHoliday,
     );
   }
 }
@@ -42,6 +44,7 @@ mixin _$SettingOrgState {
   List<Holiday> get holidays;
   List<User> get members;
   List<bool> get selectableDayOfWeeks;
+  int get intervalRegularHoliday;
 
   $SettingOrgStateCopyWith<SettingOrgState> get copyWith;
 }
@@ -54,7 +57,8 @@ abstract class $SettingOrgStateCopyWith<$Res> {
       {NotifierState notifierState,
       List<Holiday> holidays,
       List<User> members,
-      List<bool> selectableDayOfWeeks});
+      List<bool> selectableDayOfWeeks,
+      int intervalRegularHoliday});
 }
 
 class _$SettingOrgStateCopyWithImpl<$Res>
@@ -71,6 +75,7 @@ class _$SettingOrgStateCopyWithImpl<$Res>
     Object holidays = freezed,
     Object members = freezed,
     Object selectableDayOfWeeks = freezed,
+    Object intervalRegularHoliday = freezed,
   }) {
     return _then(_value.copyWith(
       notifierState: notifierState == freezed
@@ -82,6 +87,9 @@ class _$SettingOrgStateCopyWithImpl<$Res>
       selectableDayOfWeeks: selectableDayOfWeeks == freezed
           ? _value.selectableDayOfWeeks
           : selectableDayOfWeeks as List<bool>,
+      intervalRegularHoliday: intervalRegularHoliday == freezed
+          ? _value.intervalRegularHoliday
+          : intervalRegularHoliday as int,
     ));
   }
 }
@@ -96,7 +104,8 @@ abstract class _$SettingOrgStateCopyWith<$Res>
       {NotifierState notifierState,
       List<Holiday> holidays,
       List<User> members,
-      List<bool> selectableDayOfWeeks});
+      List<bool> selectableDayOfWeeks,
+      int intervalRegularHoliday});
 }
 
 class __$SettingOrgStateCopyWithImpl<$Res>
@@ -115,6 +124,7 @@ class __$SettingOrgStateCopyWithImpl<$Res>
     Object holidays = freezed,
     Object members = freezed,
     Object selectableDayOfWeeks = freezed,
+    Object intervalRegularHoliday = freezed,
   }) {
     return _then(_SettingOrgState(
       notifierState: notifierState == freezed
@@ -126,6 +136,9 @@ class __$SettingOrgStateCopyWithImpl<$Res>
       selectableDayOfWeeks: selectableDayOfWeeks == freezed
           ? _value.selectableDayOfWeeks
           : selectableDayOfWeeks as List<bool>,
+      intervalRegularHoliday: intervalRegularHoliday == freezed
+          ? _value.intervalRegularHoliday
+          : intervalRegularHoliday as int,
     ));
   }
 }
@@ -143,11 +156,13 @@ class _$_SettingOrgState implements _SettingOrgState {
         false,
         false,
         false
-      ]})
+      ],
+      this.intervalRegularHoliday = -1})
       : assert(notifierState != null),
         assert(holidays != null),
         assert(members != null),
-        assert(selectableDayOfWeeks != null);
+        assert(selectableDayOfWeeks != null),
+        assert(intervalRegularHoliday != null);
 
   @JsonKey(defaultValue: NotifierState.initial)
   @override
@@ -169,10 +184,13 @@ class _$_SettingOrgState implements _SettingOrgState {
   ])
   @override
   final List<bool> selectableDayOfWeeks;
+  @JsonKey(defaultValue: -1)
+  @override
+  final int intervalRegularHoliday;
 
   @override
   String toString() {
-    return 'SettingOrgState(notifierState: $notifierState, holidays: $holidays, members: $members, selectableDayOfWeeks: $selectableDayOfWeeks)';
+    return 'SettingOrgState(notifierState: $notifierState, holidays: $holidays, members: $members, selectableDayOfWeeks: $selectableDayOfWeeks, intervalRegularHoliday: $intervalRegularHoliday)';
   }
 
   @override
@@ -189,8 +207,11 @@ class _$_SettingOrgState implements _SettingOrgState {
                 const DeepCollectionEquality()
                     .equals(other.members, members)) &&
             (identical(other.selectableDayOfWeeks, selectableDayOfWeeks) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectableDayOfWeeks, selectableDayOfWeeks)));
+                const DeepCollectionEquality().equals(
+                    other.selectableDayOfWeeks, selectableDayOfWeeks)) &&
+            (identical(other.intervalRegularHoliday, intervalRegularHoliday) ||
+                const DeepCollectionEquality().equals(
+                    other.intervalRegularHoliday, intervalRegularHoliday)));
   }
 
   @override
@@ -199,7 +220,8 @@ class _$_SettingOrgState implements _SettingOrgState {
       const DeepCollectionEquality().hash(notifierState) ^
       const DeepCollectionEquality().hash(holidays) ^
       const DeepCollectionEquality().hash(members) ^
-      const DeepCollectionEquality().hash(selectableDayOfWeeks);
+      const DeepCollectionEquality().hash(selectableDayOfWeeks) ^
+      const DeepCollectionEquality().hash(intervalRegularHoliday);
 
   @override
   _$SettingOrgStateCopyWith<_SettingOrgState> get copyWith =>
@@ -211,7 +233,8 @@ abstract class _SettingOrgState implements SettingOrgState {
       {NotifierState notifierState,
       List<Holiday> holidays,
       List<User> members,
-      List<bool> selectableDayOfWeeks}) = _$_SettingOrgState;
+      List<bool> selectableDayOfWeeks,
+      int intervalRegularHoliday}) = _$_SettingOrgState;
 
   @override
   NotifierState get notifierState;
@@ -221,6 +244,8 @@ abstract class _SettingOrgState implements SettingOrgState {
   List<User> get members;
   @override
   List<bool> get selectableDayOfWeeks;
+  @override
+  int get intervalRegularHoliday;
   @override
   _$SettingOrgStateCopyWith<_SettingOrgState> get copyWith;
 }

@@ -50,4 +50,8 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     newValue[dayOfWeekPosition] = value;
     state = state.copyWith(selectableDayOfWeeks: newValue);
   }
+
+  void changeIntervalRegularHoliday(Object value) {
+    state = state.copyWith(intervalRegularHoliday: int.parse(value.toString()));
+  }
 }
