@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:shiftend/debug_views/globals.dart';
+import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
@@ -53,5 +55,25 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
   void changeIntervalRegularHoliday(Object value) {
     state = state.copyWith(intervalRegularHoliday: int.parse(value.toString()));
+  }
+
+  Future<void> addRegularHoliday() async {
+    Organization organization =
+        await organizationRepository.getOrganization(loginState.selectedOrg.id);
+    final regularHolidays = organization.defaultHolidays;
+
+    for (int i = 0; i < state.selectableDayOfWeeks.length; i++) {
+      if (state.selectableDayOfWeeks[i]) {
+        regularHolidays
+            .add(Holiday(dayOfWeek: i, nWeek: state.intervalRegularHoliday));
+      }
+    }
+    organization = organization.copyWith(defaultHolidays: regularHolidays);
+
+    return organizationRepository.update(organization).then((value) {
+      debugPrint('追加に成功しました');
+    }).catchError((dynamic error) {
+      debugPrint('追加に失敗しました $error');
+    });
   }
 }

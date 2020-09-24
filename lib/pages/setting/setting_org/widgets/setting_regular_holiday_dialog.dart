@@ -63,7 +63,8 @@ class SettingRegularHolidayDialog extends StatelessWidget {
           child: const Text('作成'),
           onPressed: () {
             Navigator.pop(context);
-            // TODO 作成する処理
+            Provider.of<SettingOrgStateController>(context, listen: false)
+                .addRegularHoliday();
           },
         )
       ],
