@@ -15,11 +15,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
 
   @override
   Future<void> create(Organization org) async {
-    final Map<String, dynamic> json = org.toJson()
-      ..remove('owners')
-      ..remove('members');
-    json['owners'] = await _getUsersRef(org.owners);
-    json['members'] = await _getUsersRef(org.members);
+    final json = await _toJson(org);
 
     await firestore.collection(collectionName).doc(org.id).set(json);
   }
@@ -47,7 +43,8 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
 
   @override
   Future<void> update(Organization org) async {
-    await firestore.collection(collectionName).doc(org.id).update(org.toJson());
+    final json = await _toJson(org);
+    await firestore.collection(collectionName).doc(org.id).update(json);
   }
 
   Future<List<DocumentReference>> _getUsersRef(List<User> users) async {
@@ -78,6 +75,15 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
         .toList();
     final List<User> members = await Future.wait(futureMembers);
     return org.copyWith(owners: owners, members: members);
+  }
+
+  Future<Map<String, dynamic>> _toJson(Organization org) async {
+    final Map<String, dynamic> json = org.toJson()
+      ..remove('owners')
+      ..remove('members');
+    json['owners'] = await _getUsersRef(org.owners);
+    json['members'] = await _getUsersRef(org.members);
+    return json;
   }
 
   @override
