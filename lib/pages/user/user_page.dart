@@ -9,6 +9,7 @@ import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/user/user_state_controller.dart';
 import 'package:shiftend/pages/user/widgets/org_select_widget.dart';
 import 'package:shiftend/pages/login/login_state_controller.dart';
+import 'package:shiftend/util/logger.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage();
@@ -16,7 +17,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<LoginState>(context, listen: true).currentUser;
-    debugPrint(
+    logger.info(
         'UserPage#build: LoginState = ${Provider.of<LoginState>(context, listen: false)}');
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +46,7 @@ class UserPage extends StatelessWidget {
                   ),
                 ),
                 onTap: () async {
-                  print('画像タップ');
+                  logger.info('画像タップ');
                   final mode = await showCupertinoModalPopup<int>(
                     context: context,
                     builder: (BuildContext context) {

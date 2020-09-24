@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/util/logger.dart';
 
 import 'globals.dart';
 
@@ -40,7 +41,7 @@ class ShiftDialog {
                 ),
                 onSaved: (String value) {
                   userId = value;
-                  print(userId);
+                  logger.info(userId);
                 },
                 validator: (value) {
                   if (value.isEmpty) {
@@ -96,10 +97,10 @@ class ShiftDialog {
             onPressed: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                print(userId);
+                logger.info(userId);
                 final User user = await userRepo.getUser(userId);
                 shift = shift.copyWith(user: user);
-                print(shift);
+                logger.info(shift);
                 await shiftRepo.create(orgId, shift);
                 Navigator.pop(context);
               }
@@ -350,7 +351,7 @@ class ShiftDialog {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 final shifts = await shiftRepo.getShifts(orgId, month);
-                print(shifts);
+                logger.info(shifts);
                 Navigator.pop(context);
               }
             },

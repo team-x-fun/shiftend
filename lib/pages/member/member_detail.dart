@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/pages/member/member_state_controller.dart';
+import 'package:shiftend/util/logger.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDetailPage extends StatelessWidget {
@@ -52,7 +53,7 @@ class MemberDetailPage extends StatelessWidget {
                 trailing: SmoothStarRating(
                     allowHalfRating: false,
                     onRated: (v) {
-                      debugPrint('rating value -> $v');
+                      logger.info('rating value -> $v');
                       Provider.of<MemberStateController>(context, listen: false)
                           .changeLevel(v);
                     },

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/util/formatters.dart';
+import 'package:shiftend/util/logger.dart';
 
 class CalendarListItemWidget extends StatelessWidget {
   const CalendarListItemWidget({this.shift});
@@ -34,7 +35,7 @@ class CalendarListItemWidget extends StatelessWidget {
         title: Text(shift.user.name),
         subtitle: Text(shiftTime),
         onTap: () => {
-          print('タップされた $shift'),
+          logger.info('タップされた $shift'),
         },
       ),
       color: color,

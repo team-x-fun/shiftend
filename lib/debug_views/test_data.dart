@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:shiftend/debug_views/globals.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/util/logger.dart';
 
 class TestData {
   final owners = <User>[];
@@ -19,19 +20,17 @@ class TestData {
   final requests = <Shift>[];
   final shifts = <Shift>[];
   Future insert() async {
-    print('makeUserList');
+    logger.info('makeUserList');
     await makeUserList();
     // orgがなければ作成する
-    print('make org');
-    print(owners);
-    print(members);
+    logger..info('make org')..info(owners)..info(members);
     final tmp = await orgRepo.getOrganization(org.id);
     if (tmp == null) {
       await orgRepo.create(org.copyWith(owners: owners, members: members));
     }
-    print('makeShiftRequest()');
+    logger.info('makeShiftRequest()');
     await makeShiftRequest();
-    print('makeShift()');
+    logger.info('makeShift()');
     await makeShift();
   }
 
@@ -60,7 +59,7 @@ class TestData {
     for (DateTime day = DateTime(year, month, 1);
         day.month == month;
         day = day.add(const Duration(days: 1))) {
-      print(day);
+      logger.info(day);
       // 休みをスキップ
       if (day.weekday == DateTime.sunday) {
         continue;
@@ -125,7 +124,7 @@ class TestData {
     for (DateTime day = DateTime(year, month, 1);
         day.month == month;
         day = day.add(const Duration(days: 1))) {
-      print(day);
+      logger.info(day);
       //オーナー確定
       final ownerShift = requests.firstWhere(
         (req) => req.start.day == day.day && req.user.id == owner.id,

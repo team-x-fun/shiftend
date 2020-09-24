@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/util/logger.dart';
 
 import 'globals.dart';
 
@@ -12,7 +13,7 @@ class UserDialog {
         firebaseUser = auth.currentUser;
       }
     } on Exception {
-      print('ログインに失敗しました．');
+      logger.shout('ログインに失敗しました．');
     }
   }
 
@@ -125,7 +126,7 @@ class UserDialog {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } on Exception {
-      print('ログインに失敗しました．');
+      logger.shout('ログインに失敗しました．');
     }
   }
 
@@ -148,7 +149,7 @@ class UserDialog {
                 userRepo.create(user)
               });
     } on Exception {
-      print('ユーザ登録に失敗しました．');
+      logger.shout('ユーザ登録に失敗しました．');
     }
   }
 
