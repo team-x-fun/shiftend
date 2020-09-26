@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
