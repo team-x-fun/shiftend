@@ -83,10 +83,12 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     });
   }
 
-  Future<void> removeRegularHoliday(int index) async {
+  Future<void> removeRegularHoliday(Holiday holiday) async {
     Organization organization =
         await organizationRepository.getOrganization(loginState.selectedOrg.id);
-    final regularHolidays = organization.defaultHolidays..removeAt(index);
+
+    final removeIndex = organization.defaultHolidays.indexOf(holiday);
+    final regularHolidays = organization.defaultHolidays..removeAt(removeIndex);
 
     organization = organization.copyWith(defaultHolidays: regularHolidays);
     return organizationRepository.update(organization).then((value) {

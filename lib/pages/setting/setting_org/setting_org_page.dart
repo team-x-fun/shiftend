@@ -106,7 +106,7 @@ class SettingOrgPage extends StatelessWidget {
             icon: const Icon(Icons.clear),
             onPressed: () {
               Provider.of<SettingOrgStateController>(context, listen: false)
-                  .removeRegularHoliday(i);
+                  .removeRegularHoliday(holidays[i]);
             },
           ),
         ));
