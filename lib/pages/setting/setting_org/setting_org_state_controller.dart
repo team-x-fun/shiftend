@@ -67,8 +67,10 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
     for (int i = 0; i < state.selectableDayOfWeeks.length; i++) {
       if (state.selectableDayOfWeeks[i]) {
-        regularHolidays
-            .add(Holiday(dayOfWeek: i, nWeek: state.intervalRegularHoliday));
+        if (!checkIsDuplicate(i)) {
+          regularHolidays
+              .add(Holiday(dayOfWeek: i, nWeek: state.intervalRegularHoliday));
+        }
       }
     }
     organization = organization.copyWith(defaultHolidays: regularHolidays);
@@ -78,5 +80,17 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     }).catchError((dynamic error) {
       debugPrint('追加に失敗しました $error');
     });
+  }
+
+  bool checkIsDuplicate(int dayOfWeek) {
+    bool isDuplicate = false;
+    state.holidays.forEach((holiday) {
+      if (holiday.dayOfWeek == dayOfWeek &&
+          holiday.nWeek == state.intervalRegularHoliday) {
+        debugPrint('重複してました $dayOfWeek ${state.intervalRegularHoliday}');
+        isDuplicate = true;
+      }
+    });
+    return isDuplicate;
   }
 }

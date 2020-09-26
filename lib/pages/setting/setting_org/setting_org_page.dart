@@ -90,7 +90,9 @@ class SettingOrgPage extends StatelessWidget {
                 builder: (_) => StateNotifierProvider<SettingOrgStateController,
                         SettingOrgState>.value(
                     value: Provider.of<SettingOrgStateController>(context),
-                    child: SettingRegularHolidayDialog()),
+                    child: SettingRegularHolidayDialog(
+                      holidays: holidays,
+                    )),
               );
             },
           ),

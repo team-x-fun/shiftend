@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/date_symbols.dart';
 import 'package:provider/provider.dart';
+import 'package:shiftend/models/holiday/holiday.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
 
 class SettingRegularHolidayDialog extends StatelessWidget {
+  const SettingRegularHolidayDialog({@required this.holidays});
+
+  final List<Holiday> holidays;
   @override
   Widget build(BuildContext context) {
     final jpDateSymbols = dateTimeSymbolMap()['ja'] as DateSymbols;
