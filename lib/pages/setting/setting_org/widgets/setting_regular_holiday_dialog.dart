@@ -27,11 +27,11 @@ class SettingRegularHolidayDialog extends StatelessWidget {
                   Checkbox(
                     activeColor: Colors.blue,
                     value: Provider.of<SettingOrgState>(context)
-                        .selectableDayOfWeeks[i],
+                        .selectedDayOfWeeks[i],
                     onChanged: (bool value) =>
                         Provider.of<SettingOrgStateController>(context,
                                 listen: false)
-                            .changeSelectableDayOfWeek(value, i),
+                            .changeSelectedDayOfWeek(value, i),
                   ),
                   Text(weekDays[i]),
                 ],

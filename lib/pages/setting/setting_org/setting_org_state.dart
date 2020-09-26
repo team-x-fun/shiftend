@@ -11,7 +11,7 @@ abstract class SettingOrgState with _$SettingOrgState {
     @Default(<Holiday>[]) List<Holiday> holidays,
     @Default(<User>[]) List<User> members,
     @Default(<bool>[false, false, false, false, false, false, false])
-        List<bool> selectableDayOfWeeks,
+        List<bool> selectedDayOfWeeks,
     @Default(-1) int intervalRegularHoliday,
   }) = _SettingOrgState;
 }

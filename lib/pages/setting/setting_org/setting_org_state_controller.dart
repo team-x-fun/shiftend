@@ -51,10 +51,10 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   // ignore: avoid_positional_boolean_parameters
-  void changeSelectableDayOfWeek(bool value, int dayOfWeekPosition) {
-    final newValue = state.selectableDayOfWeeks.toList();
+  void changeSelectedDayOfWeek(bool value, int dayOfWeekPosition) {
+    final newValue = state.selectedDayOfWeeks.toList();
     newValue[dayOfWeekPosition] = value;
-    state = state.copyWith(selectableDayOfWeeks: newValue);
+    state = state.copyWith(selectedDayOfWeeks: newValue);
   }
 
   void changeIntervalRegularHoliday(Object value) {
@@ -66,8 +66,8 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
         await organizationRepository.getOrganization(loginState.selectedOrg.id);
     final regularHolidays = organization.defaultHolidays;
 
-    for (int i = 0; i < state.selectableDayOfWeeks.length; i++) {
-      if (state.selectableDayOfWeeks[i]) {
+    for (int i = 0; i < state.selectedDayOfWeeks.length; i++) {
+      if (state.selectedDayOfWeeks[i]) {
         if (!checkIsDuplicate(i)) {
           regularHolidays
               .add(Holiday(dayOfWeek: i, nWeek: state.intervalRegularHoliday));
