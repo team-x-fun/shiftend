@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/repositories/interfaces/organization_repository_interface.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
+import 'package:shiftend/util/logger.dart';
 
 class OrganizationRepository extends OrganizationRepositoryInterface {
   OrganizationRepository({@required this.firestore, @required this.userRepo})
@@ -25,7 +26,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
     final Map<String, dynamic> json =
         (await firestore.collection(collectionName).doc(id).get()).data();
     if (json == null) {
-      return null;
+      return const Organization();
     }
     return _fromJson(json);
   }
@@ -83,6 +84,7 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
       ..remove('members');
     json['owners'] = await _getUsersRef(org.owners);
     json['members'] = await _getUsersRef(org.members);
+    logger.info('_toJson = ${json.toString()}');
     return json;
   }
 
