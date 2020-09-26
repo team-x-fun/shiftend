@@ -27,7 +27,7 @@ class _$OrganizationTearOff {
       @HolidayConverter()
           List<Holiday> defaultHolidays = const <Holiday>[],
       @JsonKey(name: 'default_personnel')
-          Personnel defaultPersonnel}) {
+          Personnel defaultPersonnel = const Personnel()}) {
     return _Organization(
       id: id,
       owners: owners,
@@ -188,10 +188,11 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
       @HolidayConverter()
           this.defaultHolidays = const <Holiday>[],
       @JsonKey(name: 'default_personnel')
-          this.defaultPersonnel})
+          this.defaultPersonnel = const Personnel()})
       : assert(owners != null),
         assert(members != null),
-        assert(defaultHolidays != null);
+        assert(defaultHolidays != null),
+        assert(defaultPersonnel != null);
 
   factory _$_Organization.fromJson(Map<String, dynamic> json) =>
       _$_$_OrganizationFromJson(json);
