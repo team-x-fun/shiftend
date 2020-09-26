@@ -67,7 +67,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
     for (int i = 0; i < state.selectedDayOfWeeks.length; i++) {
       if (state.selectedDayOfWeeks[i]) {
-        if (_isDuplicate(i)) {
+        if (!_isDuplicate(i)) {
           regularHolidays
               .add(Holiday(dayOfWeek: i, nWeek: state.intervalRegularHoliday));
         }
@@ -98,14 +98,14 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   bool _isDuplicate(int dayOfWeek) {
-    bool isDuplicate = false;
+    // ignore: void_checks
     state.holidays.forEach((holiday) {
       if (holiday.dayOfWeek == dayOfWeek &&
           holiday.nWeek == state.intervalRegularHoliday) {
         logger.warning('重複してました $dayOfWeek ${state.intervalRegularHoliday}');
-        isDuplicate = true;
+        return true;
       }
     });
-    return isDuplicate;
+    return false;
   }
 }
