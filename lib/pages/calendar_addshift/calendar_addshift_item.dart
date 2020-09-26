@@ -56,30 +56,4 @@ class CalendarAddShiftItem extends StatelessWidget {
       ),
     );
   }
-
-//  @override
-//  Widget build(BuildContext context) {
-//    final String shiftTime =
-//        '${extractTime(shift.start)}〜${extractTime(shift.end)}';
-//    return Container(
-//      child: ListTile(
-//        leading: Container(
-//          height: 50,
-//          width: 50,
-//          decoration: BoxDecoration(
-//            shape: BoxShape.circle,
-//            image: DecorationImage(
-//              fit: BoxFit.fill,
-//              image: NetworkImage(shift.user.iconUrl),
-//            ),
-//          ),
-//        ),
-//        title: Text(shift.user.name),
-//        subtitle: Text(shiftTime),
-//        onTap: () => {
-//          print('タップされた $shift'),
-//        },
-//      ),
-//    );
-//  }
 }

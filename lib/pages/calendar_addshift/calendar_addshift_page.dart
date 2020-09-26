@@ -14,8 +14,10 @@ class CalenderAddShiftPage extends StatelessWidget {
   final UserRepositoryInterface userRepository = UserRepositoryMock();
   final List<Shift> shiftlist;
   final List<Shift> requestShiftlist;
-  CalenderAddShiftPage({Key key, @required this.shiftlist, @required this.requestShiftlist}) : super(key: key);
+  final List<Shift> freeShiftlist;
+  CalenderAddShiftPage({Key key, @required this.shiftlist, @required this.requestShiftlist, @required this.freeShiftlist}) : super(key: key);
   final List<Widget> editedlist = [];
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,12 @@ class CalenderAddShiftPage extends StatelessWidget {
       editedlist.add(CalendarAddShiftItem(user: shift.user));
     });
     editedlist.add(Text('シフト希望'));
-    requestShiftlist.forEach((requestedShift)
-    {
+    requestShiftlist.forEach((requestedShift) {
       editedlist.add(CalendarAddShiftItem(user: requestedShift.user));
+    });
+    editedlist.add(Text('シフトなし'));
+    freeShiftlist.forEach((freeShift) {
+      editedlist.add(CalendarAddShiftItem(user: freeShift.user));
     });
 
     return Scaffold(
