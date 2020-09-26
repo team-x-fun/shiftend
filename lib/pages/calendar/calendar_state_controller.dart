@@ -3,10 +3,7 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
-import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
-import 'package:shiftend/repositories/shift_request_repository.dart';
-import 'package:shiftend/repositories/shift_repository.dart';
-import 'package:shiftend/repositories/user_repository.dart';
+import 'package:shiftend/repositories/interfaces/interfaces.dart';
 import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -14,14 +11,13 @@ class CalendarStateController extends StateNotifier<CalendarState>
     with LocatorMixin {
   CalendarStateController() : super(const CalendarState());
 
-  ShiftRepository get shiftRepository => read<ShiftRepository>();
+  ShiftRepositoryInterface get shiftRepository =>
+      read<ShiftRepositoryInterface>();
 
-  ShiftRepositoryMock get shiftRepositoryMock => read<ShiftRepositoryMock>();
+  ShiftRequestRepositoryInterface get shiftRequestRepository =>
+      read<ShiftRequestRepositoryInterface>();
 
-  ShiftRequestRepository get shiftRequestRepository =>
-      read<ShiftRequestRepository>();
-
-  UserRepository get userRepository => read<UserRepository>();
+  UserRepositoryInterface get userRepository => read<UserRepositoryInterface>();
 
   LoginState get loginState => read<LoginState>();
 

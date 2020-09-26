@@ -1,7 +1,7 @@
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
-import 'package:shiftend/repositories/organization_repository.dart';
+import 'package:shiftend/repositories/interfaces/interfaces.dart';
 import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -9,8 +9,8 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     with LocatorMixin {
   SettingOrgStateController() : super(const SettingOrgState());
 
-  OrganizationRepository get organizationRepository =>
-      read<OrganizationRepository>();
+  OrganizationRepositoryInterface get organizationRepository =>
+      read<OrganizationRepositoryInterface>();
 
   LoginState get loginState => read<LoginState>();
 

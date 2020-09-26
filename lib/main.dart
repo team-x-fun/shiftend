@@ -17,8 +17,7 @@ import 'package:shiftend/pages/setting/setting_page.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
 import 'package:shiftend/repositories/announcement_repository.dart';
-import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
-import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
+import 'package:shiftend/repositories/interfaces/interfaces.dart';
 import 'package:shiftend/repositories/organization_repository.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:shiftend/repositories/shift_request_repository.dart';
@@ -36,35 +35,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<OrganizationRepository>.value(
+        Provider<OrganizationRepositoryInterface>.value(
             value: OrganizationRepository(
                 firestore: FirebaseFirestore.instance,
                 userRepo: UserRepository(
                     firestore: FirebaseFirestore.instance,
                     auth: FirebaseAuth.instance))),
-        Provider<ShiftRepository>.value(
+        Provider<ShiftRepositoryInterface>.value(
           value: ShiftRepository(
               firestore: FirebaseFirestore.instance,
               userRepo: UserRepository(
                   firestore: FirebaseFirestore.instance,
                   auth: FirebaseAuth.instance)),
         ),
-        Provider<ShiftRepositoryMock>.value(
-          value: ShiftRepositoryMock(userRepo: UserRepositoryMock()),
-        ),
-        Provider<ShiftRequestRepository>.value(
+        Provider<ShiftRequestRepositoryInterface>.value(
             value: ShiftRequestRepository(
           userRepo: UserRepository(
               firestore: FirebaseFirestore.instance,
               auth: FirebaseAuth.instance),
           firestore: FirebaseFirestore.instance,
         )),
-        Provider<UserRepository>.value(
+        Provider<UserRepositoryInterface>.value(
           value: UserRepository(
               firestore: FirebaseFirestore.instance,
               auth: FirebaseAuth.instance),
         ),
-        Provider<AnnouncementRepository>.value(
+        Provider<AnnouncementRepositoryInterface>.value(
             value:
                 AnnouncementRepository(firestore: FirebaseFirestore.instance)),
         StateNotifierProvider<LoginStateController, LoginState>(

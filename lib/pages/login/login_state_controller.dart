@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:shiftend/models/models.dart';
-import 'package:shiftend/repositories/organization_repository.dart';
-import 'package:shiftend/repositories/user_repository.dart';
+import 'package:shiftend/repositories/interfaces/interfaces.dart';
 import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -11,8 +10,9 @@ import 'login_state.dart';
 class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
   LoginStateController() : super(const LoginState());
 
-  UserRepository get userRepository => read<UserRepository>();
-  OrganizationRepository get orgRepository => read<OrganizationRepository>();
+  UserRepositoryInterface get userRepository => read<UserRepositoryInterface>();
+  OrganizationRepositoryInterface get orgRepository =>
+      read<OrganizationRepositoryInterface>();
 
   @override
   void initState() {

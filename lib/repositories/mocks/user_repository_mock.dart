@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shiftend/models/models.dart';
@@ -110,6 +111,12 @@ class UserRepositoryMock extends UserRepositoryInterface {
   @override
   Future<User> findByEmail(String email) {
     // TODO: implement findByEmail
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> uploadIcon(String id, File file) {
+    // TODO: implement uploadIcon
     throw UnimplementedError();
   }
 }
