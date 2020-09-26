@@ -7,6 +7,7 @@ import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/user/user_page.dart';
 import 'package:shiftend/pages/user/user_state.dart';
 import 'package:shiftend/pages/user/user_state_controller.dart';
+import 'package:shiftend/util/logger.dart';
 
 class SettingAccountItem extends StatelessWidget {
   const SettingAccountItem();
@@ -31,8 +32,8 @@ class SettingAccountItem extends StatelessWidget {
           ),
         ),
         onTap: () => {
-          print('「アカウント」を押しました。'),
-          print(user),
+          logger.info('「アカウント」を押しました。'),
+          logger.info(user),
           Navigator.push<UserPage>(
             context,
             MaterialPageRoute(

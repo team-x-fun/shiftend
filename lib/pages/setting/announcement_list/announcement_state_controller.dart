@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/setting/announcement_list/announcement_list_state.dart';
 import 'package:shiftend/repositories/announcement_repository.dart';
+import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class AnnouncementListStateController
@@ -23,7 +23,7 @@ class AnnouncementListStateController
       state = state.copyWith(
           notifierState: NotifierState.loaded, announcements: value);
     }).catchError((dynamic error) {
-      debugPrint(error.toString());
+      logger.shout(error.toString());
       state = state.copyWith(notifierState: NotifierState.loaded);
     });
   }
