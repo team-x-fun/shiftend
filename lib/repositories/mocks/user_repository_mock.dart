@@ -6,10 +6,13 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 
 class UserRepositoryMock extends UserRepositoryInterface {
+  UserRepositoryMock() {
+    currentUser = defaultUser;
+  }
   final List<User> _users = <User>[
     const User(
         id: '0',
-        email: 'test@example.com',
+        email: 'owner@example.com',
         iconUrl:
             'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
         name: '佐藤 勇一郎',
@@ -17,7 +20,7 @@ class UserRepositoryMock extends UserRepositoryInterface {
         level: '100'),
     const User(
         id: '1',
-        email: 'test@example.com',
+        email: 'member1@example.com',
         iconUrl:
             'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
         name: '工藤 大輔',
@@ -25,21 +28,29 @@ class UserRepositoryMock extends UserRepositoryInterface {
         level: '100'),
     const User(
         id: '2',
-        email: 'test@example.com',
+        email: 'member2@example.com',
         iconUrl:
             'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
         name: '松山 航',
         role: 'バイトリーダ',
         level: '50'),
+    const User(
+        id: 'test_user',
+        email: 'member3@example.com',
+        name: 'test太郎',
+        role: 'オーナー',
+        level: '100',
+        iconUrl: 'https://avatars0.githubusercontent.com/u/57802072'),
   ];
   List<User> get users => _users;
-  User currentUser = const User(
-      id: 'test_user',
-      email: 'test@example.com',
-      name: 'test太郎',
-      role: 'オーナー',
-      level: '100',
-      iconUrl: 'https://avatars0.githubusercontent.com/u/57802072');
+  final User defaultUser = const User(
+    email: '',
+    name: 'ログインされていません．',
+    iconUrl:
+        'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
+  );
+
+  User currentUser;
 
   @override
   Future<void> create(User user) async {
@@ -80,9 +91,14 @@ class UserRepositoryMock extends UserRepositoryInterface {
   }
 
   @override
-  Future<void> signIn(String email, String password) {
-    // TODO: implement signIn
-    throw UnimplementedError();
+  Future<void> signIn(String email, String password) async {
+    users.forEach((user) {
+      if (user.email == email && password == 'password') {
+        currentUser = user;
+        return;
+      }
+    });
+    return;
   }
 
   @override
@@ -92,9 +108,8 @@ class UserRepositoryMock extends UserRepositoryInterface {
   }
 
   @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<void> signOut() async {
+    currentUser = defaultUser;
   }
 
   @override

@@ -10,8 +10,10 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
     orgs.add(
       Organization(
         id: 'test_id',
-        owners: <User>[_userRepo.currentUser],
-        members: <User>[_userRepo.currentUser],
+        owners: _userRepo.users
+            .where((user) => user.email == 'owner@example.com')
+            .toList(),
+        members: _userRepo.users,
         defaultHolidays: <Holiday>[
           const Holiday(dayOfWeek: 0, nWeek: 0),
           const Holiday(dayOfWeek: 1, nWeek: 1),
@@ -41,7 +43,7 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
 
   @override
   Future<List<Organization>> getOrganizations(String ownerId) async {
-    List<Organization> ownedOrgs;
+    final List<Organization> ownedOrgs = <Organization>[];
     for (final org in orgs) {
       final int ownerIndex =
           org.owners.indexWhere((user) => user.id == ownerId);
