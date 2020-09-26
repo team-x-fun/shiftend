@@ -18,21 +18,23 @@ class MemberItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.info(Provider.of<MemberState>(context).level);
+    logger.info(context.select<MemberState, double>((state) => state.level));
     return ListTile(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute<MemberDetailPage>(
             builder: (_) =>
                 StateNotifierProvider<MemberStateController, MemberState>.value(
-              value: Provider.of<MemberStateController>(context),
+              value: context.read<MemberStateController>(),
               child: MemberDetailPage(user),
             ),
           ),
         );
       },
       dense: true,
-      trailing: LevelStars(level: Provider.of<MemberState>(context).level),
+      trailing: LevelStars(
+        level: context.select<MemberState, double>((state) => state.level),
+      ),
       leading: Container(
         height: 50,
         width: 50,

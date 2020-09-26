@@ -96,7 +96,8 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLogin = Provider.of<LoginState>(context, listen: true).isLogin;
+    final bool isLogin =
+        context.select<LoginState, bool>((state) => state.isLogin);
     final bottomNavItems = [
       const BottomNavigationBarItem(
           icon: Icon(Icons.calendar_today), title: Text('カレンダー')),

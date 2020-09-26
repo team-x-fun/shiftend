@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shiftend/models/announcement/announcement.dart';
 import 'package:shiftend/pages/setting/announcement/announcement_page.dart';
 import 'package:shiftend/pages/setting/announcement_list/announcement_list_state.dart';
 
@@ -8,7 +9,8 @@ class AnnouncementListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final announcements =
-        Provider.of<AnnouncementListState>(context, listen: true).announcements;
+        context.select<AnnouncementListState, List<Announcement>>(
+            (state) => state.announcements);
     return Scaffold(
       appBar: AppBar(
         title: const Text('お知らせ'),

@@ -20,7 +20,8 @@ class CalendarWidget extends StatelessWidget {
     return TableCalendar(
       locale: 'ja_JP',
       calendarController: calendarController,
-      events: Provider.of<CalendarState>(context, listen: true).shifts,
+      events: context.select<CalendarState, Map<DateTime, List<Shift>>>(
+          (state) => state.shifts),
       initialCalendarFormat: CalendarFormat.month,
       formatAnimation: FormatAnimation.slide,
       startingDayOfWeek: StartingDayOfWeek.sunday,
@@ -138,15 +139,16 @@ class CalendarWidget extends StatelessWidget {
         },
       ),
       onDaySelected: (date, attendees) {
-        Provider.of<CalendarStateController>(context, listen: false)
+        context
+            .read<CalendarStateController>()
             .onDaySelected(date, attendees.cast<Shift>());
-        Provider.of<CalendarStateController>(context, listen: false)
+        context
+            .read<CalendarStateController>()
             .fetchLoggedinUserRequestedShifts(date);
         animationController.forward(from: 0);
       },
       onVisibleDaysChanged: (first, last, format) {
-        Provider.of<CalendarStateController>(context, listen: false)
-            .fetchShiftsOfMonth(last);
+        context.read<CalendarStateController>().fetchShiftsOfMonth(last);
       },
     );
   }

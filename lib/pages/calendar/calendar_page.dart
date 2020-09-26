@@ -51,7 +51,8 @@ class _CalendarPageState extends State<CalendarPage>
 
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<CalendarState>(context, listen: true).notifierState ==
+    if (context.select<CalendarState, NotifierState>(
+            (state) => state.notifierState) ==
         NotifierState.loaded) {
       return Scaffold(
         body: SafeArea(
@@ -66,9 +67,12 @@ class _CalendarPageState extends State<CalendarPage>
                 constraints: const BoxConstraints.expand(height: 20),
                 child: Container(
                   color: Colors.grey[300],
-                  child: Text(fullDateToJa(
-                      Provider.of<CalendarState>(context, listen: true)
-                          .selectedDate)),
+                  child: Text(
+                    fullDateToJa(
+                      context.select<CalendarState, DateTime>(
+                          (state) => state.selectedDate),
+                    ),
+                  ),
                 ),
               ),
               CalenderListTabWidget(

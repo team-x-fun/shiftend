@@ -82,7 +82,8 @@ class LoginPage extends StatelessWidget {
             onPressed: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                await Provider.of<LoginStateController>(context, listen: false)
+                await context
+                    .read<LoginStateController>()
                     .register(email, password);
                 Navigator.pop(context);
               }
@@ -93,7 +94,8 @@ class LoginPage extends StatelessWidget {
             onPressed: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                await Provider.of<LoginStateController>(context, listen: false)
+                await context
+                    .read<LoginStateController>()
                     .signIn(email, password);
                 Navigator.pop(context);
               }
