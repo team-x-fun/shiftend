@@ -26,6 +26,7 @@ abstract class Organization with _$Organization {
         List<Holiday> defaultHolidays,
     @Default(Personnel())
     @JsonKey(name: 'default_personnel')
+    @PersonnelConverter()
         Personnel defaultPersonnel,
   }) = _Organization;
 
