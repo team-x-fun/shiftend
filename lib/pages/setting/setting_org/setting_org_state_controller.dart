@@ -68,7 +68,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
     for (int i = 0; i < state.selectedDayOfWeeks.length; i++) {
       if (state.selectedDayOfWeeks[i]) {
-        if (!checkIsDuplicate(i)) {
+        if (_isDuplicate(i)) {
           regularHolidays
               .add(Holiday(dayOfWeek: i, nWeek: state.intervalRegularHoliday));
         }
@@ -96,7 +96,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     });
   }
 
-  bool checkIsDuplicate(int dayOfWeek) {
+  bool _isDuplicate(int dayOfWeek) {
     bool isDuplicate = false;
     state.holidays.forEach((holiday) {
       if (holiday.dayOfWeek == dayOfWeek &&
