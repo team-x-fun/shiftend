@@ -97,17 +97,20 @@ class SettingOrgPage extends StatelessWidget {
             },
           ),
         );
-      holidays.forEach((holiday) {
+      for (int i = 0; i < holidays.length; i++) {
         _items.add(ListTile(
           title: Text(
-            toRegularHoliday(holiday.dayOfWeek, holiday.nWeek),
+            toRegularHoliday(holidays[i].dayOfWeek, holidays[i].nWeek),
           ),
           trailing: IconButton(
             icon: const Icon(Icons.clear),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<SettingOrgStateController>(context, listen: false)
+                  .removeRegularHoliday(i);
+            },
           ),
         ));
-      });
+      }
     }
 
     return Scaffold(

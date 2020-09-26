@@ -82,6 +82,19 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     });
   }
 
+  Future<void> removeRegularHoliday(int index) async {
+    Organization organization =
+        await organizationRepository.getOrganization(loginState.selectedOrg.id);
+    final regularHolidays = organization.defaultHolidays..removeAt(index);
+
+    organization = organization.copyWith(defaultHolidays: regularHolidays);
+    return organizationRepository.update(organization).then((value) {
+      debugPrint('削除に成功しました');
+    }).catchError((dynamic error) {
+      debugPrint('削除に失敗しました $error');
+    });
+  }
+
   bool checkIsDuplicate(int dayOfWeek) {
     bool isDuplicate = false;
     state.holidays.forEach((holiday) {
