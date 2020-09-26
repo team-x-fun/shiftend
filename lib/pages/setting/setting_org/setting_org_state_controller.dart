@@ -46,7 +46,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
           state.copyWith(notifierState: NotifierState.loaded, holidays: value);
     }).catchError((dynamic error) {
       state = state.copyWith(notifierState: NotifierState.loaded);
-      debugPrint('fetchHolidaysのエラー $error');
+      logger.shout('fetchHolidaysのエラー $error');
     });
   }
 
@@ -77,9 +77,9 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     organization = organization.copyWith(defaultHolidays: regularHolidays);
 
     return organizationRepository.update(organization).then((value) {
-      debugPrint('追加に成功しました');
+      logger.info('追加に成功しました');
     }).catchError((dynamic error) {
-      debugPrint('追加に失敗しました $error');
+      logger.shout('追加に失敗しました $error');
     });
   }
 
@@ -92,9 +92,9 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
 
     organization = organization.copyWith(defaultHolidays: regularHolidays);
     return organizationRepository.update(organization).then((value) {
-      debugPrint('削除に成功しました');
+      logger.info('削除に成功しました');
     }).catchError((dynamic error) {
-      debugPrint('削除に失敗しました $error');
+      logger.shout('削除に失敗しました $error');
     });
   }
 
@@ -103,7 +103,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     state.holidays.forEach((holiday) {
       if (holiday.dayOfWeek == dayOfWeek &&
           holiday.nWeek == state.intervalRegularHoliday) {
-        debugPrint('重複してました $dayOfWeek ${state.intervalRegularHoliday}');
+        logger.warning('重複してました $dayOfWeek ${state.intervalRegularHoliday}');
         isDuplicate = true;
       }
     });
