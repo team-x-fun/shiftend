@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/debug_views/shift_dialog.dart';
 import 'package:shiftend/debug_views/user_dialog.dart';
+import 'package:shiftend/util/logger.dart';
 
 import 'organization_dialog.dart';
 import 'test_data.dart';
@@ -19,85 +20,85 @@ class DebugPage extends StatelessWidget {
           FlatButton(
             child: const Text('test data作成'),
             onPressed: () {
-              print('pressed test data');
+              logger.info('pressed test data');
               testdata.insert();
-              print('done insert test data');
+              logger.info('done insert test data');
             },
           ),
           FlatButton(
             child: const Text('user load'),
             onPressed: () {
-              print('pressed user load');
+              logger.info('pressed user load');
               UserDialog.getUser(context);
             },
           ),
           FlatButton(
             child: const Text('user login'),
             onPressed: () {
-              print('pressed user login');
+              logger.info('pressed user login');
               UserDialog.showLoginDialog(context);
             },
           ),
           FlatButton(
             child: const Text('user update'),
             onPressed: () {
-              print('pressed user update');
+              logger.info('pressed user update');
               UserDialog.showUpdateDialog(context);
             },
           ),
           FlatButton(
             child: const Text('organization create'),
             onPressed: () {
-              print('pressed organization create');
+              logger.info('pressed organization create');
               OrganizationDialog.showOrgCreateDialog(context);
             },
           ),
           FlatButton(
             child: const Text('organization get'),
             onPressed: () {
-              print('pressed organization get');
+              logger.info('pressed organization get');
               OrganizationDialog.showOrgGetDialog(context);
             },
           ),
           FlatButton(
             child: const Text('organizations get'),
             onPressed: () {
-              print('pressed organizations get');
+              logger.info('pressed organizations get');
               OrganizationDialog.showOrgsGetDialog(context);
             },
           ),
           FlatButton(
             child: const Text('organizations update(定休日の追加)'),
             onPressed: () {
-              print('pressed organizations update');
+              logger.info('pressed organizations update');
               OrganizationDialog.showOrgUpdateDialog(context);
             },
           ),
           FlatButton(
             child: const Text('shift create'),
             onPressed: () {
-              print('pressed shift create');
+              logger.info('pressed shift create');
               ShiftDialog.showShiftCreateDialog(context);
             },
           ),
           FlatButton(
             child: const Text('shift update'),
             onPressed: () {
-              print('pressed shift update');
+              logger.info('pressed shift update');
               ShiftDialog.showShiftUpdateDialog(context);
             },
           ),
           FlatButton(
             child: const Text('shift delete'),
             onPressed: () {
-              print('pressed shift delete');
+              logger.info('pressed shift delete');
               ShiftDialog.showShiftDeleteDialog(context);
             },
           ),
           FlatButton(
             child: const Text('shift list get'),
             onPressed: () {
-              print('pressed shift list get');
+              logger.info('pressed shift list get');
               ShiftDialog.showShiftListGetDialog(context);
             },
           ),

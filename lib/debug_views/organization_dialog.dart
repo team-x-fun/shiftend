@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/util/logger.dart';
 
 import 'globals.dart';
 
@@ -180,7 +181,7 @@ class OrganizationDialog {
       );
       await orgRepo.create(org);
     } on Exception {
-      print('組織の作成に失敗しました．');
+      logger.shout('組織の作成に失敗しました．');
     }
   }
 
@@ -188,9 +189,9 @@ class OrganizationDialog {
     Organization org;
     try {
       org = await orgRepo.getOrganization(id);
-      print(org.toJson().toString());
+      logger.info(org.toJson().toString());
     } on Exception {
-      print('組織の取得に失敗しました．');
+      logger.shout('組織の取得に失敗しました．');
     }
   }
 
@@ -203,7 +204,7 @@ class OrganizationDialog {
       org = org.copyWith(defaultHolidays: holidays);
       await orgRepo.update(org);
     } on Exception {
-      print('組織の更新に失敗しました．');
+      logger.shout('組織の更新に失敗しました．');
     }
   }
 
@@ -212,9 +213,9 @@ class OrganizationDialog {
     final User user = await userRepo.getCurrentUser();
     try {
       org = await orgRepo.getOrganizations(user.id);
-      print(org);
+      logger.info(org);
     } on Exception {
-      print('自分がオーナー組織の取得に失敗しました．');
+      logger.shout('自分がオーナー組織の取得に失敗しました．');
     }
   }
 }

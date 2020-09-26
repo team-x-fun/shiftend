@@ -3,14 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/login/login_state_controller.dart';
+import 'package:shiftend/util/logger.dart';
 
 class OrgSelectWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final orgs = Provider.of<LoginState>(context).orgs;
-    print('OrgSelectWidget build: orgs.length = ${orgs.length}');
-    print(
-        'OrgSelectWidget build: selectedOrg = ${Provider.of<LoginState>(context).selectedOrg}');
+    logger
+      ..info('OrgSelectWidget build: orgs.length = ${orgs.length}')
+      ..info(
+          'OrgSelectWidget build: selectedOrg = ${Provider.of<LoginState>(context).selectedOrg}');
     if (orgs.isEmpty) {
       return const Center();
     }

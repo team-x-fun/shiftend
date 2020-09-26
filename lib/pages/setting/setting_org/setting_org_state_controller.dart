@@ -4,6 +4,7 @@ import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/repositories/organization_repository.dart';
+import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class SettingOrgStateController extends StateNotifier<SettingOrgState>
@@ -35,7 +36,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
           notifierState: NotifierState.loaded, members: value.members);
     }).catchError((dynamic error) {
       state = state.copyWith(notifierState: NotifierState.loaded);
-      debugPrint('fetchOrganizationMembersのエラー $error');
+      logger.shout(error.toString());
     });
   }
 

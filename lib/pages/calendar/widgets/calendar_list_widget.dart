@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_list_item_widget.dart';
+import 'package:shiftend/util/logger.dart';
 
 class CalendarListWidget extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class CalendarListWidget extends StatelessWidget {
     final shifts =
         Provider.of<CalendarState>(context, listen: true).selectedShifts;
     if (shifts.isNotEmpty) {
-      print('きた $shifts');
+      logger.info('きた $shifts');
       shifts.forEach(
         (shift) {
           listItems.add(

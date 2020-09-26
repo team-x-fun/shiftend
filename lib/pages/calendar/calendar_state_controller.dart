@@ -7,6 +7,7 @@ import 'package:shiftend/repositories/mocks/shift_repository_mock.dart';
 import 'package:shiftend/repositories/shift_request_repository.dart';
 import 'package:shiftend/repositories/shift_repository.dart';
 import 'package:shiftend/repositories/user_repository.dart';
+import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class CalendarStateController extends StateNotifier<CalendarState>
@@ -28,7 +29,7 @@ class CalendarStateController extends StateNotifier<CalendarState>
 
   @override
   void initState() {
-    print('CalenderStateController.initState');
+    logger.info('CalenderStateController.initState');
     super.initState();
     fetchShiftsInitial(DateTime.now());
     state = state.copyWith(selectedDate: DateTime.now());
@@ -36,13 +37,14 @@ class CalendarStateController extends StateNotifier<CalendarState>
 
   // 初回のみ現在日時の月シフトを取得
   Future<void> fetchShiftsInitial(DateTime date) async {
-    print('fetchShiftsInitial');
+    logger.info('fetchShiftsInitial');
     state = state.copyWith(notifierState: NotifierState.loading);
     if (loginState.selectedOrg == null) {
       state = state.copyWith(notifierState: NotifierState.loaded);
       return;
     }
-    print('fetchShiftsInitial: selectedOrg.id = ${loginState.selectedOrg.id}');
+    logger.info(
+        'fetchShiftsInitial: selectedOrg.id = ${loginState.selectedOrg.id}');
     final shifts =
         await shiftRepository.getShifts(loginState.selectedOrg.id, date);
     final formattedNow = _dateFormatter.format(state.selectedDate);
@@ -57,9 +59,10 @@ class CalendarStateController extends StateNotifier<CalendarState>
     }
     final shifts =
         await shiftRepository.getShifts(loginState.selectedOrg.id, date);
-    print('fetchShiftsOfMonth: selectedOrg.id = ${loginState.selectedOrg.id}');
+    logger.info(
+        'fetchShiftsOfMonth: selectedOrg.id = ${loginState.selectedOrg.id}');
     state = state.copyWith(shifts: shifts);
-    print(shifts);
+    logger.info(shifts);
   }
 
   // 日付が選択されたときに下半分のシフトリストのデータを更新
