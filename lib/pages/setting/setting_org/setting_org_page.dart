@@ -7,6 +7,7 @@ import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
 import 'package:shiftend/pages/setting/setting_org/widgets/setting_regular_holiday_dialog.dart';
+import 'package:shiftend/pages/setting/setting_org/widgets/basic_personnel_widget.dart';
 import 'package:shiftend/util/formatters.dart';
 
 class SettingOrgPage extends StatelessWidget {
@@ -112,6 +113,8 @@ class SettingOrgPage extends StatelessWidget {
         ));
       }
     }
+
+    _items.add(DefaultPersonnelWidget());
 
     return Scaffold(
       appBar: AppBar(
