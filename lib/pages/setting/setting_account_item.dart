@@ -15,7 +15,7 @@ class SettingAccountItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User user =
-        Provider.of<LoginState>(context, listen: true).currentUser;
+        context.select<LoginState, User>((state) => state.currentUser);
     return Container(
       child: ListTile(
         dense: true,

@@ -12,8 +12,7 @@ class SettingLogoutItem extends StatelessWidget {
         dense: true,
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () async => {
-          await Provider.of<LoginStateController>(context, listen: false)
-              .signOut(),
+          await context.read<LoginStateController>().signOut(),
         },
         title: Text(detailTitle),
       ),

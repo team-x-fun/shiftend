@@ -9,8 +9,8 @@ class CalendarShiftRequestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> listItems = [];
-    final List<Shift> shifts = Provider.of<CalendarState>(context, listen: true)
-        .loggedinUserRequestedShifts;
+    final List<Shift> shifts = context.select<CalendarState, List<Shift>>(
+        (state) => state.loggedinUserRequestedShifts);
     if (shifts.isNotEmpty) {
       shifts.forEach(
         (shift) {

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/user/user_state_controller.dart';
 import 'package:shiftend/pages/user/widgets/org_select_widget.dart';
@@ -16,9 +17,8 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<LoginState>(context, listen: true).currentUser;
-    logger.info(
-        'UserPage#build: LoginState = ${Provider.of<LoginState>(context, listen: false)}');
+    final user = context.select<LoginState, User>((state) => state.currentUser);
+    logger.info('UserPage#build: LoginState = ${context.watch<LoginState>()}');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[100],
@@ -86,8 +86,8 @@ class UserPage extends StatelessWidget {
                   } else if (mode == 1) {
                     imageFile = await getImageFromDevice(ImageSource.gallery);
                   }
-                  await Provider.of<LoginStateController>(context,
-                          listen: false)
+                  await context
+                      .read<LoginStateController>()
                       .uploadImage(imageFile);
                 },
               ),
@@ -121,8 +121,8 @@ class UserPage extends StatelessWidget {
                             child: const Text('作成'),
                             onPressed: () {
                               Navigator.pop(dialogContext);
-                              Provider.of<UserStateController>(context,
-                                      listen: false)
+                              context
+                                  .read<UserStateController>()
                                   .createOrganization(
                                       textController.text, user);
                             },

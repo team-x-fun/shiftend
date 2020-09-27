@@ -54,11 +54,11 @@ class MemberDetailPage extends StatelessWidget {
                     allowHalfRating: false,
                     onRated: (v) {
                       logger.info('rating value -> $v');
-                      Provider.of<MemberStateController>(context, listen: false)
-                          .changeLevel(v);
+                      context.read<MemberStateController>().changeLevel(v);
                     },
                     starCount: 5,
-                    rating: Provider.of<MemberState>(context).level,
+                    rating: context
+                        .select<MemberState, double>((state) => state.level),
                     size: 30,
                     isReadOnly: false,
                     color: Colors.orange,
@@ -69,7 +69,7 @@ class MemberDetailPage extends StatelessWidget {
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${Provider.of<MemberState>(context, listen: false).tel}',
+                  '${context.select<MemberState, String>((state) => state.tel)}',
                 ),
                 title: const Text('電話'),
               ),

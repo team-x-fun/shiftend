@@ -16,7 +16,8 @@ class CalendarListItemWidget extends StatelessWidget {
         '${extractTime(shift.start)}〜${extractTime(shift.end)}';
 
     final Color color =
-        Provider.of<LoginState>(context).currentUser.id == shift.user.id
+        context.select<LoginState, String>((state) => state.currentUser.id) ==
+                shift.user.id
             ? Colors.blueGrey[100]
             : Colors.white;
     return Container(
