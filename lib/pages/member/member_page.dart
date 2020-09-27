@@ -4,7 +4,7 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:shiftend/pages/member/member_item.dart';
 import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/pages/member/member_state_controller.dart';
-import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
+import 'package:shiftend/repositories/interfaces/interfaces.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 import 'package:shiftend/models/models.dart';
 

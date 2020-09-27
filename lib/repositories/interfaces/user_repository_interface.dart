@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shiftend/models/models.dart';
 
@@ -14,4 +16,5 @@ abstract class UserRepositoryInterface {
   Future<DocumentReference> getUserRef(String userId);
   Future<User> fromUserRef(DocumentReference userRef);
   Future<User> findByEmail(String email);
+  Future<void> uploadIcon(String id, File file);
 }

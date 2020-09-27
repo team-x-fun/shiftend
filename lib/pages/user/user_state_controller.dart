@@ -1,16 +1,16 @@
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/user/user_state.dart';
-import 'package:shiftend/repositories/organization_repository.dart';
-import 'package:shiftend/repositories/user_repository.dart';
+import 'package:shiftend/repositories/interfaces/interfaces.dart';
 import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class UserStateController extends StateNotifier<UserState> with LocatorMixin {
   UserStateController() : super(const UserState());
 
-  UserRepository get userRepository => read<UserRepository>();
-  OrganizationRepository get orgRepository => read<OrganizationRepository>();
+  UserRepositoryInterface get userRepository => read<UserRepositoryInterface>();
+  OrganizationRepositoryInterface get orgRepository =>
+      read<OrganizationRepositoryInterface>();
 
   Future<void> createOrganization(String id, User user) async {
     state = state.copyWith(notifierState: NotifierState.loading);

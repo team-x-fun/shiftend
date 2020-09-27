@@ -114,6 +114,7 @@ class UserRepository extends UserRepositoryInterface {
     return User.fromJson(snapshot.docs.first.data());
   }
 
+  @override
   Future<void> uploadIcon(String id, File file) async {
     final user = getUser(id);
     final ref = FirebaseStorage().ref().child('users').child(id).child('icon');
