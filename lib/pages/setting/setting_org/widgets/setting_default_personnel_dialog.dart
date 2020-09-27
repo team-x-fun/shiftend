@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
 import 'package:shiftend/util/logger.dart';
 
 class SettingDefaultPersonnelDialog extends StatelessWidget {
-  const SettingDefaultPersonnelDialog({@required this.defaultPersonnel});
-  final Personnel defaultPersonnel;
+  const SettingDefaultPersonnelDialog();
 
   @override
   Widget build(BuildContext context) {
+    final defaultPersonnel = context
+        .select<SettingOrgState, Personnel>((state) => state.defaultPersonnel);
     return AlertDialog(
       title: const Text('基本要員の編集'),
       content: Column(
@@ -32,7 +34,11 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
                 context
                     .read<SettingOrgStateController>()
                     .changeDefaultPersonnel(
-                        defaultPersonnel.copyWith(number: number));
+                      context
+                          .read<SettingOrgState>()
+                          .defaultPersonnel
+                          .copyWith(number: number),
+                    );
               } on Exception {
                 logger.warning('int 以外の入力値: $value');
               }
@@ -61,7 +67,11 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
                 context
                     .read<SettingOrgStateController>()
                     .changeDefaultPersonnel(
-                        defaultPersonnel.copyWith(totalLevel: totalLevel));
+                      context
+                          .read<SettingOrgState>()
+                          .defaultPersonnel
+                          .copyWith(totalLevel: totalLevel),
+                    );
               } on Exception {
                 logger.warning('int 以外の入力値: $value');
               }

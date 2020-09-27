@@ -116,13 +116,16 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   void fetchDefaultPersonnel() {
-    state = state.copyWith(
-      notifierState: NotifierState.loaded,
-      defaultPersonnel: loginState.selectedOrg.defaultPersonnel,
-    );
+    organizationRepository.getOrganization(loginState.selectedOrg.id).then(
+          (org) => state = state.copyWith(
+            notifierState: NotifierState.loaded,
+            defaultPersonnel: org.defaultPersonnel,
+          ),
+        );
   }
 
   Future<void> changeDefaultPersonnel(Personnel personnel) async {
+    logger.info('$personnel');
     await organizationRepository
         .update(loginState.selectedOrg.copyWith(defaultPersonnel: personnel));
     await fetchAll();

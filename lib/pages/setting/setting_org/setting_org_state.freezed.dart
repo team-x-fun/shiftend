@@ -26,7 +26,7 @@ class _$SettingOrgStateTearOff {
         false
       ],
       int intervalRegularHoliday = -1,
-      Personnel defaultPersonnel = const Personnel()}) {
+      Personnel defaultPersonnel = const Personnel(number: 0, totalLevel: 0)}) {
     return _SettingOrgState(
       notifierState: notifierState,
       holidays: holidays,
@@ -186,7 +186,7 @@ class _$_SettingOrgState implements _SettingOrgState {
         false
       ],
       this.intervalRegularHoliday = -1,
-      this.defaultPersonnel = const Personnel()})
+      this.defaultPersonnel = const Personnel(number: 0, totalLevel: 0)})
       : assert(notifierState != null),
         assert(holidays != null),
         assert(members != null),
@@ -217,7 +217,7 @@ class _$_SettingOrgState implements _SettingOrgState {
   @JsonKey(defaultValue: -1)
   @override
   final int intervalRegularHoliday;
-  @JsonKey(defaultValue: const Personnel())
+  @JsonKey(defaultValue: const Personnel(number: 0, totalLevel: 0))
   @override
   final Personnel defaultPersonnel;
 

@@ -28,19 +28,16 @@ class DefaultPersonnelWidget extends StatelessWidget {
               builder: (_) => StateNotifierProvider<SettingOrgStateController,
                   SettingOrgState>.value(
                 value: context.read<SettingOrgStateController>(),
-                child: SettingDefaultPersonnelDialog(
-                  defaultPersonnel:
-                      context.read<SettingOrgState>().defaultPersonnel,
-                ),
+                child: const SettingDefaultPersonnelDialog(),
               ),
             );
           },
         ),
         ListTile(
-          title: Text('必要人員 ${defaultPersonnel.number}'),
+          title: Text('必要人員 ${defaultPersonnel?.number}'),
         ),
         ListTile(
-          title: Text('必要総合レベル ${defaultPersonnel.totalLevel}'),
+          title: Text('必要総合レベル ${defaultPersonnel?.totalLevel}'),
         ),
       ],
     );
