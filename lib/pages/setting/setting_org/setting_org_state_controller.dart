@@ -50,7 +50,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   void changeSelectedDayOfWeek({bool value, int dayOfWeekPosition}) {
-    final newValue = state.selectedDayOfWeeks;
+    final newValue = state.selectedDayOfWeeks.toList();
     newValue[dayOfWeekPosition] = value;
     state = state.copyWith(selectedDayOfWeeks: newValue);
   }
