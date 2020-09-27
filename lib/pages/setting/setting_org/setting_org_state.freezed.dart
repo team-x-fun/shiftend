@@ -25,13 +25,15 @@ class _$SettingOrgStateTearOff {
         false,
         false
       ],
-      int intervalRegularHoliday = -1}) {
+      int intervalRegularHoliday = -1,
+      Personnel defaultPersonnel = const Personnel()}) {
     return _SettingOrgState(
       notifierState: notifierState,
       holidays: holidays,
       members: members,
       selectedDayOfWeeks: selectedDayOfWeeks,
       intervalRegularHoliday: intervalRegularHoliday,
+      defaultPersonnel: defaultPersonnel,
     );
   }
 }
@@ -45,6 +47,7 @@ mixin _$SettingOrgState {
   List<User> get members;
   List<bool> get selectedDayOfWeeks;
   int get intervalRegularHoliday;
+  Personnel get defaultPersonnel;
 
   $SettingOrgStateCopyWith<SettingOrgState> get copyWith;
 }
@@ -58,7 +61,10 @@ abstract class $SettingOrgStateCopyWith<$Res> {
       List<Holiday> holidays,
       List<User> members,
       List<bool> selectedDayOfWeeks,
-      int intervalRegularHoliday});
+      int intervalRegularHoliday,
+      Personnel defaultPersonnel});
+
+  $PersonnelCopyWith<$Res> get defaultPersonnel;
 }
 
 class _$SettingOrgStateCopyWithImpl<$Res>
@@ -76,6 +82,7 @@ class _$SettingOrgStateCopyWithImpl<$Res>
     Object members = freezed,
     Object selectedDayOfWeeks = freezed,
     Object intervalRegularHoliday = freezed,
+    Object defaultPersonnel = freezed,
   }) {
     return _then(_value.copyWith(
       notifierState: notifierState == freezed
@@ -90,7 +97,20 @@ class _$SettingOrgStateCopyWithImpl<$Res>
       intervalRegularHoliday: intervalRegularHoliday == freezed
           ? _value.intervalRegularHoliday
           : intervalRegularHoliday as int,
+      defaultPersonnel: defaultPersonnel == freezed
+          ? _value.defaultPersonnel
+          : defaultPersonnel as Personnel,
     ));
+  }
+
+  @override
+  $PersonnelCopyWith<$Res> get defaultPersonnel {
+    if (_value.defaultPersonnel == null) {
+      return null;
+    }
+    return $PersonnelCopyWith<$Res>(_value.defaultPersonnel, (value) {
+      return _then(_value.copyWith(defaultPersonnel: value));
+    });
   }
 }
 
@@ -105,7 +125,11 @@ abstract class _$SettingOrgStateCopyWith<$Res>
       List<Holiday> holidays,
       List<User> members,
       List<bool> selectedDayOfWeeks,
-      int intervalRegularHoliday});
+      int intervalRegularHoliday,
+      Personnel defaultPersonnel});
+
+  @override
+  $PersonnelCopyWith<$Res> get defaultPersonnel;
 }
 
 class __$SettingOrgStateCopyWithImpl<$Res>
@@ -125,6 +149,7 @@ class __$SettingOrgStateCopyWithImpl<$Res>
     Object members = freezed,
     Object selectedDayOfWeeks = freezed,
     Object intervalRegularHoliday = freezed,
+    Object defaultPersonnel = freezed,
   }) {
     return _then(_SettingOrgState(
       notifierState: notifierState == freezed
@@ -139,6 +164,9 @@ class __$SettingOrgStateCopyWithImpl<$Res>
       intervalRegularHoliday: intervalRegularHoliday == freezed
           ? _value.intervalRegularHoliday
           : intervalRegularHoliday as int,
+      defaultPersonnel: defaultPersonnel == freezed
+          ? _value.defaultPersonnel
+          : defaultPersonnel as Personnel,
     ));
   }
 }
@@ -157,12 +185,14 @@ class _$_SettingOrgState implements _SettingOrgState {
         false,
         false
       ],
-      this.intervalRegularHoliday = -1})
+      this.intervalRegularHoliday = -1,
+      this.defaultPersonnel = const Personnel()})
       : assert(notifierState != null),
         assert(holidays != null),
         assert(members != null),
         assert(selectedDayOfWeeks != null),
-        assert(intervalRegularHoliday != null);
+        assert(intervalRegularHoliday != null),
+        assert(defaultPersonnel != null);
 
   @JsonKey(defaultValue: NotifierState.initial)
   @override
@@ -187,10 +217,13 @@ class _$_SettingOrgState implements _SettingOrgState {
   @JsonKey(defaultValue: -1)
   @override
   final int intervalRegularHoliday;
+  @JsonKey(defaultValue: const Personnel())
+  @override
+  final Personnel defaultPersonnel;
 
   @override
   String toString() {
-    return 'SettingOrgState(notifierState: $notifierState, holidays: $holidays, members: $members, selectedDayOfWeeks: $selectedDayOfWeeks, intervalRegularHoliday: $intervalRegularHoliday)';
+    return 'SettingOrgState(notifierState: $notifierState, holidays: $holidays, members: $members, selectedDayOfWeeks: $selectedDayOfWeeks, intervalRegularHoliday: $intervalRegularHoliday, defaultPersonnel: $defaultPersonnel)';
   }
 
   @override
@@ -211,7 +244,10 @@ class _$_SettingOrgState implements _SettingOrgState {
                     .equals(other.selectedDayOfWeeks, selectedDayOfWeeks)) &&
             (identical(other.intervalRegularHoliday, intervalRegularHoliday) ||
                 const DeepCollectionEquality().equals(
-                    other.intervalRegularHoliday, intervalRegularHoliday)));
+                    other.intervalRegularHoliday, intervalRegularHoliday)) &&
+            (identical(other.defaultPersonnel, defaultPersonnel) ||
+                const DeepCollectionEquality()
+                    .equals(other.defaultPersonnel, defaultPersonnel)));
   }
 
   @override
@@ -221,7 +257,8 @@ class _$_SettingOrgState implements _SettingOrgState {
       const DeepCollectionEquality().hash(holidays) ^
       const DeepCollectionEquality().hash(members) ^
       const DeepCollectionEquality().hash(selectedDayOfWeeks) ^
-      const DeepCollectionEquality().hash(intervalRegularHoliday);
+      const DeepCollectionEquality().hash(intervalRegularHoliday) ^
+      const DeepCollectionEquality().hash(defaultPersonnel);
 
   @override
   _$SettingOrgStateCopyWith<_SettingOrgState> get copyWith =>
@@ -234,7 +271,8 @@ abstract class _SettingOrgState implements SettingOrgState {
       List<Holiday> holidays,
       List<User> members,
       List<bool> selectedDayOfWeeks,
-      int intervalRegularHoliday}) = _$_SettingOrgState;
+      int intervalRegularHoliday,
+      Personnel defaultPersonnel}) = _$_SettingOrgState;
 
   @override
   NotifierState get notifierState;
@@ -246,6 +284,8 @@ abstract class _SettingOrgState implements SettingOrgState {
   List<bool> get selectedDayOfWeeks;
   @override
   int get intervalRegularHoliday;
+  @override
+  Personnel get defaultPersonnel;
   @override
   _$SettingOrgStateCopyWith<_SettingOrgState> get copyWith;
 }

@@ -7,36 +7,35 @@ import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
 import 'package:shiftend/pages/setting/setting_org/widgets/setting_regular_holiday_dialog.dart';
-import 'package:shiftend/pages/setting/setting_org/widgets/basic_personnel_widget.dart';
+import 'package:shiftend/pages/setting/setting_org/widgets/default_personnel_widget.dart';
 import 'package:shiftend/util/formatters.dart';
 
 class SettingOrgPage extends StatelessWidget {
-  final _items = <Widget>[
-    Container(
-      padding: const EdgeInsets.only(left: 16, top: 8),
-      child: const Text(
-        '組織名の変更',
-        style: TextStyle(fontSize: 16),
-      ),
-    ),
-    Container(
-      padding: const EdgeInsets.only(left: 16),
-      width: 100,
-      child: const TextField(
-        decoration: InputDecoration(labelText: '組織名'),
-      ),
-    ),
-    const Divider(),
-    FlatButton(
-      child: const Text('更新'),
-      onPressed: () {
-        // TODO 更新する処理
-      },
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final _items = <Widget>[
+      Container(
+        padding: const EdgeInsets.only(left: 16, top: 8),
+        child: const Text(
+          '組織名の変更',
+          style: TextStyle(fontSize: 16),
+        ),
+      ),
+      Container(
+        padding: const EdgeInsets.only(left: 16),
+        width: 100,
+        child: const TextField(
+          decoration: InputDecoration(labelText: '組織名'),
+        ),
+      ),
+      const Divider(),
+      FlatButton(
+        child: const Text('更新'),
+        onPressed: () {
+          // TODO 更新する処理
+        },
+      ),
+    ];
     final members =
         context.select<SettingOrgState, List<User>>((state) => state.members);
     if (members.isNotEmpty) {
