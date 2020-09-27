@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
+import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
+import 'package:shiftend/pages/setting/setting_org/widgets/setting_regular_holiday_dialog.dart';
 import 'package:shiftend/util/formatters.dart';
 
 class SettingOrgPage extends StatelessWidget {
@@ -82,21 +85,32 @@ class SettingOrgPage extends StatelessWidget {
             leading: const Icon(Icons.add),
             title: const Text('定休日の追加'),
             onTap: () {
-              // TODO 定休日を追加するダイアログ表示
+              showDialog<Widget>(
+                context: context,
+                builder: (_) => StateNotifierProvider<SettingOrgStateController,
+                        SettingOrgState>.value(
+                    value: Provider.of<SettingOrgStateController>(context),
+                    child: SettingRegularHolidayDialog(
+                      holidays: holidays,
+                    )),
+              );
             },
           ),
         );
-      holidays.forEach((holiday) {
+      for (int i = 0; i < holidays.length; i++) {
         _items.add(ListTile(
           title: Text(
-            toRegularHoliday(holiday.dayOfWeek, holiday.nWeek),
+            toRegularHoliday(holidays[i].dayOfWeek, holidays[i].nWeek),
           ),
           trailing: IconButton(
             icon: const Icon(Icons.clear),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<SettingOrgStateController>(context, listen: false)
+                  .removeRegularHoliday(holidays[i]);
+            },
           ),
         ));
-      });
+      }
     }
 
     return Scaffold(

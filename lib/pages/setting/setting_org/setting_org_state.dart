@@ -6,8 +6,12 @@ part 'setting_org_state.freezed.dart';
 
 @freezed
 abstract class SettingOrgState with _$SettingOrgState {
-  const factory SettingOrgState(
-      {@Default(NotifierState.initial) NotifierState notifierState,
-      @Default(<Holiday>[]) List<Holiday> holidays,
-      @Default(<User>[]) List<User> members}) = _SettingOrgState;
+  const factory SettingOrgState({
+    @Default(NotifierState.initial) NotifierState notifierState,
+    @Default(<Holiday>[]) List<Holiday> holidays,
+    @Default(<User>[]) List<User> members,
+    @Default(<bool>[false, false, false, false, false, false, false])
+        List<bool> selectedDayOfWeeks,
+    @Default(-1) int intervalRegularHoliday,
+  }) = _SettingOrgState;
 }

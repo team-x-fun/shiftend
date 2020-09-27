@@ -1,3 +1,4 @@
+import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
@@ -33,6 +34,7 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
       state = state.copyWith(
           notifierState: NotifierState.loaded, members: value.members);
     }).catchError((dynamic error) {
+      state = state.copyWith(notifierState: NotifierState.loaded);
       logger.shout(error.toString());
     });
   }
@@ -41,6 +43,67 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     organizationRepository.getHolidays(loginState.selectedOrg.id).then((value) {
       state =
           state.copyWith(notifierState: NotifierState.loaded, holidays: value);
+    }).catchError((dynamic error) {
+      state = state.copyWith(notifierState: NotifierState.loaded);
+      logger.shout('fetchHolidaysのエラー $error');
     });
+  }
+
+  void changeSelectedDayOfWeek({bool value, int dayOfWeekPosition}) {
+    final newValue = state.selectedDayOfWeeks.toList();
+    newValue[dayOfWeekPosition] = value;
+    state = state.copyWith(selectedDayOfWeeks: newValue);
+  }
+
+  void changeIntervalRegularHoliday(Object value) {
+    state = state.copyWith(intervalRegularHoliday: int.parse(value.toString()));
+  }
+
+  Future<void> addRegularHoliday() async {
+    Organization organization =
+        await organizationRepository.getOrganization(loginState.selectedOrg.id);
+    final regularHolidays = organization.defaultHolidays;
+
+    for (int i = 0; i < state.selectedDayOfWeeks.length; i++) {
+      if (state.selectedDayOfWeeks[i]) {
+        if (!_isDuplicate(i)) {
+          regularHolidays
+              .add(Holiday(dayOfWeek: i, nWeek: state.intervalRegularHoliday));
+        }
+      }
+    }
+    organization = organization.copyWith(defaultHolidays: regularHolidays);
+
+    return organizationRepository.update(organization).then((value) {
+      logger.info('追加に成功しました');
+    }).catchError((dynamic error) {
+      logger.shout('追加に失敗しました $error');
+    });
+  }
+
+  Future<void> removeRegularHoliday(Holiday holiday) async {
+    Organization organization =
+        await organizationRepository.getOrganization(loginState.selectedOrg.id);
+
+    final removeIndex = organization.defaultHolidays.indexOf(holiday);
+    final regularHolidays = organization.defaultHolidays..removeAt(removeIndex);
+
+    organization = organization.copyWith(defaultHolidays: regularHolidays);
+    return organizationRepository.update(organization).then((value) {
+      logger.info('削除に成功しました');
+    }).catchError((dynamic error) {
+      logger.shout('削除に失敗しました $error');
+    });
+  }
+
+  bool _isDuplicate(int dayOfWeek) {
+    for (final Holiday holiday in state.holidays) {
+      if (holiday.dayOfWeek == dayOfWeek &&
+          holiday.nWeek == state.intervalRegularHoliday) {
+        logger.warning('重複してました $dayOfWeek ${state.intervalRegularHoliday}');
+        return true;
+      }
+    }
+    return false;
   }
 }
