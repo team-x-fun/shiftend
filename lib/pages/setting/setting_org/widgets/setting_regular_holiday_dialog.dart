@@ -31,7 +31,8 @@ class SettingRegularHolidayDialog extends StatelessWidget {
                     onChanged: (bool value) =>
                         Provider.of<SettingOrgStateController>(context,
                                 listen: false)
-                            .changeSelectedDayOfWeek(value, i),
+                            .changeSelectedDayOfWeek(
+                                value: value, dayOfWeekPosition: i),
                   ),
                   Text(weekDays[i]),
                 ],

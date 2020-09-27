@@ -49,9 +49,8 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     });
   }
 
-  // ignore: avoid_positional_boolean_parameters
-  void changeSelectedDayOfWeek(bool value, int dayOfWeekPosition) {
-    final newValue = state.selectedDayOfWeeks.toList();
+  void changeSelectedDayOfWeek({bool value, int dayOfWeekPosition}) {
+    final newValue = state.selectedDayOfWeeks;
     newValue[dayOfWeekPosition] = value;
     state = state.copyWith(selectedDayOfWeeks: newValue);
   }
@@ -98,14 +97,13 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
   }
 
   bool _isDuplicate(int dayOfWeek) {
-    // ignore: void_checks
-    state.holidays.forEach((holiday) {
+    for (final Holiday holiday in state.holidays) {
       if (holiday.dayOfWeek == dayOfWeek &&
           holiday.nWeek == state.intervalRegularHoliday) {
         logger.warning('重複してました $dayOfWeek ${state.intervalRegularHoliday}');
         return true;
       }
-    });
+    }
     return false;
   }
 }
