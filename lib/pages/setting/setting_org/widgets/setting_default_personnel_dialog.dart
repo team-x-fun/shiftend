@@ -13,6 +13,8 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final defaultPersonnel = context
         .select<SettingOrgState, Personnel>((state) => state.defaultPersonnel);
+    int number = defaultPersonnel.number;
+    int totalLevel = defaultPersonnel.totalLevel;
     return AlertDialog(
       title: const Text('基本要員の編集'),
       content: Column(
@@ -28,17 +30,8 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
               WhitelistingTextInputFormatter.digitsOnly,
             ],
             onChanged: (String value) {
-              int number;
               try {
                 number = int.parse(value);
-                context
-                    .read<SettingOrgStateController>()
-                    .changeDefaultPersonnel(
-                      context
-                          .read<SettingOrgState>()
-                          .defaultPersonnel
-                          .copyWith(number: number),
-                    );
               } on Exception {
                 logger.warning('int 以外の入力値: $value');
               }
@@ -61,17 +54,8 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
               WhitelistingTextInputFormatter.digitsOnly,
             ],
             onChanged: (String value) {
-              int totalLevel;
               try {
                 totalLevel = int.parse(value);
-                context
-                    .read<SettingOrgStateController>()
-                    .changeDefaultPersonnel(
-                      context
-                          .read<SettingOrgState>()
-                          .defaultPersonnel
-                          .copyWith(totalLevel: totalLevel),
-                    );
               } on Exception {
                 logger.warning('int 以外の入力値: $value');
               }
@@ -91,6 +75,18 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
             Navigator.pop(context);
           },
           child: const Text('戻る'),
+        ),
+        FlatButton(
+          onPressed: () {
+            context.read<SettingOrgStateController>().changeDefaultPersonnel(
+                  defaultPersonnel.copyWith(
+                    number: number,
+                    totalLevel: totalLevel,
+                  ),
+                );
+            Navigator.pop(context);
+          },
+          child: const Text('確定'),
         ),
       ],
     );
