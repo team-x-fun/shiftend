@@ -27,7 +27,8 @@ class _$OrganizationTearOff {
       @HolidayConverter()
           List<Holiday> defaultHolidays = const <Holiday>[],
       @JsonKey(name: 'default_personnel')
-          Personnel defaultPersonnel}) {
+      @PersonnelConverter()
+          Personnel defaultPersonnel = const Personnel()}) {
     return _Organization(
       id: id,
       owners: owners,
@@ -53,6 +54,7 @@ mixin _$Organization {
   @HolidayConverter()
   List<Holiday> get defaultHolidays;
   @JsonKey(name: 'default_personnel')
+  @PersonnelConverter()
   Personnel get defaultPersonnel;
 
   Map<String, dynamic> toJson();
@@ -75,6 +77,7 @@ abstract class $OrganizationCopyWith<$Res> {
       @HolidayConverter()
           List<Holiday> defaultHolidays,
       @JsonKey(name: 'default_personnel')
+      @PersonnelConverter()
           Personnel defaultPersonnel});
 
   $PersonnelCopyWith<$Res> get defaultPersonnel;
@@ -137,6 +140,7 @@ abstract class _$OrganizationCopyWith<$Res>
       @HolidayConverter()
           List<Holiday> defaultHolidays,
       @JsonKey(name: 'default_personnel')
+      @PersonnelConverter()
           Personnel defaultPersonnel});
 
   @override
@@ -188,10 +192,12 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
       @HolidayConverter()
           this.defaultHolidays = const <Holiday>[],
       @JsonKey(name: 'default_personnel')
-          this.defaultPersonnel})
+      @PersonnelConverter()
+          this.defaultPersonnel = const Personnel()})
       : assert(owners != null),
         assert(members != null),
-        assert(defaultHolidays != null);
+        assert(defaultHolidays != null),
+        assert(defaultPersonnel != null);
 
   factory _$_Organization.fromJson(Map<String, dynamic> json) =>
       _$_$_OrganizationFromJson(json);
@@ -212,6 +218,7 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   final List<Holiday> defaultHolidays;
   @override
   @JsonKey(name: 'default_personnel')
+  @PersonnelConverter()
   final Personnel defaultPersonnel;
 
   @override
@@ -282,6 +289,7 @@ abstract class _Organization implements Organization {
       @HolidayConverter()
           List<Holiday> defaultHolidays,
       @JsonKey(name: 'default_personnel')
+      @PersonnelConverter()
           Personnel defaultPersonnel}) = _$_Organization;
 
   factory _Organization.fromJson(Map<String, dynamic> json) =
@@ -303,6 +311,7 @@ abstract class _Organization implements Organization {
   List<Holiday> get defaultHolidays;
   @override
   @JsonKey(name: 'default_personnel')
+  @PersonnelConverter()
   Personnel get defaultPersonnel;
   @override
   _$OrganizationCopyWith<_Organization> get copyWith;

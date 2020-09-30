@@ -8,7 +8,7 @@ class TestData {
   final owners = <User>[];
   final members = <User>[];
   final org = const Organization(
-    id: 'refOrg',
+    id: 'imple_basic_personnel',
     defaultHolidays: <Holiday>[
       Holiday(dayOfWeek: 0, nWeek: 0), // 毎週日曜日
       Holiday(dayOfWeek: 1, nWeek: 1), // 第1月曜日
@@ -16,6 +16,10 @@ class TestData {
     ],
     owners: <User>[],
     members: <User>[],
+    defaultPersonnel: Personnel(
+      number: 2,
+      totalLevel: 4,
+    ),
   );
   final requests = <Shift>[];
   final shifts = <Shift>[];
@@ -23,9 +27,10 @@ class TestData {
     logger.info('makeUserList');
     await makeUserList();
     // orgがなければ作成する
-    logger..info('make org')..info(owners)..info(members);
+    logger..info('make org');
     final tmp = await orgRepo.getOrganization(org.id);
-    if (tmp == null) {
+    logger.info('tmp = ${tmp.toString()}');
+    if (tmp?.id == null) {
       await orgRepo.create(org.copyWith(owners: owners, members: members));
     }
     logger.info('makeShiftRequest()');

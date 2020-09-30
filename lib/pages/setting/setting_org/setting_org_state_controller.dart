@@ -1,5 +1,6 @@
 import 'package:shiftend/models/models.dart';
 import 'package:shiftend/models/notifier_state.dart';
+import 'package:shiftend/models/personnel/personnel.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/repositories/interfaces/interfaces.dart';
@@ -21,10 +22,15 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
     if (loginState.selectedOrg.id == null) {
       state = state.copyWith(notifierState: NotifierState.loaded);
     } else {
-      fetchOrganizationMembers();
-      fetchHolidays();
+      fetchAll();
     }
     super.initState();
+  }
+
+  Future<void> fetchAll() async {
+    await fetchOrganizationMembers();
+    fetchHolidays();
+    fetchDefaultPersonnel();
   }
 
   Future<void> fetchOrganizationMembers() async {
@@ -32,7 +38,9 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
         .getOrganization(loginState.selectedOrg.id)
         .then((value) {
       state = state.copyWith(
-          notifierState: NotifierState.loaded, members: value.members);
+        notifierState: NotifierState.loaded,
+        members: value.members,
+      );
     }).catchError((dynamic error) {
       state = state.copyWith(notifierState: NotifierState.loaded);
       logger.shout(error.toString());
@@ -105,5 +113,21 @@ class SettingOrgStateController extends StateNotifier<SettingOrgState>
       }
     }
     return false;
+  }
+
+  void fetchDefaultPersonnel() {
+    organizationRepository.getOrganization(loginState.selectedOrg.id).then(
+          (org) => state = state.copyWith(
+            notifierState: NotifierState.loaded,
+            defaultPersonnel: org.defaultPersonnel,
+          ),
+        );
+  }
+
+  Future<void> changeDefaultPersonnel(Personnel personnel) async {
+    logger.info('$personnel');
+    await organizationRepository
+        .update(loginState.selectedOrg.copyWith(defaultPersonnel: personnel));
+    await fetchAll();
   }
 }
