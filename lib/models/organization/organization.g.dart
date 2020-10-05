@@ -13,7 +13,8 @@ _$_Organization _$_$_OrganizationFromJson(Map<String, dynamic> json) {
         ?.map((e) => const UserConverter().fromJson(e as Map<String, dynamic>))
         ?.toList(),
     members: (json['members'] as List)
-        ?.map((e) => const UserConverter().fromJson(e as Map<String, dynamic>))
+        ?.map(
+            (e) => const MemberConverter().fromJson(e as Map<String, dynamic>))
         ?.toList(),
     defaultHolidays: (json['default_holidays'] as List)
         ?.map(
@@ -28,7 +29,8 @@ Map<String, dynamic> _$_$_OrganizationToJson(_$_Organization instance) =>
     <String, dynamic>{
       'id': instance.id,
       'owners': instance.owners?.map(const UserConverter().toJson)?.toList(),
-      'members': instance.members?.map(const UserConverter().toJson)?.toList(),
+      'members':
+          instance.members?.map(const MemberConverter().toJson)?.toList(),
       'default_holidays': instance.defaultHolidays
           ?.map(const HolidayConverter().toJson)
           ?.toList(),

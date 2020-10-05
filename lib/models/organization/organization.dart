@@ -16,10 +16,10 @@ abstract class Organization with _$Organization {
     @UserConverter()
     @JsonKey(name: 'owners')
         List<User> owners,
-    @Default(<User>[])
-    @UserConverter()
+    @Default(<Member>[])
+    @MemberConverter()
     @JsonKey(name: 'members')
-        List<User> members,
+        List<Member> members,
     @Default(<Holiday>[])
     @JsonKey(name: 'default_holidays')
     @HolidayConverter()

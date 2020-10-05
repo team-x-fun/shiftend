@@ -19,15 +19,11 @@ class _$UserTearOff {
       {String id,
       String email,
       String name,
-      String role,
-      String level,
       @JsonKey(name: 'icon_url') String iconUrl}) {
     return _User(
       id: id,
       email: email,
       name: name,
-      role: role,
-      level: level,
       iconUrl: iconUrl,
     );
   }
@@ -40,8 +36,6 @@ mixin _$User {
   String get id;
   String get email;
   String get name;
-  String get role;
-  String get level;
   @JsonKey(name: 'icon_url')
   String get iconUrl;
 
@@ -56,8 +50,6 @@ abstract class $UserCopyWith<$Res> {
       {String id,
       String email,
       String name,
-      String role,
-      String level,
       @JsonKey(name: 'icon_url') String iconUrl});
 }
 
@@ -73,16 +65,12 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object id = freezed,
     Object email = freezed,
     Object name = freezed,
-    Object role = freezed,
-    Object level = freezed,
     Object iconUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       email: email == freezed ? _value.email : email as String,
       name: name == freezed ? _value.name : name as String,
-      role: role == freezed ? _value.role : role as String,
-      level: level == freezed ? _value.level : level as String,
       iconUrl: iconUrl == freezed ? _value.iconUrl : iconUrl as String,
     ));
   }
@@ -96,8 +84,6 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       {String id,
       String email,
       String name,
-      String role,
-      String level,
       @JsonKey(name: 'icon_url') String iconUrl});
 }
 
@@ -114,16 +100,12 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object id = freezed,
     Object email = freezed,
     Object name = freezed,
-    Object role = freezed,
-    Object level = freezed,
     Object iconUrl = freezed,
   }) {
     return _then(_User(
       id: id == freezed ? _value.id : id as String,
       email: email == freezed ? _value.email : email as String,
       name: name == freezed ? _value.name : name as String,
-      role: role == freezed ? _value.role : role as String,
-      level: level == freezed ? _value.level : level as String,
       iconUrl: iconUrl == freezed ? _value.iconUrl : iconUrl as String,
     ));
   }
@@ -135,8 +117,6 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       {this.id,
       this.email,
       this.name,
-      this.role,
-      this.level,
       @JsonKey(name: 'icon_url') this.iconUrl});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
@@ -149,16 +129,12 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final String name;
   @override
-  final String role;
-  @override
-  final String level;
-  @override
   @JsonKey(name: 'icon_url')
   final String iconUrl;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, email: $email, name: $name, role: $role, level: $level, iconUrl: $iconUrl)';
+    return 'User(id: $id, email: $email, name: $name, iconUrl: $iconUrl)';
   }
 
   @override
@@ -169,8 +145,6 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('role', role))
-      ..add(DiagnosticsProperty('level', level))
       ..add(DiagnosticsProperty('iconUrl', iconUrl));
   }
 
@@ -184,10 +158,6 @@ class _$_User with DiagnosticableTreeMixin implements _User {
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)) &&
             (identical(other.iconUrl, iconUrl) ||
                 const DeepCollectionEquality().equals(other.iconUrl, iconUrl)));
   }
@@ -198,8 +168,6 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(level) ^
       const DeepCollectionEquality().hash(iconUrl);
 
   @override
@@ -217,8 +185,6 @@ abstract class _User implements User {
       {String id,
       String email,
       String name,
-      String role,
-      String level,
       @JsonKey(name: 'icon_url') String iconUrl}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -229,10 +195,6 @@ abstract class _User implements User {
   String get email;
   @override
   String get name;
-  @override
-  String get role;
-  @override
-  String get level;
   @override
   @JsonKey(name: 'icon_url')
   String get iconUrl;
