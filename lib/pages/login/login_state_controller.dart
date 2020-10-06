@@ -36,7 +36,7 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
         orgs: await orgRepository.getOrganizations(state.currentUser.id),
       );
       logger.info('fetchLoginState: selectedOrg = ${state.selectedOrg}');
-      if (state.selectedOrg.id == null) {
+      if (state.selectedOrg.id == null && state.orgs.isNotEmpty) {
         logger.info('fetchLoginState: set selectedOrg');
         state = state.copyWith(selectedOrg: state.orgs.first);
         logger.info('fetchLoginState: selectedOrg = ${state.selectedOrg}');

@@ -37,9 +37,15 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
         .collection(collectionName)
         .where('owners', arrayContains: await userRepo.getUserRef(ownerId));
     return Future.wait((await orgs.get())
-        .docs
-        .map((DocumentSnapshot e) => _fromJson(e.data()))
-        .toList());
+            .docs
+            .map((DocumentSnapshot e) => _fromJson(e.data()))
+            .toList())
+        .then(
+      (orgs) {
+        logger.info(orgs.length);
+        return orgs.where((org) => org.members.isNotEmpty).toList();
+      },
+    );
   }
 
   @override
@@ -69,13 +75,29 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
             .map(userRepo.fromUserRef)
             .toList();
     final List<User> owners = await Future.wait(futureOwners);
+    if (_validateMembers(rawJson['members'].cast<dynamic>() as List<dynamic>)) {
+      final futureMembers = (rawJson['members'].cast<Map<String, dynamic>>()
+              as List<Map<String, dynamic>>)
+          .map(_memberFromJson)
+          .toList();
+      final List<Member> members = await Future.wait(futureMembers);
+      return org.copyWith(owners: owners, members: members);
+    } else {
+      logger
+        ..warning('member is invalid schema.')
+        ..info('rawJson[\'members\'] = ${rawJson['members'].runtimeType}');
+      return org.copyWith(owners: owners);
+    }
+  }
 
-    final List<Future<User>> futureMembers = (rawJson['members']
-            .cast<DocumentReference>() as List<DocumentReference>)
-        .map(userRepo.fromUserRef)
-        .toList();
-    final List<User> members = await Future.wait(futureMembers);
-    return org.copyWith(owners: owners, members: members);
+  bool _validateMembers(List<dynamic> json) {
+    var isValid = true;
+    json.forEach((dynamic element) {
+      if (!(element is Map<String, dynamic>)) {
+        isValid = false;
+      }
+    });
+    return isValid;
   }
 
   Future<Map<String, dynamic>> _toJson(Organization org) async {
@@ -83,9 +105,32 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
       ..remove('owners')
       ..remove('members');
     json['owners'] = await _getUsersRef(org.owners);
-    json['members'] = await _getUsersRef(org.members);
+    final membersJson = org.members.map(_memberToJson).toList();
+
+    json['members'] = await Future.wait(membersJson);
     logger.info('_toJson = ${json.toString()}');
     return json;
+  }
+
+  Future<Map<String, dynamic>> _memberToJson(Member member) async {
+    final json = member.toJson()..remove('user');
+    json['userRef'] = await userRepo.getUserRef(member.user.id);
+    return json;
+  }
+
+  Future<Member> _memberFromJson(Map<String, dynamic> memberJson) async {
+    final json = <String, dynamic>{...memberJson}..remove('userRef');
+    final member = Member.fromJson(json);
+    logger.info(member);
+    final userRef = memberJson['userRef'] as DocumentReference;
+    logger.info(userRef);
+    if (userRef == null) {
+      return member;
+    }
+    return member.copyWith(
+      user: await userRepo
+          .fromUserRef(memberJson['userRef'] as DocumentReference),
+    );
   }
 
   @override

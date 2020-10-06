@@ -21,7 +21,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
   @override
   Future<void> create(String orgId, Shift shift) async {
     final DocumentReference shiftRef =
-        await _getShiftRef(orgId, shift.start, shift.user.id);
+        await _getShiftRef(orgId, shift.start, shift.member.user.id);
 
     await shiftRef.set(await _toJson(shift));
   }
@@ -63,7 +63,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
   @override
   Future<void> update(String orgId, Shift shift) async {
     final DocumentReference shiftRef =
-        await _getShiftRef(orgId, shift.start, shift.user.id);
+        await _getShiftRef(orgId, shift.start, shift.member.user.id);
     await shiftRef.update(await _toJson(shift));
   }
 
@@ -88,7 +88,7 @@ class ShiftRepository extends ShiftRepositoryInterface {
 
   Future<Map<String, dynamic>> _toJson(Shift shift) async {
     final Map<String, dynamic> json = shift.toJson()..remove('userRef');
-    json['userRef'] = await userRepo.getUserRef(shift.user.id);
+    json['userRef'] = await userRepo.getUserRef(shift.member.user.id);
     return json;
   }
 
@@ -97,7 +97,10 @@ class ShiftRepository extends ShiftRepositoryInterface {
       ..remove('userRef');
     final Shift shift = Shift.fromJson(json);
     return shift.copyWith(
-        user: await userRepo
-            .fromUserRef(rawJson['userRef'] as DocumentReference));
+      member: shift.member.copyWith(
+        user:
+            await userRepo.fromUserRef(rawJson['userRef'] as DocumentReference),
+      ),
+    );
   }
 }

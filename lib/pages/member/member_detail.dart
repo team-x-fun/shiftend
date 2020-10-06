@@ -8,10 +8,9 @@ import 'package:shiftend/util/logger.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDetailPage extends StatelessWidget {
-  const MemberDetailPage(this.user);
+  const MemberDetailPage(this.member);
 
-  final User user;
-
+  final Member member;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,18 +32,18 @@ class MemberDetailPage extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(user.iconUrl),
+                        image: NetworkImage(member.user.iconUrl),
                       )),
                 ),
               ),
               Text(
-                user.name,
+                member.user.name,
                 style: const TextStyle(fontSize: 20),
               ),
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${user.role}',
+                  '${member.role}',
                 ),
                 title: const Text('役職'),
               ),

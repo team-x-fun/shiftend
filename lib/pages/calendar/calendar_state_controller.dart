@@ -80,7 +80,7 @@ class CalendarStateController extends StateNotifier<CalendarState>
     } else {
       state = state.copyWith(
           loggedinUserRequestedShifts: requestedShifts[today]
-              .where((shift) => shift.user.id == currentUser.id)
+              .where((shift) => shift.member.user.id == currentUser.id)
               .toList());
     }
   }

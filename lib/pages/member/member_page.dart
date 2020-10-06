@@ -5,11 +5,11 @@ import 'package:shiftend/pages/member/member_item.dart';
 import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/pages/member/member_state_controller.dart';
 import 'package:shiftend/repositories/interfaces/interfaces.dart';
-import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
+import 'package:shiftend/repositories/mocks/organization_repository_mock.dart';
 import 'package:shiftend/models/models.dart';
 
 class MemberPage extends StatelessWidget {
-  final UserRepositoryInterface userRepository = UserRepositoryMock();
+  final OrganizationRepositoryInterface orgRepo = OrganizationRepositoryMock();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,17 +22,17 @@ class MemberPage extends StatelessWidget {
         ),
       ),
       body: FutureBuilder(
-        future: userRepository.getUsers(),
-        builder: (context, AsyncSnapshot<List<User>> snapshot) {
+        future: orgRepo.getOrganization('test_id'),
+        builder: (context, AsyncSnapshot<Organization> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data.members.length,
               itemBuilder: (context, index) {
                 return StateNotifierProvider<MemberStateController,
                     MemberState>(
                   create: (_) => MemberStateController(),
                   child: MemberItem(
-                    user: snapshot.data[index],
+                    member: snapshot.data.members[index],
                   ),
                 );
               },

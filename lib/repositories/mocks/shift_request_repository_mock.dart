@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shiftend/models/shift/shift.dart';
+import 'package:shiftend/models/models.dart';
 import 'package:shiftend/repositories/interfaces/shift_request_repository_interface.dart';
 
 import 'user_repository_mock.dart';
@@ -7,50 +7,69 @@ import 'user_repository_mock.dart';
 class ShiftRequestRepositoryMock extends ShiftRequestRepositoryInterface {
   ShiftRequestRepositoryMock({@required this.userRepo})
       : assert(userRepo != null) {
+    const member = Member(level: 1, role: 'member');
     shifts = {
       'ten': {
         DateTime(2020, 7): {
           DateTime(2020, 7, 3): <Shift>[
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '0'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '0'),
+                ),
                 start: DateTime.parse('2020-07-03 17:00'),
                 end: DateTime.parse('2020-07-03 22:30')),
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '1'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '1'),
+                ),
                 start: DateTime.parse('2020-07-03 17:00'),
                 end: DateTime.parse('2020-07-04 02:00')),
           ],
           DateTime(2020, 7, 10): <Shift>[
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '0'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '0'),
+                ),
                 start: DateTime.parse('2020-07-10 17:00'),
                 end: DateTime.parse('2020-07-10 22:30')),
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '1'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '1'),
+                ),
                 start: DateTime.parse('2020-07-10 17:00'),
                 end: DateTime.parse('2020-07-11 02:00')),
           ],
           DateTime(2020, 7, 20): <Shift>[
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '0'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '0'),
+                ),
                 start: DateTime.parse('2020-07-20 17:00'),
                 end: DateTime.parse('2020-07-20 22:30')),
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '1'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '1'),
+                ),
                 start: DateTime.parse('2020-07-20 17:00'),
                 end: DateTime.parse('2020-07-21 02:00')),
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '2'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '2'),
+                ),
                 start: DateTime.parse('2020-07-20 18:00'),
                 end: DateTime.parse('2020-07-21 00:00')),
           ],
           DateTime(2020, 7, 22): <Shift>[
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '0'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '0'),
+                ),
                 start: DateTime.parse('2020-07-22 17:00'),
                 end: DateTime.parse('2020-07-22 22:30')),
             Shift(
-                user: userRepo.users.singleWhere((user) => user.id == '1'),
+                member: member.copyWith(
+                  user: userRepo.users.singleWhere((user) => user.id == '1'),
+                ),
                 start: DateTime.parse('2020-07-22 17:00'),
                 end: DateTime.parse('2020-07-23 02:00')),
           ],
@@ -70,7 +89,7 @@ class ShiftRequestRepositoryMock extends ShiftRequestRepositoryInterface {
     final shiftList = shifts[orgId][ym][day];
     bool isExist = false;
     shiftList.forEach((s) {
-      if (s.user.id == shift.user.id) {
+      if (s.member.user.id == shift.member.user.id) {
         isExist = true;
       }
     });
@@ -86,7 +105,7 @@ class ShiftRequestRepositoryMock extends ShiftRequestRepositoryInterface {
     final month = day.month;
     final d = day.day;
     final ym = DateTime(year, month);
-    shifts[orgId][ym][d].removeWhere((s) => s.user.id == userId);
+    shifts[orgId][ym][d].removeWhere((s) => s.member.user.id == userId);
   }
 
   @override
@@ -98,7 +117,7 @@ class ShiftRequestRepositoryMock extends ShiftRequestRepositoryInterface {
 
   @override
   Future<void> update(String orgId, Shift shift) async {
-    await delete(orgId, shift.start, shift.user.id);
+    await delete(orgId, shift.start, shift.member.user.id);
     await create(orgId, shift);
   }
 }

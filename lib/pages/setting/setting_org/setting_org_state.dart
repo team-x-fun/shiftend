@@ -11,8 +11,8 @@ abstract class SettingOrgState with _$SettingOrgState {
         NotifierState notifierState,
     @Default(<Holiday>[])
         List<Holiday> holidays,
-    @Default(<User>[])
-        List<User> members,
+    @Default(<Member>[])
+        List<Member> members,
     @Default(<bool>[false, false, false, false, false, false, false])
         List<bool> selectedDayOfWeeks,
     @Default(-1)

@@ -142,8 +142,6 @@ class UserDialog {
                     id: authResult.user.uid,
                     email: email.trim(),
                     name: email.trim(),
-                    role: 'アルバイト',
-                    level: '100',
                     iconUrl:
                         'https://avatars0.githubusercontent.com/u/57802072'),
                 userRepo.create(user)
@@ -174,15 +172,6 @@ class UserDialog {
                     ),
                     onSaved: (String value) {
                       user = user.copyWith(name: value);
-                    },
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.vpn_key),
-                      labelText: 'Role',
-                    ),
-                    onSaved: (String value) {
-                      user = user.copyWith(role: value);
                     },
                   ),
                 ],

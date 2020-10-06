@@ -37,7 +37,7 @@ class SettingOrgPage extends StatelessWidget {
       ),
     ];
     final members =
-        context.select<SettingOrgState, List<User>>((state) => state.members);
+        context.select<SettingOrgState, List<Member>>((state) => state.members);
     if (members.isNotEmpty) {
       _items.add(
         Container(
@@ -53,8 +53,8 @@ class SettingOrgPage extends StatelessWidget {
     members.forEach((member) {
       _items.add(
         ListTile(
-          title: Text(member.name),
-          subtitle: Text(member.email),
+          title: Text(member.user.name),
+          subtitle: Text(member.user.email),
           trailing: FlatButton(
             onPressed: () {
               // TODO メンバーを削除する処理
