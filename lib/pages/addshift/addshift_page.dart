@@ -25,13 +25,13 @@ class AddShiftPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> editedlist = [];
     logger..info(memberslist)..info(shiftlist);
-    final noShiftlist = memberslist
+    final noShiftMembers = memberslist
         .where((member) => !shiftlist
             .map((shift) => shift.member.user.id)
             .toSet()
             .contains(member.user.id))
         .toList();
-    logger.info(noShiftlist);
+    logger.info(noShiftMembers);
     editedlist.add(const Text('シフト入ってる人'));
     if (shiftlist != null) {
       shiftlist.forEach((shift) {
@@ -45,8 +45,8 @@ class AddShiftPage extends StatelessWidget {
       });
     }
     editedlist.add(const Text('シフトなし'));
-    if (noShiftlist != null) {
-      noShiftlist.forEach((noShiftlist) {
+    if (noShiftMembers != null) {
+      noShiftMembers.forEach((noShiftlist) {
         editedlist.add(AddShiftItem(member: noShiftlist));
       });
     }
