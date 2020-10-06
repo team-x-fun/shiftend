@@ -8,7 +8,7 @@ class TestData {
   final owners = <User>[];
   final members = <Member>[];
   final org = const Organization(
-    id: 'imple_basic_personnel',
+    id: 'added_member',
     defaultHolidays: <Holiday>[
       Holiday(dayOfWeek: 0, nWeek: 0), // 毎週日曜日
       Holiday(dayOfWeek: 1, nWeek: 1), // 第1月曜日
