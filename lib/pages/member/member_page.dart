@@ -5,13 +5,10 @@ import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/member/member_item.dart';
 import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/pages/member/member_state_controller.dart';
-import 'package:shiftend/repositories/interfaces/interfaces.dart';
-import 'package:shiftend/repositories/mocks/organization_repository_mock.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:provider/provider.dart';
 
 class MemberPage extends StatelessWidget {
-  final OrganizationRepositoryInterface orgRepo = OrganizationRepositoryMock();
   @override
   Widget build(BuildContext context) {
     final members = context
