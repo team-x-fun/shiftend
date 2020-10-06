@@ -22,16 +22,13 @@ class MemberStateController extends StateNotifier<MemberState>
 
   void changeLevel(String id, double userLevel) {
     if (validateLevel(userLevel)) {
-      final member = state.members
-          .singleWhere((member) => member.user.id == id)
-          .copyWith(level: userLevel);
-      final newMembers = state.members
-        ..removeWhere((member) => member.user.id == id)
-        ..add(member)
-        ..sort((a, b) => (b.level - a.level).toInt());
-      logger.info('newMembers = ${newMembers[0]}');
+      final newMembers = state.members.map((member) {
+        if (member.user.id == id) {
+          return member.copyWith(level: userLevel);
+        }
+        return member;
+      }).toList();
       state = state.copyWith(members: newMembers);
-      logger.info('state = ${state.members[0]}');
     }
   }
 

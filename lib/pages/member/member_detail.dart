@@ -8,12 +8,14 @@ import 'package:shiftend/util/logger.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDetailPage extends StatelessWidget {
-  const MemberDetailPage(this.member);
+  const MemberDetailPage({this.id});
 
-  final Member member;
+  final String id;
   @override
   Widget build(BuildContext context) {
     logger.info('MemberDetailBuild');
+    final member = context.select<MemberState, Member>(
+        (state) => state.members.firstWhere((m) => m.user.id == id));
     return Scaffold(
       appBar: AppBar(
         title: const Text(
