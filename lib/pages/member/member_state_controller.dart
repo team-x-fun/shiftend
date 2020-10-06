@@ -29,6 +29,7 @@ class MemberStateController extends StateNotifier<MemberState>
         return member;
       }).toList();
       state = state.copyWith(members: newMembers);
+      orgRepo.update(loginState.selectedOrg.copyWith(members: state.members));
     }
   }
 
