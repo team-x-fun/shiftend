@@ -18,7 +18,6 @@ class MemberItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.info(context.select<MemberState, double>((state) => state.level));
     return ListTile(
       onTap: () {
         Navigator.of(context).push(
@@ -26,14 +25,19 @@ class MemberItem extends StatelessWidget {
             builder: (_) =>
                 StateNotifierProvider<MemberStateController, MemberState>.value(
               value: context.read<MemberStateController>(),
-              child: MemberDetailPage(member),
+              child: MemberDetailPage(
+                member,
+              ),
             ),
           ),
         );
       },
       dense: true,
       trailing: LevelStars(
-        level: context.select<MemberState, double>((state) => state.level),
+        level: context
+            .select<MemberState, List<Member>>((state) => state.members)
+            .firstWhere((m) => m.user.id == member.user.id)
+            .level,
       ),
       leading: Container(
         height: 50,

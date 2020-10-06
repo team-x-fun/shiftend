@@ -13,6 +13,7 @@ class MemberDetailPage extends StatelessWidget {
   final Member member;
   @override
   Widget build(BuildContext context) {
+    logger.info('MemberDetailBuild');
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -53,11 +54,16 @@ class MemberDetailPage extends StatelessWidget {
                     allowHalfRating: false,
                     onRated: (v) {
                       logger.info('rating value -> $v');
-                      context.read<MemberStateController>().changeLevel(v);
+                      context
+                          .read<MemberStateController>()
+                          .changeLevel(member.user.id, v);
                     },
                     starCount: 5,
                     rating: context
-                        .select<MemberState, double>((state) => state.level),
+                        .select<MemberState, List<Member>>(
+                            (state) => state.members)
+                        .firstWhere((m) => m.user.id == member.user.id)
+                        .level,
                     size: 30,
                     isReadOnly: false,
                     color: Colors.orange,
@@ -68,7 +74,7 @@ class MemberDetailPage extends StatelessWidget {
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${context.select<MemberState, String>((state) => state.tel)}',
+                  '${member.user.email}',
                 ),
                 title: const Text('電話'),
               ),
