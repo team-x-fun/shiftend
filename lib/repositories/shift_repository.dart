@@ -98,8 +98,8 @@ class ShiftRepository extends ShiftRepositoryInterface {
     final Shift shift = Shift.fromJson(json);
     return shift.copyWith(
       member: shift.member.copyWith(
-        user:
-            await userRepo.fromUserRef(rawJson['userRef'] as DocumentReference),
+        user: await userRepo
+            .fromUserRef(rawJson['members']['userRef'] as DocumentReference),
       ),
     );
   }
