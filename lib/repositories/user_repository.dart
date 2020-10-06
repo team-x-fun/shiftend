@@ -69,8 +69,6 @@ class UserRepository extends UserRepositoryInterface {
                   id: authResult.user.uid,
                   email: email.trim(),
                   name: email.trim(),
-                  role: 'アルバイト',
-                  level: '100',
                   iconUrl: 'https://avatars0.githubusercontent.com/u/57802072'),
               create(user),
             });

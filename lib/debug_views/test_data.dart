@@ -6,7 +6,7 @@ import 'package:shiftend/util/logger.dart';
 
 class TestData {
   final owners = <User>[];
-  final members = <User>[];
+  final members = <Member>[];
   final org = const Organization(
     id: 'imple_basic_personnel',
     defaultHolidays: <Holiday>[
@@ -15,7 +15,7 @@ class TestData {
       Holiday(dayOfWeek: 1, nWeek: 3), // 第3月曜日
     ],
     owners: <User>[],
-    members: <User>[],
+    members: <Member>[],
     defaultPersonnel: Personnel(
       number: 2,
       totalLevel: 4,
@@ -40,26 +40,35 @@ class TestData {
   }
 
   Future makeUserList() async {
+    const member = Member(level: 1, role: 'member');
     owners.add(await userRepo.findByEmail('owner@example.com'));
     members
-      ..add(await userRepo.findByEmail('owner@example.com'))
-      ..add(await userRepo.findByEmail('member1@example.com'))
-      ..add(await userRepo.findByEmail('member2@example.com'))
-      ..add(await userRepo.findByEmail('member3@example.com'));
+      ..add(member.copyWith(
+        user: await userRepo.findByEmail('owner@example.com'),
+      ))
+      ..add(member.copyWith(
+        user: await userRepo.findByEmail('member1@example.com'),
+      ))
+      ..add(member.copyWith(
+        user: await userRepo.findByEmail('member2@example.com'),
+      ))
+      ..add(member.copyWith(
+        user: await userRepo.findByEmail('member3@example.com'),
+      ));
     return;
   }
 
   Future makeShiftRequest() async {
     final year = DateTime.now().year;
     final month = DateTime.now().month;
-    final owner =
-        members.firstWhere((user) => user.email == 'owner@example.com');
-    final member1 =
-        members.firstWhere((user) => user.email == 'member1@example.com');
-    final member2 =
-        members.firstWhere((user) => user.email == 'member2@example.com');
-    final member3 =
-        members.firstWhere((user) => user.email == 'member3@example.com');
+    final owner = members
+        .firstWhere((member) => member.user.email == 'owner@example.com');
+    final member1 = members
+        .firstWhere((member) => member.user.email == 'member1@example.com');
+    final member2 = members
+        .firstWhere((member) => member.user.email == 'member2@example.com');
+    final member3 = members
+        .firstWhere((member) => member.user.email == 'member3@example.com');
     final random = Random();
     for (DateTime day = DateTime(year, month, 1);
         day.month == month;
@@ -77,7 +86,7 @@ class TestData {
       // ownerは確定演出
       requests.add(
         Shift(
-          user: owner,
+          member: owner,
           start: DateTime(year, month, day.day, 17),
           end: DateTime(year, month, day.day + 1, 3),
         ),
@@ -86,7 +95,7 @@ class TestData {
         // 50 %の確率でmember1
         requests.add(
           Shift(
-            user: member1,
+            member: member1,
             start: DateTime(year, month, day.day, 17),
             end: DateTime(year, month, day.day + 1, 3),
           ),
@@ -96,7 +105,7 @@ class TestData {
         // 50 %の確率でmember2
         requests.add(
           Shift(
-            user: member2,
+            member: member2,
             start: DateTime(year, month, day.day, 17),
             end: DateTime(year, month, day.day + 1, 3),
           ),
@@ -106,7 +115,7 @@ class TestData {
         // 50 %の確率でmember3
         requests.add(
           Shift(
-            user: member3,
+            member: member3,
             start: DateTime(year, month, day.day, 17),
             end: DateTime(year, month, day.day + 1, 3),
           ),
@@ -124,15 +133,16 @@ class TestData {
   Future makeShift() async {
     final year = DateTime.now().year;
     final month = DateTime.now().month;
-    final owner =
-        members.firstWhere((user) => user.email == 'owner@example.com');
+    final owner = members
+        .firstWhere((member) => member.user.email == 'owner@example.com');
     for (DateTime day = DateTime(year, month, 1);
         day.month == month;
         day = day.add(const Duration(days: 1))) {
       logger.info(day);
       //オーナー確定
       final ownerShift = requests.firstWhere(
-        (req) => req.start.day == day.day && req.user.id == owner.id,
+        (req) =>
+            req.start.day == day.day && req.member.user.id == owner.user.id,
         orElse: () {
           return null;
         },
@@ -143,7 +153,8 @@ class TestData {
       //オーナー以外のリクエスト抽出
       final dayReq = requests.firstWhere(
         (req) =>
-            req.start.day == day.day && req.user.email != 'owner@example.com',
+            req.start.day == day.day &&
+            req.member.user.email != 'owner@example.com',
         orElse: () {
           return null;
         },

@@ -18,7 +18,13 @@ class UserStateController extends StateNotifier<UserState> with LocatorMixin {
       final org = Organization(
         id: id,
         owners: <User>[user],
-        members: <User>[user],
+        members: <Member>[
+          Member(
+            level: 1,
+            role: 'owner',
+            user: user,
+          ),
+        ],
         defaultHolidays: <Holiday>[],
       );
       await orgRepository.create(org).then((value) {

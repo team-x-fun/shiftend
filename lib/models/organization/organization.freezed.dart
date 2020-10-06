@@ -20,9 +20,9 @@ class _$OrganizationTearOff {
       @UserConverter()
       @JsonKey(name: 'owners')
           List<User> owners = const <User>[],
-      @UserConverter()
+      @MemberConverter()
       @JsonKey(name: 'members')
-          List<User> members = const <User>[],
+          List<Member> members = const <Member>[],
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays = const <Holiday>[],
@@ -47,9 +47,9 @@ mixin _$Organization {
   @UserConverter()
   @JsonKey(name: 'owners')
   List<User> get owners;
-  @UserConverter()
+  @MemberConverter()
   @JsonKey(name: 'members')
-  List<User> get members;
+  List<Member> get members;
   @JsonKey(name: 'default_holidays')
   @HolidayConverter()
   List<Holiday> get defaultHolidays;
@@ -70,9 +70,9 @@ abstract class $OrganizationCopyWith<$Res> {
       @UserConverter()
       @JsonKey(name: 'owners')
           List<User> owners,
-      @UserConverter()
+      @MemberConverter()
       @JsonKey(name: 'members')
-          List<User> members,
+          List<Member> members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays,
@@ -101,7 +101,7 @@ class _$OrganizationCopyWithImpl<$Res> implements $OrganizationCopyWith<$Res> {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       owners: owners == freezed ? _value.owners : owners as List<User>,
-      members: members == freezed ? _value.members : members as List<User>,
+      members: members == freezed ? _value.members : members as List<Member>,
       defaultHolidays: defaultHolidays == freezed
           ? _value.defaultHolidays
           : defaultHolidays as List<Holiday>,
@@ -133,9 +133,9 @@ abstract class _$OrganizationCopyWith<$Res>
       @UserConverter()
       @JsonKey(name: 'owners')
           List<User> owners,
-      @UserConverter()
+      @MemberConverter()
       @JsonKey(name: 'members')
-          List<User> members,
+          List<Member> members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays,
@@ -167,7 +167,7 @@ class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
     return _then(_Organization(
       id: id == freezed ? _value.id : id as String,
       owners: owners == freezed ? _value.owners : owners as List<User>,
-      members: members == freezed ? _value.members : members as List<User>,
+      members: members == freezed ? _value.members : members as List<Member>,
       defaultHolidays: defaultHolidays == freezed
           ? _value.defaultHolidays
           : defaultHolidays as List<Holiday>,
@@ -185,9 +185,9 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
       @UserConverter()
       @JsonKey(name: 'owners')
           this.owners = const <User>[],
-      @UserConverter()
+      @MemberConverter()
       @JsonKey(name: 'members')
-          this.members = const <User>[],
+          this.members = const <Member>[],
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           this.defaultHolidays = const <Holiday>[],
@@ -209,9 +209,9 @@ class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   @JsonKey(name: 'owners')
   final List<User> owners;
   @override
-  @UserConverter()
+  @MemberConverter()
   @JsonKey(name: 'members')
-  final List<User> members;
+  final List<Member> members;
   @override
   @JsonKey(name: 'default_holidays')
   @HolidayConverter()
@@ -282,9 +282,9 @@ abstract class _Organization implements Organization {
       @UserConverter()
       @JsonKey(name: 'owners')
           List<User> owners,
-      @UserConverter()
+      @MemberConverter()
       @JsonKey(name: 'members')
-          List<User> members,
+          List<Member> members,
       @JsonKey(name: 'default_holidays')
       @HolidayConverter()
           List<Holiday> defaultHolidays,
@@ -302,9 +302,9 @@ abstract class _Organization implements Organization {
   @JsonKey(name: 'owners')
   List<User> get owners;
   @override
-  @UserConverter()
+  @MemberConverter()
   @JsonKey(name: 'members')
-  List<User> get members;
+  List<Member> get members;
   @override
   @JsonKey(name: 'default_holidays')
   @HolidayConverter()

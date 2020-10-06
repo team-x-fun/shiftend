@@ -11,10 +11,10 @@ import 'widgets/level_stars_widget.dart';
 
 class MemberItem extends StatelessWidget {
   const MemberItem({
-    this.user,
+    this.member,
   });
 
-  final User user;
+  final Member member;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class MemberItem extends StatelessWidget {
             builder: (_) =>
                 StateNotifierProvider<MemberStateController, MemberState>.value(
               value: context.read<MemberStateController>(),
-              child: MemberDetailPage(user),
+              child: MemberDetailPage(member),
             ),
           ),
         );
@@ -42,12 +42,12 @@ class MemberItem extends StatelessWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: NetworkImage(user.iconUrl),
+            image: NetworkImage(member.user.iconUrl),
           ),
         ),
       ),
-      title: Text(user.name),
-      subtitle: Text(user.role),
+      title: Text(member.user.name),
+      subtitle: Text(member.role),
     );
   }
 }

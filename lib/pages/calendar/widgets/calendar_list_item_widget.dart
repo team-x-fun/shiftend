@@ -17,7 +17,7 @@ class CalendarListItemWidget extends StatelessWidget {
 
     final Color color =
         context.select<LoginState, String>((state) => state.currentUser.id) ==
-                shift.user.id
+                shift.member.user.id
             ? Colors.blueGrey[100]
             : Colors.white;
     return Container(
@@ -29,11 +29,11 @@ class CalendarListItemWidget extends StatelessWidget {
             shape: BoxShape.circle,
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: NetworkImage(shift.user.iconUrl),
+              image: NetworkImage(shift.member.user.iconUrl),
             ),
           ),
         ),
-        title: Text(shift.user.name),
+        title: Text(shift.member.user.name),
         subtitle: Text(shiftTime),
         onTap: () => {
           logger.info('タップされた $shift'),

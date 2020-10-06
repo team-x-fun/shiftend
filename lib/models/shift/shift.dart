@@ -8,7 +8,7 @@ part 'shift.g.dart';
 @freezed
 abstract class Shift with _$Shift {
   const factory Shift({
-    @UserConverter() @JsonKey(name: 'user') User user,
+    @MemberConverter() Member member,
     DateTime start,
     DateTime end,
   }) = _Shift;

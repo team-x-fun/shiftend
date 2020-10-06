@@ -10,8 +10,6 @@ abstract class User with _$User {
     String id,
     String email,
     String name,
-    String role,
-    String level,
     @JsonKey(name: 'icon_url') String iconUrl,
   }) = _User;
 

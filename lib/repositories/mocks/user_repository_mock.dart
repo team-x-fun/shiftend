@@ -11,35 +11,30 @@ class UserRepositoryMock extends UserRepositoryInterface {
   }
   final List<User> _users = <User>[
     const User(
-        id: '0',
-        email: 'owner@example.com',
-        iconUrl:
-            'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
-        name: '佐藤 勇一郎',
-        role: 'オーナー',
-        level: '100'),
+      id: '0',
+      email: 'owner@example.com',
+      iconUrl:
+          'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
+      name: '佐藤 勇一郎',
+    ),
     const User(
-        id: '1',
-        email: 'member1@example.com',
-        iconUrl:
-            'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
-        name: '工藤 大輔',
-        role: 'オーナー',
-        level: '100'),
+      id: '1',
+      email: 'member1@example.com',
+      iconUrl:
+          'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
+      name: '工藤 大輔',
+    ),
     const User(
-        id: '2',
-        email: 'member2@example.com',
-        iconUrl:
-            'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
-        name: '松山 航',
-        role: 'バイトリーダ',
-        level: '50'),
+      id: '2',
+      email: 'member2@example.com',
+      iconUrl:
+          'https://tblg.k-img.com/restaurant/images/Rvw/29971/640x640_rect_29971374.jpg',
+      name: '松山 航',
+    ),
     const User(
         id: 'test_user',
         email: 'member3@example.com',
         name: 'test太郎',
-        role: 'オーナー',
-        level: '100',
         iconUrl: 'https://avatars0.githubusercontent.com/u/57802072'),
   ];
   List<User> get users => _users;

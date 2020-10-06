@@ -93,8 +93,6 @@ class UserPage extends StatelessWidget {
               ),
               Text('name: ${user.name}'),
               Text('email: ${user.email}'),
-              Text('role: ${user.role}'),
-              Text('level: ${user.role}'),
               OrgSelectWidget(),
               FlatButton(
                 color: Colors.blueGrey,

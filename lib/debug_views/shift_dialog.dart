@@ -99,7 +99,9 @@ class ShiftDialog {
                 _formKey.currentState.save();
                 logger.info(userId);
                 final User user = await userRepo.getUser(userId);
-                shift = shift.copyWith(user: user);
+                shift = shift.copyWith(
+                  member: shift.member.copyWith(user: user),
+                );
                 logger.info(shift);
                 await shiftRepo.create(orgId, shift);
                 Navigator.pop(context);
@@ -144,7 +146,11 @@ class ShiftDialog {
                   labelText: 'User id',
                 ),
                 onSaved: (String value) async {
-                  shift = shift.copyWith(user: await userRepo.getUser(value));
+                  shift = shift.copyWith(
+                    member: shift.member.copyWith(
+                      user: await userRepo.getUser(value),
+                    ),
+                  );
                 },
                 validator: (value) {
                   if (value.isEmpty) {

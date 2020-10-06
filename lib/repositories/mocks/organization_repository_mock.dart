@@ -13,7 +13,13 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
         owners: _userRepo.users
             .where((user) => user.email == 'owner@example.com')
             .toList(),
-        members: _userRepo.users,
+        members: _userRepo.users
+            .map<Member>((user) => Member(
+                  level: 1,
+                  role: 'member',
+                  user: user,
+                ))
+            .toList(),
         defaultHolidays: <Holiday>[
           const Holiday(dayOfWeek: 0, nWeek: 0),
           const Holiday(dayOfWeek: 1, nWeek: 1),
