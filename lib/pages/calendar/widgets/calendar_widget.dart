@@ -5,6 +5,7 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
 import 'package:shiftend/pages/calendar/widgets/marker_widget.dart';
+import 'package:shiftend/util/logger.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarWidget extends StatelessWidget {
@@ -145,15 +146,16 @@ class CalendarWidget extends StatelessWidget {
         },
       ),
       onDaySelected: (date, attendees) {
-        context
-            .read<CalendarStateController>()
-            .onDaySelected(date, attendees.cast<Shift>());
-        context
-            .read<CalendarStateController>()
         final selectedRequestedShifts = Provider.of<CalendarState>(context, listen: false).requestedShifts[DateTime(date.year, date.month, date.day)];
+        logger.info(selectedRequestedShifts);
         Provider.of<CalendarStateController>(context, listen: false)
             .onDaySelected(date, attendees.cast<Shift>(), selectedRequestedShifts);
-        Provider.of<CalendarStateController>(context, listen: false)
+        Provider.of<CalendarStateController>(context, listen: false);
+//        context
+//            .read<CalendarStateController>()
+//            .onDaySelected(date, attendees.cast<Shift>());
+        context
+            .read<CalendarStateController>()
             .fetchLoggedinUserRequestedShifts(date);
         animationController.forward(from: 0);
       },

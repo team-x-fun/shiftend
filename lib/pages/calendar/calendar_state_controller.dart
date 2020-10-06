@@ -43,8 +43,9 @@ class CalendarStateController extends StateNotifier<CalendarState>
         'fetchShiftsInitial: selectedOrg.id = ${loginState.selectedOrg.id}');
     final shifts =
         await shiftRepository.getShifts(loginState.selectedOrg.id, date);
+
     final requestShifts =
-        await shiftRequestRepository.getShifts('refOrg', date);
+        await shiftRequestRepository.getShifts(loginState.selectedOrg.id, date);
     final formattedNow = _dateFormatter.format(state.selectedDate);
     state = state.copyWith(
         shifts: shifts,
@@ -65,9 +66,12 @@ class CalendarStateController extends StateNotifier<CalendarState>
     }
     final shifts =
         await shiftRepository.getShifts(loginState.selectedOrg.id, date);
+    final requestShifts =
+        await shiftRequestRepository.getShifts(loginState.selectedOrg.id, date);
+
     logger.info(
         'fetchShiftsOfMonth: selectedOrg.id = ${loginState.selectedOrg.id}');
-    state = state.copyWith(shifts: shifts);
+    state = state.copyWith(shifts: shifts, requestedShifts: requestShifts);
     logger.info(shifts);
   }
 
