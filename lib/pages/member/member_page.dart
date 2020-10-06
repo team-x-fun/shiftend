@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:shiftend/pages/member/member_item.dart';
 import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:provider/provider.dart';
-import 'package:shiftend/pages/member/member_state_controller.dart';
 import 'package:shiftend/util/logger.dart';
 
 class MemberPage extends StatelessWidget {
