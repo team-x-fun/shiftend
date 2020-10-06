@@ -101,7 +101,7 @@ class ShiftRequestRepository extends ShiftRequestRepositoryInterface {
     return shift.copyWith(
       member: shift.member.copyWith(
         user: await userRepo
-            .fromUserRef(rawJson['member']['userRef'] as DocumentReference),
+            .fromUserRef(rawJson['members']['userRef'] as DocumentReference),
       ),
     );
   }
