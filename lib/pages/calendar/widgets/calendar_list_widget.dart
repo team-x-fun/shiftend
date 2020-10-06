@@ -6,6 +6,7 @@ import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/calendar/widgets/calendar_list_item_widget.dart';
 import 'package:shiftend/pages/addshift/addshift_page.dart';
 import 'package:shiftend/pages/login/login_state.dart';
+import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/util/logger.dart';
 
 class CalendarListWidget extends StatelessWidget {
@@ -14,12 +15,10 @@ class CalendarListWidget extends StatelessWidget {
     final List<Widget> listItems = [];
     final shifts = context
         .select<CalendarState, List<Shift>>((state) => state.selectedShifts);
-//    final shifts =
-//        Provider.of<CalendarState>(context, listen: true).selectedShifts;
     final requestedShifts =
         Provider.of<CalendarState>(context).selectedRequestedShifts;
     final members = context
-        .select<LoginState, User>((state) => state.currentUser);
+        .select<LoginState, List<Member>>((state) => state.selectedOrg.members);
     if (shifts.isNotEmpty) {
       logger.info('きた $shifts');
       shifts.forEach(
@@ -39,7 +38,7 @@ class CalendarListWidget extends StatelessWidget {
         onTap: () => {
           Navigator.of(context).push(
             MaterialPageRoute<AddShiftPage>(
-              builder: (context) =>AddShiftPage(shiftlist: shifts, requestShiftlist: requestedShifts, ),
+              builder: (context) =>AddShiftPage(shiftlist: shifts, requestShiftlist: requestedShifts, memberslist: members,),
             )
           )
         },

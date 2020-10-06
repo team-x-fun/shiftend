@@ -4,6 +4,7 @@ import 'package:shiftend/models/shift/shift.dart';
 import 'package:shiftend/models/user/user.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
+import 'package:shiftend/util/logger.dart';
 
 import 'addshift_item.dart';
 
@@ -13,12 +14,16 @@ class AddShiftPage extends StatelessWidget {
   final UserRepositoryInterface userRepository = UserRepositoryMock();
   final List<Shift> shiftlist;
   final List<Shift> requestShiftlist;
-  final Member memberslist;
-  List<Shift> noShiftlist;
+  final List<Member> memberslist;
+  List<Member> noShiftlist;
   final List<Widget> editedlist = [];
 
   @override
   Widget build(BuildContext context) {
+    logger.info(memberslist);
+    logger.info(shiftlist);
+    noShiftlist = memberslist.where((member) => !shiftlist.map((shift) => shift.member.user.id).toSet().contains(member.user.id)).toList();
+    logger.info(noShiftlist);
     editedlist.add(const Text('シフト入ってる人'));
     if(shiftlist != null) {
       shiftlist.forEach((shift) {
@@ -33,8 +38,8 @@ class AddShiftPage extends StatelessWidget {
     }
     editedlist.add(const Text('シフトなし'));
     if( noShiftlist != null) {
-    noShiftlist.forEach((noShift) {
-      editedlist.add(AddShiftItem(member: noShift.member));
+      noShiftlist.forEach((noShiftlist) {
+        editedlist.add(AddShiftItem(member: noShiftlist));
     });
     }
 
