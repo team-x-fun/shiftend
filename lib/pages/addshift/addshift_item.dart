@@ -16,19 +16,15 @@ class AddShiftItem extends StatelessWidget {
           shape: const RoundedRectangleBorder(),
           color: Colors.grey[50],
           padding: const EdgeInsets.all(0),
-          onPressed: () =>
-          {
-            Navigator.of(context).pop(
-            ),
+          onPressed: () => {
+            Navigator.of(context).pop(),
           },
           child: Container(
             child: ListTile(
               dense: true,
               trailing: const Text(
                 '追加する',
-                style: TextStyle(
-                    color: Colors.green
-                ),
+                style: TextStyle(color: Colors.green),
               ),
               leading: Container(
                 height: 50,
@@ -49,5 +45,4 @@ class AddShiftItem extends StatelessWidget {
       ],
     );
   }
-
 }

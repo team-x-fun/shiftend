@@ -9,38 +9,46 @@ import 'package:shiftend/util/logger.dart';
 import 'addshift_item.dart';
 
 class AddShiftPage extends StatelessWidget {
-  AddShiftPage({Key key, @required this.shiftlist, @required this.requestShiftlist, @required this.memberslist}) : super(key: key);
+  AddShiftPage(
+      {Key key,
+      @required this.shiftlist,
+      @required this.requestShiftlist,
+      @required this.memberslist})
+      : super(key: key);
 
   final UserRepositoryInterface userRepository = UserRepositoryMock();
   final List<Shift> shiftlist;
   final List<Shift> requestShiftlist;
   final List<Member> memberslist;
-  List<Member> noShiftlist;
-  final List<Widget> editedlist = [];
 
   @override
   Widget build(BuildContext context) {
-    logger.info(memberslist);
-    logger.info(shiftlist);
-    noShiftlist = memberslist.where((member) => !shiftlist.map((shift) => shift.member.user.id).toSet().contains(member.user.id)).toList();
+    final List<Widget> editedlist = [];
+    logger..info(memberslist)..info(shiftlist);
+    final noShiftlist = memberslist
+        .where((member) => !shiftlist
+            .map((shift) => shift.member.user.id)
+            .toSet()
+            .contains(member.user.id))
+        .toList();
     logger.info(noShiftlist);
     editedlist.add(const Text('シフト入ってる人'));
-    if(shiftlist != null) {
+    if (shiftlist != null) {
       shiftlist.forEach((shift) {
         editedlist.add(AddShiftItem(member: shift.member));
       });
     }
     editedlist.add(const Text('シフト希望'));
-    if(requestShiftlist != null) {
+    if (requestShiftlist != null) {
       requestShiftlist.forEach((requestedShift) {
         editedlist.add(AddShiftItem(member: requestedShift.member));
       });
     }
     editedlist.add(const Text('シフトなし'));
-    if( noShiftlist != null) {
+    if (noShiftlist != null) {
       noShiftlist.forEach((noShiftlist) {
         editedlist.add(AddShiftItem(member: noShiftlist));
-    });
+      });
     }
 
     return Scaffold(
