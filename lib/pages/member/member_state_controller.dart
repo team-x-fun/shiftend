@@ -27,11 +27,11 @@ class MemberStateController extends StateNotifier<MemberState>
           .copyWith(level: userLevel);
       final newMembers = state.members
         ..removeWhere((member) => member.user.id == id)
-        ..add(member);
-      logger.info('newMembers = $newMembers');
-      newMembers.sort((a, b) => (b.level - a.level).toInt());
+        ..add(member)
+        ..sort((a, b) => (b.level - a.level).toInt());
+      logger.info('newMembers = ${newMembers[0]}');
       state = state.copyWith(members: newMembers);
-      logger.info('state = $state');
+      logger.info('state = ${state.members[0]}');
     }
   }
 

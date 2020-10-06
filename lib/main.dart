@@ -122,7 +122,8 @@ class _MainState extends State<Main> {
           create: (context) => CalendarStateController(),
         ),
         StateNotifierProvider<MemberStateController, MemberState>(
-            create: (_) => MemberStateController()),
+          create: (context) => MemberStateController(),
+        ),
         StateNotifierProvider<SettingOrgStateController, SettingOrgState>(
           create: (context) => SettingOrgStateController(),
         ),

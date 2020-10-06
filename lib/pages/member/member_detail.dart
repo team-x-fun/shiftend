@@ -59,11 +59,12 @@ class MemberDetailPage extends StatelessWidget {
                           .changeLevel(member.user.id, v);
                     },
                     starCount: 5,
-                    rating: context
-                        .select<MemberState, List<Member>>(
-                            (state) => state.members)
-                        .firstWhere((m) => m.user.id == member.user.id)
-                        .level,
+                    rating: context.select<MemberState, double>((state) {
+                      logger.info('update rating');
+                      return state.members
+                          .firstWhere((m) => m.user.id == member.user.id)
+                          .level;
+                    }),
                     size: 30,
                     isReadOnly: false,
                     color: Colors.orange,

@@ -4,10 +4,12 @@ import 'package:shiftend/pages/member/member_item.dart';
 import 'package:shiftend/pages/member/member_state.dart';
 import 'package:shiftend/models/models.dart';
 import 'package:provider/provider.dart';
+import 'package:shiftend/util/logger.dart';
 
 class MemberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    logger.info('MemberPage build');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -18,17 +20,16 @@ class MemberPage extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: context
-            .select<MemberState, List<Member>>((state) => state.members)
-            .length,
+        itemCount: context.select<MemberState, int>(
+          (state) => state.members.length,
+        ),
         itemBuilder: (context, index) {
           return Builder(
-            builder: (context) {
-              return MemberItem(
-                member: context.select<MemberState, List<Member>>(
-                    (state) => state.members)[index],
-              );
-            },
+            builder: (context) => MemberItem(
+              member: context.select<MemberState, Member>(
+                (state) => state.members[index],
+              ),
+            ),
           );
         },
       ),
