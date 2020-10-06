@@ -102,15 +102,25 @@ class _MainState extends State<Main> {
         context.select<LoginState, bool>((state) => state.isLogin);
     final bottomNavItems = [
       const BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_today), title: Text('カレンダー')),
+        icon: Icon(Icons.calendar_today),
+        label: 'カレンダー',
+      ),
       const BottomNavigationBarItem(
-          icon: Icon(Icons.person), title: Text('メンバー')),
+        icon: Icon(Icons.person),
+        label: 'メンバー',
+      ),
       const BottomNavigationBarItem(
-          icon: Icon(Icons.settings), title: Text('設定')),
+        icon: Icon(Icons.settings),
+        label: '設定',
+      ),
       const BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle), title: Text('ログインページ')),
+        icon: Icon(Icons.account_circle),
+        label: 'ログインページ',
+      ),
       const BottomNavigationBarItem(
-          icon: Icon(Icons.settings), title: Text('debug')),
+        icon: Icon(Icons.settings),
+        label: 'debug',
+      ),
     ];
     if (!isLogin) {
       // TODO: ログインしていないときは，ログインページに飛ばす
