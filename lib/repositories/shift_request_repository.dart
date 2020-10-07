@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import 'package:shiftend/models/shift/shift.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
+import 'package:shiftend/util/logger.dart';
 
 import 'interfaces/shift_request_repository_interface.dart';
 
@@ -58,6 +59,9 @@ class ShiftRequestRepository extends ShiftRequestRepositoryInterface {
         shifts[date] = await Future.wait(list);
       }
     }
+    shifts.forEach((_, value) {
+      value.removeWhere((s) => s == null);
+    });
     return shifts;
   }
 
@@ -96,6 +100,10 @@ class ShiftRequestRepository extends ShiftRequestRepositoryInterface {
   Future<Shift> _fromJson(Map<String, dynamic> rawJson) async {
     final Map<String, dynamic> json = <String, dynamic>{...rawJson};
     final Shift shift = Shift.fromJson(json);
+    if (rawJson['member'] == null) {
+      logger.warning('invalid shift request schema');
+      return null;
+    }
     return shift.copyWith(
       member: shift.member.copyWith(
         user: await userRepo
