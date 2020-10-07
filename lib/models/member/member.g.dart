@@ -6,7 +6,7 @@ part of 'member.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Member _$_$_MemberFromJson(Map<String, dynamic> json) {
+_$_Member _$_$_MemberFromJson(Map json) {
   return _$_Member(
     level: (json['level'] as num)?.toDouble(),
     role: json['role'] as String,

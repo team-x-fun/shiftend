@@ -6,7 +6,7 @@ part of 'holiday.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Holiday _$_$_HolidayFromJson(Map<String, dynamic> json) {
+_$_Holiday _$_$_HolidayFromJson(Map json) {
   return _$_Holiday(
     dayOfWeek: json['day_of_week'] as int,
     nWeek: json['n_week'] as int,

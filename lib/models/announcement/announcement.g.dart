@@ -6,7 +6,7 @@ part of 'announcement.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Announcement _$_$_AnnouncementFromJson(Map<String, dynamic> json) {
+_$_Announcement _$_$_AnnouncementFromJson(Map json) {
   return _$_Announcement(
     title: json['title'] as String,
     content: json['content'] as String,

@@ -6,7 +6,7 @@ part of 'personnel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Personnel _$_$_PersonnelFromJson(Map<String, dynamic> json) {
+_$_Personnel _$_$_PersonnelFromJson(Map json) {
   return _$_Personnel(
     number: json['number'] as int,
     totalLevel: json['total_level'] as int,

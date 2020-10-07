@@ -6,7 +6,7 @@ part of 'organization.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Organization _$_$_OrganizationFromJson(Map<String, dynamic> json) {
+_$_Organization _$_$_OrganizationFromJson(Map json) {
   return _$_Organization(
     id: json['id'] as String,
     owners: (json['owners'] as List)
