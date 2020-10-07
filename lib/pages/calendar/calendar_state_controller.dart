@@ -45,7 +45,10 @@ class CalendarStateController extends StateNotifier<CalendarState>
         await shiftRepository.getShifts(loginState.selectedOrg.id, date);
     final formattedNow = _dateFormatter.format(state.selectedDate);
     state = state.copyWith(shifts: shifts, notifierState: NotifierState.loaded);
-    state = state.copyWith(selectedShifts: shifts[formattedNow]);
+    if (shifts[formattedNow] != null) {
+      // 起動時，formattedNow(今日の日付)にshiftが存在しなかった場合, nullでエラーになるため回避
+      state = state.copyWith(selectedShifts: shifts[formattedNow]);
+    }
   }
 
   // カレンダーで月を変えるごとに月ごとのデータを取得する
