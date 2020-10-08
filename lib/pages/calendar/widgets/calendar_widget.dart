@@ -28,7 +28,8 @@ class CalendarWidget extends StatelessWidget {
       startingDayOfWeek: StartingDayOfWeek.sunday,
       availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: CalendarStyle(
-          outsideDaysVisible: false, // trueにすると月を切り替えたときにマーカーが表示されなくなる
+          outsideDaysVisible: false,
+          // trueにすると月を切り替えたときにマーカーが表示されなくなる
           outsideHolidayStyle: const TextStyle(decorationColor: Colors.grey),
           weekdayStyle: const TextStyle().copyWith(color: Colors.red),
           weekendStyle: const TextStyle().copyWith(color: Colors.red),
@@ -147,16 +148,11 @@ class CalendarWidget extends StatelessWidget {
       ),
       onDaySelected: (date, attendees) {
         final selectedRequestedShifts =
-            Provider.of<CalendarState>(context, listen: false)
-                .requestedShifts[DateTime(date.year, date.month, date.day)];
+            context.read<CalendarState>().requestedShifts[DateTime(date.year, date.month, date.day)];
         logger.info(selectedRequestedShifts);
-        Provider.of<CalendarStateController>(context, listen: false)
-            .onDaySelected(
-                date, attendees.cast<Shift>(), selectedRequestedShifts);
+        context.read<CalendarStateController>().onDaySelected(
+            date, attendees.cast<Shift>(), selectedRequestedShifts);
         Provider.of<CalendarStateController>(context, listen: false);
-//        context
-//            .read<CalendarStateController>()
-//            .onDaySelected(date, attendees.cast<Shift>());
         context
             .read<CalendarStateController>()
             .fetchLoggedinUserRequestedShifts(date);

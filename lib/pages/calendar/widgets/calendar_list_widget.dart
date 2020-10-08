@@ -15,7 +15,8 @@ class CalendarListWidget extends StatelessWidget {
     final shifts = context
         .select<CalendarState, List<Shift>>((state) => state.selectedShifts);
     final requestedShifts =
-        Provider.of<CalendarState>(context).selectedRequestedShifts;
+    context
+        .select<CalendarState, List<Shift>>((state) => state.selectedRequestedShifts);
     final members = context
         .select<LoginState, List<Member>>((state) => state.selectedOrg.members);
     if (shifts.isNotEmpty) {
