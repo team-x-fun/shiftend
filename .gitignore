@@ -45,3 +45,6 @@ app.*.map.json
 
 google-services.json
 GoogleService-Info.plist
+
+.fvm/flutter_sdk
+.vscode/settings.json
