@@ -97,8 +97,8 @@ jobs:
           curl \
           -H "Authorization: token ${{secrets.DEPLOYGATE_API_KEY}}" \
           -F "file=@build/app/outputs/flutter-apk/app-release.apk" \
-          -F "message=git:${{ github.head_ref }}" \
-          -F "distribution_name=${{ github.head_ref }}" \
+          -F "message='${{ github.event.head_commit.url }}'" \
+          -F "distribution_name=${{ github.ref }}" \
           -F "release_note=new build" \
           "https://deploygate.com/api/users/${{secrets.DEPLOYGATE_USER}}/apps"
       - name: Slack Notification
