@@ -1,3 +1,5 @@
+import 'package:shiftend/pages/login/login_state.dart';
+import 'package:shiftend/repositories/interfaces/organization_repository_interface.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'member_state.dart';
 
@@ -5,9 +7,26 @@ class MemberStateController extends StateNotifier<MemberState>
     with LocatorMixin {
   MemberStateController() : super(const MemberState());
 
-  void changeLevel(double userLevel) {
+  OrganizationRepositoryInterface get orgRepo =>
+      read<OrganizationRepositoryInterface>();
+
+  LoginState get loginState => read<LoginState>();
+
+  @override
+  void initState() {
+    state = state.copyWith(members: loginState.selectedOrg.members);
+  }
+
+  void changeLevel(String id, double userLevel) {
     if (validateLevel(userLevel)) {
-      state = state.copyWith(level: userLevel);
+      final newMembers = state.members.map((member) {
+        if (member.user.id == id) {
+          return member.copyWith(level: userLevel);
+        }
+        return member;
+      }).toList();
+      state = state.copyWith(members: newMembers);
+      orgRepo.update(loginState.selectedOrg.copyWith(members: state.members));
     }
   }
 

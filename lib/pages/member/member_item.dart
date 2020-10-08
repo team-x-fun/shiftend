@@ -11,14 +11,17 @@ import 'widgets/level_stars_widget.dart';
 
 class MemberItem extends StatelessWidget {
   const MemberItem({
-    this.member,
+    this.id,
   });
 
-  final Member member;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
-    logger.info(context.select<MemberState, double>((state) => state.level));
+    final member = context
+        .select<MemberState, List<Member>>((state) => state.members)
+        .firstWhere((m) => m.user.id == id);
+    logger.info('MemberItem build: ${member.user.id}');
     return ListTile(
       onTap: () {
         Navigator.of(context).push(
@@ -26,14 +29,16 @@ class MemberItem extends StatelessWidget {
             builder: (_) =>
                 StateNotifierProvider<MemberStateController, MemberState>.value(
               value: context.read<MemberStateController>(),
-              child: MemberDetailPage(member),
+              child: MemberDetailPage(
+                id: member.user.id,
+              ),
             ),
           ),
         );
       },
       dense: true,
       trailing: LevelStars(
-        level: context.select<MemberState, double>((state) => state.level),
+        level: member.level,
       ),
       leading: Container(
         height: 50,

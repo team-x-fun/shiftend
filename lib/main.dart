@@ -13,6 +13,8 @@ import 'package:shiftend/pages/login/login_page.dart';
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/pages/login/login_state_controller.dart';
 import 'package:shiftend/pages/member/member_page.dart';
+import 'package:shiftend/pages/member/member_state.dart';
+import 'package:shiftend/pages/member/member_state_controller.dart';
 import 'package:shiftend/pages/setting/setting_page.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state.dart';
 import 'package:shiftend/pages/setting/setting_org/setting_org_state_controller.dart';
@@ -118,6 +120,9 @@ class _MainState extends State<Main> {
       providers: [
         StateNotifierProvider<CalendarStateController, CalendarState>(
           create: (context) => CalendarStateController(),
+        ),
+        StateNotifierProvider<MemberStateController, MemberState>(
+          create: (context) => MemberStateController(),
         ),
         StateNotifierProvider<SettingOrgStateController, SettingOrgState>(
           create: (context) => SettingOrgStateController(),

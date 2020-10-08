@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:shiftend/pages/member/member_item.dart';
 import 'package:shiftend/pages/member/member_state.dart';
-import 'package:shiftend/pages/member/member_state_controller.dart';
-import 'package:shiftend/repositories/interfaces/interfaces.dart';
-import 'package:shiftend/repositories/mocks/organization_repository_mock.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:provider/provider.dart';
+import 'package:shiftend/util/logger.dart';
 
 class MemberPage extends StatelessWidget {
-  final OrganizationRepositoryInterface orgRepo = OrganizationRepositoryMock();
   @override
   Widget build(BuildContext context) {
+    logger.info('MemberPage build');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -21,26 +19,17 @@ class MemberPage extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: FutureBuilder(
-        future: orgRepo.getOrganization('test_id'),
-        builder: (context, AsyncSnapshot<Organization> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data.members.length,
-              itemBuilder: (context, index) {
-                return StateNotifierProvider<MemberStateController,
-                    MemberState>(
-                  create: (_) => MemberStateController(),
-                  child: MemberItem(
-                    member: snapshot.data.members[index],
-                  ),
-                );
-              },
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+      body: ListView.builder(
+        itemCount:
+            context.select<MemberState, int>((state) => state.members.length),
+        itemBuilder: (_, index) => Builder(
+          builder: (context) => MemberItem(
+            id: context
+                .select<MemberState, Member>((state) => state.members[index])
+                .user
+                .id,
+          ),
+        ),
       ),
     );
   }

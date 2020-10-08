@@ -8,11 +8,14 @@ import 'package:shiftend/util/logger.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MemberDetailPage extends StatelessWidget {
-  const MemberDetailPage(this.member);
+  const MemberDetailPage({this.id});
 
-  final Member member;
+  final String id;
   @override
   Widget build(BuildContext context) {
+    logger.info('MemberDetailBuild');
+    final member = context.select<MemberState, Member>(
+        (state) => state.members.firstWhere((m) => m.user.id == id));
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -53,11 +56,17 @@ class MemberDetailPage extends StatelessWidget {
                     allowHalfRating: false,
                     onRated: (v) {
                       logger.info('rating value -> $v');
-                      context.read<MemberStateController>().changeLevel(v);
+                      context
+                          .read<MemberStateController>()
+                          .changeLevel(member.user.id, v);
                     },
                     starCount: 5,
-                    rating: context
-                        .select<MemberState, double>((state) => state.level),
+                    rating: context.select<MemberState, double>((state) {
+                      logger.info('update rating');
+                      return state.members
+                          .firstWhere((m) => m.user.id == member.user.id)
+                          .level;
+                    }),
                     size: 30,
                     isReadOnly: false,
                     color: Colors.orange,
@@ -68,7 +77,7 @@ class MemberDetailPage extends StatelessWidget {
               ListTile(
                 dense: true,
                 trailing: Text(
-                  '${context.select<MemberState, String>((state) => state.tel)}',
+                  '${member.user.email}',
                 ),
                 title: const Text('電話'),
               ),
