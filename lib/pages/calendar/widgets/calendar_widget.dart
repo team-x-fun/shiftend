@@ -147,8 +147,9 @@ class CalendarWidget extends StatelessWidget {
         },
       ),
       onDaySelected: (date, attendees) {
-        final selectedRequestedShifts =
-            context.read<CalendarState>().requestedShifts[DateTime(date.year, date.month, date.day)];
+        final selectedRequestedShifts = context
+            .read<CalendarState>()
+            .requestedShifts[DateTime(date.year, date.month, date.day)];
         logger.info(selectedRequestedShifts);
         context.read<CalendarStateController>().onDaySelected(
             date, attendees.cast<Shift>(), selectedRequestedShifts);
