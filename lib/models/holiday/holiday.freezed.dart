@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'holiday.dart';
 
@@ -12,9 +12,11 @@ Holiday _$HolidayFromJson(Map<String, dynamic> json) {
   return _Holiday.fromJson(json);
 }
 
+/// @nodoc
 class _$HolidayTearOff {
   const _$HolidayTearOff();
 
+// ignore: unused_element
   _Holiday call(
       {@JsonKey(name: 'day_of_week') int dayOfWeek,
       @JsonKey(name: 'n_week') int nWeek}) {
@@ -23,11 +25,18 @@ class _$HolidayTearOff {
       nWeek: nWeek,
     );
   }
+
+// ignore: unused_element
+  Holiday fromJson(Map<String, Object> json) {
+    return Holiday.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Holiday = _$HolidayTearOff();
 
+/// @nodoc
 mixin _$Holiday {
   @JsonKey(name: 'day_of_week')
   int get dayOfWeek;
@@ -38,6 +47,7 @@ mixin _$Holiday {
   $HolidayCopyWith<Holiday> get copyWith;
 }
 
+/// @nodoc
 abstract class $HolidayCopyWith<$Res> {
   factory $HolidayCopyWith(Holiday value, $Res Function(Holiday) then) =
       _$HolidayCopyWithImpl<$Res>;
@@ -46,6 +56,7 @@ abstract class $HolidayCopyWith<$Res> {
       @JsonKey(name: 'n_week') int nWeek});
 }
 
+/// @nodoc
 class _$HolidayCopyWithImpl<$Res> implements $HolidayCopyWith<$Res> {
   _$HolidayCopyWithImpl(this._value, this._then);
 
@@ -65,6 +76,7 @@ class _$HolidayCopyWithImpl<$Res> implements $HolidayCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$HolidayCopyWith<$Res> implements $HolidayCopyWith<$Res> {
   factory _$HolidayCopyWith(_Holiday value, $Res Function(_Holiday) then) =
       __$HolidayCopyWithImpl<$Res>;
@@ -74,6 +86,7 @@ abstract class _$HolidayCopyWith<$Res> implements $HolidayCopyWith<$Res> {
       @JsonKey(name: 'n_week') int nWeek});
 }
 
+/// @nodoc
 class __$HolidayCopyWithImpl<$Res> extends _$HolidayCopyWithImpl<$Res>
     implements _$HolidayCopyWith<$Res> {
   __$HolidayCopyWithImpl(_Holiday _value, $Res Function(_Holiday) _then)
@@ -95,6 +108,8 @@ class __$HolidayCopyWithImpl<$Res> extends _$HolidayCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Holiday with DiagnosticableTreeMixin implements _Holiday {
   const _$_Holiday(
       {@JsonKey(name: 'day_of_week') this.dayOfWeek,

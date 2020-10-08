@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'member.dart';
 
@@ -12,9 +12,11 @@ Member _$MemberFromJson(Map<String, dynamic> json) {
   return _Member.fromJson(json);
 }
 
+/// @nodoc
 class _$MemberTearOff {
   const _$MemberTearOff();
 
+// ignore: unused_element
   _Member call({double level, String role, @UserConverter() User user}) {
     return _Member(
       level: level,
@@ -22,11 +24,18 @@ class _$MemberTearOff {
       user: user,
     );
   }
+
+// ignore: unused_element
+  Member fromJson(Map<String, Object> json) {
+    return Member.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Member = _$MemberTearOff();
 
+/// @nodoc
 mixin _$Member {
   double get level;
   String get role;
@@ -37,6 +46,7 @@ mixin _$Member {
   $MemberCopyWith<Member> get copyWith;
 }
 
+/// @nodoc
 abstract class $MemberCopyWith<$Res> {
   factory $MemberCopyWith(Member value, $Res Function(Member) then) =
       _$MemberCopyWithImpl<$Res>;
@@ -45,6 +55,7 @@ abstract class $MemberCopyWith<$Res> {
   $UserCopyWith<$Res> get user;
 }
 
+/// @nodoc
 class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
   _$MemberCopyWithImpl(this._value, this._then);
 
@@ -76,6 +87,7 @@ class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
   factory _$MemberCopyWith(_Member value, $Res Function(_Member) then) =
       __$MemberCopyWithImpl<$Res>;
@@ -86,6 +98,7 @@ abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
   $UserCopyWith<$Res> get user;
 }
 
+/// @nodoc
 class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
     implements _$MemberCopyWith<$Res> {
   __$MemberCopyWithImpl(_Member _value, $Res Function(_Member) _then)
@@ -109,6 +122,8 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Member with DiagnosticableTreeMixin implements _Member {
   const _$_Member({this.level, this.role, @UserConverter() this.user});
 

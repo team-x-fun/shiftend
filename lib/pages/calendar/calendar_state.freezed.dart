@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'calendar_state.dart';
 
@@ -9,9 +9,11 @@ part of 'calendar_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$CalendarStateTearOff {
   const _$CalendarStateTearOff();
 
+// ignore: unused_element
   _CalendarState call(
       {NotifierState notifierState = NotifierState.initial,
       Map<DateTime, List<Shift>> shifts,
@@ -28,9 +30,11 @@ class _$CalendarStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $CalendarState = _$CalendarStateTearOff();
 
+/// @nodoc
 mixin _$CalendarState {
   NotifierState get notifierState;
   Map<DateTime, List<Shift>> get shifts;
@@ -41,6 +45,7 @@ mixin _$CalendarState {
   $CalendarStateCopyWith<CalendarState> get copyWith;
 }
 
+/// @nodoc
 abstract class $CalendarStateCopyWith<$Res> {
   factory $CalendarStateCopyWith(
           CalendarState value, $Res Function(CalendarState) then) =
@@ -53,6 +58,7 @@ abstract class $CalendarStateCopyWith<$Res> {
       List<Shift> loggedinUserRequestedShifts});
 }
 
+/// @nodoc
 class _$CalendarStateCopyWithImpl<$Res>
     implements $CalendarStateCopyWith<$Res> {
   _$CalendarStateCopyWithImpl(this._value, this._then);
@@ -89,6 +95,7 @@ class _$CalendarStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$CalendarStateCopyWith<$Res>
     implements $CalendarStateCopyWith<$Res> {
   factory _$CalendarStateCopyWith(
@@ -103,6 +110,7 @@ abstract class _$CalendarStateCopyWith<$Res>
       List<Shift> loggedinUserRequestedShifts});
 }
 
+/// @nodoc
 class __$CalendarStateCopyWithImpl<$Res>
     extends _$CalendarStateCopyWithImpl<$Res>
     implements _$CalendarStateCopyWith<$Res> {
@@ -141,6 +149,7 @@ class __$CalendarStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_CalendarState implements _CalendarState {
   const _$_CalendarState(
       {this.notifierState = NotifierState.initial,

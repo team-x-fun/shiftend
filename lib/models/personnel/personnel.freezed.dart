@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'personnel.dart';
 
@@ -12,20 +12,29 @@ Personnel _$PersonnelFromJson(Map<String, dynamic> json) {
   return _Personnel.fromJson(json);
 }
 
+/// @nodoc
 class _$PersonnelTearOff {
   const _$PersonnelTearOff();
 
+// ignore: unused_element
   _Personnel call({int number, @JsonKey(name: 'total_level') int totalLevel}) {
     return _Personnel(
       number: number,
       totalLevel: totalLevel,
     );
   }
+
+// ignore: unused_element
+  Personnel fromJson(Map<String, Object> json) {
+    return Personnel.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Personnel = _$PersonnelTearOff();
 
+/// @nodoc
 mixin _$Personnel {
   int get number;
   @JsonKey(name: 'total_level')
@@ -35,12 +44,14 @@ mixin _$Personnel {
   $PersonnelCopyWith<Personnel> get copyWith;
 }
 
+/// @nodoc
 abstract class $PersonnelCopyWith<$Res> {
   factory $PersonnelCopyWith(Personnel value, $Res Function(Personnel) then) =
       _$PersonnelCopyWithImpl<$Res>;
   $Res call({int number, @JsonKey(name: 'total_level') int totalLevel});
 }
 
+/// @nodoc
 class _$PersonnelCopyWithImpl<$Res> implements $PersonnelCopyWith<$Res> {
   _$PersonnelCopyWithImpl(this._value, this._then);
 
@@ -60,6 +71,7 @@ class _$PersonnelCopyWithImpl<$Res> implements $PersonnelCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$PersonnelCopyWith<$Res> implements $PersonnelCopyWith<$Res> {
   factory _$PersonnelCopyWith(
           _Personnel value, $Res Function(_Personnel) then) =
@@ -68,6 +80,7 @@ abstract class _$PersonnelCopyWith<$Res> implements $PersonnelCopyWith<$Res> {
   $Res call({int number, @JsonKey(name: 'total_level') int totalLevel});
 }
 
+/// @nodoc
 class __$PersonnelCopyWithImpl<$Res> extends _$PersonnelCopyWithImpl<$Res>
     implements _$PersonnelCopyWith<$Res> {
   __$PersonnelCopyWithImpl(_Personnel _value, $Res Function(_Personnel) _then)
@@ -89,6 +102,8 @@ class __$PersonnelCopyWithImpl<$Res> extends _$PersonnelCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Personnel with DiagnosticableTreeMixin implements _Personnel {
   const _$_Personnel(
       {this.number, @JsonKey(name: 'total_level') this.totalLevel});

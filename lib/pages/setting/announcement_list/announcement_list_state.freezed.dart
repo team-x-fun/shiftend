@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'announcement_list_state.dart';
 
@@ -9,9 +9,11 @@ part of 'announcement_list_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$AnnouncementListStateTearOff {
   const _$AnnouncementListStateTearOff();
 
+// ignore: unused_element
   _AnnouncementListState call(
       {NotifierState notifierState = NotifierState.initial,
       List<Announcement> announcements = const <Announcement>[]}) {
@@ -22,9 +24,11 @@ class _$AnnouncementListStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AnnouncementListState = _$AnnouncementListStateTearOff();
 
+/// @nodoc
 mixin _$AnnouncementListState {
   NotifierState get notifierState;
   List<Announcement> get announcements;
@@ -32,6 +36,7 @@ mixin _$AnnouncementListState {
   $AnnouncementListStateCopyWith<AnnouncementListState> get copyWith;
 }
 
+/// @nodoc
 abstract class $AnnouncementListStateCopyWith<$Res> {
   factory $AnnouncementListStateCopyWith(AnnouncementListState value,
           $Res Function(AnnouncementListState) then) =
@@ -39,6 +44,7 @@ abstract class $AnnouncementListStateCopyWith<$Res> {
   $Res call({NotifierState notifierState, List<Announcement> announcements});
 }
 
+/// @nodoc
 class _$AnnouncementListStateCopyWithImpl<$Res>
     implements $AnnouncementListStateCopyWith<$Res> {
   _$AnnouncementListStateCopyWithImpl(this._value, this._then);
@@ -63,6 +69,7 @@ class _$AnnouncementListStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$AnnouncementListStateCopyWith<$Res>
     implements $AnnouncementListStateCopyWith<$Res> {
   factory _$AnnouncementListStateCopyWith(_AnnouncementListState value,
@@ -72,6 +79,7 @@ abstract class _$AnnouncementListStateCopyWith<$Res>
   $Res call({NotifierState notifierState, List<Announcement> announcements});
 }
 
+/// @nodoc
 class __$AnnouncementListStateCopyWithImpl<$Res>
     extends _$AnnouncementListStateCopyWithImpl<$Res>
     implements _$AnnouncementListStateCopyWith<$Res> {
@@ -98,6 +106,7 @@ class __$AnnouncementListStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_AnnouncementListState implements _AnnouncementListState {
   const _$_AnnouncementListState(
       {this.notifierState = NotifierState.initial,

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'organization.dart';
 
@@ -12,9 +12,11 @@ Organization _$OrganizationFromJson(Map<String, dynamic> json) {
   return _Organization.fromJson(json);
 }
 
+/// @nodoc
 class _$OrganizationTearOff {
   const _$OrganizationTearOff();
 
+// ignore: unused_element
   _Organization call(
       {String id,
       @UserConverter()
@@ -37,11 +39,18 @@ class _$OrganizationTearOff {
       defaultPersonnel: defaultPersonnel,
     );
   }
+
+// ignore: unused_element
+  Organization fromJson(Map<String, Object> json) {
+    return Organization.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Organization = _$OrganizationTearOff();
 
+/// @nodoc
 mixin _$Organization {
   String get id;
   @UserConverter()
@@ -61,6 +70,7 @@ mixin _$Organization {
   $OrganizationCopyWith<Organization> get copyWith;
 }
 
+/// @nodoc
 abstract class $OrganizationCopyWith<$Res> {
   factory $OrganizationCopyWith(
           Organization value, $Res Function(Organization) then) =
@@ -83,6 +93,7 @@ abstract class $OrganizationCopyWith<$Res> {
   $PersonnelCopyWith<$Res> get defaultPersonnel;
 }
 
+/// @nodoc
 class _$OrganizationCopyWithImpl<$Res> implements $OrganizationCopyWith<$Res> {
   _$OrganizationCopyWithImpl(this._value, this._then);
 
@@ -122,6 +133,7 @@ class _$OrganizationCopyWithImpl<$Res> implements $OrganizationCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$OrganizationCopyWith<$Res>
     implements $OrganizationCopyWith<$Res> {
   factory _$OrganizationCopyWith(
@@ -147,6 +159,7 @@ abstract class _$OrganizationCopyWith<$Res>
   $PersonnelCopyWith<$Res> get defaultPersonnel;
 }
 
+/// @nodoc
 class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
     implements _$OrganizationCopyWith<$Res> {
   __$OrganizationCopyWithImpl(
@@ -179,6 +192,8 @@ class __$OrganizationCopyWithImpl<$Res> extends _$OrganizationCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Organization with DiagnosticableTreeMixin implements _Organization {
   const _$_Organization(
       {this.id,

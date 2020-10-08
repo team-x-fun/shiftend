@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'user_state.dart';
 
@@ -9,9 +9,11 @@ part of 'user_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$UserStateTearOff {
   const _$UserStateTearOff();
 
+// ignore: unused_element
   _UserState call({NotifierState notifierState = NotifierState.initial}) {
     return _UserState(
       notifierState: notifierState,
@@ -19,21 +21,25 @@ class _$UserStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $UserState = _$UserStateTearOff();
 
+/// @nodoc
 mixin _$UserState {
   NotifierState get notifierState;
 
   $UserStateCopyWith<UserState> get copyWith;
 }
 
+/// @nodoc
 abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res>;
   $Res call({NotifierState notifierState});
 }
 
+/// @nodoc
 class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
   _$UserStateCopyWithImpl(this._value, this._then);
 
@@ -53,6 +59,7 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
   factory _$UserStateCopyWith(
           _UserState value, $Res Function(_UserState) then) =
@@ -61,6 +68,7 @@ abstract class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
   $Res call({NotifierState notifierState});
 }
 
+/// @nodoc
 class __$UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements _$UserStateCopyWith<$Res> {
   __$UserStateCopyWithImpl(_UserState _value, $Res Function(_UserState) _then)
@@ -81,6 +89,7 @@ class __$UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_UserState implements _UserState {
   const _$_UserState({this.notifierState = NotifierState.initial})
       : assert(notifierState != null);

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'login_state.dart';
 
@@ -9,9 +9,11 @@ part of 'login_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
+// ignore: unused_element
   _LoginState call(
       {bool isLogin = false,
       User currentUser,
@@ -26,9 +28,11 @@ class _$LoginStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $LoginState = _$LoginStateTearOff();
 
+/// @nodoc
 mixin _$LoginState {
   bool get isLogin;
   User get currentUser;
@@ -38,6 +42,7 @@ mixin _$LoginState {
   $LoginStateCopyWith<LoginState> get copyWith;
 }
 
+/// @nodoc
 abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
@@ -52,6 +57,7 @@ abstract class $LoginStateCopyWith<$Res> {
   $OrganizationCopyWith<$Res> get selectedOrg;
 }
 
+/// @nodoc
 class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   _$LoginStateCopyWithImpl(this._value, this._then);
 
@@ -98,6 +104,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
   factory _$LoginStateCopyWith(
           _LoginState value, $Res Function(_LoginState) then) =
@@ -115,6 +122,7 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
   $OrganizationCopyWith<$Res> get selectedOrg;
 }
 
+/// @nodoc
 class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$LoginStateCopyWith<$Res> {
   __$LoginStateCopyWithImpl(
@@ -143,6 +151,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   const _$_LoginState(
       {this.isLogin = false,

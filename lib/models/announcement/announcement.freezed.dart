@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'announcement.dart';
 
@@ -12,9 +12,11 @@ Announcement _$AnnouncementFromJson(Map<String, dynamic> json) {
   return _Announcement.fromJson(json);
 }
 
+/// @nodoc
 class _$AnnouncementTearOff {
   const _$AnnouncementTearOff();
 
+// ignore: unused_element
   _Announcement call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'content') String content,
@@ -27,11 +29,18 @@ class _$AnnouncementTearOff {
       createdAt: createdAt,
     );
   }
+
+// ignore: unused_element
+  Announcement fromJson(Map<String, Object> json) {
+    return Announcement.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Announcement = _$AnnouncementTearOff();
 
+/// @nodoc
 mixin _$Announcement {
   @JsonKey(name: 'title')
   String get title;
@@ -46,6 +55,7 @@ mixin _$Announcement {
   $AnnouncementCopyWith<Announcement> get copyWith;
 }
 
+/// @nodoc
 abstract class $AnnouncementCopyWith<$Res> {
   factory $AnnouncementCopyWith(
           Announcement value, $Res Function(Announcement) then) =
@@ -57,6 +67,7 @@ abstract class $AnnouncementCopyWith<$Res> {
       @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
+/// @nodoc
 class _$AnnouncementCopyWithImpl<$Res> implements $AnnouncementCopyWith<$Res> {
   _$AnnouncementCopyWithImpl(this._value, this._then);
 
@@ -81,6 +92,7 @@ class _$AnnouncementCopyWithImpl<$Res> implements $AnnouncementCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$AnnouncementCopyWith<$Res>
     implements $AnnouncementCopyWith<$Res> {
   factory _$AnnouncementCopyWith(
@@ -94,6 +106,7 @@ abstract class _$AnnouncementCopyWith<$Res>
       @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
+/// @nodoc
 class __$AnnouncementCopyWithImpl<$Res> extends _$AnnouncementCopyWithImpl<$Res>
     implements _$AnnouncementCopyWith<$Res> {
   __$AnnouncementCopyWithImpl(
@@ -121,6 +134,8 @@ class __$AnnouncementCopyWithImpl<$Res> extends _$AnnouncementCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Announcement implements _Announcement {
   const _$_Announcement(
       {@JsonKey(name: 'title') this.title,
