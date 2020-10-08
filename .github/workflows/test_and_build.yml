@@ -91,6 +91,16 @@ jobs:
           GOOGLE_SERVICES_BASE64: ${{ secrets.GOOGLE_SERVICES_BASE64 }}
         run: echo $GOOGLE_SERVICES_BASE64 | base64 --decode --ignore-garbage > ${GITHUB_WORKSPACE}/android/app/google-services.json
       - run: flutter build apk
+      - name: Distribute android apk
+        if: github.ref == 'refs/heads/master'
+        run: |
+          curl \
+          -H "Authorization: token ${{secrets.DEPLOYGATE_API_KEY}}" \
+          -F "file=@build/app/outputs/flutter-apk/app-release.apk" \
+          -F "message=git:${{ github.head_ref }}" \
+          -F "distribution_name=${{ github.head_ref }}" \
+          -F "release_note=new build" \
+          "https://deploygate.com/api/users/${{secrets.DEPLOYGATE_USER}}/apps"
       - name: Slack Notification
         uses: homoluctus/slatify@master
         if: always()

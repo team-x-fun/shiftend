@@ -1,5 +1,7 @@
 # shiftend
 
+[<img src="https://dply.me/zxukmt/button/large" alt="Try it on your device via DeployGate">](https://dply.me/zxukmt#install))
+
 A new Flutter application.
 
 ## Preparations
