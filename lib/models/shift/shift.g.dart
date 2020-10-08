@@ -6,7 +6,7 @@ part of 'shift.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Shift _$_$_ShiftFromJson(Map<String, dynamic> json) {
+_$_Shift _$_$_ShiftFromJson(Map json) {
   return _$_Shift(
     member: const MemberConverter()
         .fromJson(json['member'] as Map<String, dynamic>),
