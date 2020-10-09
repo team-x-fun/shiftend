@@ -27,7 +27,7 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
             ),
             keyboardType: TextInputType.number,
             inputFormatters: <TextInputFormatter>[
-              WhitelistingTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.digitsOnly,
             ],
             onChanged: (String value) {
               try {
@@ -51,7 +51,7 @@ class SettingDefaultPersonnelDialog extends StatelessWidget {
             ),
             keyboardType: TextInputType.number,
             inputFormatters: <TextInputFormatter>[
-              WhitelistingTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.digitsOnly,
             ],
             onChanged: (String value) {
               try {

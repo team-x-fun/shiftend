@@ -52,7 +52,9 @@ class CalendarWidget extends StatelessWidget {
               today.day == date.day;
           final dayColor = isSaturday
               ? Colors.blueAccent
-              : isSunday ? Colors.redAccent : Colors.black;
+              : isSunday
+                  ? Colors.redAccent
+                  : Colors.black;
           final dayFontWeight = isToday ? FontWeight.bold : FontWeight.normal;
 
           return FadeTransition(
@@ -89,7 +91,9 @@ class CalendarWidget extends StatelessWidget {
           final isSunday = date.weekday == DateTime.sunday;
           final dayColor = isSaturday
               ? Colors.blueAccent
-              : isSunday ? Colors.redAccent : Colors.black;
+              : isSunday
+                  ? Colors.redAccent
+                  : Colors.black;
 
           return Container(
             margin: const EdgeInsets.all(2),
@@ -105,7 +109,9 @@ class CalendarWidget extends StatelessWidget {
           final isSunday = date.weekday == DateTime.sunday;
           final dayColor = isSaturday
               ? Colors.blueAccent
-              : isSunday ? Colors.redAccent : Colors.black;
+              : isSunday
+                  ? Colors.redAccent
+                  : Colors.black;
           return Container(
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,

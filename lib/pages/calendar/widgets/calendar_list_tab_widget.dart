@@ -22,7 +22,7 @@ class CalenderListTabWidget extends StatelessWidget {
           controller: tabController,
           tabs: tabs
               .map((tab) =>
-                  Container(width: tabWidth, child: Tab(text: tab.label)))
+                  SizedBox(width: tabWidth, child: Tab(text: tab.label)))
               .toList(),
         ),
         Expanded(

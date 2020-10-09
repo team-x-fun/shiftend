@@ -25,14 +25,14 @@ class AnnouncementListPage extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               trailing: announcements[index].imageUrl != ''
-                  ? Container(
+                  ? SizedBox(
                       width: 80,
                       height: 80,
                       child: Image.network(
                         announcements[index].imageUrl,
                         fit: BoxFit.cover,
                       ))
-                  : Container(
+                  : const SizedBox(
                       width: 80,
                       height: 80,
                     ),

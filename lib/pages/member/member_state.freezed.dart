@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'member_state.dart';
 
@@ -9,9 +9,11 @@ part of 'member_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MemberStateTearOff {
   const _$MemberStateTearOff();
 
+// ignore: unused_element
   _MemberState call({List<Member> members}) {
     return _MemberState(
       members: members,
@@ -19,15 +21,18 @@ class _$MemberStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MemberState = _$MemberStateTearOff();
 
+/// @nodoc
 mixin _$MemberState {
   List<Member> get members;
 
   $MemberStateCopyWith<MemberState> get copyWith;
 }
 
+/// @nodoc
 abstract class $MemberStateCopyWith<$Res> {
   factory $MemberStateCopyWith(
           MemberState value, $Res Function(MemberState) then) =
@@ -35,6 +40,7 @@ abstract class $MemberStateCopyWith<$Res> {
   $Res call({List<Member> members});
 }
 
+/// @nodoc
 class _$MemberStateCopyWithImpl<$Res> implements $MemberStateCopyWith<$Res> {
   _$MemberStateCopyWithImpl(this._value, this._then);
 
@@ -52,6 +58,7 @@ class _$MemberStateCopyWithImpl<$Res> implements $MemberStateCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$MemberStateCopyWith<$Res>
     implements $MemberStateCopyWith<$Res> {
   factory _$MemberStateCopyWith(
@@ -61,6 +68,7 @@ abstract class _$MemberStateCopyWith<$Res>
   $Res call({List<Member> members});
 }
 
+/// @nodoc
 class __$MemberStateCopyWithImpl<$Res> extends _$MemberStateCopyWithImpl<$Res>
     implements _$MemberStateCopyWith<$Res> {
   __$MemberStateCopyWithImpl(
@@ -80,6 +88,7 @@ class __$MemberStateCopyWithImpl<$Res> extends _$MemberStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_MemberState with DiagnosticableTreeMixin implements _MemberState {
   const _$_MemberState({this.members});
 

@@ -15,7 +15,7 @@ class AnnouncementPage extends StatelessWidget {
           child: Column(
         children: [
           if (announcement.imageUrl != '')
-            Container(height: 240, child: Image.network(announcement.imageUrl)),
+            SizedBox(height: 240, child: Image.network(announcement.imageUrl)),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Text(announcement.content),

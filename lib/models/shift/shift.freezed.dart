@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'shift.dart';
 
@@ -12,9 +12,11 @@ Shift _$ShiftFromJson(Map<String, dynamic> json) {
   return _Shift.fromJson(json);
 }
 
+/// @nodoc
 class _$ShiftTearOff {
   const _$ShiftTearOff();
 
+// ignore: unused_element
   _Shift call(
       {@MemberConverter() Member member, DateTime start, DateTime end}) {
     return _Shift(
@@ -23,11 +25,18 @@ class _$ShiftTearOff {
       end: end,
     );
   }
+
+// ignore: unused_element
+  Shift fromJson(Map<String, Object> json) {
+    return Shift.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Shift = _$ShiftTearOff();
 
+/// @nodoc
 mixin _$Shift {
   @MemberConverter()
   Member get member;
@@ -38,6 +47,7 @@ mixin _$Shift {
   $ShiftCopyWith<Shift> get copyWith;
 }
 
+/// @nodoc
 abstract class $ShiftCopyWith<$Res> {
   factory $ShiftCopyWith(Shift value, $Res Function(Shift) then) =
       _$ShiftCopyWithImpl<$Res>;
@@ -46,6 +56,7 @@ abstract class $ShiftCopyWith<$Res> {
   $MemberCopyWith<$Res> get member;
 }
 
+/// @nodoc
 class _$ShiftCopyWithImpl<$Res> implements $ShiftCopyWith<$Res> {
   _$ShiftCopyWithImpl(this._value, this._then);
 
@@ -77,6 +88,7 @@ class _$ShiftCopyWithImpl<$Res> implements $ShiftCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$ShiftCopyWith<$Res> implements $ShiftCopyWith<$Res> {
   factory _$ShiftCopyWith(_Shift value, $Res Function(_Shift) then) =
       __$ShiftCopyWithImpl<$Res>;
@@ -87,6 +99,7 @@ abstract class _$ShiftCopyWith<$Res> implements $ShiftCopyWith<$Res> {
   $MemberCopyWith<$Res> get member;
 }
 
+/// @nodoc
 class __$ShiftCopyWithImpl<$Res> extends _$ShiftCopyWithImpl<$Res>
     implements _$ShiftCopyWith<$Res> {
   __$ShiftCopyWithImpl(_Shift _value, $Res Function(_Shift) _then)
@@ -110,6 +123,8 @@ class __$ShiftCopyWithImpl<$Res> extends _$ShiftCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Shift with DiagnosticableTreeMixin implements _Shift {
   const _$_Shift({@MemberConverter() this.member, this.start, this.end});
 
