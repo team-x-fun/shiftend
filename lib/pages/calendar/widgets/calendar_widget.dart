@@ -5,6 +5,7 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/calendar/calendar_state.dart';
 import 'package:shiftend/pages/calendar/calendar_state_controller.dart';
 import 'package:shiftend/pages/calendar/widgets/marker_widget.dart';
+import 'package:shiftend/util/logger.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarWidget extends StatelessWidget {
@@ -27,7 +28,8 @@ class CalendarWidget extends StatelessWidget {
       startingDayOfWeek: StartingDayOfWeek.sunday,
       availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: CalendarStyle(
-          outsideDaysVisible: false, // trueにすると月を切り替えたときにマーカーが表示されなくなる
+          outsideDaysVisible: false,
+          // trueにすると月を切り替えたときにマーカーが表示されなくなる
           outsideHolidayStyle: const TextStyle(decorationColor: Colors.grey),
           weekdayStyle: const TextStyle().copyWith(color: Colors.red),
           weekendStyle: const TextStyle().copyWith(color: Colors.red),
@@ -145,9 +147,13 @@ class CalendarWidget extends StatelessWidget {
         },
       ),
       onDaySelected: (date, attendees) {
-        context
-            .read<CalendarStateController>()
-            .onDaySelected(date, attendees.cast<Shift>());
+        final selectedRequestedShifts = context
+            .read<CalendarState>()
+            .requestedShifts[DateTime(date.year, date.month, date.day)];
+        logger.info(selectedRequestedShifts);
+        context.read<CalendarStateController>().onDaySelected(
+            date, attendees.cast<Shift>(), selectedRequestedShifts);
+        Provider.of<CalendarStateController>(context, listen: false);
         context
             .read<CalendarStateController>()
             .fetchLoggedinUserRequestedShifts(date);
