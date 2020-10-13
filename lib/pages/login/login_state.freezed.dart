@@ -19,7 +19,7 @@ class _$LoginStateTearOff {
       User currentUser,
       List<Organization> orgs = const <Organization>[],
       Organization selectedOrg = const Organization(),
-      Stream<Organization> selectedOrgStream = null}) {
+      @nullable Stream<Organization> selectedOrgStream = null}) {
     return _LoginState(
       isLogin: isLogin,
       currentUser: currentUser,
@@ -40,6 +40,7 @@ mixin _$LoginState {
   User get currentUser;
   List<Organization> get orgs; // TODO: streamに完全対応できたら削除
   Organization get selectedOrg;
+  @nullable
   Stream<Organization> get selectedOrgStream;
 
   $LoginStateCopyWith<LoginState> get copyWith;
@@ -55,7 +56,7 @@ abstract class $LoginStateCopyWith<$Res> {
       User currentUser,
       List<Organization> orgs,
       Organization selectedOrg,
-      Stream<Organization> selectedOrgStream});
+      @nullable Stream<Organization> selectedOrgStream});
 
   $UserCopyWith<$Res> get currentUser;
   $OrganizationCopyWith<$Res> get selectedOrg;
@@ -123,7 +124,7 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       User currentUser,
       List<Organization> orgs,
       Organization selectedOrg,
-      Stream<Organization> selectedOrgStream});
+      @nullable Stream<Organization> selectedOrgStream});
 
   @override
   $UserCopyWith<$Res> get currentUser;
@@ -171,11 +172,10 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       this.currentUser,
       this.orgs = const <Organization>[],
       this.selectedOrg = const Organization(),
-      this.selectedOrgStream = null})
+      @nullable this.selectedOrgStream = null})
       : assert(isLogin != null),
         assert(orgs != null),
-        assert(selectedOrg != null),
-        assert(selectedOrgStream != null);
+        assert(selectedOrg != null);
 
   @JsonKey(defaultValue: false)
   @override
@@ -190,6 +190,7 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   final Organization selectedOrg;
   @JsonKey(defaultValue: null)
   @override
+  @nullable
   final Stream<Organization> selectedOrgStream;
 
   @override
@@ -249,7 +250,7 @@ abstract class _LoginState implements LoginState {
       User currentUser,
       List<Organization> orgs,
       Organization selectedOrg,
-      Stream<Organization> selectedOrgStream}) = _$_LoginState;
+      @nullable Stream<Organization> selectedOrgStream}) = _$_LoginState;
 
   @override
   bool get isLogin;
@@ -260,6 +261,7 @@ abstract class _LoginState implements LoginState {
   @override // TODO: streamに完全対応できたら削除
   Organization get selectedOrg;
   @override
+  @nullable
   Stream<Organization> get selectedOrgStream;
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith;
