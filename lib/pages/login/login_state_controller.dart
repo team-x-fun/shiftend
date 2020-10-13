@@ -8,7 +8,7 @@ import 'package:state_notifier/state_notifier.dart';
 import 'login_state.dart';
 
 class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
-  LoginStateController() : super(const LoginState());
+  LoginStateController() : super(LoginState());
 
   UserRepositoryInterface get userRepository => read<UserRepositoryInterface>();
   OrganizationRepositoryInterface get orgRepository =>
@@ -19,7 +19,10 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
     super.initState();
     fetchLoginState();
     if (state.selectedOrg == null && state.currentUser != null) {
-      state = state.copyWith(selectedOrg: state.orgs.first);
+      state = state.copyWith(
+        selectedOrg: state.orgs.first,
+        selectedOrgStream: orgRepository.getOrgStream(state.orgs.first.id),
+      );
     }
   }
 
@@ -38,13 +41,17 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
       logger.info('fetchLoginState: selectedOrg = ${state.selectedOrg}');
       if (state.selectedOrg.id == null && state.orgs.isNotEmpty) {
         logger.info('fetchLoginState: set selectedOrg');
-        state = state.copyWith(selectedOrg: state.orgs.first);
+        state = state.copyWith(
+          selectedOrg: state.orgs.first,
+          selectedOrgStream: orgRepository.getOrgStream(state.orgs.first.id),
+        );
         logger.info('fetchLoginState: selectedOrg = ${state.selectedOrg}');
       }
     } else {
       state = state.copyWith(
         orgs: <Organization>[],
         selectedOrg: const Organization(),
+        selectedOrgStream: null,
       );
     }
     logger.info('fetchLoginState: state = $state');
@@ -66,7 +73,10 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
   }
 
   Future<void> selectOrg(Organization newOrg) async {
-    state = state.copyWith(selectedOrg: newOrg);
+    state = state.copyWith(
+      selectedOrg: newOrg,
+      selectedOrgStream: orgRepository.getOrgStream(newOrg.id),
+    );
     logger.info('selectOrg: ${state.selectedOrg}');
   }
 
