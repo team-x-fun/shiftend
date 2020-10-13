@@ -42,6 +42,7 @@ dev_dependencies:
   test: ^1.15.2
   pedantic_mono: any
   pedantic: any
+  flutter_launcher_icons: any
 
   json_serializable:
   build_runner:
@@ -49,3 +50,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
