@@ -1,6 +1,5 @@
 import 'package:shiftend/pages/login/login_state.dart';
 import 'package:shiftend/repositories/interfaces/organization_repository_interface.dart';
-import 'package:shiftend/util/logger.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'member_state.dart';
 

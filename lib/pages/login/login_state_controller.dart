@@ -8,7 +8,7 @@ import 'package:state_notifier/state_notifier.dart';
 import 'login_state.dart';
 
 class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
-  LoginStateController() : super(LoginState());
+  LoginStateController() : super(const LoginState());
 
   UserRepositoryInterface get userRepository => read<UserRepositoryInterface>();
   OrganizationRepositoryInterface get orgRepository =>
