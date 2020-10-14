@@ -79,8 +79,7 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
   }
 
   @override
-  Stream<Organization> getOrgStream(String id) {
-    // TODO: implement getOrgStream
-    throw UnimplementedError();
+  Stream<Organization> getOrgStream(String id) async* {
+    yield await getOrganization(id);
   }
 }
