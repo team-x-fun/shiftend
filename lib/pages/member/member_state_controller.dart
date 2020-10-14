@@ -14,10 +14,13 @@ class MemberStateController extends StateNotifier<MemberState>
 
   @override
   void initState() {
-    state = state.copyWith(members: loginState.selectedOrg.members);
+    state = state.copyWith(
+      members: loginState.selectedOrg.members,
+      membersStream: loginState.selectedOrgStream?.map((org) => org.members),
+    );
   }
 
-  void changeLevel(String id, double userLevel) {
+  Future<void> changeLevel(String id, double userLevel) async {
     if (validateLevel(userLevel)) {
       final newMembers = state.members.map((member) {
         if (member.user.id == id) {
@@ -26,7 +29,9 @@ class MemberStateController extends StateNotifier<MemberState>
         return member;
       }).toList();
       state = state.copyWith(members: newMembers);
-      orgRepo.update(loginState.selectedOrg.copyWith(members: state.members));
+      await orgRepo.update(loginState.selectedOrg.copyWith(
+        members: state.members,
+      ));
     }
   }
 

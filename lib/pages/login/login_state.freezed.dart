@@ -18,12 +18,14 @@ class _$LoginStateTearOff {
       {bool isLogin = false,
       User currentUser,
       List<Organization> orgs = const <Organization>[],
-      Organization selectedOrg = const Organization()}) {
+      Organization selectedOrg = const Organization(),
+      @nullable Stream<Organization> selectedOrgStream = null}) {
     return _LoginState(
       isLogin: isLogin,
       currentUser: currentUser,
       orgs: orgs,
       selectedOrg: selectedOrg,
+      selectedOrgStream: selectedOrgStream,
     );
   }
 }
@@ -36,8 +38,10 @@ const $LoginState = _$LoginStateTearOff();
 mixin _$LoginState {
   bool get isLogin;
   User get currentUser;
-  List<Organization> get orgs;
+  List<Organization> get orgs; // TODO: streamに完全対応できたら削除
   Organization get selectedOrg;
+  @nullable
+  Stream<Organization> get selectedOrgStream;
 
   $LoginStateCopyWith<LoginState> get copyWith;
 }
@@ -51,7 +55,8 @@ abstract class $LoginStateCopyWith<$Res> {
       {bool isLogin,
       User currentUser,
       List<Organization> orgs,
-      Organization selectedOrg});
+      Organization selectedOrg,
+      @nullable Stream<Organization> selectedOrgStream});
 
   $UserCopyWith<$Res> get currentUser;
   $OrganizationCopyWith<$Res> get selectedOrg;
@@ -71,6 +76,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
     Object currentUser = freezed,
     Object orgs = freezed,
     Object selectedOrg = freezed,
+    Object selectedOrgStream = freezed,
   }) {
     return _then(_value.copyWith(
       isLogin: isLogin == freezed ? _value.isLogin : isLogin as bool,
@@ -80,6 +86,9 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
       selectedOrg: selectedOrg == freezed
           ? _value.selectedOrg
           : selectedOrg as Organization,
+      selectedOrgStream: selectedOrgStream == freezed
+          ? _value.selectedOrgStream
+          : selectedOrgStream as Stream<Organization>,
     ));
   }
 
@@ -114,7 +123,8 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       {bool isLogin,
       User currentUser,
       List<Organization> orgs,
-      Organization selectedOrg});
+      Organization selectedOrg,
+      @nullable Stream<Organization> selectedOrgStream});
 
   @override
   $UserCopyWith<$Res> get currentUser;
@@ -138,6 +148,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object currentUser = freezed,
     Object orgs = freezed,
     Object selectedOrg = freezed,
+    Object selectedOrgStream = freezed,
   }) {
     return _then(_LoginState(
       isLogin: isLogin == freezed ? _value.isLogin : isLogin as bool,
@@ -147,6 +158,9 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
       selectedOrg: selectedOrg == freezed
           ? _value.selectedOrg
           : selectedOrg as Organization,
+      selectedOrgStream: selectedOrgStream == freezed
+          ? _value.selectedOrgStream
+          : selectedOrgStream as Stream<Organization>,
     ));
   }
 }
@@ -157,7 +171,8 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       {this.isLogin = false,
       this.currentUser,
       this.orgs = const <Organization>[],
-      this.selectedOrg = const Organization()})
+      this.selectedOrg = const Organization(),
+      @nullable this.selectedOrgStream = null})
       : assert(isLogin != null),
         assert(orgs != null),
         assert(selectedOrg != null);
@@ -171,12 +186,16 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   @override
   final List<Organization> orgs;
   @JsonKey(defaultValue: const Organization())
-  @override
+  @override // TODO: streamに完全対応できたら削除
   final Organization selectedOrg;
+  @JsonKey(defaultValue: null)
+  @override
+  @nullable
+  final Stream<Organization> selectedOrgStream;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState(isLogin: $isLogin, currentUser: $currentUser, orgs: $orgs, selectedOrg: $selectedOrg)';
+    return 'LoginState(isLogin: $isLogin, currentUser: $currentUser, orgs: $orgs, selectedOrg: $selectedOrg, selectedOrgStream: $selectedOrgStream)';
   }
 
   @override
@@ -187,7 +206,8 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       ..add(DiagnosticsProperty('isLogin', isLogin))
       ..add(DiagnosticsProperty('currentUser', currentUser))
       ..add(DiagnosticsProperty('orgs', orgs))
-      ..add(DiagnosticsProperty('selectedOrg', selectedOrg));
+      ..add(DiagnosticsProperty('selectedOrg', selectedOrg))
+      ..add(DiagnosticsProperty('selectedOrgStream', selectedOrgStream));
   }
 
   @override
@@ -204,7 +224,10 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
                 const DeepCollectionEquality().equals(other.orgs, orgs)) &&
             (identical(other.selectedOrg, selectedOrg) ||
                 const DeepCollectionEquality()
-                    .equals(other.selectedOrg, selectedOrg)));
+                    .equals(other.selectedOrg, selectedOrg)) &&
+            (identical(other.selectedOrgStream, selectedOrgStream) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectedOrgStream, selectedOrgStream)));
   }
 
   @override
@@ -213,7 +236,8 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       const DeepCollectionEquality().hash(isLogin) ^
       const DeepCollectionEquality().hash(currentUser) ^
       const DeepCollectionEquality().hash(orgs) ^
-      const DeepCollectionEquality().hash(selectedOrg);
+      const DeepCollectionEquality().hash(selectedOrg) ^
+      const DeepCollectionEquality().hash(selectedOrgStream);
 
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith =>
@@ -225,7 +249,8 @@ abstract class _LoginState implements LoginState {
       {bool isLogin,
       User currentUser,
       List<Organization> orgs,
-      Organization selectedOrg}) = _$_LoginState;
+      Organization selectedOrg,
+      @nullable Stream<Organization> selectedOrgStream}) = _$_LoginState;
 
   @override
   bool get isLogin;
@@ -233,8 +258,11 @@ abstract class _LoginState implements LoginState {
   User get currentUser;
   @override
   List<Organization> get orgs;
-  @override
+  @override // TODO: streamに完全対応できたら削除
   Organization get selectedOrg;
+  @override
+  @nullable
+  Stream<Organization> get selectedOrgStream;
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith;
 }

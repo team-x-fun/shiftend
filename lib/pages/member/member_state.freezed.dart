@@ -14,9 +14,11 @@ class _$MemberStateTearOff {
   const _$MemberStateTearOff();
 
 // ignore: unused_element
-  _MemberState call({List<Member> members}) {
+  _MemberState call(
+      {List<Member> members, Stream<List<Member>> membersStream}) {
     return _MemberState(
       members: members,
+      membersStream: membersStream,
     );
   }
 }
@@ -28,6 +30,7 @@ const $MemberState = _$MemberStateTearOff();
 /// @nodoc
 mixin _$MemberState {
   List<Member> get members;
+  Stream<List<Member>> get membersStream;
 
   $MemberStateCopyWith<MemberState> get copyWith;
 }
@@ -37,7 +40,7 @@ abstract class $MemberStateCopyWith<$Res> {
   factory $MemberStateCopyWith(
           MemberState value, $Res Function(MemberState) then) =
       _$MemberStateCopyWithImpl<$Res>;
-  $Res call({List<Member> members});
+  $Res call({List<Member> members, Stream<List<Member>> membersStream});
 }
 
 /// @nodoc
@@ -51,9 +54,13 @@ class _$MemberStateCopyWithImpl<$Res> implements $MemberStateCopyWith<$Res> {
   @override
   $Res call({
     Object members = freezed,
+    Object membersStream = freezed,
   }) {
     return _then(_value.copyWith(
       members: members == freezed ? _value.members : members as List<Member>,
+      membersStream: membersStream == freezed
+          ? _value.membersStream
+          : membersStream as Stream<List<Member>>,
     ));
   }
 }
@@ -65,7 +72,7 @@ abstract class _$MemberStateCopyWith<$Res>
           _MemberState value, $Res Function(_MemberState) then) =
       __$MemberStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Member> members});
+  $Res call({List<Member> members, Stream<List<Member>> membersStream});
 }
 
 /// @nodoc
@@ -81,23 +88,29 @@ class __$MemberStateCopyWithImpl<$Res> extends _$MemberStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object members = freezed,
+    Object membersStream = freezed,
   }) {
     return _then(_MemberState(
       members: members == freezed ? _value.members : members as List<Member>,
+      membersStream: membersStream == freezed
+          ? _value.membersStream
+          : membersStream as Stream<List<Member>>,
     ));
   }
 }
 
 /// @nodoc
 class _$_MemberState with DiagnosticableTreeMixin implements _MemberState {
-  const _$_MemberState({this.members});
+  const _$_MemberState({this.members, this.membersStream});
 
   @override
   final List<Member> members;
+  @override
+  final Stream<List<Member>> membersStream;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MemberState(members: $members)';
+    return 'MemberState(members: $members, membersStream: $membersStream)';
   }
 
   @override
@@ -105,7 +118,8 @@ class _$_MemberState with DiagnosticableTreeMixin implements _MemberState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'MemberState'))
-      ..add(DiagnosticsProperty('members', members));
+      ..add(DiagnosticsProperty('members', members))
+      ..add(DiagnosticsProperty('membersStream', membersStream));
   }
 
   @override
@@ -113,12 +127,18 @@ class _$_MemberState with DiagnosticableTreeMixin implements _MemberState {
     return identical(this, other) ||
         (other is _MemberState &&
             (identical(other.members, members) ||
-                const DeepCollectionEquality().equals(other.members, members)));
+                const DeepCollectionEquality()
+                    .equals(other.members, members)) &&
+            (identical(other.membersStream, membersStream) ||
+                const DeepCollectionEquality()
+                    .equals(other.membersStream, membersStream)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(members);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(members) ^
+      const DeepCollectionEquality().hash(membersStream);
 
   @override
   _$MemberStateCopyWith<_MemberState> get copyWith =>
@@ -126,10 +146,14 @@ class _$_MemberState with DiagnosticableTreeMixin implements _MemberState {
 }
 
 abstract class _MemberState implements MemberState {
-  const factory _MemberState({List<Member> members}) = _$_MemberState;
+  const factory _MemberState(
+      {List<Member> members,
+      Stream<List<Member>> membersStream}) = _$_MemberState;
 
   @override
   List<Member> get members;
+  @override
+  Stream<List<Member>> get membersStream;
   @override
   _$MemberStateCopyWith<_MemberState> get copyWith;
 }

@@ -10,6 +10,8 @@ class MemberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     logger.info('MemberPage build');
+    final memberStream = context.select<MemberState, Stream<List<Member>>>(
+        (state) => state.membersStream);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -19,18 +21,24 @@ class MemberPage extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: ListView.builder(
-        itemCount:
-            context.select<MemberState, int>((state) => state.members.length),
-        itemBuilder: (_, index) => Builder(
-          builder: (context) => MemberItem(
-            id: context
-                .select<MemberState, Member>((state) => state.members[index])
-                .user
-                .id,
-          ),
-        ),
-      ),
+      body: (memberStream == null)
+          ? const Text('組織を選択してください．')
+          : StreamBuilder(
+              stream: memberStream,
+              builder: (BuildContext _, AsyncSnapshot<List<Member>> snapshot) {
+                if (!snapshot.hasData) {
+                  return const Text('Loading...');
+                }
+                return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (_, index) => Builder(
+                    builder: (context) => MemberItem(
+                      member: snapshot.data[index],
+                    ),
+                  ),
+                );
+              },
+            ),
     );
   }
 }

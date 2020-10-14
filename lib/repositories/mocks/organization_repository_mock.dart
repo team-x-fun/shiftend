@@ -77,4 +77,9 @@ class OrganizationRepositoryMock extends OrganizationRepositoryInterface {
     // TODO: implement getHolidays
     throw UnimplementedError();
   }
+
+  @override
+  Stream<Organization> getOrgStream(String id) async* {
+    yield await getOrganization(id);
+  }
 }

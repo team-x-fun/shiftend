@@ -32,6 +32,20 @@ class OrganizationRepository extends OrganizationRepositoryInterface {
   }
 
   @override
+  Stream<Organization> getOrgStream(String id) {
+    final Stream<DocumentSnapshot> orgStream =
+        firestore.collection(collectionName).doc(id).snapshots();
+    return orgStream.asyncMap((snapshot) async {
+      final json = snapshot.data();
+      if (json == null) {
+        return const Organization();
+      }
+      final org = await _fromJson(json);
+      return org;
+    });
+  }
+
+  @override
   Future<List<Organization>> getOrganizations(String ownerId) async {
     final orgs = firestore
         .collection(collectionName)

@@ -9,6 +9,8 @@ abstract class LoginState with _$LoginState {
     @Default(false) bool isLogin,
     User currentUser,
     @Default(<Organization>[]) List<Organization> orgs,
+    // TODO: streamに完全対応できたら削除
     @Default(Organization()) Organization selectedOrg,
+    @Default(null) @nullable Stream<Organization> selectedOrgStream,
   }) = _LoginState;
 }

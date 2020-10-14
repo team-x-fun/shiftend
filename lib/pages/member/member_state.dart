@@ -8,5 +8,6 @@ part 'member_state.freezed.dart';
 abstract class MemberState with _$MemberState {
   const factory MemberState({
     List<Member> members,
+    Stream<List<Member>> membersStream,
   }) = _MemberState;
 }
