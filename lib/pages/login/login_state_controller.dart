@@ -51,7 +51,6 @@ class LoginStateController extends StateNotifier<LoginState> with LocatorMixin {
       state = state.copyWith(
         orgs: <Organization>[],
         selectedOrg: const Organization(),
-        selectedOrgStream: null,
       );
     }
     logger.info('fetchLoginState: state = $state');

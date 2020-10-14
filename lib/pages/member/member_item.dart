@@ -11,16 +11,13 @@ import 'widgets/level_stars_widget.dart';
 
 class MemberItem extends StatelessWidget {
   const MemberItem({
-    this.id,
+    this.member,
   });
 
-  final String id;
+  final Member member;
 
   @override
   Widget build(BuildContext context) {
-    final member = context
-        .select<MemberState, List<Member>>((state) => state.members)
-        .firstWhere((m) => m.user.id == id);
     logger.info('MemberItem build: ${member.user.id}');
     return ListTile(
       onTap: () {
