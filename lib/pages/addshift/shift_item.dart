@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
 
 class ShiftItem extends StatelessWidget {
-  const ShiftItem({this.member});
+  const ShiftItem({this.shift});
 
-  final Member member;
+  final Shift shift;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +33,12 @@ class ShiftItem extends StatelessWidget {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(member.user.iconUrl),
+                    image: NetworkImage(shift.member.user.iconUrl),
                   ),
                 ),
               ),
-              title: Text(member.user.name),
-              subtitle: Text(member.role),
+              title: Text(shift.member.user.name),
+              subtitle: Text(shift.member.role),
             ),
           ),
         ),

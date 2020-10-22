@@ -4,9 +4,9 @@ import 'package:shiftend/models/models.dart';
 import 'package:shiftend/pages/addshift/addshift_dialog.dart';
 
 class AddShiftItem extends StatelessWidget {
-  const AddShiftItem({this.member});
+  const AddShiftItem({this.requestedShift});
 
-  final Member member;
+  final Shift requestedShift;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class AddShiftItem extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (BuildContext _) => AddShiftDialog(
-                  member: member,
+                  requestedShift: requestedShift,
                 ),
               ),
             ),
@@ -41,12 +41,12 @@ class AddShiftItem extends StatelessWidget {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(member.user.iconUrl),
+                    image: NetworkImage(requestedShift.member.user.iconUrl),
                   ),
                 ),
               ),
-              title: Text(member.user.name),
-              subtitle: Text(member.role),
+              title: Text(requestedShift.member.user.name),
+              subtitle: Text(requestedShift.member.role),
             ),
           ),
         ),

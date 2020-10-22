@@ -36,19 +36,20 @@ class AddShiftPage extends StatelessWidget {
     editedlist.add(const Text('シフト入ってる人'));
     if (shiftlist != null) {
       shiftlist.forEach((shift) {
-        editedlist.add(ShiftItem(member: shift.member));
+        editedlist.add(ShiftItem(shift: shift));
       });
     }
     editedlist.add(const Text('シフト希望'));
     if (requestShiftlist != null) {
       requestShiftlist.forEach((requestedShift) {
-        editedlist.add(AddShiftItem(member: requestedShift.member));
+        editedlist.add(AddShiftItem(requestedShift: requestedShift));
       });
     }
     editedlist.add(const Text('シフトなし'));
     if (noShiftMembers != null) {
       noShiftMembers.forEach((noShiftlist) {
-        editedlist.add(AddShiftItem(member: noShiftlist));
+        editedlist
+            .add(AddShiftItem(requestedShift: Shift(member: noShiftlist)));
       });
     }
 

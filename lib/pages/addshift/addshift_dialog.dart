@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
 
 class AddShiftDialog extends StatelessWidget {
-  const AddShiftDialog({this.member});
-  final Member member;
+  const AddShiftDialog({this.requestedShift});
+  final Shift requestedShift;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -12,8 +12,8 @@ class AddShiftDialog extends StatelessWidget {
         children: <Widget>[
           Container(
             child: ListTile(
-              title: Text(member.user.name),
-              subtitle: Text(member.role),
+              title: Text(requestedShift.member.user.name),
+              subtitle: Text(requestedShift.member.role),
             ),
           ),
         ],
