@@ -10,12 +10,12 @@ import 'package:shiftend/util/logger.dart';
 import 'addshift_item.dart';
 
 class AddShiftPage extends StatelessWidget {
-  AddShiftPage(
-      {Key key,
-      @required this.shiftlist,
-      @required this.requestShiftlist,
-      @required this.memberslist})
-      : super(key: key);
+  AddShiftPage({
+    Key key,
+    @required this.shiftlist,
+    @required this.requestShiftlist,
+    @required this.memberslist,
+  }) : super(key: key);
 
   final UserRepositoryInterface userRepository = UserRepositoryMock();
   final List<Shift> shiftlist;
@@ -26,6 +26,9 @@ class AddShiftPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> editedlist = [];
     logger..info(memberslist)..info(shiftlist);
+    // TODO: 選択している日付をどこからか持ってくる．
+    // FIXME: requestShiftlistが空の場合エラーする
+    final today = requestShiftlist.first.start;
     final noShiftMembers = memberslist
         .where((member) => !shiftlist
             .map((shift) => shift.member.user.id)
@@ -47,10 +50,19 @@ class AddShiftPage extends StatelessWidget {
     }
     editedlist.add(const Text('シフトなし'));
     if (noShiftMembers != null) {
-      noShiftMembers.forEach((noShiftlist) {
-        editedlist
-            .add(AddShiftItem(requestedShift: Shift(member: noShiftlist)));
-      });
+      noShiftMembers.forEach(
+        (noShiftlist) {
+          editedlist.add(
+            AddShiftItem(
+              requestedShift: Shift(
+                member: noShiftlist,
+                start: today,
+                end: today,
+              ),
+            ),
+          );
+        },
+      );
     }
 
     return Scaffold(
