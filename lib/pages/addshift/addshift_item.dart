@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
+import 'package:shiftend/pages/addshift/addshift_dialog.dart';
 
 class AddShiftItem extends StatelessWidget {
   const AddShiftItem({this.member});
@@ -17,7 +18,14 @@ class AddShiftItem extends StatelessWidget {
           color: Colors.grey[50],
           padding: const EdgeInsets.all(0),
           onPressed: () => {
-            Navigator.of(context).pop(),
+            Navigator.push<AddShiftDialog>(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext _) => AddShiftDialog(
+                  member: member,
+                ),
+              ),
+            ),
           },
           child: Container(
             child: ListTile(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shiftend/models/member/member.dart';
 import 'package:shiftend/models/shift/shift.dart';
 import 'package:shiftend/models/user/user.dart';
+import 'package:shiftend/pages/addshift/shift_item.dart';
 import 'package:shiftend/repositories/interfaces/user_repository_interface.dart';
 import 'package:shiftend/repositories/mocks/user_repository_mock.dart';
 import 'package:shiftend/util/logger.dart';
@@ -35,7 +36,7 @@ class AddShiftPage extends StatelessWidget {
     editedlist.add(const Text('シフト入ってる人'));
     if (shiftlist != null) {
       shiftlist.forEach((shift) {
-        editedlist.add(AddShiftItem(member: shift.member));
+        editedlist.add(ShiftItem(member: shift.member));
       });
     }
     editedlist.add(const Text('シフト希望'));
