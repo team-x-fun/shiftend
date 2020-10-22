@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftend/models/models.dart';
-import 'package:shiftend/pages/addshift/addshift_dialog.dart';
 
-class AddShiftItem extends StatelessWidget {
-  const AddShiftItem({this.requestedShift});
+class ShiftItem extends StatelessWidget {
+  const ShiftItem({this.shift});
 
-  final Shift requestedShift;
+  final Shift shift;
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +17,13 @@ class AddShiftItem extends StatelessWidget {
           color: Colors.grey[50],
           padding: const EdgeInsets.all(0),
           onPressed: () => {
-            Navigator.push<AddShiftDialog>(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext _) => AddShiftDialog(
-                  requestedShift: requestedShift,
-                ),
-              ),
-            ),
+            Navigator.of(context).pop(),
           },
           child: Container(
             child: ListTile(
               dense: true,
               trailing: const Text(
-                '追加する',
+                '削除する',
                 style: TextStyle(color: Colors.green),
               ),
               leading: Container(
@@ -41,12 +33,12 @@ class AddShiftItem extends StatelessWidget {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(requestedShift.member.user.iconUrl),
+                    image: NetworkImage(shift.member.user.iconUrl),
                   ),
                 ),
               ),
-              title: Text(requestedShift.member.user.name),
-              subtitle: Text(requestedShift.member.role),
+              title: Text(shift.member.user.name),
+              subtitle: Text(shift.member.role),
             ),
           ),
         ),
